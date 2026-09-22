@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Invitation de Mariage — Hermann &amp; Daria</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #faf9f7;
+    --ink: #2b2b2b;
+    --ink-soft: #6b6b6b;
+    --accent: #a3855c; /* doré discret */
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #e8e6e1;
+    font-family: 'Montserrat', sans-serif;
+    color: var(--ink);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 24px;
+  }
+
+  /* ---------- LA CARTE ---------- */
+  .card {
+    background: var(--bg);
+    width: 100%;
+    max-width: 480px;
+    aspect-ratio: 9 / 16; /* format vertical, idéal pour WhatsApp/Instagram */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 48px 36px;
+    box-shadow: 0 20px 60px rgba(0,0,0,.12);
+    border: 1px solid rgba(0,0,0,.04);
+    position: relative;
+  }
+
+  /* fin double filet décoratif */
+  .card::before, .card::after {
+    content: "";
+    position: absolute;
+    inset: 14px;
+    border: 1px solid rgba(163,133,92,.35);
+    pointer-events: none;
+  }
+  .card::after { inset: 19px; border-width: 0.5px; }
+
+  /* ---------- TYPOGRAPHIE ---------- */
+  .kicker {
+    font-size: 11px;
+    letter-spacing: .45em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  .names {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 400;
+    font-size: clamp(38px, 9vw, 56px);
+    line-height: 1.1;
+    margin: 28px 0 6px;
+  }
+  .names .amp {
+    font-style: italic;
+    color: var(--accent);
+    font-size: .8em;
+    margin: 0 10px;
+  }
+
+  .rule {
+    width: 64px;
+    height: 1px;
+    background: var(--accent);
+    opacity: .55;
+    margin: 26px auto;
+  }
+
+  .invite-line {
+    font-weight: 300;
+    font-size: 13px;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    line-height: 2;
+  }
+
+  .date {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px;
+    font-weight: 500;
+    margin: 22px 0 4px;
+    letter-spacing: .06em;
+  }
+
+  .details {
+    font-weight: 300;
+    font-size: 12.5px;
+    letter-spacing: .12em;
+    color: var(--ink-soft);
+    line-height: 2.1;
+  }
+
+  .rsvp {
+    margin-top: 34px;
+    font-weight: 300;
+    font-size: 11px;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .rsvp strong {
+    font-weight: 500;
+    color: var(--ink);
+  }
+
+  /* petit monogramme en haut */
+  .monogram {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 20px;
+    color: var(--accent);
+    margin-bottom: 30px;
+    letter-spacing: .1em;
+  }
+</style>
+</head>
+<body>
+
+  <div class="card">
+    <div class="monogram">H &amp; D</div>
+
+    <div class="kicker">Nous nous marions</div>
+
+    <h1 class="names">Hermann <span class="amp">&amp;</span> Daria</h1>
+
+    <div class="rule"></div>
+
+    <p class="invite-line">
+      Ensemble avec leurs familles<br>
+      vous invitent à célébrer leur union
+    </p>
+
+    <p class="date">Vendredi 18 Décembre 2026</p>
+    <p class="details">
+      à 16 h 00<br>
+      Table des Élites<br>
+      Akwa — Douala, Cameroun<br>
+      Dress code — Black &amp; White
+    </p>
+
+    <p class="rsvp">Réponse souhaitée avant le <strong>30 novembre</strong><br>— Hermann &amp; Daria : +237 6 00 00 00 00 —</p>
+  </div>
+
+</body>
+</html>
