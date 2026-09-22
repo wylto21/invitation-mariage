@@ -3,23 +3,34 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Invitation de Mariage — Hermann &amp; Daria</title>
+<title>Save the Date — Daria &amp; Hermann · 18 décembre 2026</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Great+Vibes&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #faf9f7;
-    --ink: #2b2b2b;
-    --ink-soft: #6b6b6b;
-    --accent: #a3855c; /* doré discret */
+    --bg: #f6ede3;          /* crème chaud */
+    --bg2: #f1e4d6;
+    --deep: #8a3416;        /* terracotta foncé */
+    --terra: #b85c38;       /* terracotta */
+    --terra-light: #c97b4e; /* terracotta clair */
+    --sand: #a8865e;        /* sable doré */
+    --gold: #c9a55e;        /* or de l'arc */
+    --ink: #4a2416;
+    --muted: #a8865e;
+    --cream: #fdf8f2;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
   body {
-    background: #e8e6e1;
-    font-family: 'Montserrat', sans-serif;
+    background:
+      radial-gradient(60% 45% at 8% 6%, rgba(184,92,56,.14) 0%, transparent 60%),
+      radial-gradient(55% 42% at 94% 12%, rgba(201,123,78,.12) 0%, transparent 60%),
+      radial-gradient(55% 45% at 92% 94%, rgba(168,134,94,.18) 0%, transparent 62%),
+      radial-gradient(48% 40% at 6% 92%, rgba(184,92,56,.12) 0%, transparent 60%),
+      #e8d9c5;
+    font-family: 'Jost', sans-serif;
     color: var(--ink);
     display: flex;
     justify-content: center;
@@ -30,136 +41,186 @@
 
   /* ---------- LA CARTE ---------- */
   .card {
-    background: var(--bg);
+    background: linear-gradient(160deg, var(--bg) 0%, var(--bg2) 100%);
     width: 100%;
     max-width: 480px;
-    aspect-ratio: 9 / 16; /* format vertical, idéal pour WhatsApp/Instagram */
+    aspect-ratio: 9 / 16;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
-    padding: 48px 36px;
-    box-shadow: 0 20px 60px rgba(0,0,0,.12);
-    border: 1px solid rgba(0,0,0,.04);
+    padding: 46px 34px;
+    box-shadow: 0 24px 70px rgba(74,36,22,.25);
+    border: 1px solid rgba(184,92,56,.14);
     position: relative;
+    overflow: hidden;
   }
 
-  /* fin double filet décoratif */
-  .card::before, .card::after {
+  /* halo doux au centre, comme la lumière de l'affiche */
+  .card::before {
     content: "";
     position: absolute;
-    inset: 14px;
-    border: 1px solid rgba(163,133,92,.35);
+    inset: 0;
+    background: radial-gradient(58% 42% at 50% 40%, rgba(255,251,244,.85) 0%, transparent 70%);
     pointer-events: none;
   }
-  .card::after { inset: 19px; border-width: 0.5px; }
 
-  /* ---------- TYPOGRAPHIE ---------- */
-  .kicker {
-    font-size: 11px;
-    letter-spacing: .45em;
-    text-transform: uppercase;
-    color: var(--accent);
-    font-weight: 500;
+  /* arc doré décoratif */
+  .arc {
+    position: absolute;
+    left: 50%;
+    top: 42%;
+    transform: translate(-50%, -50%);
+    width: 78%;
+    aspect-ratio: 1 / 1.22;
+    pointer-events: none;
   }
+  .arc svg { width: 100%; height: 100%; display: block; }
 
+  /* feuillages stylisés aux coins (évoquent les palmes/fleurs) */
+  .leaf { position: absolute; width: 110px; height: 110px; pointer-events: none; opacity: .8; }
+  .leaf svg { width: 100%; height: 100%; }
+  .leaf.tl { top: -24px; left: -24px; }
+  .leaf.tr { top: -24px; right: -24px; transform: scaleX(-1); }
+  .leaf.bl { bottom: -24px; left: -24px; transform: scaleY(-1); }
+  .leaf.br { bottom: -24px; right: -24px; transform: scale(-1); }
+
+  .content { position: relative; z-index: 2; width: 100%; }
+
+  /* mention manuscrite en haut à droite */
+  .motto-script { position: absolute; top: 30px; right: 26px; text-align: right; z-index: 3; }
+  .motto-script .ms1 { font-family: 'Great Vibes', cursive; font-size: 21px; line-height: 1.15; color: var(--deep); }
+  .motto-script .ms2 { margin-top: 6px; color: var(--terra); font-size: 12px; }
+
+  /* listes de mots à gauche */
+  .motto-list {
+    position: absolute; top: 34%; left: 24px; text-align: left;
+    display: flex; flex-direction: column; gap: 5px;
+    font-size: 8.5px; letter-spacing: .3em; text-transform: uppercase;
+    color: var(--deep); font-weight: 500; z-index: 3;
+  }
+  .motto-list .hh { color: var(--terra); border-top: 1px solid rgba(184,92,56,.3); padding-top: 7px; margin-top: 4px; }
+
+  .kicker { font-size: 10px; letter-spacing: .42em; text-transform: uppercase; color: var(--muted); font-weight: 400; }
+
+  /* SAVE THE DATE */
+  .std {
+    font-family: 'Cinzel', serif; font-weight: 600;
+    font-size: clamp(30px, 8.4vw, 40px); letter-spacing: .04em;
+    line-height: 1.06; color: var(--deep); margin: 16px 0 4px;
+  }
+  .std .t { color: var(--terra); font-size: .6em; letter-spacing: .18em; vertical-align: .12em; font-weight: 500; }
+
+  /* séparateur avec anneaux entrelacés */
+  .sep { display: flex; align-items: center; justify-content: center; gap: 9px; margin: 6px 0 4px; }
+  .sep i { width: 54px; height: 1px; background: linear-gradient(90deg, transparent, rgba(184,92,56,.55)); }
+  .sep i:last-child { transform: scaleX(-1); }
+  .sep .rings { color: var(--terra); font-size: 13px; }
+
+  /* prénoms — script terracotta, même position que l'affiche */
   .names {
-    font-family: 'Cormorant Garamond', serif;
-    font-weight: 400;
-    font-size: clamp(38px, 9vw, 56px);
-    line-height: 1.1;
-    margin: 28px 0 6px;
+    font-family: 'Great Vibes', cursive; font-weight: 400;
+    font-size: clamp(38px, 10vw, 52px); line-height: 1.15;
+    color: var(--terra); margin: 2px 0 8px;
   }
-  .names .amp {
-    font-style: italic;
-    color: var(--accent);
-    font-size: .8em;
-    margin: 0 10px;
+  .names .amp { font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--deep); font-size: .62em; margin: 0 .12em; }
+
+  .date-line { display: flex; align-items: center; justify-content: center; gap: 9px; font-size: 14.5px; font-weight: 500; letter-spacing: .04em; color: var(--ink); margin-top: 4px; }
+  .date-line .ic { color: var(--deep); font-size: 15px; }
+  .venue-line { display: flex; align-items: center; justify-content: center; gap: 9px; font-size: 13.5px; letter-spacing: .02em; color: var(--ink); margin-top: 7px; }
+  .venue-line .ic { color: var(--deep); font-size: 14px; }
+  .hours { margin-top: 10px; font-weight: 300; font-size: 12px; letter-spacing: .06em; color: var(--ink); }
+  .theme-line { margin-top: 9px; font-size: 12.5px; font-weight: 500; color: var(--deep); display: flex; align-items: center; justify-content: center; gap: 8px; }
+  .theme-line b { color: var(--terra); font-weight: 600; }
+  .theme-line .sprig { color: var(--sand); font-size: 13px; }
+
+  /* bandeau doré brossé « Merci de réserver cette date » */
+  .banner {
+    margin-top: 16px; display: inline-block; position: relative;
+    padding: 10px 30px; color: var(--cream);
+    font-size: 11.5px; font-weight: 500; letter-spacing: .12em;
+  }
+  .banner::before {
+    content: ""; position: absolute; inset: 0; z-index: -1;
+    background: linear-gradient(100deg, rgba(201,165,94,.92), rgba(212,178,116,.78) 45%, rgba(201,165,94,.92));
+    border-radius: 3px 14px 4px 12px / 12px 4px 14px 5px; /* aspect "coup de pinceau" */
+    box-shadow: 0 4px 14px rgba(168,134,94,.4);
   }
 
-  .rule {
-    width: 64px;
-    height: 1px;
-    background: var(--accent);
-    opacity: .55;
-    margin: 26px auto;
+  .rsvp-link {
+    margin-top: 14px; display: inline-block;
+    font-size: 10px; letter-spacing: .3em; text-transform: uppercase;
+    color: var(--terra); text-decoration: none;
+    border-bottom: 1px solid rgba(184,92,56,.4); padding-bottom: 3px; transition: .25s;
   }
+  .rsvp-link:hover { color: var(--deep); border-color: var(--deep); }
 
-  .invite-line {
-    font-weight: 300;
-    font-size: 13px;
-    letter-spacing: .18em;
-    text-transform: uppercase;
-    color: var(--ink-soft);
-    line-height: 2;
-  }
+  .foot { margin-top: 12px; font-size: 9px; letter-spacing: .34em; text-transform: uppercase; color: var(--muted); }
 
-  .date {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 26px;
-    font-weight: 500;
-    margin: 22px 0 4px;
-    letter-spacing: .06em;
-  }
-
-  .details {
-    font-weight: 300;
-    font-size: 12.5px;
-    letter-spacing: .12em;
-    color: var(--ink-soft);
-    line-height: 2.1;
-  }
-
-  .rsvp {
-    margin-top: 34px;
-    font-weight: 300;
-    font-size: 11px;
-    letter-spacing: .2em;
-    text-transform: uppercase;
-    color: var(--ink-soft);
-  }
-  .rsvp strong {
-    font-weight: 500;
-    color: var(--ink);
-  }
-
-  /* petit monogramme en haut */
-  .monogram {
-    font-family: 'Cormorant Garamond', serif;
-    font-style: italic;
-    font-size: 20px;
-    color: var(--accent);
-    margin-bottom: 30px;
-    letter-spacing: .1em;
+  @media (max-width: 400px) {
+    .card { padding: 40px 22px; }
+    .motto-list { left: 14px; }
+    .motto-script { right: 16px; }
   }
 </style>
 </head>
 <body>
 
   <div class="card">
-    <div class="monogram">H &amp; D</div>
+    <div class="arc" aria-hidden="true">
+      <svg viewBox="0 0 400 488" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M 70 460 L 70 220 A 130 130 0 0 1 330 220 L 330 460" stroke="#c9a55e" stroke-width="2.5"/>
+        <path d="M 82 448 L 82 226 A 118 118 0 0 1 318 226 L 318 448" stroke="rgba(201,165,94,.45)" stroke-width="1.2"/>
+      </svg>
+    </div>
 
-    <div class="kicker">Nous nous marions</div>
+    <!-- feuillages stylisés aux 4 coins -->
+    <div class="leaf tl" aria-hidden="true">
+      <svg viewBox="0 0 100 100" fill="none"><path d="M4 96 C 10 60, 34 30, 78 12" stroke="#b9855c" stroke-width="1.6"/><path d="M18 78 C 30 70, 44 68, 58 70" stroke="#b9855c" stroke-width="1.2" opacity=".7"/><path d="M30 58 C 42 50, 56 48, 68 52" stroke="#b9855c" stroke-width="1.2" opacity=".7"/><path d="M44 40 C 56 34, 68 34, 78 38" stroke="#b9855c" stroke-width="1.2" opacity=".7"/><circle cx="88" cy="10" r="4" fill="#c97b4e" opacity=".85"/><circle cx="74" cy="22" r="2.5" fill="#c97b4e" opacity=".6"/></svg>
+    </div>
+    <div class="leaf tr" aria-hidden="true">
+      <svg viewBox="0 0 100 100" fill="none"><path d="M4 96 C 10 60, 34 30, 78 12" stroke="#b9855c" stroke-width="1.6"/><path d="M18 78 C 30 70, 44 68, 58 70" stroke="#b9855c" stroke-width="1.2" opacity=".7"/><path d="M30 58 C 42 50, 56 48, 68 52" stroke="#b9855c" stroke-width="1.2" opacity=".7"/><path d="M44 40 C 56 34, 68 34, 78 38" stroke="#b9855c" stroke-width="1.2" opacity=".7"/><circle cx="88" cy="10" r="4" fill="#c97b4e" opacity=".85"/><circle cx="74" cy="22" r="2.5" fill="#c97b4e" opacity=".6"/></svg>
+    </div>
+    <div class="leaf bl" aria-hidden="true">
+      <svg viewBox="0 0 100 100" fill="none"><path d="M4 96 C 10 60, 34 30, 78 12" stroke="#b9855c" stroke-width="1.6"/><path d="M18 78 C 30 70, 44 68, 58 70" stroke="#b9855c" stroke-width="1.2" opacity=".7"/><path d="M30 58 C 42 50, 56 48, 68 52" stroke="#b9855c" stroke-width="1.2" opacity=".7"/><circle cx="88" cy="10" r="4" fill="#c97b4e" opacity=".85"/></svg>
+    </div>
+    <div class="leaf br" aria-hidden="true">
+      <svg viewBox="0 0 100 100" fill="none"><path d="M4 96 C 10 60, 34 30, 78 12" stroke="#b9855c" stroke-width="1.6"/><path d="M18 78 C 30 70, 44 68, 58 70" stroke="#b9855c" stroke-width="1.2" opacity=".7"/><path d="M30 58 C 42 50, 56 48, 68 52" stroke="#b9855c" stroke-width="1.2" opacity=".7"/><circle cx="88" cy="10" r="4" fill="#c97b4e" opacity=".85"/></svg>
+    </div>
 
-    <h1 class="names">Hermann <span class="amp">&amp;</span> Daria</h1>
+    <div class="motto-script" aria-hidden="true">
+      <div class="ms1">Un jour<br>pour toujours</div>
+      <div class="ms2">❤</div>
+    </div>
 
-    <div class="rule"></div>
+    <div class="motto-list" aria-hidden="true">
+      <span>Deux</span><span>cœurs</span><span>une même</span><span>destination</span>
+      <span class="hh">Amour</span><span>Respect</span><span>Aventure</span><span>Toujours</span>
+    </div>
 
-    <p class="invite-line">
-      Ensemble avec leurs familles<br>
-      vous invitent à célébrer leur union
-    </p>
+    <div class="content">
+      <div class="kicker">Nous nous marions</div>
 
-    <p class="date">Vendredi 18 Décembre 2026</p>
-    <p class="details">
-      à 16 h 00<br>
-      Table des Élites<br>
-      Akwa — Douala, Cameroun<br>
-      Dress code — Black &amp; White
-    </p>
+      <h1 class="std">Save <span class="t">the</span> Date</h1>
 
-    <p class="rsvp">Réponse souhaitée avant le <strong>30 novembre</strong><br>— Hermann &amp; Daria : +237 6 00 00 00 00 —</p>
+      <div class="sep" aria-hidden="true"><i></i><span class="rings">⚭</span><i></i></div>
+
+      <h2 class="names">Daria <span class="amp">&amp;</span> Hermann</h2>
+
+      <p class="date-line"><span class="ic">🗓</span> 18 décembre 2026</p>
+      <p class="venue-line"><span class="ic">📍</span> Restaurant La Table de l'Élite — Akwa, Douala</p>
+
+      <p class="hours">Cérémonie à 16 h 00 · célébration jusqu'à 22 h</p>
+
+      <p class="theme-line"><span class="sprig">❧</span> Thème : <b>Terracotta</b> <span class="sprig">❧</span></p>
+
+      <div class="banner">Merci de réserver cette date</div>
+
+      <a class="rsvp-link" href="invitation-landing.html">Confirmer ma présence</a>
+
+      <p class="foot">Dress code — Black &amp; White</p>
+    </div>
   </div>
 
 </body>

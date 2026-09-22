@@ -6,21 +6,21 @@
 <title>Hermann &amp; Daria — Invitation · 18.12.2026</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cinzel:wght@400;500;600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cinzel:wght@400;500;600&family=Great+Vibes&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#0a0912;--bg2:#0f0c1a;
-  --gold:#d8b25c;--gold2:#f3e2b3;--bronze:#8a6a2f;
-  --emerald:#3bb08b;
-  --ink:#f2ead9;--muted:#a39a8d;
-  --line:rgba(216,178,92,.26);--line-soft:rgba(216,178,92,.12);
-  --glass:rgba(216,178,92,.05);
-  --danger:#d46a6a;
+  --bg:#f6ede3;--bg2:#f1e4d6;
+  --gold:#b85c38;--gold2:#8a3416;--bronze:#a8865e;
+  --emerald:#b85c38;
+  --ink:#4a2416;--muted:#a8865e;
+  --line:rgba(184,92,56,.26);--line-soft:rgba(184,92,56,.12);
+  --glass:rgba(184,92,56,.05);
+  --danger:#a63d2a;
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--ink);font-family:'Jost',system-ui,sans-serif;overflow-x:hidden;min-height:100vh}
-::selection{background:var(--gold);color:#140e02}
+::selection{background:var(--gold);color:#fdf8f2}
 ::-webkit-scrollbar{width:10px}
 ::-webkit-scrollbar-track{background:var(--bg)}
 ::-webkit-scrollbar-thumb{background:linear-gradient(var(--bronze),var(--gold));border-radius:99px}
@@ -28,11 +28,14 @@ canvas#fx{position:fixed;inset:0;pointer-events:none;z-index:80}
 
 /* ——— Atmosphère : vignette, rayons Déco, grain ——— */
 .stage{position:fixed;inset:0;z-index:-3;background:
-  radial-gradient(120% 90% at 50% -10%, #181226 0%, transparent 55%),
-  radial-gradient(90% 70% at 50% 115%, #171126 0%, transparent 60%),
+  radial-gradient(65% 55% at 6% 4%, rgba(184,92,56,.15) 0%, transparent 62%),
+  radial-gradient(55% 45% at 96% 10%, rgba(201,123,78,.13) 0%, transparent 60%),
+  radial-gradient(60% 50% at 94% 94%, rgba(168,134,94,.2) 0%, transparent 62%),
+  radial-gradient(50% 45% at 4% 92%, rgba(184,92,56,.12) 0%, transparent 60%),
+  radial-gradient(120% 90% at 50% -10%, #f7eee2 0%, transparent 55%),
   linear-gradient(180deg,var(--bg),var(--bg2) 55%,var(--bg))}
 .rays{position:fixed;top:-32vmax;left:50%;width:114vmax;height:114vmax;margin-left:-57vmax;z-index:-2;pointer-events:none;
-  background:repeating-conic-gradient(from 0deg at 50% 50%, rgba(216,178,92,.055) 0deg 2.2deg, transparent 2.2deg 11.5deg);
+  background:repeating-conic-gradient(from 0deg at 50% 50%, rgba(184,92,56,.055) 0deg 2.2deg, transparent 2.2deg 11.5deg);
   -webkit-mask:radial-gradient(closest-side,#000 0%,transparent 68%);
   mask:radial-gradient(closest-side,#000 0%,transparent 68%);
   animation:spin 150s linear infinite}
@@ -40,8 +43,8 @@ canvas#fx{position:fixed;inset:0;pointer-events:none;z-index:80}
 .grain{position:fixed;inset:0;z-index:60;pointer-events:none;opacity:.05;mix-blend-mode:overlay;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E")}
 
-/* ——— Or texte doré ——— */
-.shimmer{background:linear-gradient(100deg,#8a6a2f 0%,#f3e2b3 30%,#fffaf0 50%,#e8cf8f 65%,#8a6a2f 95%);
+/* ——— Texte terracotta ——— */
+.shimmer{background:linear-gradient(100deg,#8a3416 0%,#b85c38 30%,#c97b4e 50%,#b85c38 68%,#8a3416 95%);
   background-size:220% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 8s linear infinite}
 @keyframes shine{to{background-position:-220% 0}}
 
@@ -49,7 +52,7 @@ canvas#fx{position:fixed;inset:0;pointer-events:none;z-index:80}
 
 /* ——— Header ——— */
 header{position:fixed;top:0;left:0;right:0;z-index:50;backdrop-filter:blur(10px);
-  background:linear-gradient(180deg,rgba(10,9,18,.88),rgba(10,9,18,.35));border-bottom:1px solid var(--line-soft)}
+  background:linear-gradient(180deg,rgba(246,237,227,.92),rgba(246,237,227,.55));border-bottom:1px solid var(--line-soft)}
 .nav{display:flex;align-items:center;justify-content:space-between;height:64px}
 .mono{display:flex;align-items:center;gap:11px;cursor:pointer;user-select:none}
 .mono .dm{width:28px;height:28px;border:1px solid var(--line);transform:rotate(45deg);display:grid;place-items:center;flex:none}
@@ -65,39 +68,62 @@ header{position:fixed;top:0;left:0;right:0;z-index:50;backdrop-filter:blur(10px)
 /* ——— Hero ——— */
 .hero{min-height:100svh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:120px 22px 84px;position:relative}
 .pwrap{position:absolute;inset:0;overflow:hidden;pointer-events:none}
-.particle{position:absolute;top:-5%;width:6px;height:6px;background:linear-gradient(135deg,#fff6d8,var(--gold));transform:rotate(45deg);opacity:0;animation:fall linear infinite;box-shadow:0 0 8px rgba(216,178,92,.55)}
-@keyframes fall{0%{opacity:0;transform:translateY(0) rotate(45deg)}6%{opacity:.9}88%{opacity:.5}100%{opacity:0;transform:translateY(112vh) rotate(405deg)}}
+.particle{position:absolute;top:-5%;width:6px;height:6px;background:linear-gradient(135deg,#f3c6a6,var(--gold));transform:rotate(45deg);opacity:0;animation:fall linear infinite;box-shadow:0 0 8px rgba(184,92,56,.35)}
+@keyframes fall{0%{opacity:0;transform:translateY(0) rotate(45deg)}6%{opacity:.75}88%{opacity:.4}100%{opacity:0;transform:translateY(112vh) rotate(405deg)}}
+/* arc doré décoratif comme sur l'affiche */
+.arc{position:absolute;left:50%;top:46%;transform:translate(-50%,-50%);width:min(560px,92vw);aspect-ratio:1/1.18;pointer-events:none;opacity:.9}
+.arc svg{width:100%;height:100%;display:block}
+/* listes de mots à gauche, comme sur l'affiche */
+.motto-list{position:absolute;left:clamp(14px,4vw,44px);top:34%;display:flex;flex-direction:column;gap:7px;text-align:left;
+  font-size:10px;letter-spacing:.34em;text-transform:uppercase;color:var(--gold2);font-weight:500}
+.motto-list span{opacity:.85}
+.motto-list .hh{color:var(--gold);border-top:1px solid var(--line);padding-top:9px;margin-top:6px}
+@media(max-width:760px){.motto-list{display:none}}
+/* mention manuscrite en haut à droite */
+.motto-script{position:absolute;right:clamp(14px,4vw,48px);top:clamp(88px,12vh,130px);text-align:right}
+.motto-script .ms1{font-family:'Great Vibes',cursive;font-size:clamp(22px,3.2vw,30px);color:var(--gold);line-height:1.1}
+.motto-script .ms2{font-size:9.5px;letter-spacing:.4em;color:var(--muted);text-transform:uppercase;margin-top:8px;padding-right:.4em}
+@media(max-width:760px){.motto-script{display:none}}
 .fan{display:flex;align-items:flex-end;justify-content:center;gap:7px;margin-bottom:26px}
 .fan i{display:block;border:1px solid var(--line);border-bottom:0;border-radius:200px 200px 0 0}
-.fan i:nth-child(1){width:26px;height:13px;border-color:rgba(216,178,92,.2)}
-.fan i:nth-child(2){width:44px;height:22px;border-color:rgba(216,178,92,.35)}
+.fan i:nth-child(1){width:26px;height:13px;border-color:rgba(184,92,56,.2)}
+.fan i:nth-child(2){width:44px;height:22px;border-color:rgba(184,92,56,.35)}
 .fan i:nth-child(3){width:62px;height:31px;border-color:var(--gold)}
-.fan i:nth-child(4){width:44px;height:22px;border-color:rgba(216,178,92,.35)}
-.fan i:nth-child(5){width:26px;height:13px;border-color:rgba(216,178,92,.2)}
+.fan i:nth-child(4){width:44px;height:22px;border-color:rgba(184,92,56,.35)}
+.fan i:nth-child(5){width:26px;height:13px;border-color:rgba(184,92,56,.2)}
 .kicker{font-size:12px;letter-spacing:.55em;text-transform:uppercase;color:var(--gold);font-weight:400;padding-left:.55em}
-.names{font-family:'Cormorant Garamond',serif;font-size:clamp(54px,11vw,116px);font-weight:500;line-height:1.02;margin:18px 0 6px}
-.names .amp{font-style:italic;font-weight:400;font-size:.5em;color:var(--gold);margin:0 .22em;vertical-align:.14em}
+/* SAVE THE DATE — titre Cinzel comme l'affiche */
+.std{font-family:'Cinzel',serif;font-weight:600;font-size:clamp(30px,7vw,64px);letter-spacing:.06em;line-height:1.04;color:var(--gold2);margin:18px 0 2px}
+.std .t{color:var(--gold);font-size:.62em;letter-spacing:.18em;vertical-align:.12em;font-weight:500}
+.std::after{content:"";display:block;width:min(300px,60vw);height:1px;margin:14px auto 0;
+  background:linear-gradient(90deg,transparent,var(--line) 20%,var(--line) 80%,transparent)}
+/* prénoms en script terracotta, sous le titre */
+.names{font-family:'Great Vibes',cursive;font-size:clamp(46px,10vw,96px);font-weight:400;line-height:1.12;margin:10px 0 6px;color:var(--gold)}
+.names .amp{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:400;font-size:.6em;color:var(--gold2);margin:0 .18em;vertical-align:.1em}
 .sub{color:var(--muted);font-weight:300;letter-spacing:.18em;font-size:13px;line-height:2;text-transform:uppercase;max-width:560px}
 .orn{display:flex;align-items:center;gap:12px;width:min(340px,72vw);margin:20px auto}
 .orn::before,.orn::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--line) 25%,var(--line) 75%,transparent)}
-.orn .d{width:8px;height:8px;flex:none;background:var(--gold);transform:rotate(45deg);box-shadow:0 0 12px rgba(216,178,92,.8)}
+.orn .d{width:8px;height:8px;flex:none;background:var(--gold);transform:rotate(45deg);box-shadow:0 0 12px rgba(184,92,56,.5)}
 .date-big{font-family:'Cinzel';font-size:clamp(17px,3.4vw,25px);letter-spacing:.3em;color:var(--gold2);padding-left:.3em}
 .venue{color:var(--muted);font-weight:300;letter-spacing:.16em;font-size:12.5px;margin-top:10px;text-transform:uppercase}
-.cta{display:inline-block;margin-top:38px;padding:17px 40px;border-radius:2px;color:#140e02;text-decoration:none;
+.theme-line{display:inline-flex;align-items:center;gap:10px;margin-top:14px;font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:var(--gold2)}
+.theme-line::before,.theme-line::after{content:"";width:26px;height:1px;background:var(--line)}
+.theme-line b{color:var(--gold);font-weight:600}
+.cta{display:inline-block;margin-top:38px;padding:17px 40px;border-radius:2px;color:#fdf8f2;text-decoration:none;
   font:600 12px 'Jost';letter-spacing:.34em;text-transform:uppercase;padding-left:calc(40px + .34em);
-  background:linear-gradient(100deg,#b98d3f,#f3e2b3 45%,#d8b25c 62%,#b98d3f);background-size:220% 100%;
-  border:1px solid #f0dCa0;box-shadow:inset 0 0 0 3px rgba(10,9,18,.5),0 14px 44px rgba(216,178,92,.22);transition:.3s}
-.cta:hover{transform:translateY(-3px);background-position:100% 0;box-shadow:inset 0 0 0 3px rgba(10,9,18,.5),0 20px 54px rgba(216,178,92,.3)}
+  background:linear-gradient(100deg,#8a3416,#b85c38 45%,#c97b4e 62%,#b85c38);background-size:220% 100%;
+  border:1px solid #e8b59a;box-shadow:inset 0 0 0 3px rgba(246,237,227,.28),0 14px 44px rgba(184,92,56,.3);transition:.3s}
+.cta:hover{transform:translateY(-3px);background-position:100% 0;box-shadow:inset 0 0 0 3px rgba(246,237,227,.28),0 20px 54px rgba(184,92,56,.4)}
 .scroll-hint{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);font-size:10px;letter-spacing:.45em;color:var(--muted);text-transform:uppercase;animation:bob 2.4s ease-in-out infinite;padding-left:.45em}
 @keyframes bob{50%{transform:translate(-50%,9px)}}
 
 /* ——— Compte à rebours ——— */
 .count{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;max-width:600px;margin:46px auto 0;width:100%}
-.tile{position:relative;padding:24px 6px 18px;text-align:center;background:linear-gradient(180deg,var(--glass),rgba(216,178,92,.015));border:1px solid var(--line-soft)}
+.tile{position:relative;padding:24px 6px 18px;text-align:center;background:linear-gradient(180deg,var(--glass),rgba(184,92,56,.015));border:1px solid var(--line-soft)}
 .tile::before,.tile::after{content:"";position:absolute;width:10px;height:10px;pointer-events:none}
 .tile::before{top:-1px;left:-1px;border-top:1px solid var(--gold);border-left:1px solid var(--gold)}
 .tile::after{bottom:-1px;right:-1px;border-bottom:1px solid var(--gold);border-right:1px solid var(--gold)}
-.tile .num{font-family:'Cinzel';font-size:clamp(27px,6.4vw,42px);font-weight:600;line-height:1;color:var(--gold2);font-variant-numeric:tabular-nums;text-shadow:0 0 24px rgba(216,178,92,.35)}
+.tile .num{font-family:'Cinzel';font-size:clamp(27px,6.4vw,42px);font-weight:600;line-height:1;color:var(--gold2);font-variant-numeric:tabular-nums;text-shadow:0 0 24px rgba(184,92,56,.35)}
 .tile .lab{margin-top:11px;font-size:9.5px;letter-spacing:.42em;color:var(--muted);text-transform:uppercase;padding-left:.42em}
 .tile .tick{width:22px;height:1px;background:var(--line);margin:9px auto 0}
 .tile.pop .num{animation:pop .5s cubic-bezier(.2,.9,.3,1.4)}
@@ -125,13 +151,13 @@ h2.sec em{font-style:italic;color:var(--gold)}
 .ring .val .pct{font-size:10px;color:var(--muted);letter-spacing:.2em;margin-top:4px}
 .tot-lbl{margin-top:16px;font-size:11px;letter-spacing:.34em;text-transform:uppercase;color:var(--gold);padding-left:.34em}
 .tot-sub{margin-top:6px;font-size:12px;color:var(--muted);font-weight:300}
-.cat{padding:16px 0;border-bottom:1px solid rgba(216,178,92,.1)}
+.cat{padding:16px 0;border-bottom:1px solid rgba(184,92,56,.1)}
 .cat:last-child{border-bottom:0}
 .cat-top{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap}
 .cat-top .lbl{font-family:'Cinzel';font-size:13px;letter-spacing:.22em;text-transform:uppercase}
 .cat-top .nums{font-size:12.5px;color:var(--muted);letter-spacing:.06em}
 .cat-top .nums b{color:var(--gold2);font-size:14px}
-.bar{height:6px;border-radius:99px;background:rgba(255,255,255,.06);overflow:hidden;margin-top:12px}
+.bar{height:6px;border-radius:99px;background:rgba(138,52,22,.12);overflow:hidden;margin-top:12px}
 .bar i{display:block;height:100%;width:0;border-radius:inherit;background:linear-gradient(90deg,var(--bronze),var(--gold),var(--gold2));transition:width 1.3s cubic-bezier(.2,.8,.2,1)}
 .cat.full .lbl::after{content:" — complet";color:var(--danger);letter-spacing:.18em;font-size:10px}
 
@@ -140,27 +166,27 @@ h2.sec em{font-style:italic;color:var(--gold)}
 @media(max-width:860px){.rsvp-grid{grid-template-columns:1fr}}
 .field{margin-bottom:20px}
 .field label{display:block;font-size:10.5px;letter-spacing:.26em;text-transform:uppercase;color:var(--muted);margin:0 0 8px 2px}
-.field input{width:100%;background:rgba(255,255,255,.035);border:1px solid rgba(216,178,92,.16);border-radius:2px;color:var(--ink);padding:15px 16px;font:inherit;font-size:14px;outline:none;transition:.25s}
-.field input:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(216,178,92,.12)}
-.field input::placeholder{color:rgba(163,154,141,.5)}
+.field input{width:100%;background:rgba(255,255,255,.55);border:1px solid rgba(184,92,56,.16);border-radius:2px;color:var(--ink);padding:15px 16px;font:inherit;font-size:14px;outline:none;transition:.25s}
+.field input:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(184,92,56,.12)}
+.field input::placeholder{color:rgba(168,134,94,.6)}
 .f-lbl{display:block;font-size:10.5px;letter-spacing:.26em;text-transform:uppercase;color:var(--muted);margin:0 0 10px 2px}
 .pills{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:22px}
 @media(max-width:560px){.pills{grid-template-columns:1fr}}
-.pill{position:relative;cursor:pointer;border:1px solid rgba(216,178,92,.18);border-radius:2px;padding:13px 10px;text-align:center;transition:.25s;background:rgba(216,178,92,.03)}
+.pill{position:relative;cursor:pointer;border:1px solid rgba(184,92,56,.18);border-radius:2px;padding:13px 10px;text-align:center;transition:.25s;background:rgba(184,92,56,.03)}
 .pill input{position:absolute;opacity:0;inset:0}
 .pill .pl{display:block;font-family:'Cinzel';font-size:12px;letter-spacing:.14em;text-transform:uppercase}
 .pill .ps{display:block;font-size:11px;color:var(--muted);margin-top:4px;letter-spacing:.05em}
 .pill:hover{border-color:var(--gold)}
-.pill.sel{border-color:var(--gold);background:linear-gradient(160deg,rgba(216,178,92,.16),rgba(216,178,92,.05));box-shadow:0 0 0 3px rgba(216,178,92,.08)}
+.pill.sel{border-color:var(--gold);background:linear-gradient(160deg,rgba(184,92,56,.16),rgba(184,92,56,.05));box-shadow:0 0 0 3px rgba(184,92,56,.08)}
 .pill.full{opacity:.45}
 .pill.full .pl::after{content:" · complet";color:var(--danger);font-size:9px;letter-spacing:.18em}
 .stepper{display:flex;align-items:center;gap:14px;margin-bottom:8px}
-.stepper button{width:46px;height:46px;border-radius:2px;border:1px solid rgba(216,178,92,.25);background:rgba(216,178,92,.05);color:var(--ink);font-size:19px;cursor:pointer;transition:.2s;font-family:'Cinzel'}
+.stepper button{width:46px;height:46px;border-radius:2px;border:1px solid rgba(184,92,56,.25);background:rgba(184,92,56,.05);color:var(--ink);font-size:19px;cursor:pointer;transition:.2s;font-family:'Cinzel'}
 .stepper button:hover{border-color:var(--gold);color:var(--gold2)}
 .stepper button:disabled{opacity:.35;cursor:not-allowed}
 .stepper .q{flex:1;text-align:center;font-family:'Cinzel';font-size:28px;color:var(--gold2)}
 .max-note{font-size:11px;color:var(--muted);letter-spacing:.08em;margin-bottom:22px}
-.btn{width:100%;padding:17px;border:0;border-radius:2px;cursor:pointer;font:600 12.5px 'Jost';letter-spacing:.32em;text-transform:uppercase;color:#140e02;background:linear-gradient(100deg,#b98d3f,#f3e2b3 45%,#d8b25c 62%,#b98d3f);background-size:220% 100%;transition:.3s;box-shadow:0 10px 30px rgba(216,178,92,.2)}
+.btn{width:100%;padding:17px;border:0;border-radius:2px;cursor:pointer;font:600 12.5px 'Jost';letter-spacing:.32em;text-transform:uppercase;color:#fdf8f2;background:linear-gradient(100deg,#8a3416,#b85c38 45%,#c97b4e 62%,#b85c38);background-size:220% 100%;transition:.3s;box-shadow:0 10px 30px rgba(184,92,56,.25)}
 .btn:hover{background-position:100% 0;transform:translateY(-2px)}
 .btn:disabled{opacity:.5;cursor:not-allowed;transform:none}
 .closed{display:none;text-align:center;color:var(--gold2);letter-spacing:.18em;font-size:13px;border:1px dashed var(--line);border-radius:2px;padding:26px;margin-top:20px}
@@ -176,28 +202,28 @@ h2.sec em{font-style:italic;color:var(--gold)}
 #admin{display:none}
 #admin.open{display:block}
 .admin-bar{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-bottom:22px}
-.mini{padding:12px 20px;border-radius:2px;border:1px solid rgba(216,178,92,.25);background:rgba(216,178,92,.05);color:var(--ink);cursor:pointer;font:500 11px 'Jost';letter-spacing:.22em;text-transform:uppercase;transition:.2s}
+.mini{padding:12px 20px;border-radius:2px;border:1px solid rgba(184,92,56,.25);background:rgba(184,92,56,.05);color:var(--ink);cursor:pointer;font:500 11px 'Jost';letter-spacing:.22em;text-transform:uppercase;transition:.2s}
 .mini:hover{border-color:var(--gold);color:var(--gold2)}
-.mini.warn{border-color:rgba(212,106,106,.5);color:var(--danger)}
+.mini.warn{border-color:rgba(166,61,42,.5);color:var(--danger)}
 .a-stats{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:18px}
-.chip{padding:12px 16px;border-radius:2px;background:rgba(216,178,92,.04);border:1px solid rgba(216,178,92,.14);font-size:11.5px;color:var(--muted);letter-spacing:.08em}
+.chip{padding:12px 16px;border-radius:2px;background:rgba(184,92,56,.04);border:1px solid rgba(184,92,56,.14);font-size:11.5px;color:var(--muted);letter-spacing:.08em}
 .chip b{font-family:'Cinzel';color:var(--gold2);font-size:14px;margin-left:8px}
 .scrollx{overflow-x:auto}
 table{width:100%;border-collapse:collapse;font-size:13px}
 th{font-family:'Cinzel';font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--muted);text-align:left;padding:10px 8px;border-bottom:1px solid var(--line-soft)}
-td{padding:12px 8px;border-bottom:1px solid rgba(216,178,92,.07);font-weight:300}
+td{padding:12px 8px;border-bottom:1px solid rgba(184,92,56,.07);font-weight:300}
 
 /* ——— Modale, toast, pied ——— */
-.modal{position:fixed;inset:0;z-index:90;display:none;align-items:center;justify-content:center;background:rgba(6,5,10,.78);backdrop-filter:blur(10px);padding:20px}
+.modal{position:fixed;inset:0;z-index:90;display:none;align-items:center;justify-content:center;background:rgba(74,36,22,.45);backdrop-filter:blur(10px);padding:20px}
 .modal.show{display:flex}
-.modal .box{max-width:430px;width:100%;text-align:center;padding:42px 30px 34px;background:#141021;border:1px solid var(--line);animation:zoom .45s cubic-bezier(.2,.9,.3,1.3)}
+.modal .box{max-width:430px;width:100%;text-align:center;padding:42px 30px 34px;background:#fdf8f2;border:1px solid var(--line);animation:zoom .45s cubic-bezier(.2,.9,.3,1.3)}
 @keyframes zoom{from{transform:scale(.82);opacity:0}}
 .modal h3{font-family:'Cormorant Garamond',serif;font-size:31px;font-weight:500;color:var(--gold2)}
 .modal p{color:var(--muted);font-size:13px;line-height:1.9;margin-top:12px}
 .m-ico{color:var(--gold);font-size:22px;margin-bottom:6px}
 .code{margin:16px 0 22px;font-size:13px;letter-spacing:.14em}
 .code b{font-family:'Cinzel';color:var(--gold2);letter-spacing:.2em}
-.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(20px);opacity:0;transition:.3s;background:#181328;border:1px solid var(--line);padding:12px 22px;border-radius:2px;z-index:95;font-size:13px;pointer-events:none;letter-spacing:.04em}
+.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(20px);opacity:0;transition:.3s;background:#fdf8f2;border:1px solid var(--line);padding:12px 22px;border-radius:2px;z-index:95;font-size:13px;pointer-events:none;letter-spacing:.04em}
 .toast.show{opacity:1;transform:translateX(-50%)}
 .foot{text-align:center;padding:52px 20px 64px;color:var(--muted);font-size:10.5px;letter-spacing:.3em;text-transform:uppercase;font-weight:300}
 .foot .dm{display:inline-block;width:7px;height:7px;background:var(--gold);transform:rotate(45deg);margin:0 14px;opacity:.8}
@@ -230,14 +256,26 @@ td{padding:12px 8px;border-bottom:1px solid rgba(216,178,92,.07);font-weight:300
 <!-- ===== HERO + COMPTE À REBOURS ===== -->
 <section class="hero" id="compte">
   <div class="pwrap" id="particles"></div>
+  <div class="arc" aria-hidden="true">
+    <svg viewBox="0 0 400 472" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M 60 440 L 60 210 A 140 140 0 0 1 340 210 L 340 440" stroke="#c9a55e" stroke-width="2"/>
+      <path d="M 72 428 L 72 216 A 128 128 0 0 1 328 216 L 328 428" stroke="rgba(201,165,94,.45)" stroke-width="1"/>
+    </svg>
+  </div>
+  <div class="motto-script" aria-hidden="true"><div class="ms1">Un jour<br>pour toujours</div><div class="ms2">❤</div></div>
   <div class="fan" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
   <p class="kicker reveal">Nous nous marions</p>
-  <h1 class="names reveal"><span class="shimmer">Hermann</span><span class="amp">&amp;</span><span class="shimmer">Daria</span></h1>
+  <h1 class="std reveal">Save <span class="t">the</span> Date</h1>
+  <h2 class="names reveal">Daria<span class="amp">&amp;</span>Hermann</h2>
   <p class="sub reveal">Avec leurs familles, ils vous invitent à célébrer leur union</p>
   <div class="orn reveal"><span class="d"></span></div>
   <p class="date-big reveal">Vendredi 18 Décembre 2026</p>
-  <p class="venue reveal">Table des Élites · Akwa, Douala · 16h00</p>
-  <p class="sub reveal" style="margin-top:14px;font-size:11px;letter-spacing:.32em;color:var(--gold2)">◆ Dress code — Black &amp; White ◆</p>
+  <p class="venue reveal">Table des Élites · Akwa, Douala · 16h00 — Célébration jusqu'à 22h</p>
+  <p class="theme-line reveal">Thème : <b>Terracotta</b></p>
+  <div class="motto-list reveal" aria-hidden="true">
+    <span>Deux cœurs</span><span>une même destination</span>
+    <span class="hh">Amour</span><span>Respect</span><span>Aventure</span><span>Toujours</span>
+  </div>
 
   <div id="cd-wrap" class="count reveal">
     <div class="tile"><div class="num" id="cd-j">00</div><div class="tick"></div><div class="lab">Jours</div></div>
@@ -263,12 +301,12 @@ td{padding:12px 8px;border-bottom:1px solid rgba(216,178,92,.07);font-weight:300
           <svg width="160" height="160" viewBox="0 0 160 160">
             <defs>
               <linearGradient id="gradGold" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0" stop-color="#8a6a2f"/>
-                <stop offset=".55" stop-color="#d8b25c"/>
-                <stop offset="1" stop-color="#f3e2b3"/>
+                <stop offset="0" stop-color="#a8865e"/>
+                <stop offset=".55" stop-color="#b85c38"/>
+                <stop offset="1" stop-color="#8a3416"/>
               </linearGradient>
             </defs>
-            <circle cx="80" cy="80" r="70" fill="none" stroke="rgba(255,255,255,.07)" stroke-width="6"/>
+            <circle cx="80" cy="80" r="70" fill="none" stroke="rgba(138,52,22,.12)" stroke-width="6"/>
             <circle id="ringFg" class="fg" cx="80" cy="80" r="70" fill="none" stroke="url(#gradGold)" stroke-width="6" stroke-dasharray="439.8" stroke-dashoffset="439.8"/>
           </svg>
           <div class="val"><b id="t-conf">0</b><span class="pct" id="t-pct">0%</span></div>
@@ -521,7 +559,7 @@ let confs = [], raf = null;
 function confetti() {
   cv.width = innerWidth; cv.height = innerHeight;
   confs = [];
-  const colors = ['#d8b25c', '#f3e2b3', '#fffaf0', '#8a6a2f', '#f2ead9'];
+  const colors = ['#b85c38', '#8a3416', '#fdf8f2', '#c97b4e', '#a8865e'];
   for (let i = 0; i < 150; i++) confs.push({
     x: innerWidth / 2 + (Math.random() - .5) * 260,
     y: innerHeight * .32,
