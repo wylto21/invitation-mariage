@@ -398,65 +398,10 @@
     </div>
   </div>
 
-  <div class="card" id="card" hidden>
-    <div class="arc" aria-hidden="true">
-      <svg viewBox="0 0 400 488" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M 70 460 L 70 220 A 130 130 0 0 1 330 220 L 330 460" stroke="#c9a55e" stroke-width="2.5"/>
-        <path d="M 82 448 L 82 226 A 118 118 0 0 1 318 226 L 318 448" stroke="rgba(201,165,94,.45)" stroke-width="1.2"/>
-      </svg>
-    </div>
-
-    <!-- feuillages stylisés aux 4 coins -->
-    <div class="leaf tl" aria-hidden="true">
-      <svg viewBox="0 0 100 100" fill="none"><path d="M4 96 C 10 60, 34 30, 78 12" stroke="#b9855c" stroke-width="1.6"/><path d="M18 78 C 30 70, 44 68, 58 70" stroke="#b9855c" stroke-width="1.2" opacity=".7"/><path d="M30 58 C 42 50, 56 48, 68 52" stroke="#b9855c" stroke-width="1.2" opacity=".7"/><path d="M44 40 C 56 34, 68 34, 78 38" stroke="#b9855c" stroke-width="1.2" opacity=".7"/><circle cx="88" cy="10" r="4" fill="#c97b4e" opacity=".85"/><circle cx="74" cy="22" r="2.5" fill="#c97b4e" opacity=".6"/></svg>
-    </div>
-    <div class="leaf tr" aria-hidden="true">
-      <svg viewBox="0 0 100 100" fill="none"><path d="M4 96 C 10 60, 34 30, 78 12" stroke="#b9855c" stroke-width="1.6"/><path d="M18 78 C 30 70, 44 68, 58 70" stroke="#b9855c" stroke-width="1.2" opacity=".7"/><path d="M30 58 C 42 50, 56 48, 68 52" stroke="#b9855c" stroke-width="1.2" opacity=".7"/><path d="M44 40 C 56 34, 68 34, 78 38" stroke="#b9855c" stroke-width="1.2" opacity=".7"/><circle cx="88" cy="10" r="4" fill="#c97b4e" opacity=".85"/><circle cx="74" cy="22" r="2.5" fill="#c97b4e" opacity=".6"/></svg>
-    </div>
-    <div class="leaf bl" aria-hidden="true">
-      <svg viewBox="0 0 100 100" fill="none"><path d="M4 96 C 10 60, 34 30, 78 12" stroke="#b9855c" stroke-width="1.6"/><path d="M18 78 C 30 70, 44 68, 58 70" stroke="#b9855c" stroke-width="1.2" opacity=".7"/><path d="M30 58 C 42 50, 56 48, 68 52" stroke="#b9855c" stroke-width="1.2" opacity=".7"/><circle cx="88" cy="10" r="4" fill="#c97b4e" opacity=".85"/></svg>
-    </div>
-    <div class="leaf br" aria-hidden="true">
-      <svg viewBox="0 0 100 100" fill="none"><path d="M4 96 C 10 60, 34 30, 78 12" stroke="#b9855c" stroke-width="1.6"/><path d="M18 78 C 30 70, 44 68, 58 70" stroke="#b9855c" stroke-width="1.2" opacity=".7"/><path d="M30 58 C 42 50, 56 48, 68 52" stroke="#b9855c" stroke-width="1.2" opacity=".7"/><circle cx="88" cy="10" r="4" fill="#c97b4e" opacity=".85"/></svg>
-    </div>
-
-    <div class="motto-script" aria-hidden="true">
-      <div class="ms1">Un jour<br>pour toujours</div>
-      <div class="ms2">❤</div>
-    </div>
-
-    <div class="motto-list" aria-hidden="true">
-      <span>Deux</span><span>cœurs</span><span>une même</span><span>destination</span>
-      <span class="hh">Amour</span><span>Respect</span><span>Aventure</span><span>Toujours</span>
-    </div>
-
-    <div class="content">
-      <div class="kicker">Nous nous marions</div>
-
-      <h1 class="names">Daria <span class="amp">&amp;</span> Hermann</h1>
-
-      <div class="sep" aria-hidden="true"><i></i><span class="rings">⚭</span><i></i></div>
-
-      <p class="date-line"><span class="ic">🗓</span> 18 décembre 2026</p>
-      <p class="venue-line"><span class="ic">📍</span> Restaurant La Table de l'Élite — Akwa, Douala</p>
-
-      <p class="hours">Cérémonie à 16 h 00 · célébration jusqu'à 22 h</p>
-
-      <p class="theme-line"><span class="sprig">❧</span> Thème : <b>Terracotta</b> <span class="sprig">❧</span></p>
-
-      <div class="banner">Merci de réserver cette date</div>
-
-      <a class="rsvp-link" href="invitation-landing.html">Confirmer ma présence</a>
-
-      <p class="foot">Dress code — Black &amp; White</p>
-    </div>
-  </div>
-
   <script>
     (function () {
       var intro = document.getElementById('intro');
       var envScene = document.getElementById('envScene');
-      var card = document.getElementById('card');
       var photoCard = document.getElementById('photoCard');
       var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -474,24 +419,17 @@
         setTimeout(function () { envScene.classList.add('bye'); }, reduced ? 100 : 2500);
       }
 
-      function showCard() {
-        intro.classList.add('fade');
-        setTimeout(function () {
-          intro.classList.add('gone');
-          card.hidden = false;
-          requestAnimationFrame(function () { card.classList.add('revealed'); });
-          window.scrollTo(0, 0);
-        }, reduced ? 30 : 580);
-      }
-
       /* clic sur le cachet, le rabat ou l'enveloppe entière → ouverture */
       document.getElementById('seal').addEventListener('click', function (e) { e.stopPropagation(); openEnvelope(); });
       envScene.addEventListener('click', openEnvelope);
 
-      /* CTA sur la photo → révéler la carte d'invitation */
+      /* CTA sur la photo → page RSVP ancrée sur les réservations */
       document.getElementById('openCta').addEventListener('click', function (e) {
         e.stopPropagation();
-        showCard();
+        intro.classList.add('fade');
+        setTimeout(function () {
+          window.location.href = 'invitation-landing.html#reserver';
+        }, reduced ? 30 : 500);
       });
     })();
   </script>
