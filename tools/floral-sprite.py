@@ -1,0 +1,507 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""Générateur du sprite floral (SVG) de l'invitation Daria & Hermann.
+
+Reproduit la composition de la carte de référence :
+camélias ivoire à étamines dorées, feuillage émeraude brillant,
+fougères dorées, perles crème et anneaux dorés.
+
+Le même bloc SVG est injecté dans index.html et invitation-landing.html
+(le sprite est inliné : il ne peut pas être externalisé à cause de file://).
+
+Usage :
+    python3 tools/floral-sprite.py            # régénère et injecte
+    python3 tools/floral-sprite.py --print    # affiche le bloc sur stdout
+"""
+
+import math
+import pathlib
+import re
+import sys
+
+# ————————————————————————————————————————————————————————————
+# Palette relevée sur la carte de référence
+# ————————————————————————————————————————————————————————————
+IVORY_HI, IVORY, IVORY_LO, IVORY_SH = "#ffffff", "#f7f3ea", "#e5dfd0", "#cbc4b1"
+GOLD_HI, GOLD, GOLD_LO = "#f4e4b4", "#cda75a", "#8c6a26"
+LEAF_HI, LEAF, LEAF_LO = "#4d9175", "#1f5544", "#0b2b21"
+FERN_HI, FERN, FERN_LO = "#e6d5ae", "#bda172", "#96794a"
+PEARL_HI, PEARL, PEARL_LO = "#ffffff", "#f2ede2", "#c3bba8"
+EDGE = "#b0aa99"          # liseré doux entre les pétales
+STEM = "#2c6b52"          # branche
+
+
+def n(v):
+    """Arrondi propre pour un SVG lisible."""
+    s = f"{v:.2f}".rstrip("0").rstrip(".")
+    return s if s not in ("-0", "") else "0"
+
+
+# ————————————————————————————————————————————————————————————
+# Primitives
+# ————————————————————————————————————————————————————————————
+def petal(r, w):
+    """Pétale de camélia : éventail large et arrondi, base au point (0,0),
+    pointe vers le haut (axe -Y)."""
+    return (
+        f"M0 0 "
+        f"C{n(-w*0.95)} {n(-r*0.20)} {n(-w*1.02)} {n(-r*0.64)} {n(-w*0.48)} {n(-r*0.93)} "
+        f"C{n(-w*0.24)} {n(-r*1.05)} {n(w*0.24)} {n(-r*1.05)} {n(w*0.48)} {n(-r*0.93)} "
+        f"C{n(w*1.02)} {n(-r*0.64)} {n(w*0.95)} {n(-r*0.20)} 0 0 Z"
+    )
+
+
+def ring_petals(count, r, w, fill, cx=32.0, cy=32.0, offset=0.0,
+                stroke=EDGE, sw=0.6, stroke_op=0.55, scale=1.0, opacity=1.0):
+    """Couronne de pétales régulièrement réparties autour du centre."""
+    out = []
+    d = petal(r * scale, w * scale)
+    for i in range(count):
+        a = offset + i * 360.0 / count
+        out.append(
+            f'      <path d="{d}" fill="{fill}" stroke="{stroke}" stroke-width="{n(sw)}"'
+            f' stroke-opacity="{n(stroke_op)}" opacity="{n(opacity)}"'
+            f' transform="translate({n(cx)} {n(cy)}) rotate({n(a)})"/>'
+        )
+    return out
+
+
+def bez(p0, p1, p2, t):
+    u = 1 - t
+    return (u * u * p0[0] + 2 * u * t * p1[0] + t * t * p2[0],
+            u * u * p0[1] + 2 * u * t * p1[1] + t * t * p2[1])
+
+
+def bez_angle(p0, p1, p2, t):
+    u = 1 - t
+    x = 2 * u * (p1[0] - p0[0]) + 2 * t * (p2[0] - p1[0])
+    y = 2 * u * (p1[1] - p0[1]) + 2 * t * (p2[1] - p1[1])
+    return math.degrees(math.atan2(y, x))
+
+
+def fronde(p0, p1, p2, count=9, l0=13.0, l1=4.0, w_ratio=0.30, spread=42.0):
+    """Fougère : tige en Bézier + folioles elliptiques de part et d'autre.
+    `count` élevé et `w_ratio` bas donnent la finesse de la carte."""
+    out = []
+    for i in range(1, count + 1):
+        t = i / (count + 0.6)
+        x, y = bez(p0, p1, p2, t)
+        ang = bez_angle(p0, p1, p2, t)
+        L = l0 + (l1 - l0) * t
+        W = L * w_ratio
+        for side in (-1, 1):
+            rot = math.radians(ang + side * spread)
+            cx = x + math.cos(rot) * L * 0.46
+            cy = y + math.sin(rot) * L * 0.46
+            out.append(
+                f'      <ellipse cx="{n(cx)}" cy="{n(cy)}" rx="{n(L*0.5)}" ry="{n(W*0.5)}"'
+                f' fill="url(#g-fern)" transform="rotate({n(ang + side*spread)} {n(cx)} {n(cy)})"/>'
+            )
+    d = (f"M{n(p0[0])} {n(p0[1])} Q{n(p1[0])} {n(p1[1])} {n(p2[0])} {n(p2[1])}")
+    out.insert(0, f'      <path d="{d}" fill="none" stroke="url(#g-fern)"'
+                  f' stroke-width="1.1" stroke-linecap="round"/>')
+    return out
+
+
+def use(ref, x, y, w, h=None, rot=None, op=None):
+    h = w if h is None else h
+    t = f' transform="rotate({n(rot)} {n(x+w/2)} {n(y+h/2)})"' if rot is not None else ""
+    o = f' opacity="{n(op)}"' if op is not None else ""
+    return f'        <use href="#{ref}" x="{n(x)}" y="{n(y)}" width="{n(w)}" height="{n(h)}"{t}{o}/>'
+
+
+# ————————————————————————————————————————————————————————————
+# Symboles
+# ————————————————————————————————————————————————————————————
+def build_defs():
+    return f"""    <defs>
+      <!-- camélia : ivoire éclairé en haut, ombre chaude en base -->
+      <linearGradient id="p-out" x1=".28" y1="0" x2=".72" y2="1">
+        <stop offset="0" stop-color="{IVORY_HI}"/><stop offset=".5" stop-color="{IVORY}"/><stop offset="1" stop-color="{IVORY_SH}"/>
+      </linearGradient>
+      <linearGradient id="p-mid" x1=".3" y1="0" x2=".7" y2="1">
+        <stop offset="0" stop-color="{IVORY_HI}"/><stop offset=".55" stop-color="#f2eee2"/><stop offset="1" stop-color="#d3ccb9"/>
+      </linearGradient>
+      <linearGradient id="p-in" x1=".34" y1="0" x2=".66" y2="1">
+        <stop offset="0" stop-color="{IVORY_HI}"/><stop offset="1" stop-color="#e9e3d4"/>
+      </linearGradient>
+      <radialGradient id="p-coeur" cx=".4" cy=".34" r=".72">
+        <stop offset="0" stop-color="{GOLD_HI}"/><stop offset=".5" stop-color="{GOLD}"/><stop offset="1" stop-color="{GOLD_LO}"/>
+      </radialGradient>
+      <radialGradient id="p-ombre" cx=".5" cy=".5" r=".5">
+        <stop offset="0" stop-color="#8a8271" stop-opacity=".5"/><stop offset="1" stop-color="#8a8271" stop-opacity="0"/>
+      </radialGradient>
+      <!-- feuillage émeraude, nervures éclairées -->
+      <linearGradient id="p-leaf" x1=".18" y1="0" x2=".82" y2="1">
+        <stop offset="0" stop-color="{LEAF_HI}"/><stop offset=".45" stop-color="{LEAF}"/><stop offset="1" stop-color="{LEAF_LO}"/>
+      </linearGradient>
+      <linearGradient id="g-gold" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="{GOLD_HI}"/><stop offset=".45" stop-color="{GOLD}"/><stop offset="1" stop-color="{GOLD_LO}"/>
+      </linearGradient>
+      <linearGradient id="g-fern" x1=".1" y1="1" x2=".9" y2="0">
+        <stop offset="0" stop-color="{FERN_LO}"/><stop offset=".5" stop-color="{FERN}"/><stop offset="1" stop-color="{FERN_HI}"/>
+      </linearGradient>
+      <radialGradient id="g-perle" cx=".34" cy=".3" r=".78">
+        <stop offset="0" stop-color="{PEARL_HI}"/><stop offset=".45" stop-color="{PEARL}"/><stop offset="1" stop-color="{PEARL_LO}"/>
+      </radialGradient>
+    </defs>"""
+
+
+def build_perle():
+    return f"""    <!-- Perle crème, lumière en haut à gauche -->
+    <symbol id="fl-perle" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="10" fill="url(#g-perle)"/>
+      <circle cx="12" cy="12" r="10" fill="none" stroke="#b9b2a1" stroke-width=".7" stroke-opacity=".5"/>
+      <ellipse cx="8.6" cy="8.2" rx="3.4" ry="2.6" fill="#ffffff" opacity=".85" transform="rotate(-28 8.6 8.2)"/>
+    </symbol>"""
+
+
+def build_feuille():
+    # Nervures secondaires : elles repartent de la nervure centrale à
+    # angle droit vers les deux bords du limbe. Le côté gauche du limbe
+    # est beaucoup plus près de la nervure que le côté droit, donc
+    # chaque nervure est dimensionnée pour s'arrêter au bon bord.
+    veins = ""
+    for t, ln_g, ln_d in [(0.18, 1.2, 3.4), (0.36, 1.5, 3.6), (0.54, 1.5, 3.3),
+                          (0.70, 1.2, 2.6), (0.83, 0.8, 1.8)]:
+        bx, by = 17 - 13.4 * t, 30 - 27.5 * t
+        for sx, sy, ln, op in ((0.887, -0.462, ln_d, .5), (-0.887, 0.462, ln_g, .42)):
+            ex, ey = bx + sx * ln, by + sy * ln
+            veins += (f'      <path d="M{n(bx)} {n(by)} Q{n(bx+sx*ln*0.55)} {n(by+sy*ln*0.55-0.4)}'
+                      f' {n(ex)} {n(ey)}" fill="none" stroke="#0a2a20"'
+                      f' stroke-width=".65" stroke-linecap="round" opacity="{op}"/>\n')
+    return f"""    <!-- Feuille émeraude, vernie, nervure centrale marquée.
+         Limbe étroit et pointu, comme les feuilles de la carte. -->
+    <symbol id="fl-feuille" viewBox="0 0 32 32">
+      <path d="M17 30.5 C 11 24 5 13 3 1.5 C 12 5 20.5 12.5 25 22 C 24.5 25.5 21.5 28.5 17 30.5 Z" fill="url(#p-leaf)"/>
+      <path d="M17 30.5 C 13.5 21 9 11 4 3 C 11 6 17.5 12.5 22 21 C 21.5 24 19 27 17 30.5 Z" fill="#ffffff" opacity=".07"/>
+{veins}      <path d="M17 30 C 13.5 21 9 11 3.6 2.5" fill="none" stroke="#05201a" stroke-width="1.25" opacity=".6" stroke-linecap="round"/>
+      <path d="M17 30 C 14 21 9.6 11.5 4.6 3.2" fill="none" stroke="#8fd3b2" stroke-width=".5" opacity=".55" stroke-linecap="round"/>
+    </symbol>"""
+
+
+def build_fougere():
+    """Fougère dorée : deux frondes, folioles fines et serrées."""
+    body = "\n".join(fronde((3, 45), (13, 25), (33, 3),
+                           count=14, l0=13.0, l1=3.4, w_ratio=0.17, spread=40))
+    small = "\n".join(fronde((9, 46), (20, 32), (43, 20),
+                             count=10, l0=8.0, l1=2.6, w_ratio=0.17, spread=40))
+    return f"""    <!-- Fougère dorée (fillette de la carte de référence) -->
+    <symbol id="fl-fougere" viewBox="0 0 48 48">
+{body}
+{small}
+    </symbol>"""
+
+
+
+def build_rose():
+    stamen = ""
+    for i in range(8):
+        a = math.radians(i * 45 + 12)
+        stamen += (f'      <circle cx="{n(32+math.cos(a)*3.9)}" cy="{n(32+math.sin(a)*3.9)}"'
+                   f' r="1.15" fill="#a97f24" opacity=".9"/>\n')
+    for i in range(4):
+        a = math.radians(i * 90 + 45)
+        stamen += (f'      <circle cx="{n(32+math.cos(a)*1.7)}" cy="{n(32+math.sin(a)*1.7)}"'
+                   f' r="1.05" fill="#8f6a20" opacity=".85"/>\n')
+    return f"""    <!-- ===== LE CAMÉLIA — définition unique, réutilisée partout =====
+         3 couronnes de pétales larges qui se chevauchent, liseré doux
+         entre les pétales, cœur d'étamines dorées. -->
+    <symbol id="fl-rose" viewBox="0 0 64 64">
+      <ellipse cx="32" cy="33" rx="27" ry="26" fill="url(#p-ombre)" opacity=".55"/>
+{chr(10).join(ring_petals(7, 30.0, 13.6, "url(#p-out)", offset=8, stroke_op=.42))}
+{chr(10).join(ring_petals(8, 25.0, 12.0, "url(#p-mid)", offset=30, stroke_op=.5))}
+      <circle cx="32" cy="32" r="10.5" fill="url(#p-ombre)" opacity=".7"/>
+{chr(10).join(ring_petals(6, 17.5, 8.8, "url(#p-in)", offset=12, stroke_op=.45, sw=.5))}
+      <circle cx="32" cy="32" r="6.5" fill="url(#p-coeur)"/>
+{stamen}      <circle cx="32" cy="32" r="1.5" fill="{GOLD_LO}" opacity=".9"/>
+      <circle cx="30.1" cy="30.4" r="1.1" fill="{GOLD_HI}" opacity=".95"/>
+    </symbol>"""
+
+
+def build_simple():
+    bouton = f"""    <!-- Bouton fermé, ivoire -->
+    <symbol id="fl-bouton" viewBox="0 0 24 32">
+      <path d="M12 31 C3 23 1 15 4.5 8.5 C8 2 16 2 19.5 8.5 C23 15 21 23 12 31Z" fill="url(#p-mid)" stroke="{EDGE}" stroke-width=".6" stroke-opacity=".5"/>
+      <path d="M12 27 C6.5 20.5 5.5 15 7.5 11 C9.5 7.5 14.5 7.5 16.5 11 C18.5 15 17.5 20.5 12 27Z" fill="url(#p-in)"/>
+      <path d="M12 24 C9.5 20.5 9 17 10 14.5" fill="none" stroke="#a9a292" stroke-width=".8" opacity=".6"/>
+      <path d="M11 6 C10 9 8 10 6 10.5 C8 12 9 14 9 16" fill="none" stroke="{STEM}" stroke-width="1.3" stroke-linecap="round"/>
+    </symbol>"""
+    return f"""    <!-- Fleur simple = le camélia -->
+    <symbol id="fl-fleur" viewBox="0 0 64 64"><use href="#fl-rose"/></symbol>
+
+    <!-- Camélia double : deux fleurs superposées = plus touffu -->
+    <symbol id="fl-fleur2" viewBox="0 0 64 64">
+      <use href="#fl-rose" x="0" y="0" width="47" height="47"/>
+      <use href="#fl-rose" x="16" y="16" width="44" height="44"/>
+    </symbol>
+
+{bouton}"""
+
+
+
+def build_ramure():
+    """Grand décor de coin : branche émeraude, fougères dorées,
+    camélias de tailles variées et perles — comme sur la carte."""
+    items = [
+        # fougères dorées, en arrière-plan,Traits longs et discrets
+        use("fl-fougere", -6, 96, 74, 74, rot=-14),
+        use("fl-fougere", 96, -8, 70, 70, rot=12),
+        use("fl-fougere", 150, 84, 58, 58, rot=28),
+        use("fl-fougere", 34, 30, 46, 46, rot=-34),
+        # masse de feuillage émeraude le long de la branche
+        use("fl-feuille", 2, 58, 38, 38, rot=44),
+        use("fl-feuille", 24, 112, 46, 46, rot=-26),
+        use("fl-feuille", 58, 92, 40, 40, rot=32),
+        use("fl-feuille", 44, 148, 44, 44, rot=18),
+        use("fl-feuille", 96, 54, 36, 36, rot=-16),
+        use("fl-feuille", 132, 26, 32, 32, rot=40),
+        use("fl-feuille", 162, 4, 28, 28, rot=-12),
+        use("fl-feuille", 8, 168, 42, 42, rot=62),
+        use("fl-feuille", 78, 138, 36, 36, rot=-44),
+        use("fl-feuille", 112, 104, 34, 34, rot=22),
+        use("fl-feuille", 170, 60, 30, 30, rot=-30),
+        use("fl-feuille", 144, 138, 32, 32, rot=50),
+        # camélias : hiérarchie de la carte — un grand, deux moyens, le reste en bouquets
+        use("fl-fleur", 46, 58, 86, 86),
+        use("fl-fleur2", 108, 8, 58, 58),
+        use("fl-fleur", -8, 122, 56, 56),
+        use("fl-fleur", 132, 84, 44, 44),
+        use("fl-fleur", 60, 128, 42, 42),
+        use("fl-fleur", 168, 128, 34, 34),
+        # petites fleurs groupées, comme les grappes de la capture
+        use("fl-fleur", 12, 44, 30, 30),
+        use("fl-fleur", 96, 140, 28, 28),
+        use("fl-fleur", 158, 96, 26, 26),
+        use("fl-fleur", 20, 82, 26, 26),
+        # boutons
+        use("fl-bouton", 84, 44, 22, 29, rot=-22),
+        use("fl-bouton", 146, 54, 20, 27, rot=26),
+        use("fl-bouton", 30, 168, 20, 26, rot=18),
+        use("fl-bouton", 182, 20, 18, 24, rot=-16),
+        use("fl-bouton", 100, 172, 19, 25, rot=-30),
+        # perles crème incrustées
+        use("fl-perle", 34, 40, 18, 18),
+        use("fl-perle", 126, 62, 13, 13),
+        use("fl-perle", 176, 48, 10, 10),
+        use("fl-perle", 90, 150, 15, 15),
+        use("fl-perle", 16, 96, 11, 11),
+        use("fl-perle", 152, 100, 9, 9),
+        use("fl-perle", 66, 20, 12, 12),
+        use("fl-perle", 116, 118, 9, 9),
+        use("fl-perle", 48, 176, 12, 12),
+        use("fl-perle", 188, 108, 8, 8),
+    ]
+    return f"""    <!-- Ramure fleurie (grand décor de coin) -->
+    <symbol id="fl-ramure" viewBox="0 0 200 200">
+      <g>
+        <path d="M6 198 C30 156 56 118 96 82 C122 58 152 34 192 14" fill="none" stroke="{STEM}" stroke-width="2.4" stroke-linecap="round"/>
+        <path d="M40 156 C56 142 74 132 92 130" fill="none" stroke="{STEM}" stroke-width="1.3" opacity=".7"/>
+        <path d="M72 116 C88 100 102 90 120 82" fill="none" stroke="{STEM}" stroke-width="1.3" opacity=".7"/>
+{chr(10).join(items)}
+      </g>
+    </symbol>"""
+
+
+def build_couronne():
+    items = [
+        use("fl-feuille", 8, 34, 30, 30, rot=-30),
+        use("fl-feuille", 40, 16, 28, 28, rot=18),
+        use("fl-feuille", 172, 16, 28, 28, rot=-18),
+        use("fl-feuille", 204, 34, 30, 30, rot=30),
+        use("fl-fougere", 62, -2, 42, 42, rot=14),
+        use("fl-fougere", 140, -2, 42, 42, rot=-14),
+        use("fl-fleur", 24, 12, 32, 32),
+        use("fl-fleur", 64, -2, 28, 28),
+        use("fl-fleur", 148, -2, 28, 28),
+        use("fl-fleur", 186, 12, 32, 32),
+        use("fl-fleur2", 100, -14, 34, 34),
+        use("fl-bouton", 88, 12, 17, 22, rot=-14),
+        use("fl-bouton", 130, 12, 17, 22, rot=14),
+        use("fl-perle", 120, 30, 9, 9),
+    ]
+    return f"""    <!-- Couronne de fleurs -->
+    <symbol id="fl-couronne" viewBox="0 0 240 70">
+      <g>
+        <path d="M6 62 C40 22 80 6 120 6 C160 6 200 22 234 62" fill="none" stroke="{STEM}" stroke-width="1.6"/>
+{chr(10).join(items)}
+      </g>
+    </symbol>"""
+
+
+
+def build_bouquet():
+    items = [
+        use("fl-fougere", 0, 20, 62, 62, rot=-14),
+        use("fl-fougere", 60, 12, 58, 58, rot=16),
+        use("fl-feuille", 0, 14, 36, 36, rot=-32),
+        use("fl-feuille", 86, 16, 36, 36, rot=30),
+        use("fl-feuille", 42, 80, 36, 36, rot=8),
+        use("fl-fleur", 20, 16, 52, 52),
+        use("fl-fleur", 52, 46, 50, 50),
+        use("fl-fleur", 0, 46, 36, 36),
+        use("fl-fleur", 78, 38, 34, 34),
+        use("fl-bouton", 18, 72, 19, 25, rot=-18),
+        use("fl-bouton", 84, 72, 17, 23, rot=20),
+        use("fl-perle", 46, 8, 14, 14),
+        use("fl-perle", 88, 26, 10, 10),
+        use("fl-perle", 8, 88, 11, 11),
+    ]
+    return f"""    <!-- Bouquet dense -->
+    <symbol id="fl-bouquet" viewBox="0 0 120 120">
+{chr(10).join(items)}
+    </symbol>"""
+
+
+def build_fete():
+    items = [
+        use("fl-feuille", 12, 42, 30, 30, rot=-30),
+        use("fl-feuille", 50, 20, 28, 28, rot=20),
+        use("fl-feuille", 204, 20, 28, 28, rot=-20),
+        use("fl-feuille", 242, 42, 30, 30, rot=30),
+        use("fl-fougere", 66, -6, 46, 46, rot=16),
+        use("fl-fougere", 170, -6, 46, 46, rot=-16),
+        use("fl-fleur", 30, 12, 34, 34),
+        use("fl-fleur", 72, -2, 30, 30),
+        use("fl-fleur", 178, -2, 30, 30),
+        use("fl-fleur", 218, 12, 34, 34),
+        use("fl-fleur2", 104, -16, 36, 36),
+        use("fl-fleur2", 142, -16, 36, 36),
+        use("fl-bouton", 58, 32, 17, 22, rot=-16),
+        use("fl-bouton", 200, 32, 17, 22, rot=16),
+        use("fl-perle", 140, 26, 10, 10),
+        use("fl-perle", 96, 30, 8, 8),
+        use("fl-perle", 180, 30, 8, 8),
+    ]
+    return f"""    <!-- Guirlande de fête -->
+    <symbol id="fl-fete" viewBox="0 0 280 80">
+      <g>
+        <path d="M4 70 C48 22 96 4 140 4 C184 4 232 22 276 70" fill="none" stroke="{STEM}" stroke-width="1.6"/>
+{chr(10).join(items)}
+        <circle cx="140" cy="-12" r="5" fill="url(#g-gold)"/>
+      </g>
+    </symbol>"""
+
+
+def build_alliance():
+    items = [
+        use("fl-feuille", 0, 44, 44, 44, rot=-28),
+        use("fl-feuille", 116, 40, 44, 44, rot=28),
+        use("fl-feuille", 24, 82, 36, 36, rot=14),
+        use("fl-feuille", 100, 80, 36, 36, rot=-14),
+        use("fl-fougere", 2, 78, 46, 46, rot=-12),
+        use("fl-fougere", 112, 74, 46, 46, rot=12),
+        use("fl-fleur", 6, -2, 40, 40),
+        use("fl-fleur", 114, -2, 40, 40),
+        use("fl-fleur2", 44, -10, 36, 36),
+        use("fl-bouton", 80, 2, 19, 25, rot=8),
+        use("fl-fleur", 30, 72, 36, 36),
+        use("fl-fleur", 94, 72, 36, 36),
+        use("fl-bouton", 66, 84, 16, 21, rot=-10),
+        use("fl-bouton", 82, 84, 16, 21, rot=10),
+        use("fl-perle", 52, 62, 12, 12),
+        use("fl-perle", 96, 62, 10, 10),
+        use("fl-perle", 20, 30, 9, 9),
+        use("fl-perle", 132, 28, 9, 9),
+    ]
+    return f"""    <!-- ALLIANCES NICHÉES DANS LE FLEURAGE (composition de la carte) -->
+    <symbol id="fl-alliance" viewBox="0 0 160 120">
+      <g>
+{chr(10).join(items)}
+        <g class="shine">
+          <ellipse cx="66" cy="54" rx="20" ry="23" fill="none" stroke="url(#g-gold)" stroke-width="5.5"/>
+          <ellipse cx="94" cy="54" rx="20" ry="23" fill="none" stroke="url(#g-gold)" stroke-width="5.5"/>
+          <ellipse cx="66" cy="54" rx="20" ry="23" fill="none" stroke="#fbf1d0" stroke-width="1.2" opacity=".9"/>
+          <ellipse cx="94" cy="54" rx="20" ry="23" fill="none" stroke="#fbf1d0" stroke-width="1.2" opacity=".9"/>
+        </g>
+        <path d="M80 26 C77 21 78.5 17 81 15.5 C82.8 19 83.4 22.4 82 26Z" fill="#fdf6e4" stroke="url(#g-gold)" stroke-width="1"/>
+      </g>
+    </symbol>"""
+
+
+
+def build_filet():
+    return f"""    <!-- Filet fleuri (séparateur de titre) -->
+    <symbol id="fl-filet" viewBox="0 0 200 28">
+      <g>
+        <path d="M0 14 H70 M130 14 H200" stroke="url(#g-gold)" stroke-width="1" opacity=".75"/>
+        <circle cx="78" cy="14" r="1.8" fill="url(#g-gold)"/>
+        <circle cx="122" cy="14" r="1.8" fill="url(#g-gold)"/>
+        <use href="#fl-fleur" x="89" y="3" width="22" height="22"/>
+        <circle cx="76" cy="6" r="1.2" fill="url(#g-perle)"/>
+        <circle cx="124" cy="21" r="1.2" fill="url(#g-perle)"/>
+      </g>
+    </symbol>"""
+
+
+def build_anneaux():
+    return f"""    <!-- Deux anneaux entrelacés (nus) -->
+    <symbol id="fl-anneaux" viewBox="0 0 120 84">
+      <g class="shine">
+        <ellipse cx="46" cy="52" rx="26" ry="30" fill="none" stroke="url(#g-gold)" stroke-width="5"/>
+        <ellipse cx="74" cy="52" rx="26" ry="30" fill="none" stroke="url(#g-gold)" stroke-width="5"/>
+        <ellipse cx="46" cy="52" rx="26" ry="30" fill="none" stroke="#f6e7c2" stroke-width="1.1" opacity=".85"/>
+        <ellipse cx="74" cy="52" rx="26" ry="30" fill="none" stroke="#f6e7c2" stroke-width="1.1" opacity=".85"/>
+      </g>
+      <path d="M60 14 C56 8 58 3 62 1 C64 5 65 9 63 13Z" fill="#fdf6e4" stroke="url(#g-gold)" stroke-width="1"/>
+    </symbol>"""
+
+
+# ————————————————————————————————————————————————————————————
+# Assemblage & injection
+# ————————————————————————————————————————————————————————————
+HEAD = "  <!-- ===== SPRITE FLORAL"
+PAGES = ("index.html", "invitation-landing.html")
+
+HEADER = """  <!-- ===== SPRITE FLORAL — CAMÉLIAS IVOIRE (carte de référence) =====
+       Camélias à 3 couronnes de pétales larges, cœur d'étamines dorées,
+       feuilles émeraude vernies, fougères dorées, perles crème.
+       Ce bloc est dupliqué à l'identique dans les 2 pages : il est
+       régénéré par tools/floral-sprite.py — ne pas éditer à la main. -->
+  <svg class="sprite" aria-hidden="true" focusable="false">"""
+
+
+def sprite_block():
+    parts = [
+        HEADER,
+        build_defs(),
+        build_perle(),
+        build_feuille(),
+        build_fougere(),
+        build_rose(),
+        build_simple(),
+        build_ramure(),
+        build_couronne(),
+        build_filet(),
+        build_bouquet(),
+        build_fete(),
+        build_alliance(),
+        build_anneaux(),
+    ]
+    return "\n\n".join(parts) + "\n  </svg>"
+
+
+def splice(path, block):
+    lines = path.read_text(encoding="utf-8").split("\n")
+    start = next(i for i, l in enumerate(lines) if l.startswith(HEAD))
+    end = next(i for i, l in enumerate(lines[start:], start) if l.strip() == "</svg>")
+    out = lines[:start] + block.split("\n") + lines[end + 1:]
+    path.write_text("\n".join(out), encoding="utf-8")
+    return end - start + 1
+
+
+def main():
+    block = sprite_block()
+    if "--print" in sys.argv:
+        print(block)
+        return
+    root = pathlib.Path(__file__).resolve().parent.parent
+    for name in PAGES:
+        replaced = splice(root / name, block)
+        print(f"{name} : bloc floral régénéré ({replaced} lignes remplacées)")
+
+
+if __name__ == "__main__":
+    main()
+
+

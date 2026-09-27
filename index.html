@@ -265,217 +265,340 @@
 </style>
 </head>
 <body>
-  <!-- ===== SPRITE FLORAL — ROSE/CAMÉLIA 3D (carte de référence) =====
-       Pétales arrondis en courbes de Bézier, empilés en spirale sur
-       3 couronnes qui se chevauchent ; liseré sombre entre les pétales
-       et cœur d'étamines dorées = rendu en volume.
-       Palette : TERRACOTTA + feuillage vert profond.
-       Ce sprite est dupliqué à l'identique dans les 2 pages. -->
+  <!-- ===== SPRITE FLORAL — CAMÉLIAS IVOIRE (carte de référence) =====
+       Camélias à 3 couronnes de pétales larges, cœur d'étamines dorées,
+       feuilles émeraude vernies, fougères dorées, perles crème.
+       Ce bloc est dupliqué à l'identique dans les 2 pages : il est
+       régénéré par tools/floral-sprite.py — ne pas éditer à la main. -->
   <svg class="sprite" aria-hidden="true" focusable="false">
+
     <defs>
-      <!-- pétales terracotta : du sommet éclairé à l'ombre chaude -->
-      <linearGradient id="p-out" x1=".25" y1="0" x2=".75" y2="1">
-        <stop offset="0" stop-color="#d9905f"/><stop offset=".5" stop-color="#c0663c"/><stop offset="1" stop-color="#8a3416"/>
+      <!-- camélia : ivoire éclairé en haut, ombre chaude en base -->
+      <linearGradient id="p-out" x1=".28" y1="0" x2=".72" y2="1">
+        <stop offset="0" stop-color="#ffffff"/><stop offset=".5" stop-color="#f7f3ea"/><stop offset="1" stop-color="#cbc4b1"/>
       </linearGradient>
       <linearGradient id="p-mid" x1=".3" y1="0" x2=".7" y2="1">
-        <stop offset="0" stop-color="#e2a077"/><stop offset=".55" stop-color="#c9704a"/><stop offset="1" stop-color="#96401f"/>
+        <stop offset="0" stop-color="#ffffff"/><stop offset=".55" stop-color="#f2eee2"/><stop offset="1" stop-color="#d3ccb9"/>
       </linearGradient>
-      <linearGradient id="p-in" x1=".35" y1="0" x2=".65" y2="1">
-        <stop offset="0" stop-color="#eeb28b"/><stop offset="1" stop-color="#cd7449"/>
+      <linearGradient id="p-in" x1=".34" y1="0" x2=".66" y2="1">
+        <stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#e9e3d4"/>
       </linearGradient>
-      <radialGradient id="p-coeur" cx=".4" cy=".36" r=".72">
-        <stop offset="0" stop-color="#f0d494"/><stop offset=".55" stop-color="#c39a4c"/><stop offset="1" stop-color="#7d601b"/>
+      <radialGradient id="p-coeur" cx=".4" cy=".34" r=".72">
+        <stop offset="0" stop-color="#f4e4b4"/><stop offset=".5" stop-color="#cda75a"/><stop offset="1" stop-color="#8c6a26"/>
       </radialGradient>
-      <!-- feuillage vert profond, nervure visible -->
-      <linearGradient id="p-leaf" x1=".2" y1="0" x2=".8" y2="1">
-        <stop offset="0" stop-color="#3f7d61"/><stop offset=".5" stop-color="#245a44"/><stop offset="1" stop-color="#10362a"/>
+      <radialGradient id="p-ombre" cx=".5" cy=".5" r=".5">
+        <stop offset="0" stop-color="#8a8271" stop-opacity=".5"/><stop offset="1" stop-color="#8a8271" stop-opacity="0"/>
+      </radialGradient>
+      <!-- feuillage émeraude, nervures éclairées -->
+      <linearGradient id="p-leaf" x1=".18" y1="0" x2=".82" y2="1">
+        <stop offset="0" stop-color="#4d9175"/><stop offset=".45" stop-color="#1f5544"/><stop offset="1" stop-color="#0b2b21"/>
       </linearGradient>
       <linearGradient id="g-gold" x1="0" y1="0" x2="1" y2="1">
-        <stop offset="0" stop-color="#f2dda4"/><stop offset=".45" stop-color="#c9a55e"/><stop offset="1" stop-color="#9a7a34"/>
+        <stop offset="0" stop-color="#f4e4b4"/><stop offset=".45" stop-color="#cda75a"/><stop offset="1" stop-color="#8c6a26"/>
       </linearGradient>
+      <linearGradient id="g-fern" x1=".1" y1="1" x2=".9" y2="0">
+        <stop offset="0" stop-color="#96794a"/><stop offset=".5" stop-color="#bda172"/><stop offset="1" stop-color="#e6d5ae"/>
+      </linearGradient>
+      <radialGradient id="g-perle" cx=".34" cy=".3" r=".78">
+        <stop offset="0" stop-color="#ffffff"/><stop offset=".45" stop-color="#f2ede2"/><stop offset="1" stop-color="#c3bba8"/>
+      </radialGradient>
     </defs>
 
-    <!-- ===== LA ROSE 3D — définition unique, réutilisée partout ===== -->
-    <symbol id="fl-rose" viewBox="0 0 64 64">
-      <path d="M 32.0 35.84 C 21.695999999999998 30.080000000000005, 20.8 14.72, 26.4 3.84 C 30.208 1.92, 33.792 1.92, 37.6 3.84 C 43.2 14.72, 42.304 30.080000000000005, 32.0 35.84 Z" fill="url(#p-out)" transform="rotate(14.0 32.0 32.0)" opacity="1.0"/>
-      <path d="M 32.0 35.84 C 21.695999999999998 30.080000000000005, 20.8 14.72, 26.4 3.84 C 30.208 1.92, 33.792 1.92, 37.6 3.84 C 43.2 14.72, 42.304 30.080000000000005, 32.0 35.84 Z" fill="url(#p-out)" transform="rotate(65.4 32.0 32.0)" opacity="1.0"/>
-      <path d="M 32.0 35.84 C 21.695999999999998 30.080000000000005, 20.8 14.72, 26.4 3.84 C 30.208 1.92, 33.792 1.92, 37.6 3.84 C 43.2 14.72, 42.304 30.080000000000005, 32.0 35.84 Z" fill="url(#p-out)" transform="rotate(116.9 32.0 32.0)" opacity="1.0"/>
-      <path d="M 32.0 35.84 C 21.695999999999998 30.080000000000005, 20.8 14.72, 26.4 3.84 C 30.208 1.92, 33.792 1.92, 37.6 3.84 C 43.2 14.72, 42.304 30.080000000000005, 32.0 35.84 Z" fill="url(#p-out)" transform="rotate(168.3 32.0 32.0)" opacity="1.0"/>
-      <path d="M 32.0 35.84 C 21.695999999999998 30.080000000000005, 20.8 14.72, 26.4 3.84 C 30.208 1.92, 33.792 1.92, 37.6 3.84 C 43.2 14.72, 42.304 30.080000000000005, 32.0 35.84 Z" fill="url(#p-out)" transform="rotate(219.7 32.0 32.0)" opacity="1.0"/>
-      <path d="M 32.0 35.84 C 21.695999999999998 30.080000000000005, 20.8 14.72, 26.4 3.84 C 30.208 1.92, 33.792 1.92, 37.6 3.84 C 43.2 14.72, 42.304 30.080000000000005, 32.0 35.84 Z" fill="url(#p-out)" transform="rotate(271.1 32.0 32.0)" opacity="1.0"/>
-      <path d="M 32.0 35.84 C 21.695999999999998 30.080000000000005, 20.8 14.72, 26.4 3.84 C 30.208 1.92, 33.792 1.92, 37.6 3.84 C 43.2 14.72, 42.304 30.080000000000005, 32.0 35.84 Z" fill="url(#p-out)" transform="rotate(322.6 32.0 32.0)" opacity="1.0"/>
-      <path d="M 32.0 38.4 C 23.7568 33.792, 23.04 21.504, 27.52 12.8 C 30.5664 11.264000000000001, 33.4336 11.264000000000001, 36.480000000000004 12.8 C 40.96 21.504, 40.2432 33.792, 32.0 38.4 Z" fill="url(#p-mid)" transform="rotate(44.0 32.0 32.0)" opacity="1.0"/>
-      <path d="M 32.0 38.4 C 23.7568 33.792, 23.04 21.504, 27.52 12.8 C 30.5664 11.264000000000001, 33.4336 11.264000000000001, 36.480000000000004 12.8 C 40.96 21.504, 40.2432 33.792, 32.0 38.4 Z" fill="url(#p-mid)" transform="rotate(104.0 32.0 32.0)" opacity="1.0"/>
-      <path d="M 32.0 38.4 C 23.7568 33.792, 23.04 21.504, 27.52 12.8 C 30.5664 11.264000000000001, 33.4336 11.264000000000001, 36.480000000000004 12.8 C 40.96 21.504, 40.2432 33.792, 32.0 38.4 Z" fill="url(#p-mid)" transform="rotate(164.0 32.0 32.0)" opacity="1.0"/>
-      <path d="M 32.0 38.4 C 23.7568 33.792, 23.04 21.504, 27.52 12.8 C 30.5664 11.264000000000001, 33.4336 11.264000000000001, 36.480000000000004 12.8 C 40.96 21.504, 40.2432 33.792, 32.0 38.4 Z" fill="url(#p-mid)" transform="rotate(224.0 32.0 32.0)" opacity="1.0"/>
-      <path d="M 32.0 38.4 C 23.7568 33.792, 23.04 21.504, 27.52 12.8 C 30.5664 11.264000000000001, 33.4336 11.264000000000001, 36.480000000000004 12.8 C 40.96 21.504, 40.2432 33.792, 32.0 38.4 Z" fill="url(#p-mid)" transform="rotate(284.0 32.0 32.0)" opacity="1.0"/>
-      <path d="M 32.0 38.4 C 23.7568 33.792, 23.04 21.504, 27.52 12.8 C 30.5664 11.264000000000001, 33.4336 11.264000000000001, 36.480000000000004 12.8 C 40.96 21.504, 40.2432 33.792, 32.0 38.4 Z" fill="url(#p-mid)" transform="rotate(344.0 32.0 32.0)" opacity="1.0"/>
-      <path d="M 32.0 39.68 C 26.22976 36.224, 25.728 27.008000000000003, 28.864 20.48 C 30.99648 19.328, 33.00352 19.328, 35.136 20.48 C 38.272 27.008000000000003, 37.77024 36.224, 32.0 39.68 Z" fill="url(#p-in)" transform="rotate(20.0 32.0 32.0)" opacity="1.0"/>
-      <path d="M 32.0 39.68 C 26.22976 36.224, 25.728 27.008000000000003, 28.864 20.48 C 30.99648 19.328, 33.00352 19.328, 35.136 20.48 C 38.272 27.008000000000003, 37.77024 36.224, 32.0 39.68 Z" fill="url(#p-in)" transform="rotate(92.0 32.0 32.0)" opacity="1.0"/>
-      <path d="M 32.0 39.68 C 26.22976 36.224, 25.728 27.008000000000003, 28.864 20.48 C 30.99648 19.328, 33.00352 19.328, 35.136 20.48 C 38.272 27.008000000000003, 37.77024 36.224, 32.0 39.68 Z" fill="url(#p-in)" transform="rotate(164.0 32.0 32.0)" opacity="1.0"/>
-      <path d="M 32.0 39.68 C 26.22976 36.224, 25.728 27.008000000000003, 28.864 20.48 C 30.99648 19.328, 33.00352 19.328, 35.136 20.48 C 38.272 27.008000000000003, 37.77024 36.224, 32.0 39.68 Z" fill="url(#p-in)" transform="rotate(236.0 32.0 32.0)" opacity="1.0"/>
-      <path d="M 32.0 39.68 C 26.22976 36.224, 25.728 27.008000000000003, 28.864 20.48 C 30.99648 19.328, 33.00352 19.328, 35.136 20.48 C 38.272 27.008000000000003, 37.77024 36.224, 32.0 39.68 Z" fill="url(#p-in)" transform="rotate(308.0 32.0 32.0)" opacity="1.0"/>
-      <path d="M 32.0 35.84 C 21.695999999999998 30.080000000000005, 20.8 14.72, 26.4 3.84 C 30.208 1.92, 33.792 1.92, 37.6 3.84 C 43.2 14.72, 42.304 30.080000000000005, 32.0 35.84 Z" fill="none" stroke="#5c1e0d" stroke-width=".7" opacity=".22" transform="rotate(14.0 32.0 32.0)"/>
-      <path d="M 32.0 35.84 C 21.695999999999998 30.080000000000005, 20.8 14.72, 26.4 3.84 C 30.208 1.92, 33.792 1.92, 37.6 3.84 C 43.2 14.72, 42.304 30.080000000000005, 32.0 35.84 Z" fill="none" stroke="#5c1e0d" stroke-width=".7" opacity=".22" transform="rotate(65.4 32.0 32.0)"/>
-      <path d="M 32.0 35.84 C 21.695999999999998 30.080000000000005, 20.8 14.72, 26.4 3.84 C 30.208 1.92, 33.792 1.92, 37.6 3.84 C 43.2 14.72, 42.304 30.080000000000005, 32.0 35.84 Z" fill="none" stroke="#5c1e0d" stroke-width=".7" opacity=".22" transform="rotate(116.9 32.0 32.0)"/>
-      <path d="M 32.0 35.84 C 21.695999999999998 30.080000000000005, 20.8 14.72, 26.4 3.84 C 30.208 1.92, 33.792 1.92, 37.6 3.84 C 43.2 14.72, 42.304 30.080000000000005, 32.0 35.84 Z" fill="none" stroke="#5c1e0d" stroke-width=".7" opacity=".22" transform="rotate(168.3 32.0 32.0)"/>
-      <path d="M 32.0 35.84 C 21.695999999999998 30.080000000000005, 20.8 14.72, 26.4 3.84 C 30.208 1.92, 33.792 1.92, 37.6 3.84 C 43.2 14.72, 42.304 30.080000000000005, 32.0 35.84 Z" fill="none" stroke="#5c1e0d" stroke-width=".7" opacity=".22" transform="rotate(219.7 32.0 32.0)"/>
-      <path d="M 32.0 35.84 C 21.695999999999998 30.080000000000005, 20.8 14.72, 26.4 3.84 C 30.208 1.92, 33.792 1.92, 37.6 3.84 C 43.2 14.72, 42.304 30.080000000000005, 32.0 35.84 Z" fill="none" stroke="#5c1e0d" stroke-width=".7" opacity=".22" transform="rotate(271.1 32.0 32.0)"/>
-      <path d="M 32.0 35.84 C 21.695999999999998 30.080000000000005, 20.8 14.72, 26.4 3.84 C 30.208 1.92, 33.792 1.92, 37.6 3.84 C 43.2 14.72, 42.304 30.080000000000005, 32.0 35.84 Z" fill="none" stroke="#5c1e0d" stroke-width=".7" opacity=".22" transform="rotate(322.6 32.0 32.0)"/>
-      <path d="M 32.0 38.4 C 23.7568 33.792, 23.04 21.504, 27.52 12.8 C 30.5664 11.264000000000001, 33.4336 11.264000000000001, 36.480000000000004 12.8 C 40.96 21.504, 40.2432 33.792, 32.0 38.4 Z" fill="none" stroke="#5c1e0d" stroke-width=".7" opacity=".22" transform="rotate(44.0 32.0 32.0)"/>
-      <path d="M 32.0 38.4 C 23.7568 33.792, 23.04 21.504, 27.52 12.8 C 30.5664 11.264000000000001, 33.4336 11.264000000000001, 36.480000000000004 12.8 C 40.96 21.504, 40.2432 33.792, 32.0 38.4 Z" fill="none" stroke="#5c1e0d" stroke-width=".7" opacity=".22" transform="rotate(104.0 32.0 32.0)"/>
-      <path d="M 32.0 38.4 C 23.7568 33.792, 23.04 21.504, 27.52 12.8 C 30.5664 11.264000000000001, 33.4336 11.264000000000001, 36.480000000000004 12.8 C 40.96 21.504, 40.2432 33.792, 32.0 38.4 Z" fill="none" stroke="#5c1e0d" stroke-width=".7" opacity=".22" transform="rotate(164.0 32.0 32.0)"/>
-      <path d="M 32.0 38.4 C 23.7568 33.792, 23.04 21.504, 27.52 12.8 C 30.5664 11.264000000000001, 33.4336 11.264000000000001, 36.480000000000004 12.8 C 40.96 21.504, 40.2432 33.792, 32.0 38.4 Z" fill="none" stroke="#5c1e0d" stroke-width=".7" opacity=".22" transform="rotate(224.0 32.0 32.0)"/>
-      <path d="M 32.0 38.4 C 23.7568 33.792, 23.04 21.504, 27.52 12.8 C 30.5664 11.264000000000001, 33.4336 11.264000000000001, 36.480000000000004 12.8 C 40.96 21.504, 40.2432 33.792, 32.0 38.4 Z" fill="none" stroke="#5c1e0d" stroke-width=".7" opacity=".22" transform="rotate(284.0 32.0 32.0)"/>
-      <path d="M 32.0 38.4 C 23.7568 33.792, 23.04 21.504, 27.52 12.8 C 30.5664 11.264000000000001, 33.4336 11.264000000000001, 36.480000000000004 12.8 C 40.96 21.504, 40.2432 33.792, 32.0 38.4 Z" fill="none" stroke="#5c1e0d" stroke-width=".7" opacity=".22" transform="rotate(344.0 32.0 32.0)"/>
-      <path d="M 32.0 39.68 C 26.22976 36.224, 25.728 27.008000000000003, 28.864 20.48 C 30.99648 19.328, 33.00352 19.328, 35.136 20.48 C 38.272 27.008000000000003, 37.77024 36.224, 32.0 39.68 Z" fill="none" stroke="#5c1e0d" stroke-width=".7" opacity=".22" transform="rotate(20.0 32.0 32.0)"/>
-      <path d="M 32.0 39.68 C 26.22976 36.224, 25.728 27.008000000000003, 28.864 20.48 C 30.99648 19.328, 33.00352 19.328, 35.136 20.48 C 38.272 27.008000000000003, 37.77024 36.224, 32.0 39.68 Z" fill="none" stroke="#5c1e0d" stroke-width=".7" opacity=".22" transform="rotate(92.0 32.0 32.0)"/>
-      <path d="M 32.0 39.68 C 26.22976 36.224, 25.728 27.008000000000003, 28.864 20.48 C 30.99648 19.328, 33.00352 19.328, 35.136 20.48 C 38.272 27.008000000000003, 37.77024 36.224, 32.0 39.68 Z" fill="none" stroke="#5c1e0d" stroke-width=".7" opacity=".22" transform="rotate(164.0 32.0 32.0)"/>
-      <path d="M 32.0 39.68 C 26.22976 36.224, 25.728 27.008000000000003, 28.864 20.48 C 30.99648 19.328, 33.00352 19.328, 35.136 20.48 C 38.272 27.008000000000003, 37.77024 36.224, 32.0 39.68 Z" fill="none" stroke="#5c1e0d" stroke-width=".7" opacity=".22" transform="rotate(236.0 32.0 32.0)"/>
-      <path d="M 32.0 39.68 C 26.22976 36.224, 25.728 27.008000000000003, 28.864 20.48 C 30.99648 19.328, 33.00352 19.328, 35.136 20.48 C 38.272 27.008000000000003, 37.77024 36.224, 32.0 39.68 Z" fill="none" stroke="#5c1e0d" stroke-width=".7" opacity=".22" transform="rotate(308.0 32.0 32.0)"/>
-      <circle cx="32.0" cy="32.0" r="7.36" fill="url(#p-coeur)"/>
-      <circle cx="36.51" cy="33.65" r="1.09" fill="#8a6a1e" opacity=".85"/>
-      <circle cx="34.01" cy="34.65" r="1.09" fill="#8a6a1e" opacity=".85"/>
-      <circle cx="32.38" cy="36.79" r="1.09" fill="#8a6a1e" opacity=".85"/>
-      <circle cx="30.43" cy="34.93" r="1.09" fill="#8a6a1e" opacity=".85"/>
-      <circle cx="27.80" cy="34.33" r="1.09" fill="#8a6a1e" opacity=".85"/>
-      <circle cx="28.68" cy="31.79" r="1.09" fill="#8a6a1e" opacity=".85"/>
-      <circle cx="28.14" cy="29.15" r="1.09" fill="#8a6a1e" opacity=".85"/>
-      <circle cx="30.82" cy="28.89" r="1.09" fill="#8a6a1e" opacity=".85"/>
-      <circle cx="32.99" cy="27.30" r="1.09" fill="#8a6a1e" opacity=".85"/>
-      <circle cx="34.34" cy="29.63" r="1.09" fill="#8a6a1e" opacity=".85"/>
-      <circle cx="36.68" cy="30.95" r="1.09" fill="#8a6a1e" opacity=".85"/>
-      <circle cx="28.48" cy="27.20" r="2.24" fill="#fff6dd" opacity=".55"/>
+    <!-- Perle crème, lumière en haut à gauche -->
+    <symbol id="fl-perle" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="10" fill="url(#g-perle)"/>
+      <circle cx="12" cy="12" r="10" fill="none" stroke="#b9b2a1" stroke-width=".7" stroke-opacity=".5"/>
+      <ellipse cx="8.6" cy="8.2" rx="3.4" ry="2.6" fill="#ffffff" opacity=".85" transform="rotate(-28 8.6 8.2)"/>
     </symbol>
 
-    <!-- Flower simple = la rose -->
+    <!-- Feuille émeraude, vernie, nervure centrale marquée.
+         Limbe étroit et pointu, comme les feuilles de la carte. -->
+    <symbol id="fl-feuille" viewBox="0 0 32 32">
+      <path d="M17 30.5 C 11 24 5 13 3 1.5 C 12 5 20.5 12.5 25 22 C 24.5 25.5 21.5 28.5 17 30.5 Z" fill="url(#p-leaf)"/>
+      <path d="M17 30.5 C 13.5 21 9 11 4 3 C 11 6 17.5 12.5 22 21 C 21.5 24 19 27 17 30.5 Z" fill="#ffffff" opacity=".07"/>
+      <path d="M14.59 25.05 Q16.25 23.79 17.6 23.48" fill="none" stroke="#0a2a20" stroke-width=".65" stroke-linecap="round" opacity="0.5"/>
+      <path d="M14.59 25.05 Q14 24.95 13.52 25.6" fill="none" stroke="#0a2a20" stroke-width=".65" stroke-linecap="round" opacity="0.42"/>
+      <path d="M12.18 20.1 Q13.93 18.79 15.37 18.44" fill="none" stroke="#0a2a20" stroke-width=".65" stroke-linecap="round" opacity="0.5"/>
+      <path d="M12.18 20.1 Q11.44 20.08 10.85 20.79" fill="none" stroke="#0a2a20" stroke-width=".65" stroke-linecap="round" opacity="0.42"/>
+      <path d="M9.76 15.15 Q11.37 13.91 12.69 13.63" fill="none" stroke="#0a2a20" stroke-width=".65" stroke-linecap="round" opacity="0.5"/>
+      <path d="M9.76 15.15 Q9.03 15.13 8.43 15.84" fill="none" stroke="#0a2a20" stroke-width=".65" stroke-linecap="round" opacity="0.42"/>
+      <path d="M7.62 10.75 Q8.89 9.69 9.93 9.55" fill="none" stroke="#0a2a20" stroke-width=".65" stroke-linecap="round" opacity="0.5"/>
+      <path d="M7.62 10.75 Q7.03 10.65 6.56 11.3" fill="none" stroke="#0a2a20" stroke-width=".65" stroke-linecap="round" opacity="0.42"/>
+      <path d="M5.88 7.18 Q6.76 6.32 7.47 6.34" fill="none" stroke="#0a2a20" stroke-width=".65" stroke-linecap="round" opacity="0.5"/>
+      <path d="M5.88 7.18 Q5.49 6.98 5.17 7.54" fill="none" stroke="#0a2a20" stroke-width=".65" stroke-linecap="round" opacity="0.42"/>
+      <path d="M17 30 C 13.5 21 9 11 3.6 2.5" fill="none" stroke="#05201a" stroke-width="1.25" opacity=".6" stroke-linecap="round"/>
+      <path d="M17 30 C 14 21 9.6 11.5 4.6 3.2" fill="none" stroke="#8fd3b2" stroke-width=".5" opacity=".55" stroke-linecap="round"/>
+    </symbol>
+
+    <!-- Fougère dorée (fillette de la carte de référence) -->
+    <symbol id="fl-fougere" viewBox="0 0 48 48">
+      <path d="M3 45 Q13 25 33 3" fill="none" stroke="url(#g-fern)" stroke-width="1.1" stroke-linecap="round"/>
+      <ellipse cx="3.23" cy="36.7" rx="6.17" ry="1.05" fill="url(#g-fern)" transform="rotate(-102.05 3.23 36.7)"/>
+      <ellipse cx="9.68" cy="40.12" rx="6.17" ry="1.05" fill="url(#g-fern)" transform="rotate(-22.05 9.68 40.12)"/>
+      <ellipse cx="4.93" cy="34.2" rx="5.84" ry="0.99" fill="url(#g-fern)" transform="rotate(-100.72 4.93 34.2)"/>
+      <ellipse cx="10.95" cy="37.58" rx="5.84" ry="0.99" fill="url(#g-fern)" transform="rotate(-20.72 10.95 37.58)"/>
+      <ellipse cx="6.7" cy="31.69" rx="5.51" ry="0.94" fill="url(#g-fern)" transform="rotate(-99.43 6.7 31.69)"/>
+      <ellipse cx="12.32" cy="35.01" rx="5.51" ry="0.94" fill="url(#g-fern)" transform="rotate(-19.43 12.32 35.01)"/>
+      <ellipse cx="8.55" cy="29.17" rx="5.18" ry="0.88" fill="url(#g-fern)" transform="rotate(-98.2 8.55 29.17)"/>
+      <ellipse cx="13.76" cy="32.4" rx="5.18" ry="0.88" fill="url(#g-fern)" transform="rotate(-18.2 13.76 32.4)"/>
+      <ellipse cx="10.48" cy="26.63" rx="4.86" ry="0.83" fill="url(#g-fern)" transform="rotate(-97.02 10.48 26.63)"/>
+      <ellipse cx="15.29" cy="29.76" rx="4.86" ry="0.83" fill="url(#g-fern)" transform="rotate(-17.02 15.29 29.76)"/>
+      <ellipse cx="12.48" cy="24.08" rx="4.53" ry="0.77" fill="url(#g-fern)" transform="rotate(-95.88 12.48 24.08)"/>
+      <ellipse cx="16.91" cy="27.08" rx="4.53" ry="0.77" fill="url(#g-fern)" transform="rotate(-15.88 16.91 27.08)"/>
+      <ellipse cx="14.57" cy="21.51" rx="4.2" ry="0.71" fill="url(#g-fern)" transform="rotate(-94.78 14.57 21.51)"/>
+      <ellipse cx="18.62" cy="24.38" rx="4.2" ry="0.71" fill="url(#g-fern)" transform="rotate(-14.78 18.62 24.38)"/>
+      <ellipse cx="16.73" cy="18.93" rx="3.87" ry="0.66" fill="url(#g-fern)" transform="rotate(-93.73 16.73 18.93)"/>
+      <ellipse cx="20.42" cy="21.64" rx="3.87" ry="0.66" fill="url(#g-fern)" transform="rotate(-13.73 20.42 21.64)"/>
+      <ellipse cx="18.97" cy="16.33" rx="3.54" ry="0.6" fill="url(#g-fern)" transform="rotate(-92.72 18.97 16.33)"/>
+      <ellipse cx="22.31" cy="18.87" rx="3.54" ry="0.6" fill="url(#g-fern)" transform="rotate(-12.72 22.31 18.87)"/>
+      <ellipse cx="21.3" cy="13.71" rx="3.21" ry="0.55" fill="url(#g-fern)" transform="rotate(-91.75 21.3 13.71)"/>
+      <ellipse cx="24.28" cy="16.06" rx="3.21" ry="0.55" fill="url(#g-fern)" transform="rotate(-11.75 24.28 16.06)"/>
+      <ellipse cx="23.71" cy="11.08" rx="2.88" ry="0.49" fill="url(#g-fern)" transform="rotate(-90.81 23.71 11.08)"/>
+      <ellipse cx="26.35" cy="13.23" rx="2.88" ry="0.49" fill="url(#g-fern)" transform="rotate(-10.81 26.35 13.23)"/>
+      <ellipse cx="26.2" cy="8.42" rx="2.55" ry="0.43" fill="url(#g-fern)" transform="rotate(-89.91 26.2 8.42)"/>
+      <ellipse cx="28.51" cy="10.37" rx="2.55" ry="0.43" fill="url(#g-fern)" transform="rotate(-9.91 28.51 10.37)"/>
+      <ellipse cx="28.77" cy="5.75" rx="2.23" ry="0.38" fill="url(#g-fern)" transform="rotate(-89.04 28.77 5.75)"/>
+      <ellipse cx="30.76" cy="7.48" rx="2.23" ry="0.38" fill="url(#g-fern)" transform="rotate(-9.04 30.76 7.48)"/>
+      <ellipse cx="31.43" cy="3.06" rx="1.9" ry="0.32" fill="url(#g-fern)" transform="rotate(-88.21 31.43 3.06)"/>
+      <ellipse cx="33.1" cy="4.56" rx="1.9" ry="0.32" fill="url(#g-fern)" transform="rotate(-8.21 33.1 4.56)"/>
+      <path d="M9 46 Q20 32 43 20" fill="none" stroke="url(#g-fern)" stroke-width="1.1" stroke-linecap="round"/>
+      <ellipse cx="11.26" cy="39.93" rx="3.75" ry="0.64" fill="url(#g-fern)" transform="rotate(-88.7 11.26 39.93)"/>
+      <ellipse cx="14.59" cy="42.85" rx="3.75" ry="0.64" fill="url(#g-fern)" transform="rotate(-8.7 14.59 42.85)"/>
+      <ellipse cx="13.82" cy="37.59" rx="3.49" ry="0.59" fill="url(#g-fern)" transform="rotate(-85.76 13.82 37.59)"/>
+      <ellipse cx="16.77" cy="40.47" rx="3.49" ry="0.59" fill="url(#g-fern)" transform="rotate(-5.76 16.77 40.47)"/>
+      <ellipse cx="16.55" cy="35.28" rx="3.24" ry="0.55" fill="url(#g-fern)" transform="rotate(-83.02 16.55 35.28)"/>
+      <ellipse cx="19.16" cy="38.08" rx="3.24" ry="0.55" fill="url(#g-fern)" transform="rotate(-3.02 19.16 38.08)"/>
+      <ellipse cx="19.47" cy="33.01" rx="2.98" ry="0.51" fill="url(#g-fern)" transform="rotate(-80.46 19.47 33.01)"/>
+      <ellipse cx="21.75" cy="35.7" rx="2.98" ry="0.51" fill="url(#g-fern)" transform="rotate(-0.46 21.75 35.7)"/>
+      <ellipse cx="22.57" cy="30.78" rx="2.73" ry="0.46" fill="url(#g-fern)" transform="rotate(-78.09 22.57 30.78)"/>
+      <ellipse cx="24.55" cy="33.32" rx="2.73" ry="0.46" fill="url(#g-fern)" transform="rotate(1.91 24.55 33.32)"/>
+      <ellipse cx="25.85" cy="28.59" rx="2.47" ry="0.42" fill="url(#g-fern)" transform="rotate(-75.88 25.85 28.59)"/>
+      <ellipse cx="27.57" cy="30.96" rx="2.47" ry="0.42" fill="url(#g-fern)" transform="rotate(4.12 27.57 30.96)"/>
+      <ellipse cx="29.33" cy="26.42" rx="2.22" ry="0.38" fill="url(#g-fern)" transform="rotate(-73.82 29.33 26.42)"/>
+      <ellipse cx="30.79" cy="28.6" rx="2.22" ry="0.38" fill="url(#g-fern)" transform="rotate(6.18 30.79 28.6)"/>
+      <ellipse cx="33" cy="24.29" rx="1.96" ry="0.33" fill="url(#g-fern)" transform="rotate(-71.91 33 24.29)"/>
+      <ellipse cx="34.23" cy="26.26" rx="1.96" ry="0.33" fill="url(#g-fern)" transform="rotate(8.09 34.23 26.26)"/>
+      <ellipse cx="36.86" cy="22.19" rx="1.71" ry="0.29" fill="url(#g-fern)" transform="rotate(-70.14 36.86 22.19)"/>
+      <ellipse cx="37.88" cy="23.94" rx="1.71" ry="0.29" fill="url(#g-fern)" transform="rotate(9.86 37.88 23.94)"/>
+      <ellipse cx="40.92" cy="20.12" rx="1.45" ry="0.25" fill="url(#g-fern)" transform="rotate(-68.49 40.92 20.12)"/>
+      <ellipse cx="41.74" cy="21.63" rx="1.45" ry="0.25" fill="url(#g-fern)" transform="rotate(11.51 41.74 21.63)"/>
+    </symbol>
+
+    <!-- ===== LE CAMÉLIA — définition unique, réutilisée partout =====
+         3 couronnes de pétales larges qui se chevauchent, liseré doux
+         entre les pétales, cœur d'étamines dorées. -->
+    <symbol id="fl-rose" viewBox="0 0 64 64">
+      <ellipse cx="32" cy="33" rx="27" ry="26" fill="url(#p-ombre)" opacity=".55"/>
+      <path d="M0 0 C-12.92 -6 -13.87 -19.2 -6.53 -27.9 C-3.26 -31.5 3.26 -31.5 6.53 -27.9 C13.87 -19.2 12.92 -6 0 0 Z" fill="url(#p-out)" stroke="#b0aa99" stroke-width="0.6" stroke-opacity="0.42" opacity="1" transform="translate(32 32) rotate(8)"/>
+      <path d="M0 0 C-12.92 -6 -13.87 -19.2 -6.53 -27.9 C-3.26 -31.5 3.26 -31.5 6.53 -27.9 C13.87 -19.2 12.92 -6 0 0 Z" fill="url(#p-out)" stroke="#b0aa99" stroke-width="0.6" stroke-opacity="0.42" opacity="1" transform="translate(32 32) rotate(59.43)"/>
+      <path d="M0 0 C-12.92 -6 -13.87 -19.2 -6.53 -27.9 C-3.26 -31.5 3.26 -31.5 6.53 -27.9 C13.87 -19.2 12.92 -6 0 0 Z" fill="url(#p-out)" stroke="#b0aa99" stroke-width="0.6" stroke-opacity="0.42" opacity="1" transform="translate(32 32) rotate(110.86)"/>
+      <path d="M0 0 C-12.92 -6 -13.87 -19.2 -6.53 -27.9 C-3.26 -31.5 3.26 -31.5 6.53 -27.9 C13.87 -19.2 12.92 -6 0 0 Z" fill="url(#p-out)" stroke="#b0aa99" stroke-width="0.6" stroke-opacity="0.42" opacity="1" transform="translate(32 32) rotate(162.29)"/>
+      <path d="M0 0 C-12.92 -6 -13.87 -19.2 -6.53 -27.9 C-3.26 -31.5 3.26 -31.5 6.53 -27.9 C13.87 -19.2 12.92 -6 0 0 Z" fill="url(#p-out)" stroke="#b0aa99" stroke-width="0.6" stroke-opacity="0.42" opacity="1" transform="translate(32 32) rotate(213.71)"/>
+      <path d="M0 0 C-12.92 -6 -13.87 -19.2 -6.53 -27.9 C-3.26 -31.5 3.26 -31.5 6.53 -27.9 C13.87 -19.2 12.92 -6 0 0 Z" fill="url(#p-out)" stroke="#b0aa99" stroke-width="0.6" stroke-opacity="0.42" opacity="1" transform="translate(32 32) rotate(265.14)"/>
+      <path d="M0 0 C-12.92 -6 -13.87 -19.2 -6.53 -27.9 C-3.26 -31.5 3.26 -31.5 6.53 -27.9 C13.87 -19.2 12.92 -6 0 0 Z" fill="url(#p-out)" stroke="#b0aa99" stroke-width="0.6" stroke-opacity="0.42" opacity="1" transform="translate(32 32) rotate(316.57)"/>
+      <path d="M0 0 C-11.4 -5 -12.24 -16 -5.76 -23.25 C-2.88 -26.25 2.88 -26.25 5.76 -23.25 C12.24 -16 11.4 -5 0 0 Z" fill="url(#p-mid)" stroke="#b0aa99" stroke-width="0.6" stroke-opacity="0.5" opacity="1" transform="translate(32 32) rotate(30)"/>
+      <path d="M0 0 C-11.4 -5 -12.24 -16 -5.76 -23.25 C-2.88 -26.25 2.88 -26.25 5.76 -23.25 C12.24 -16 11.4 -5 0 0 Z" fill="url(#p-mid)" stroke="#b0aa99" stroke-width="0.6" stroke-opacity="0.5" opacity="1" transform="translate(32 32) rotate(75)"/>
+      <path d="M0 0 C-11.4 -5 -12.24 -16 -5.76 -23.25 C-2.88 -26.25 2.88 -26.25 5.76 -23.25 C12.24 -16 11.4 -5 0 0 Z" fill="url(#p-mid)" stroke="#b0aa99" stroke-width="0.6" stroke-opacity="0.5" opacity="1" transform="translate(32 32) rotate(120)"/>
+      <path d="M0 0 C-11.4 -5 -12.24 -16 -5.76 -23.25 C-2.88 -26.25 2.88 -26.25 5.76 -23.25 C12.24 -16 11.4 -5 0 0 Z" fill="url(#p-mid)" stroke="#b0aa99" stroke-width="0.6" stroke-opacity="0.5" opacity="1" transform="translate(32 32) rotate(165)"/>
+      <path d="M0 0 C-11.4 -5 -12.24 -16 -5.76 -23.25 C-2.88 -26.25 2.88 -26.25 5.76 -23.25 C12.24 -16 11.4 -5 0 0 Z" fill="url(#p-mid)" stroke="#b0aa99" stroke-width="0.6" stroke-opacity="0.5" opacity="1" transform="translate(32 32) rotate(210)"/>
+      <path d="M0 0 C-11.4 -5 -12.24 -16 -5.76 -23.25 C-2.88 -26.25 2.88 -26.25 5.76 -23.25 C12.24 -16 11.4 -5 0 0 Z" fill="url(#p-mid)" stroke="#b0aa99" stroke-width="0.6" stroke-opacity="0.5" opacity="1" transform="translate(32 32) rotate(255)"/>
+      <path d="M0 0 C-11.4 -5 -12.24 -16 -5.76 -23.25 C-2.88 -26.25 2.88 -26.25 5.76 -23.25 C12.24 -16 11.4 -5 0 0 Z" fill="url(#p-mid)" stroke="#b0aa99" stroke-width="0.6" stroke-opacity="0.5" opacity="1" transform="translate(32 32) rotate(300)"/>
+      <path d="M0 0 C-11.4 -5 -12.24 -16 -5.76 -23.25 C-2.88 -26.25 2.88 -26.25 5.76 -23.25 C12.24 -16 11.4 -5 0 0 Z" fill="url(#p-mid)" stroke="#b0aa99" stroke-width="0.6" stroke-opacity="0.5" opacity="1" transform="translate(32 32) rotate(345)"/>
+      <circle cx="32" cy="32" r="10.5" fill="url(#p-ombre)" opacity=".7"/>
+      <path d="M0 0 C-8.36 -3.5 -8.98 -11.2 -4.22 -16.28 C-2.11 -18.38 2.11 -18.38 4.22 -16.28 C8.98 -11.2 8.36 -3.5 0 0 Z" fill="url(#p-in)" stroke="#b0aa99" stroke-width="0.5" stroke-opacity="0.45" opacity="1" transform="translate(32 32) rotate(12)"/>
+      <path d="M0 0 C-8.36 -3.5 -8.98 -11.2 -4.22 -16.28 C-2.11 -18.38 2.11 -18.38 4.22 -16.28 C8.98 -11.2 8.36 -3.5 0 0 Z" fill="url(#p-in)" stroke="#b0aa99" stroke-width="0.5" stroke-opacity="0.45" opacity="1" transform="translate(32 32) rotate(72)"/>
+      <path d="M0 0 C-8.36 -3.5 -8.98 -11.2 -4.22 -16.28 C-2.11 -18.38 2.11 -18.38 4.22 -16.28 C8.98 -11.2 8.36 -3.5 0 0 Z" fill="url(#p-in)" stroke="#b0aa99" stroke-width="0.5" stroke-opacity="0.45" opacity="1" transform="translate(32 32) rotate(132)"/>
+      <path d="M0 0 C-8.36 -3.5 -8.98 -11.2 -4.22 -16.28 C-2.11 -18.38 2.11 -18.38 4.22 -16.28 C8.98 -11.2 8.36 -3.5 0 0 Z" fill="url(#p-in)" stroke="#b0aa99" stroke-width="0.5" stroke-opacity="0.45" opacity="1" transform="translate(32 32) rotate(192)"/>
+      <path d="M0 0 C-8.36 -3.5 -8.98 -11.2 -4.22 -16.28 C-2.11 -18.38 2.11 -18.38 4.22 -16.28 C8.98 -11.2 8.36 -3.5 0 0 Z" fill="url(#p-in)" stroke="#b0aa99" stroke-width="0.5" stroke-opacity="0.45" opacity="1" transform="translate(32 32) rotate(252)"/>
+      <path d="M0 0 C-8.36 -3.5 -8.98 -11.2 -4.22 -16.28 C-2.11 -18.38 2.11 -18.38 4.22 -16.28 C8.98 -11.2 8.36 -3.5 0 0 Z" fill="url(#p-in)" stroke="#b0aa99" stroke-width="0.5" stroke-opacity="0.45" opacity="1" transform="translate(32 32) rotate(312)"/>
+      <circle cx="32" cy="32" r="6.5" fill="url(#p-coeur)"/>
+      <circle cx="35.81" cy="32.81" r="1.15" fill="#a97f24" opacity=".9"/>
+      <circle cx="34.12" cy="35.27" r="1.15" fill="#a97f24" opacity=".9"/>
+      <circle cx="31.19" cy="35.81" r="1.15" fill="#a97f24" opacity=".9"/>
+      <circle cx="28.73" cy="34.12" r="1.15" fill="#a97f24" opacity=".9"/>
+      <circle cx="28.19" cy="31.19" r="1.15" fill="#a97f24" opacity=".9"/>
+      <circle cx="29.88" cy="28.73" r="1.15" fill="#a97f24" opacity=".9"/>
+      <circle cx="32.81" cy="28.19" r="1.15" fill="#a97f24" opacity=".9"/>
+      <circle cx="35.27" cy="29.88" r="1.15" fill="#a97f24" opacity=".9"/>
+      <circle cx="33.2" cy="33.2" r="1.05" fill="#8f6a20" opacity=".85"/>
+      <circle cx="30.8" cy="33.2" r="1.05" fill="#8f6a20" opacity=".85"/>
+      <circle cx="30.8" cy="30.8" r="1.05" fill="#8f6a20" opacity=".85"/>
+      <circle cx="33.2" cy="30.8" r="1.05" fill="#8f6a20" opacity=".85"/>
+      <circle cx="32" cy="32" r="1.5" fill="#8c6a26" opacity=".9"/>
+      <circle cx="30.1" cy="30.4" r="1.1" fill="#f4e4b4" opacity=".95"/>
+    </symbol>
+
+    <!-- Fleur simple = le camélia -->
     <symbol id="fl-fleur" viewBox="0 0 64 64"><use href="#fl-rose"/></symbol>
 
-    <!-- Camélia double : deux roses superposées = plus touffu -->
+    <!-- Camélia double : deux fleurs superposées = plus touffu -->
     <symbol id="fl-fleur2" viewBox="0 0 64 64">
-      <use href="#fl-rose" x="0" y="0" width="46" height="46"/>
-      <use href="#fl-rose" x="17" y="17" width="43" height="43"/>
+      <use href="#fl-rose" x="0" y="0" width="47" height="47"/>
+      <use href="#fl-rose" x="16" y="16" width="44" height="44"/>
     </symbol>
 
-    <!-- Bouton fermé (pivoine) -->
+    <!-- Bouton fermé, ivoire -->
     <symbol id="fl-bouton" viewBox="0 0 24 32">
-      <path d="M12 31 C3 23 1 15 4.5 8.5 C8 2 16 2 19.5 8.5 C23 15 21 23 12 31Z" fill="url(#p-mid)"/>
+      <path d="M12 31 C3 23 1 15 4.5 8.5 C8 2 16 2 19.5 8.5 C23 15 21 23 12 31Z" fill="url(#p-mid)" stroke="#b0aa99" stroke-width=".6" stroke-opacity=".5"/>
       <path d="M12 27 C6.5 20.5 5.5 15 7.5 11 C9.5 7.5 14.5 7.5 16.5 11 C18.5 15 17.5 20.5 12 27Z" fill="url(#p-in)"/>
-      <path d="M12 24 C9.5 20.5 9 17 10 14.5" fill="none" stroke="#8a3416" stroke-width=".9" opacity=".5"/>
-      <path d="M11 6 C10 9 8 10 6 10.5 C8 12 9 14 9 16" fill="none" stroke="#245a44" stroke-width="1.3" stroke-linecap="round"/>
-    </symbol>
-
-    <!-- Feuille verte, nervure visible -->
-    <symbol id="fl-feuille" viewBox="0 0 32 32">
-      <path d="M16 30 C16 18 8 10 2 4 C14 4 26 12 28 26 C24 29 20 30 16 30Z" fill="url(#p-leaf)"/>
-      <path d="M16 29 C15 20 10 12 4 6" fill="none" stroke="#0c2b21" stroke-width="1.3" opacity=".75"/>
-      <path d="M16 29 C15 20 10 12 4 6" fill="none" stroke="#6aa88a" stroke-width=".6" opacity=".55"/>
+      <path d="M12 24 C9.5 20.5 9 17 10 14.5" fill="none" stroke="#a9a292" stroke-width=".8" opacity=".6"/>
+      <path d="M11 6 C10 9 8 10 6 10.5 C8 12 9 14 9 16" fill="none" stroke="#2c6b52" stroke-width="1.3" stroke-linecap="round"/>
     </symbol>
 
     <!-- Ramure fleurie (grand décor de coin) -->
     <symbol id="fl-ramure" viewBox="0 0 200 200">
       <g>
-        <path d="M8 196 C34 150 62 112 104 74 C128 52 156 30 192 14" fill="none" stroke="#245a44" stroke-width="2.6" stroke-linecap="round"/>
-        <path d="M40 152 C56 138 74 130 92 128" fill="none" stroke="#245a44" stroke-width="1.5" opacity=".7"/>
-        <path d="M70 112 C86 96 100 86 118 78" fill="none" stroke="#245a44" stroke-width="1.5" opacity=".7"/>
-        <use href="#fl-feuille" x="14" y="138" width="44" height="44" transform="rotate(-24 36 160)"/>
-        <use href="#fl-feuille" x="50" y="110" width="38" height="38" transform="rotate(28 69 129)"/>
-        <use href="#fl-feuille" x="74" y="84" width="36" height="36" transform="rotate(-18 92 102)"/>
-        <use href="#fl-feuille" x="106" y="54" width="32" height="32" transform="rotate(34 122 70)"/>
-        <use href="#fl-feuille" x="134" y="32" width="28" height="28" transform="rotate(-14 148 46)"/>
-        <use href="#fl-fleur" x="82" y="56" width="36" height="36"/>
-        <use href="#fl-fleur" x="114" y="28" width="32" height="32"/>
-        <use href="#fl-bouton" x="144" y="6" width="20" height="26" transform="rotate(28 154 19)"/>
-        <use href="#fl-fleur2" x="54" y="92" width="30" height="30"/>
-        <use href="#fl-bouton" x="30" y="126" width="18" height="23" transform="rotate(-32 39 137)"/>
+        <path d="M6 198 C30 156 56 118 96 82 C122 58 152 34 192 14" fill="none" stroke="#2c6b52" stroke-width="2.4" stroke-linecap="round"/>
+        <path d="M40 156 C56 142 74 132 92 130" fill="none" stroke="#2c6b52" stroke-width="1.3" opacity=".7"/>
+        <path d="M72 116 C88 100 102 90 120 82" fill="none" stroke="#2c6b52" stroke-width="1.3" opacity=".7"/>
+        <use href="#fl-fougere" x="-6" y="96" width="74" height="74" transform="rotate(-14 31 133)"/>
+        <use href="#fl-fougere" x="96" y="-8" width="70" height="70" transform="rotate(12 131 27)"/>
+        <use href="#fl-fougere" x="150" y="84" width="58" height="58" transform="rotate(28 179 113)"/>
+        <use href="#fl-fougere" x="34" y="30" width="46" height="46" transform="rotate(-34 57 53)"/>
+        <use href="#fl-feuille" x="2" y="58" width="38" height="38" transform="rotate(44 21 77)"/>
+        <use href="#fl-feuille" x="24" y="112" width="46" height="46" transform="rotate(-26 47 135)"/>
+        <use href="#fl-feuille" x="58" y="92" width="40" height="40" transform="rotate(32 78 112)"/>
+        <use href="#fl-feuille" x="44" y="148" width="44" height="44" transform="rotate(18 66 170)"/>
+        <use href="#fl-feuille" x="96" y="54" width="36" height="36" transform="rotate(-16 114 72)"/>
+        <use href="#fl-feuille" x="132" y="26" width="32" height="32" transform="rotate(40 148 42)"/>
+        <use href="#fl-feuille" x="162" y="4" width="28" height="28" transform="rotate(-12 176 18)"/>
+        <use href="#fl-feuille" x="8" y="168" width="42" height="42" transform="rotate(62 29 189)"/>
+        <use href="#fl-feuille" x="78" y="138" width="36" height="36" transform="rotate(-44 96 156)"/>
+        <use href="#fl-feuille" x="112" y="104" width="34" height="34" transform="rotate(22 129 121)"/>
+        <use href="#fl-feuille" x="170" y="60" width="30" height="30" transform="rotate(-30 185 75)"/>
+        <use href="#fl-feuille" x="144" y="138" width="32" height="32" transform="rotate(50 160 154)"/>
+        <use href="#fl-fleur" x="46" y="58" width="86" height="86"/>
+        <use href="#fl-fleur2" x="108" y="8" width="58" height="58"/>
+        <use href="#fl-fleur" x="-8" y="122" width="56" height="56"/>
+        <use href="#fl-fleur" x="132" y="84" width="44" height="44"/>
+        <use href="#fl-fleur" x="60" y="128" width="42" height="42"/>
+        <use href="#fl-fleur" x="168" y="128" width="34" height="34"/>
+        <use href="#fl-fleur" x="12" y="44" width="30" height="30"/>
+        <use href="#fl-fleur" x="96" y="140" width="28" height="28"/>
+        <use href="#fl-fleur" x="158" y="96" width="26" height="26"/>
+        <use href="#fl-fleur" x="20" y="82" width="26" height="26"/>
+        <use href="#fl-bouton" x="84" y="44" width="22" height="29" transform="rotate(-22 95 58.5)"/>
+        <use href="#fl-bouton" x="146" y="54" width="20" height="27" transform="rotate(26 156 67.5)"/>
+        <use href="#fl-bouton" x="30" y="168" width="20" height="26" transform="rotate(18 40 181)"/>
+        <use href="#fl-bouton" x="182" y="20" width="18" height="24" transform="rotate(-16 191 32)"/>
+        <use href="#fl-bouton" x="100" y="172" width="19" height="25" transform="rotate(-30 109.5 184.5)"/>
+        <use href="#fl-perle" x="34" y="40" width="18" height="18"/>
+        <use href="#fl-perle" x="126" y="62" width="13" height="13"/>
+        <use href="#fl-perle" x="176" y="48" width="10" height="10"/>
+        <use href="#fl-perle" x="90" y="150" width="15" height="15"/>
+        <use href="#fl-perle" x="16" y="96" width="11" height="11"/>
+        <use href="#fl-perle" x="152" y="100" width="9" height="9"/>
+        <use href="#fl-perle" x="66" y="20" width="12" height="12"/>
+        <use href="#fl-perle" x="116" y="118" width="9" height="9"/>
+        <use href="#fl-perle" x="48" y="176" width="12" height="12"/>
+        <use href="#fl-perle" x="188" y="108" width="8" height="8"/>
       </g>
     </symbol>
 
     <!-- Couronne de fleurs -->
     <symbol id="fl-couronne" viewBox="0 0 240 70">
       <g>
-        <path d="M6 62 C40 22 80 6 120 6 C160 6 200 22 234 62" fill="none" stroke="#245a44" stroke-width="1.8"/>
-        <use href="#fl-feuille" x="10" y="38" width="30" height="30" transform="rotate(-30 25 53)"/>
-        <use href="#fl-feuille" x="42" y="20" width="28" height="28" transform="rotate(18 56 34)"/>
-        <use href="#fl-feuille" x="170" y="20" width="28" height="28" transform="rotate(-18 184 34)"/>
-        <use href="#fl-feuille" x="198" y="38" width="30" height="30" transform="rotate(30 213 53)"/>
-        <use href="#fl-fleur" x="28" y="10" width="30" height="30"/>
-        <use href="#fl-fleur" x="66" y="-2" width="26" height="26"/>
-        <use href="#fl-fleur" x="146" y="-2" width="26" height="26"/>
-        <use href="#fl-fleur" x="180" y="10" width="30" height="30"/>
-        <use href="#fl-fleur2" x="100" y="-12" width="32" height="32"/>
-        <use href="#fl-bouton" x="92" y="10" width="17" height="22" transform="rotate(-14 100 21)"/>
-        <use href="#fl-bouton" x="128" y="10" width="17" height="22" transform="rotate(14 136 21)"/>
+        <path d="M6 62 C40 22 80 6 120 6 C160 6 200 22 234 62" fill="none" stroke="#2c6b52" stroke-width="1.6"/>
+        <use href="#fl-feuille" x="8" y="34" width="30" height="30" transform="rotate(-30 23 49)"/>
+        <use href="#fl-feuille" x="40" y="16" width="28" height="28" transform="rotate(18 54 30)"/>
+        <use href="#fl-feuille" x="172" y="16" width="28" height="28" transform="rotate(-18 186 30)"/>
+        <use href="#fl-feuille" x="204" y="34" width="30" height="30" transform="rotate(30 219 49)"/>
+        <use href="#fl-fougere" x="62" y="-2" width="42" height="42" transform="rotate(14 83 19)"/>
+        <use href="#fl-fougere" x="140" y="-2" width="42" height="42" transform="rotate(-14 161 19)"/>
+        <use href="#fl-fleur" x="24" y="12" width="32" height="32"/>
+        <use href="#fl-fleur" x="64" y="-2" width="28" height="28"/>
+        <use href="#fl-fleur" x="148" y="-2" width="28" height="28"/>
+        <use href="#fl-fleur" x="186" y="12" width="32" height="32"/>
+        <use href="#fl-fleur2" x="100" y="-14" width="34" height="34"/>
+        <use href="#fl-bouton" x="88" y="12" width="17" height="22" transform="rotate(-14 96.5 23)"/>
+        <use href="#fl-bouton" x="130" y="12" width="17" height="22" transform="rotate(14 138.5 23)"/>
+        <use href="#fl-perle" x="120" y="30" width="9" height="9"/>
       </g>
     </symbol>
 
     <!-- Filet fleuri (séparateur de titre) -->
     <symbol id="fl-filet" viewBox="0 0 200 28">
       <g>
-        <path d="M0 14 H72 M128 14 H200" stroke="#b9855c" stroke-width="1" opacity=".6"/>
-        <circle cx="79" cy="14" r="2" fill="#c9a55e"/>
-        <circle cx="121" cy="14" r="2" fill="#c9a55e"/>
-        <use href="#fl-fleur" x="90" y="4" width="20" height="20"/>
+        <path d="M0 14 H70 M130 14 H200" stroke="url(#g-gold)" stroke-width="1" opacity=".75"/>
+        <circle cx="78" cy="14" r="1.8" fill="url(#g-gold)"/>
+        <circle cx="122" cy="14" r="1.8" fill="url(#g-gold)"/>
+        <use href="#fl-fleur" x="89" y="3" width="22" height="22"/>
+        <circle cx="76" cy="6" r="1.2" fill="url(#g-perle)"/>
+        <circle cx="124" cy="21" r="1.2" fill="url(#g-perle)"/>
       </g>
     </symbol>
 
     <!-- Bouquet dense -->
     <symbol id="fl-bouquet" viewBox="0 0 120 120">
-      <use href="#fl-feuille" x="0" y="14" width="36" height="36" transform="rotate(-32 18 32)"/>
-      <use href="#fl-feuille" x="86" y="16" width="36" height="36" transform="rotate(30 104 34)"/>
-      <use href="#fl-feuille" x="42" y="80" width="36" height="36" transform="rotate(8 60 98)"/>
-      <use href="#fl-fleur" x="22" y="18" width="50" height="50"/>
-      <use href="#fl-fleur" x="52" y="46" width="48" height="48"/>
-      <use href="#fl-fleur" x="2"  y="46" width="36" height="36"/>
-      <use href="#fl-fleur" x="76" y="40" width="34" height="34"/>
-      <use href="#fl-bouton" x="20" y="72" width="19" height="25" transform="rotate(-18 29 84)"/>
-      <use href="#fl-bouton" x="84" y="72" width="17" height="23" transform="rotate(20 92 83)"/>
+        <use href="#fl-fougere" x="0" y="20" width="62" height="62" transform="rotate(-14 31 51)"/>
+        <use href="#fl-fougere" x="60" y="12" width="58" height="58" transform="rotate(16 89 41)"/>
+        <use href="#fl-feuille" x="0" y="14" width="36" height="36" transform="rotate(-32 18 32)"/>
+        <use href="#fl-feuille" x="86" y="16" width="36" height="36" transform="rotate(30 104 34)"/>
+        <use href="#fl-feuille" x="42" y="80" width="36" height="36" transform="rotate(8 60 98)"/>
+        <use href="#fl-fleur" x="20" y="16" width="52" height="52"/>
+        <use href="#fl-fleur" x="52" y="46" width="50" height="50"/>
+        <use href="#fl-fleur" x="0" y="46" width="36" height="36"/>
+        <use href="#fl-fleur" x="78" y="38" width="34" height="34"/>
+        <use href="#fl-bouton" x="18" y="72" width="19" height="25" transform="rotate(-18 27.5 84.5)"/>
+        <use href="#fl-bouton" x="84" y="72" width="17" height="23" transform="rotate(20 92.5 83.5)"/>
+        <use href="#fl-perle" x="46" y="8" width="14" height="14"/>
+        <use href="#fl-perle" x="88" y="26" width="10" height="10"/>
+        <use href="#fl-perle" x="8" y="88" width="11" height="11"/>
     </symbol>
 
     <!-- Guirlande de fête -->
     <symbol id="fl-fete" viewBox="0 0 280 80">
       <g>
-        <path d="M4 70 C48 22 96 4 140 4 C184 4 232 22 276 70" fill="none" stroke="#245a44" stroke-width="1.8"/>
+        <path d="M4 70 C48 22 96 4 140 4 C184 4 232 22 276 70" fill="none" stroke="#2c6b52" stroke-width="1.6"/>
         <use href="#fl-feuille" x="12" y="42" width="30" height="30" transform="rotate(-30 27 57)"/>
         <use href="#fl-feuille" x="50" y="20" width="28" height="28" transform="rotate(20 64 34)"/>
-        <use href="#fl-feuille" x="88" y="6"  width="26" height="26" transform="rotate(-14 101 19)"/>
-        <use href="#fl-feuille" x="186" y="6" width="26" height="26" transform="rotate(14 199 19)"/>
-        <use href="#fl-feuille" x="224" y="20" width="28" height="28" transform="rotate(-20 238 34)"/>
-        <use href="#fl-feuille" x="258" y="42" width="30" height="30" transform="rotate(30 273 57)"/>
-        <use href="#fl-fleur" x="32"  y="10" width="32" height="32"/>
-        <use href="#fl-fleur" x="74"  y="-4" width="28" height="28"/>
-        <use href="#fl-fleur" x="176" y="-4" width="28" height="28"/>
-        <use href="#fl-fleur" x="212" y="10" width="32" height="32"/>
-        <use href="#fl-fleur2" x="104" y="-14" width="34" height="34"/>
-        <use href="#fl-fleur2" x="144" y="-14" width="34" height="34"/>
-        <use href="#fl-bouton" x="58"  y="30" width="17" height="22" transform="rotate(-16 66 41)"/>
-        <use href="#fl-bouton" x="200" y="30" width="17" height="22" transform="rotate(16 208 41)"/>
-        <circle cx="140" cy="-18" r="5" fill="url(#g-gold)"/>
+        <use href="#fl-feuille" x="204" y="20" width="28" height="28" transform="rotate(-20 218 34)"/>
+        <use href="#fl-feuille" x="242" y="42" width="30" height="30" transform="rotate(30 257 57)"/>
+        <use href="#fl-fougere" x="66" y="-6" width="46" height="46" transform="rotate(16 89 17)"/>
+        <use href="#fl-fougere" x="170" y="-6" width="46" height="46" transform="rotate(-16 193 17)"/>
+        <use href="#fl-fleur" x="30" y="12" width="34" height="34"/>
+        <use href="#fl-fleur" x="72" y="-2" width="30" height="30"/>
+        <use href="#fl-fleur" x="178" y="-2" width="30" height="30"/>
+        <use href="#fl-fleur" x="218" y="12" width="34" height="34"/>
+        <use href="#fl-fleur2" x="104" y="-16" width="36" height="36"/>
+        <use href="#fl-fleur2" x="142" y="-16" width="36" height="36"/>
+        <use href="#fl-bouton" x="58" y="32" width="17" height="22" transform="rotate(-16 66.5 43)"/>
+        <use href="#fl-bouton" x="200" y="32" width="17" height="22" transform="rotate(16 208.5 43)"/>
+        <use href="#fl-perle" x="140" y="26" width="10" height="10"/>
+        <use href="#fl-perle" x="96" y="30" width="8" height="8"/>
+        <use href="#fl-perle" x="180" y="30" width="8" height="8"/>
+        <circle cx="140" cy="-12" r="5" fill="url(#g-gold)"/>
       </g>
     </symbol>
 
     <!-- ALLIANCES NICHÉES DANS LE FLEURAGE (composition de la carte) -->
     <symbol id="fl-alliance" viewBox="0 0 160 120">
       <g>
-        <use href="#fl-feuille" x="0"  y="44" width="44" height="44" transform="rotate(-28 22 66)"/>
+        <use href="#fl-feuille" x="0" y="44" width="44" height="44" transform="rotate(-28 22 66)"/>
         <use href="#fl-feuille" x="116" y="40" width="44" height="44" transform="rotate(28 138 62)"/>
         <use href="#fl-feuille" x="24" y="82" width="36" height="36" transform="rotate(14 42 100)"/>
         <use href="#fl-feuille" x="100" y="80" width="36" height="36" transform="rotate(-14 118 98)"/>
-        <use href="#fl-fleur" x="6"   y="-2" width="40" height="40"/>
+        <use href="#fl-fougere" x="2" y="78" width="46" height="46" transform="rotate(-12 25 101)"/>
+        <use href="#fl-fougere" x="112" y="74" width="46" height="46" transform="rotate(12 135 97)"/>
+        <use href="#fl-fleur" x="6" y="-2" width="40" height="40"/>
         <use href="#fl-fleur" x="114" y="-2" width="40" height="40"/>
-        <use href="#fl-fleur2" x="44"  y="-10" width="36" height="36"/>
-        <use href="#fl-bouton" x="80" y="2" width="19" height="25" transform="rotate(8 89 14)"/>
+        <use href="#fl-fleur2" x="44" y="-10" width="36" height="36"/>
+        <use href="#fl-bouton" x="80" y="2" width="19" height="25" transform="rotate(8 89.5 14.5)"/>
+        <use href="#fl-fleur" x="30" y="72" width="36" height="36"/>
+        <use href="#fl-fleur" x="94" y="72" width="36" height="36"/>
+        <use href="#fl-bouton" x="66" y="84" width="16" height="21" transform="rotate(-10 74 94.5)"/>
+        <use href="#fl-bouton" x="82" y="84" width="16" height="21" transform="rotate(10 90 94.5)"/>
+        <use href="#fl-perle" x="52" y="62" width="12" height="12"/>
+        <use href="#fl-perle" x="96" y="62" width="10" height="10"/>
+        <use href="#fl-perle" x="20" y="30" width="9" height="9"/>
+        <use href="#fl-perle" x="132" y="28" width="9" height="9"/>
         <g class="shine">
           <ellipse cx="66" cy="54" rx="20" ry="23" fill="none" stroke="url(#g-gold)" stroke-width="5.5"/>
           <ellipse cx="94" cy="54" rx="20" ry="23" fill="none" stroke="url(#g-gold)" stroke-width="5.5"/>
           <ellipse cx="66" cy="54" rx="20" ry="23" fill="none" stroke="#fbf1d0" stroke-width="1.2" opacity=".9"/>
           <ellipse cx="94" cy="54" rx="20" ry="23" fill="none" stroke="#fbf1d0" stroke-width="1.2" opacity=".9"/>
         </g>
-        <path d="M80 26 C77 21 78.5 17 81 15.5 C82.8 19 83.4 22.4 82 26Z" fill="#fdf6e4" stroke="#c9a55e" stroke-width="1"/>
-        <use href="#fl-fleur" x="30"  y="72" width="36" height="36"/>
-        <use href="#fl-fleur" x="94"  y="72" width="36" height="36"/>
-        <use href="#fl-bouton" x="66" y="84" width="16" height="21" transform="rotate(-10 74 94)"/>
-        <use href="#fl-bouton" x="82" y="84" width="16" height="21" transform="rotate(10 90 94)"/>
+        <path d="M80 26 C77 21 78.5 17 81 15.5 C82.8 19 83.4 22.4 82 26Z" fill="#fdf6e4" stroke="url(#g-gold)" stroke-width="1"/>
       </g>
     </symbol>
 
@@ -484,10 +607,10 @@
       <g class="shine">
         <ellipse cx="46" cy="52" rx="26" ry="30" fill="none" stroke="url(#g-gold)" stroke-width="5"/>
         <ellipse cx="74" cy="52" rx="26" ry="30" fill="none" stroke="url(#g-gold)" stroke-width="5"/>
-        <ellipse cx="46" cy="52" rx="26" ry="30" fill="none" stroke="#f2e0b4" stroke-width="1.1" opacity=".85"/>
-        <ellipse cx="74" cy="52" rx="26" ry="30" fill="none" stroke="#f2e0b4" stroke-width="1.1" opacity=".85"/>
+        <ellipse cx="46" cy="52" rx="26" ry="30" fill="none" stroke="#f6e7c2" stroke-width="1.1" opacity=".85"/>
+        <ellipse cx="74" cy="52" rx="26" ry="30" fill="none" stroke="#f6e7c2" stroke-width="1.1" opacity=".85"/>
       </g>
-      <path d="M60 14 C56 8 58 3 62 1 C64 5 65 9 63 13Z" fill="#fdf1e3" stroke="#c9a55e" stroke-width="1"/>
+      <path d="M60 14 C56 8 58 3 62 1 C64 5 65 9 63 13Z" fill="#fdf6e4" stroke="url(#g-gold)" stroke-width="1"/>
     </symbol>
   </svg>
 
