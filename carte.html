@@ -86,20 +86,6 @@ body.billet-page {
 .billet__cadre::before { inset: 14px; }
 .billet__cadre::after  { inset: 21px; border-color: var(--dore-clair); opacity: .75; }
 
-/* Semis floral : #fl-plan est compose en haut-gauche / bas-droite, on
-   le met en miroir pour obtenir haut-droite / bas-gauche comme sur la
-   carte. Derriere tout, jamais devant le texte. */
-.billet__deco {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  transform: scaleX(-1);
-  opacity: .96;
-  filter: drop-shadow(0 6px 14px rgba(31, 83, 64, .16));
-}
-.billet__deco svg { width: 100%; height: 100%; display: block; }
-
 /* ————————————————————————————————————————————————————————————
    MEDAILLON — le grand ovale au centre, vide pour le texte
    ———————————————————————————————————————————————————————————— */
@@ -107,8 +93,8 @@ body.billet-page {
   position: absolute;
   z-index: 2;
   left: 50%;
-  top: 6%;
-  width: 62%;
+  top: 7%;
+  width: 66%;
   transform: translateX(-50%);
   pointer-events: none;
 }
@@ -120,8 +106,8 @@ body.billet-page {
   position: absolute;
   z-index: 3;
   left: 50%;
-  top: 10%;
-  width: 44%;
+  top: 11.5%;
+  width: 47%;
   transform: translateX(-50%);
   text-align: center;
 }
@@ -185,8 +171,8 @@ body.billet-page {
   position: absolute;
   z-index: 3;
   left: 50%;
-  top: 62%;
-  width: 78%;
+  top: 68%;
+  width: 80%;
   transform: translateX(-50%);
   text-align: center;
   display: grid;
@@ -304,8 +290,6 @@ body.billet-page {
     align-items: center;
     justify-content: flex-start;
   }
-  /* Le semis devient un fond de page, tres attenue, sans encadrement */
-  .billet__deco { opacity: .28; filter: none; }
   .billet__cadre { display: none; }
   /* Le medaillon reste absolu : il encadre le texte du debut a la fin
      du bloc, au lieu de le pousser vers le bas. */
@@ -339,10 +323,9 @@ body.billet-page {
   .pied { margin: 26px 16px 34px; font-size: 9.5px; letter-spacing: .2em; }
 }
 
-/* Petits telephones : on allege encore le decor. */
+/* Petits telephones : on resserre les marges. */
 @media (max-width: 380px) {
   .billet { padding: 72px 18px 44px; }
-  .billet__deco { opacity: .22; }
 }
 
 /* Ecran tres large : on peut agrandir un peu, tant que la hauteur
@@ -1094,11 +1077,6 @@ body.billet-page {
 <main>
 
   <article class="billet" id="billet">
-
-    <!-- semis floral : haut-droite / bas-gauche -->
-    <div class="billet__deco" aria-hidden="true">
-      <svg viewBox="0 0 322 502" preserveAspectRatio="xMidYMid slice"><use href="#fl-plan"/></svg>
-    </div>
 
     <!-- double cadre fin dore -->
     <div class="billet__cadre" aria-hidden="true"></div>
