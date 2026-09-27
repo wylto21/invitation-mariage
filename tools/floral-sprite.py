@@ -241,63 +241,101 @@ def build_simple():
 
 
 def build_ramure():
-    """Grand décor de coin : branche émeraude, fougères dorées,
-    camélias de tailles variées et perles — comme sur la carte."""
-    items = [
-        # fougères dorées, en arrière-plan,Traits longs et discrets
-        use("fl-fougere", -6, 96, 74, 74, rot=-14),
-        use("fl-fougere", 96, -8, 70, 70, rot=12),
-        use("fl-fougere", 150, 84, 58, 58, rot=28),
-        use("fl-fougere", 34, 30, 46, 46, rot=-34),
-        # masse de feuillage émeraude le long de la branche
-        use("fl-feuille", 2, 58, 38, 38, rot=44),
-        use("fl-feuille", 24, 112, 46, 46, rot=-26),
-        use("fl-feuille", 58, 92, 40, 40, rot=32),
-        use("fl-feuille", 44, 148, 44, 44, rot=18),
-        use("fl-feuille", 96, 54, 36, 36, rot=-16),
-        use("fl-feuille", 132, 26, 32, 32, rot=40),
-        use("fl-feuille", 162, 4, 28, 28, rot=-12),
-        use("fl-feuille", 8, 168, 42, 42, rot=62),
-        use("fl-feuille", 78, 138, 36, 36, rot=-44),
-        use("fl-feuille", 112, 104, 34, 34, rot=22),
-        use("fl-feuille", 170, 60, 30, 30, rot=-30),
-        use("fl-feuille", 144, 138, 32, 32, rot=50),
-        # camélias : hiérarchie de la carte — un grand, deux moyens, le reste en bouquets
-        use("fl-fleur", 46, 58, 86, 86),
-        use("fl-fleur2", 108, 8, 58, 58),
-        use("fl-fleur", -8, 122, 56, 56),
-        use("fl-fleur", 132, 84, 44, 44),
-        use("fl-fleur", 60, 128, 42, 42),
-        use("fl-fleur", 168, 128, 34, 34),
-        # petites fleurs groupées, comme les grappes de la capture
-        use("fl-fleur", 12, 44, 30, 30),
-        use("fl-fleur", 96, 140, 28, 28),
-        use("fl-fleur", 158, 96, 26, 26),
-        use("fl-fleur", 20, 82, 26, 26),
-        # boutons
-        use("fl-bouton", 84, 44, 22, 29, rot=-22),
-        use("fl-bouton", 146, 54, 20, 27, rot=26),
-        use("fl-bouton", 30, 168, 20, 26, rot=18),
-        use("fl-bouton", 182, 20, 18, 24, rot=-16),
-        use("fl-bouton", 100, 172, 19, 25, rot=-30),
-        # perles crème incrustées
-        use("fl-perle", 34, 40, 18, 18),
-        use("fl-perle", 126, 62, 13, 13),
-        use("fl-perle", 176, 48, 10, 10),
-        use("fl-perle", 90, 150, 15, 15),
-        use("fl-perle", 16, 96, 11, 11),
-        use("fl-perle", 152, 100, 9, 9),
-        use("fl-perle", 66, 20, 12, 12),
-        use("fl-perle", 116, 118, 9, 9),
-        use("fl-perle", 48, 176, 12, 12),
-        use("fl-perle", 188, 108, 8, 8),
+    """Grand décor de coin, structuré comme la carte de référence :
+
+    - une TOUFFE dense ancrée dans le coin (camélia principal entouré
+      d'une couronne serrée de feuilles, fleurs et fougères) ;
+    - une QUEUE en diagonale qui s'éloigne du coin et s'amincit
+      progressivement vers l'intérieur de la carte.
+
+    Le symbole est mis en miroir par le CSS (`.garland.tr` en
+    `scaleX(-1)`, `.garland.bl` en `scaleY(-1)`) : on compose donc
+    toujours le même coin haut-gauche.
+    """
+    touffe, queue = [], []
+
+    # ---- TOUFFE : masse compacte centrée sur le coin -------------------
+    CX, CY = 56, 58
+    touffe += [
+        # fougères dorées : socle de la touffe
+        use("fl-fougere", 4, 8, 78, 78, rot=-18),
+        use("fl-fougere", 62, -6, 66, 66, rot=12),
+        use("fl-fougere", 96, 30, 54, 54, rot=30),
+        # camélia principal, cœur de la touffe
+        use("fl-fleur", 16, 16, 82, 82),
+        # deux fleurs moyennes plaquées contre le principal
+        use("fl-fleur2", 74, 4, 54, 54),
+        use("fl-fleur", -10, 74, 50, 50),
+        use("fl-fleur", 78, 60, 40, 40),
+        # petites fleurs serrées : le côté « touffu » de la carte
+        use("fl-fleur", 4, 62, 32, 32),
+        use("fl-fleur", 48, 62, 30, 30),
+        use("fl-fleur", 92, 22, 30, 30),
+        use("fl-fleur", 62, 92, 28, 28),
+        use("fl-fleur", 6, 100, 30, 30),
+        # couronne de feuilles autour du camélia
+        use("fl-feuille", 6, 30, 44, 44, rot=52),
+        use("fl-feuille", 52, -2, 40, 40, rot=-26),
+        use("fl-feuille", 92, 34, 38, 38, rot=28),
+        use("fl-feuille", 76, 84, 36, 36, rot=-34),
+        use("fl-feuille", 18, 88, 40, 40, rot=36),
+        use("fl-feuille", -8, 52, 42, 42, rot=-14),
+        use("fl-feuille", 40, 76, 34, 34, rot=20),
+        use("fl-feuille", 110, 4, 32, 32, rot=-40),
+        use("fl-feuille", 30, 4, 32, 32, rot=8),
+        # bourgeons
+        use("fl-bouton", 108, 60, 20, 26, rot=-24),
+        use("fl-bouton", 58, 108, 20, 26, rot=16),
+        use("fl-bouton", 4, 4, 19, 25, rot=30),
+        use("fl-bouton", 116, 26, 17, 22, rot=-12),
+        # perles incrustées
+        use("fl-perle", 106, 52, 13, 13),
+        use("fl-perle", 34, 104, 14, 14),
+        use("fl-perle", 8, 40, 11, 11),
+        use("fl-perle", 88, 92, 10, 10),
+        use("fl-perle", 122, 12, 9, 9),
     ]
-    return f"""    <!-- Ramure fleurie (grand décor de coin) -->
+
+    # ---- QUEUE : touffe qui s'amincit le long de la diagonale --------
+    # Chaque jalon s'écarte de l'axe (dx, dy) et alterne le côté, pour
+    # éviter l'alignement en range que donne une position régulière.
+    jalons = [
+        (0.12, 114, 110, 42,  10,  -6, 0),
+        (0.24, 133, 127, 35,  -12,  8, 1),
+        (0.36, 149, 141, 29,  11,  -9, 0),
+        (0.48, 163, 153, 24,  -9,   6, 1),
+        (0.60, 175, 163, 19,   8,  -5, 0),
+        (0.72, 184, 171, 15,  -6,   4, 1),
+        (0.84, 191, 177, 11,   5,  -3, 0),
+        (0.94, 196, 182,  8,  -3,   2, 1),
+    ]
+    for k, (t_, x, y, s_, dx, dy, cote) in enumerate(jalons):
+        c1, c2 = (-1, 1) if cote == 0 else (1, -1)
+        # deux feuilles encadrant la tige, de côtés alternés
+        queue.append(use("fl-feuille", x + dx * c1, y + dy * c1,
+                         s_ * 0.74, s_ * 0.74, rot=-44 + c1 * 26 + k * 4))
+        queue.append(use("fl-feuille", x - dx * c2, y - dy * c2,
+                         s_ * 0.62, s_ * 0.62, rot=-16 - c2 * 24 - k * 3))
+        if k < 4:
+            queue.append(use("fl-fougere", x + dx * 0.4, y + dy * 0.4,
+                             s_ * 1.00, s_ * 1.00, rot=24 - c1 * 22))
+        if k < 5:
+            queue.append(use("fl-fleur", x - dx * 0.5, y - dy * 0.5,
+                             s_ * 0.62, s_ * 0.62))
+        queue.append(use("fl-bouton", x + dx * 1.5, y + dy * 1.5,
+                         s_ * 0.30, s_ * 0.38, rot=-26 + c1 * 20))
+        if k < 6:
+            queue.append(use("fl-perle", x - dx * 1.2, y - dy * 1.2,
+                             s_ * 0.24, s_ * 0.24))
+
+    items = touffe + queue
+    return f"""    <!-- Ramure fleurie de coin : touffe touffue + queue en diagonale -->
     <symbol id="fl-ramure" viewBox="0 0 200 200">
       <g>
-        <path d="M6 198 C30 156 56 118 96 82 C122 58 152 34 192 14" fill="none" stroke="{STEM}" stroke-width="2.4" stroke-linecap="round"/>
-        <path d="M40 156 C56 142 74 132 92 130" fill="none" stroke="{STEM}" stroke-width="1.3" opacity=".7"/>
-        <path d="M72 116 C88 100 102 90 120 82" fill="none" stroke="{STEM}" stroke-width="1.3" opacity=".7"/>
+        <path d="M10 12 C52 44 96 92 132 130 C156 156 178 178 198 196"
+              fill="none" stroke="{STEM}" stroke-width="2.2" stroke-linecap="round"/>
+        <path d="M40 44 C70 70 96 96 118 118" fill="none"
+              stroke="{STEM}" stroke-width="1.2" opacity=".6"/>
 {chr(10).join(items)}
       </g>
     </symbol>"""
