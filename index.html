@@ -123,7 +123,7 @@
     transform: translateX(-50%);
     width: 44%; z-index: 1; text-align: center; pointer-events: none;
   }
-  .env-art .rings-svg { width: 100%; height: auto; display: block; margin: 0 auto; }
+  .env-art .rings-svg { width: 128%; height: auto; display: block; margin: -8% auto 0; }
   .env-art .mono {
     margin-top: 6px; font-family: 'Pinyon Script', cursive;
     font-size: clamp(19px, 5.8vw, 28px); font-weight: 400; letter-spacing: 0;
@@ -266,23 +266,23 @@
 </head>
 <body>
   <!-- ===== SPRITE FLORAL 3D (voir styles.css — garder identique dans les 2 pages) =====
-       Camélias blanc/ivoire en relief, feuillage vert profond, accents or.
+       Camélias TERRACOTTA en relief, feuillage vert profond, accents or.
        Inspiré de la carte de référence : volume par dégradés + ombres douces. -->
   <svg class="sprite" aria-hidden="true" focusable="false">
     <defs>
-      <!-- pétales : blanc cassé vers l'ombre chaude -->
+      <!-- pétales : TERRACOTTA, du clair au fond (structure 3D conservée) -->
       <linearGradient id="p-out" x1=".2" y1="0" x2=".8" y2="1">
-        <stop offset="0" stop-color="#ffffff"/><stop offset=".45" stop-color="#f7f0ea"/><stop offset="1" stop-color="#e2d5ca"/>
+        <stop offset="0" stop-color="#c9704a"/><stop offset=".45" stop-color="#ad5230"/><stop offset="1" stop-color="#6f2510"/>
       </linearGradient>
       <linearGradient id="p-mid" x1=".25" y1="0" x2=".75" y2="1">
-        <stop offset="0" stop-color="#fdf9f5"/><stop offset=".5" stop-color="#f1e7de"/><stop offset="1" stop-color="#d9c8ba"/>
+        <stop offset="0" stop-color="#d1835a"/><stop offset=".5" stop-color="#b85c38"/><stop offset="1" stop-color="#8a3416"/>
       </linearGradient>
       <linearGradient id="p-in" x1=".3" y1="0" x2=".7" y2="1">
-        <stop offset="0" stop-color="#fffaf4"/><stop offset="1" stop-color="#e8d9cb"/>
+        <stop offset="0" stop-color="#d9905f"/><stop offset="1" stop-color="#b85c38"/>
       </linearGradient>
       <!-- cœur de fleur : or pâle, comme les étamines de l'image -->
       <radialGradient id="p-coeur" cx=".42" cy=".38" r=".7">
-        <stop offset="0" stop-color="#f6e3b8"/><stop offset=".55" stop-color="#dcb36a"/><stop offset="1" stop-color="#a8802f"/>
+        <stop offset="0" stop-color="#e3c47a"/><stop offset=".55" stop-color="#b8944a"/><stop offset="1" stop-color="#7d601b"/>
       </radialGradient>
       <!-- feuillage : vert profond, très présent sur l'image -->
       <linearGradient id="p-leaf" x1="0" y1="0" x2="1" y2="1">
@@ -328,12 +328,12 @@
       </g>
       <!-- étamines dorées -->
       <circle cx="32" cy="32" r="5.6" fill="url(#p-coeur)"/>
-      <g fill="#b98a35" opacity=".8">
+      <g fill="#7d601b" opacity=".85">
         <circle cx="29.6" cy="30.4" r=".85"/><circle cx="33.4" cy="30.1" r=".85"/>
         <circle cx="31.2" cy="33.6" r=".85"/><circle cx="34.6" cy="33.2" r=".85"/>
         <circle cx="31.6" cy="30.8" r=".7"/><circle cx="33.9" cy="32.2" r=".7"/>
       </g>
-      <circle cx="30.6" cy="29.8" r="1.2" fill="#fdf3d9" opacity=".9"/>
+      <circle cx="30.6" cy="29.8" r="1.2" fill="#f2dfae" opacity=".95"/>
     </symbol>
 
     <!-- Camélia double : plus touffu, pour les grandsillages -->
@@ -346,7 +346,7 @@
     <symbol id="fl-bouton" viewBox="0 0 24 32">
       <path d="M12 31 C3 23 1 15 4.5 8.5 C8 2 16 2 19.5 8.5 C23 15 21 23 12 31Z" fill="url(#p-mid)"/>
       <path d="M12 27 C6.5 20.5 5.5 15 7.5 11 C9.5 7.5 14.5 7.5 16.5 11 C18.5 15 17.5 20.5 12 27Z" fill="url(#p-in)"/>
-      <path d="M12 25 C9 21 8.4 17 9.6 14.4" fill="none" stroke="#c9b3a0" stroke-width=".9" opacity=".8"/>
+      <path d="M12 25 C9 21 8.4 17 9.6 14.4" fill="none" stroke="#6f2510" stroke-width=".9" opacity=".55"/>
       <path d="M11 6 C10 9 8 10 6 10.5 C8 12 9 14 9 16" fill="none" stroke="#2f6b52" stroke-width="1.3" stroke-linecap="round"/>
     </symbol>
 
@@ -439,6 +439,38 @@
       </g>
     </symbol>
 
+<!-- ===== ALLIANCES NICHEES DANS LE FLEURAGE =====
+         Reproduit la composition de la carte de référence : deux anneaux
+         dorés posés dans un écrin de camélias et de feuillage. -->
+    <symbol id="fl-alliance" viewBox="0 0 160 120">
+      <g>
+        <!-- feuillage en fond, pour poser les anneaux -->
+        <use href="#fl-feuille" x="0"  y="44" width="42" height="42" transform="rotate(-28 21 65)"/>
+        <use href="#fl-feuille" x="118" y="40" width="42" height="42" transform="rotate(28 139 61)"/>
+        <use href="#fl-feuille" x="26" y="82" width="34" height="34" transform="rotate(14 43 99)"/>
+        <use href="#fl-feuille" x="100" y="80" width="34" height="34" transform="rotate(-14 117 97)"/>
+        <!-- fleurs en couronne haute -->
+        <use href="#fl-fleur"  x="8"   y="0" width="38" height="38"/>
+        <use href="#fl-fleur"  x="116" y="0" width="38" height="38"/>
+        <use href="#fl-fleur2" x="46"  y="-6" width="34" height="34"/>
+        <use href="#fl-bouton" x="82"  y="4"  width="18" height="24" transform="rotate(8 91 16)"/>
+        <!-- LES DEUX ANNEAUX, au centre -->
+        <g class="shine">
+          <ellipse cx="66" cy="52" rx="20" ry="23" fill="none" stroke="url(#g-gold)" stroke-width="5.5"/>
+          <ellipse cx="94" cy="52" rx="20" ry="23" fill="none" stroke="url(#g-gold)" stroke-width="5.5"/>
+          <ellipse cx="66" cy="52" rx="20" ry="23" fill="none" stroke="#fbf1d0" stroke-width="1.2" opacity=".9"/>
+          <ellipse cx="94" cy="52" rx="20" ry="23" fill="none" stroke="#fbf1d0" stroke-width="1.2" opacity=".9"/>
+        </g>
+        <!-- diamant -->
+        <path d="M80 24 C77 19 78.5 15 81 13.5 C82.8 17 83.4 20.4 82 24Z" fill="#fdf6e4" stroke="#c9a55e" stroke-width="1"/>
+        <!-- fleurs en couronne basse -->
+        <use href="#fl-fleur"  x="34"  y="72" width="32" height="32"/>
+        <use href="#fl-fleur"  x="96"  y="72" width="32" height="32"/>
+        <use href="#fl-bouton" x="68"  y="84" width="15" height="20" transform="rotate(-10 75 94)"/>
+        <use href="#fl-bouton" x="84"  y="84" width="15" height="20" transform="rotate(10 91 94)"/>
+      </g>
+    </symbol>
+
     <!-- Deux anneaux entrelacés (les alliances) -->
     <symbol id="fl-anneaux" viewBox="0 0 120 84">
       <g class="shine">
@@ -511,8 +543,8 @@
 
         <!-- LES ALLIANCES, au centre de l'enveloppe -->
         <div class="env-art">
-          <svg class="rings rings-svg" viewBox="0 0 120 84" role="img" aria-label="Anneaux de mariage entrelacés">
-            <use href="#fl-anneaux"/>
+          <svg class="rings rings-svg alliance" viewBox="0 0 160 120" role="img" aria-label="Anneaux de mariage entrelacés, entourés de fleurs">
+            <use href="#fl-alliance"/>
           </svg>
           <div class="mono">Daria <span>&amp;</span> Hermann</div>
           <div class="date">18 · 12 · 2026 — Douala</div>
