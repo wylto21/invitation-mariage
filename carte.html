@@ -56,7 +56,10 @@ body.billet-page {
    ———————————————————————————————————————————————————————————— */
 .billet {
   position: relative;
-  width: min(100%, 540px);
+  /* 540px de large donne 842px de haut : sur un ecran de moins de
+     950px de fenetre on reduit pour que le billet tienne sans
+     defilement. */
+  width: min(100%, 540px, calc((100svh - 108px) * 322 / 502));
   aspect-ratio: 322 / 502;
   background: linear-gradient(168deg, var(--ivoire) 0%, var(--papier) 46%, var(--papier-2) 100%);
   box-shadow:
@@ -342,8 +345,9 @@ body.billet-page {
   .billet__deco { opacity: .22; }
 }
 
-/* Ecran tres large : le billet ne grossit pas indefiniment. */
-@media (min-width: 1100px) {
+/* Ecran tres large : on peut agrandir un peu, tant que la hauteur
+   de la fenetre le permet toujours. */
+@media (min-width: 1100px) and (min-height: 980px) {
   .billet { width: min(100%, 580px); }
 }
 
