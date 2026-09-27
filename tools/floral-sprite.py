@@ -341,6 +341,106 @@ def build_ramure():
     </symbol>"""
 
 
+# ————————————————————————————————————————————————————————————
+# Plan de pose relevé dans Excalidraw (positions exactes des fleurs)
+#
+# Le schéma donne un cadre de 1612,93 x 2508,82 et 60 ellipses de
+# 160 x 120 (9,9 % de la largeur de carte). Deux bouquets :
+#   · A — 27 fleurs, angle 0,       ancré en haut-gauche
+#   · B — 33 fleurs, angle 3,157,   ancré en bas-droite (miroir)
+# On travaille dans un viewBox de 322 x 502, même ratio que la carte
+# (0,643). K convertsit les coordonnées Excalidraw vers ce repère.
+# ————————————————————————————————————————————————————————————
+_CARD_W, _CARD_H = 1612.926, 2508.817
+_K = 322.0 / _CARD_W          # 0.19963
+_FW, _FH = 160.0, 120.0       # taille d'une ellipse de pose
+_FW_S, _FH_S = _FW * _K, _FH * _K
+
+# (x, y) = coin haut-gauche de l'ellipse, dans le repère Excalidraw.
+POSE_A = [
+    (10824, 5242), (10944, 5277), (11069, 5278), (11218, 5297), (11307, 5254),
+    (10644, 5302), (10786, 5338), (10949, 5386), (11074, 5388), (10649, 5412),
+    (11223, 5407), (10791, 5448), (10968, 5455), (10702, 5491), (10879, 5498),
+    (10589, 5532), (10815, 5559), (10992, 5566), (10708, 5601), (10884, 5607),
+    (10821, 5669), (10997, 5676), (10625, 5710), (10630, 5820), (10716, 5914),
+    (10627, 5957), (10632, 6067),
+]
+POSE_B = [
+    (11931, 7522), (11789, 7484), (11988, 6902), (11875, 7333), (11332, 7561),
+    (11605, 7367), (11803, 7146), (11630, 7543), (11989, 7294), (11505, 7540),
+    (11750, 7579), (11956, 7115), (11763, 7263), (11220, 7491), (11493, 7297),
+    (11691, 7076), (11962, 6680), (11927, 7413), (11872, 7223), (11329, 7451),
+    (11601, 7258), (11800, 7037), (11627, 7434), (11826, 6851), (11986, 7184),
+    (11502, 7430), (11746, 7470), (11945, 6887), (11952, 7005), (11760, 7153),
+    (11217, 7381), (11489, 7187), (11688, 6966),
+]
+
+# Le bouquet B a ete dessine avec un angle de ~pi : cela oriente les
+# fleurs, mais NE les deplace pas — B est deja ancre en bas a droite.
+# `turn` ne sert donc qu'a pivoter chaque fleur sur elle-meme.
+# Decalages de remplissage (fx, fy en fraction de fleur, rot, taille).
+# Le premier dechet est le plus proche de la fleur, le dernier le plus
+# etale : c'est ce qui donne l'effet de masse, de touffe.
+OFFSETS = [
+    (0.42, -0.22, 88, 0.60),
+    (-0.40, 0.30, 104, 0.55),
+    (0.20, 0.46, 66, 0.50),
+    (-0.18, -0.40, 116, 0.46),
+    (0.58, 0.14, 78, 0.40),
+]
+
+
+def _pose(pts, turn=False):
+    """Convertit une liste de poses Excalidraw en elements SVG.
+    Retourne (feuillage, fleurs) : le feuillage est_trace en premier
+    pour rester derriere, et comble les interstices du semis."""
+    fleurs, feuil = [], []
+    for i, (ex, ey) in enumerate(pts):
+        x = (ex - 10570.483) * _K
+        y = (ey - 5216.146) * _K
+        # 1 fleur sur 5 est un bouton : casse la regularite du semis
+        ref = "fl-bouton" if i % 5 == 4 else ("fl-fleur2" if i % 7 == 3 else "fl-fleur")
+        fleurs.append(use(ref, x, y, _FW_S, _FH_S,
+                          rot=(180 if turn and i % 3 else None)))
+        # Feuillage derriere, vers l'interieur du bouquet. Quatre passes
+        # de remplissage : les fleurs seules laissent trop de vide, la
+        # carte de reference est un semis touffu.
+        for j, (fx, fy, fr, fs) in enumerate(OFFSETS):
+            d = _FW_S * fs
+            if i % (j + 2) == 0:
+                feuil.append(use("fl-feuille", x + _FW_S * fx, y + _FH_S * fy,
+                                 d, d, rot=fr * (1 if turn else -1) + (i % 5) * 11))
+        if i % 2 == 1:
+            d = _FW_S * 0.70
+            feuil.append(use("fl-fougere", x - d * 0.45, y + d * 0.25,
+                             d, d, rot=(-28 if turn else 28) + (i % 2) * 18))
+        if i % 3 == 0:
+            d = _FW_S * 0.52
+            feuil.append(use("fl-fougere", x + d * 0.30, y - d * 0.55,
+                             d, d, rot=(52 if turn else -52) + (i % 3) * 16))
+        if i % 2 == 0:
+            feuil.append(use("fl-bouton", x - _FW_S * 0.42, y + _FH_S * 0.46,
+                             _FW_S * 0.30, _FH_S * 0.40,
+                             rot=(-24 if turn else 24) + (i % 4) * 15))
+        if i % 3 == 1:
+            feuil.append(use("fl-perle", x + _FW_S * 0.30, y + _FH_S * 0.34,
+                             _FW_S * 0.13, _FW_S * 0.13))
+    return feuil, fleurs
+
+
+def build_plan():
+    """Grand decor de carte : la pose suit point par point le schema
+    Excalidraw (bouquet A en haut-gauche, bouquet B en bas-droite)."""
+    feuil_a, fleurs_a = _pose(POSE_A)
+    feuil_b, fleurs_b = _pose(POSE_B, turn=True)
+    return f"""    <!-- Pose de carte relevee dans Excalidraw : 2 bouquets sur la diagonale -->
+    <symbol id="fl-plan" viewBox="0 0 322 502">
+      <g>
+{chr(10).join(feuil_a + feuil_b + fleurs_a + fleurs_b)}
+      </g>
+    </symbol>"""
+
+
 def build_couronne():
     items = [
         use("fl-feuille", 8, 34, 30, 30, rot=-30),
@@ -510,6 +610,7 @@ def sprite_block():
         build_simple(),
         build_ramure(),
         build_couronne(),
+        build_plan(),
         build_filet(),
         build_bouquet(),
         build_fete(),
