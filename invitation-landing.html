@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Hermann &amp; Daria — Invitation · 18.12.2026</title>
 <meta name="description" content="Daria &amp; Hermann vous invitent à célébrer leur mariage le vendredi 18 décembre 2026 à 16h00, Table des Élites, Akwa — Douala. Réservez votre place.">
-<meta name="theme-color" content="#14090d">
+<meta name="theme-color" content="#f6ede3">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Daria &amp; Hermann — Nous nous marions">
 <meta property="og:description" content="Vendredi 18 décembre 2026 · 16h00 · Table des Élites, Akwa — Douala. Réservez votre place.">
@@ -26,23 +26,23 @@ canvas#fx{position:fixed;inset:0;pointer-events:none;z-index:80}
 
 /* ——— Atmosphère : vignette, rayons Déco, grain ——— */
 .stage{position:fixed;inset:0;z-index:-3;background:
-  radial-gradient(38% 30% at 50% 26%, rgba(217,164,65,.16) 0%, transparent 70%),
-  radial-gradient(70% 60% at 50% 34%, rgba(107,18,38,.5) 0%, transparent 72%),
-  radial-gradient(55% 45% at 8% 6%, rgba(74,15,28,.55) 0%, transparent 64%),
-  radial-gradient(52% 44% at 95% 12%, rgba(26,16,48,.75) 0%, transparent 66%),
-  radial-gradient(58% 48% at 92% 92%, rgba(74,15,28,.45) 0%, transparent 64%),
-  linear-gradient(178deg,#1c0a12 0%,#14090d 52%,#0d0716 100%)}
+  radial-gradient(40% 32% at 50% 24%, rgba(201,165,94,.18) 0%, transparent 70%),
+  radial-gradient(72% 60% at 50% 32%, rgba(184,92,56,.1) 0%, transparent 72%),
+  radial-gradient(60% 50% at 6% 5%, rgba(184,92,56,.16) 0%, transparent 64%),
+  radial-gradient(55% 46% at 96% 10%, rgba(201,123,78,.14) 0%, transparent 64%),
+  radial-gradient(60% 50% at 94% 94%, rgba(168,134,94,.2) 0%, transparent 64%),
+  linear-gradient(178deg,#f9f2ea 0%,var(--bg) 52%,var(--bg2) 100%)}
 .rays{position:fixed;top:-32vmax;left:50%;width:114vmax;height:114vmax;margin-left:-57vmax;z-index:-2;pointer-events:none;
-  background:repeating-conic-gradient(from 0deg at 50% 50%, rgba(217,164,65,.05) 0deg 1.4deg, transparent 1.4deg 9deg);
+  background:repeating-conic-gradient(from 0deg at 50% 50%, rgba(184,92,56,.06) 0deg 1.6deg, transparent 1.6deg 10deg);
   -webkit-mask:radial-gradient(closest-side,#000 0%,transparent 68%);
   mask:radial-gradient(closest-side,#000 0%,transparent 68%);
   animation:spin 220s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
-.grain{position:fixed;inset:0;z-index:60;pointer-events:none;opacity:.1;mix-blend-mode:overlay;
+.grain{position:fixed;inset:0;z-index:60;pointer-events:none;opacity:.05;mix-blend-mode:overlay;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E")}
 
 /* ——— Texte terracotta ——— */
-.shimmer{background:linear-gradient(100deg,#a8761f 0%,#d9a441 30%,#f4d894 50%,#d9a441 68%,#a8761f 95%);
+.shimmer{background:linear-gradient(100deg,#8a3416 0%,#b85c38 30%,#c97b4e 50%,#b85c38 68%,#8a3416 95%);
   background-size:220% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 8s linear infinite}
 @keyframes shine{to{background-position:-220% 0}}
 
@@ -50,12 +50,12 @@ canvas#fx{position:fixed;inset:0;pointer-events:none;z-index:80}
 
 /* ——— Header ——— */
 header{position:fixed;top:0;left:0;right:0;z-index:50;backdrop-filter:blur(10px);
-  background:linear-gradient(180deg,rgba(20,9,13,.9),rgba(20,9,13,.6));border-bottom:1px solid var(--line-soft);box-shadow:0 8px 40px rgba(0,0,0,.5)}
+  background:linear-gradient(180deg,rgba(246,237,227,.94),rgba(246,237,227,.6));border-bottom:1px solid var(--line-soft);box-shadow:0 6px 24px rgba(74,36,22,.08)}
 .nav{display:flex;align-items:center;justify-content:space-between;height:64px}
 .mono{display:flex;align-items:center;gap:11px;cursor:pointer;user-select:none}
 .mono .dm{width:28px;height:28px;border:1px solid var(--line);transform:rotate(45deg);display:grid;place-items:center;flex:none}
 .mono .dm b{transform:rotate(-45deg);font-family:'Cinzel';font-size:11px;color:var(--gold2);letter-spacing:.04em}
-.mono .nm{font-family:'Pinyon Script',cursive;font-size:24px;letter-spacing:0;text-shadow:0 0 18px rgba(217,164,65,.3)}
+.mono .nm{font-family:'Pinyon Script',cursive;font-size:24px;letter-spacing:0;color:var(--deep)}
 .mono .nm span{color:var(--gold)}
 .links{display:flex;gap:30px}
 .links a{color:var(--muted);text-decoration:none;font-size:11px;letter-spacing:.3em;text-transform:uppercase;transition:.25s}
@@ -66,7 +66,7 @@ header{position:fixed;top:0;left:0;right:0;z-index:50;backdrop-filter:blur(10px)
 /* ——— Hero ——— */
 .hero{min-height:100svh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:120px 22px 84px;position:relative}
 .pwrap{position:absolute;inset:0;overflow:hidden;pointer-events:none}
-.particle{position:absolute;top:-5%;width:5px;height:5px;background:radial-gradient(circle,#f4d894,#d9a441 55%,transparent 72%);transform:rotate(45deg);opacity:0;animation:fall linear infinite;box-shadow:0 0 10px rgba(217,164,65,.6)}
+.particle{position:absolute;top:-5%;width:6px;height:6px;background:radial-gradient(circle,#fff,#e8d9c5 60%,rgba(232,217,197,0) 78%);border-radius:64% 36% 58% 42%;transform:rotate(45deg);opacity:0;animation:fall linear infinite;box-shadow:0 1px 5px rgba(31,83,64,.2)}
 @keyframes fall{0%{opacity:0;transform:translateY(0) rotate(45deg)}6%{opacity:.7}88%{opacity:.25}100%{opacity:0;transform:translateY(112vh) rotate(405deg)}}
 /* arc doré décoratif comme sur l'affiche */
 .arc{position:absolute;left:50%;top:46%;transform:translate(-50%,-50%);width:min(560px,92vw);aspect-ratio:1/1.18;pointer-events:none;opacity:.9}
@@ -79,7 +79,7 @@ header{position:fixed;top:0;left:0;right:0;z-index:50;backdrop-filter:blur(10px)
 @media(max-width:760px){.motto-list{display:none}}
 /* mention manuscrite en haut à droite */
 .motto-script{position:absolute;right:clamp(14px,4vw,48px);top:clamp(88px,12vh,130px);text-align:right}
-.motto-script .ms1{font-family:'Pinyon Script',cursive;font-weight:400;font-size:clamp(26px,3.6vw,36px);color:var(--gold-lit);line-height:1.1;letter-spacing:0;text-shadow:0 0 26px rgba(217,164,65,.4)}
+.motto-script .ms1{font-family:'Pinyon Script',cursive;font-weight:400;font-size:clamp(26px,3.6vw,36px);color:var(--terra);line-height:1.1;letter-spacing:0}
 .motto-script .ms2{font-size:9.5px;letter-spacing:.4em;color:var(--muted);text-transform:uppercase;margin-top:8px;padding-right:.4em}
 @media(max-width:760px){.motto-script{display:none}}
 .fan{display:flex;align-items:flex-end;justify-content:center;gap:7px;margin-bottom:26px}
@@ -91,8 +91,8 @@ header{position:fixed;top:0;left:0;right:0;z-index:50;backdrop-filter:blur(10px)
 .fan i:nth-child(5){width:26px;height:13px;border-color:rgba(217,164,65,.2)}
 .kicker{font-size:12px;letter-spacing:.55em;text-transform:uppercase;color:var(--gold);font-weight:400;padding-left:.55em}
 /* prénoms en script terracotta, titre principal */
-.names{font-family:'Pinyon Script',cursive;font-size:clamp(52px,11.6vw,122px);font-weight:400;line-height:.92;margin:14px 0 4px;color:var(--gold-lit);letter-spacing:0;text-shadow:0 0 30px rgba(217,164,65,.45),0 0 80px rgba(217,164,65,.22)}
-.names .amp{font-family:'Pinyon Script',cursive;font-weight:400;font-size:.82em;color:var(--gold);margin:0 .1em;vertical-align:.06em}
+.names{font-family:'Pinyon Script',cursive;font-size:clamp(52px,11.6vw,122px);font-weight:400;line-height:.92;margin:14px 0 4px;color:var(--deep);letter-spacing:0}
+.names .amp{font-family:'Pinyon Script',cursive;font-weight:400;font-size:.82em;color:var(--terra);margin:0 .1em;vertical-align:.06em}
 .sub{color:var(--muted);font-weight:300;letter-spacing:.18em;font-size:13px;line-height:2;text-transform:uppercase;max-width:560px}
 .orn{display:flex;align-items:center;gap:12px;width:min(340px,72vw);margin:20px auto}
 .orn::before,.orn::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--line) 25%,var(--line) 75%,transparent)}
@@ -102,21 +102,21 @@ header{position:fixed;top:0;left:0;right:0;z-index:50;backdrop-filter:blur(10px)
 .theme-line{display:inline-flex;align-items:center;gap:10px;margin-top:14px;font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:var(--gold2)}
 .theme-line::before,.theme-line::after{content:"";width:26px;height:1px;background:var(--line)}
 .theme-line b{color:var(--gold);font-weight:600}
-.cta{display:inline-block;margin-top:38px;padding:17px 40px;border-radius:2px;color:#1a0b10;text-decoration:none;
+.cta{display:inline-block;margin-top:38px;padding:17px 40px;border-radius:2px;color:#fdf8f2;text-decoration:none;
   font:600 11.5px 'Jost';letter-spacing:.34em;text-transform:uppercase;padding-left:calc(40px + .34em);
-  background:linear-gradient(100deg,#a8761f,#d9a441 42%,#f4d894 58%,#d9a441);background-size:220% 100%;
-  border:1px solid rgba(244,216,148,.6);box-shadow:inset 0 0 0 3px rgba(20,9,13,.22),0 14px 50px rgba(217,164,65,.28),0 0 70px rgba(217,164,65,.12);transition:.3s}
-.cta:hover{transform:translateY(-3px);background-position:100% 0;box-shadow:inset 0 0 0 3px rgba(20,9,13,.22),0 20px 60px rgba(217,164,65,.4),0 0 90px rgba(217,164,65,.2)}
+  background:linear-gradient(100deg,#8a3416,#b85c38 42%,#c97b4e 58%,#b85c38);background-size:220% 100%;
+  border:1px solid rgba(232,181,154,.7);box-shadow:inset 0 0 0 3px rgba(246,237,227,.28),0 14px 44px rgba(184,92,56,.3);transition:.3s}
+.cta:hover{transform:translateY(-3px);background-position:100% 0;box-shadow:inset 0 0 0 3px rgba(246,237,227,.28),0 20px 54px rgba(184,92,56,.4)}
 .scroll-hint{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);font-size:10px;letter-spacing:.45em;color:var(--muted);text-transform:uppercase;animation:bob 2.4s ease-in-out infinite;padding-left:.45em}
 @keyframes bob{50%{transform:translate(-50%,9px)}}
 
 /* ——— Compte à rebours ——— */
 .count{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;max-width:600px;margin:46px auto 0;width:100%}
-.tile{position:relative;padding:24px 6px 18px;text-align:center;background:linear-gradient(180deg,rgba(107,18,38,.28),rgba(20,9,13,.5));border:1px solid var(--line-soft);backdrop-filter:blur(2px);box-shadow:inset 0 1px 0 rgba(244,216,148,.1)}
+.tile{position:relative;padding:24px 6px 18px;text-align:center;background:linear-gradient(180deg,rgba(255,255,255,.5),rgba(184,92,56,.04));border:1px solid var(--line-soft);box-shadow:inset 0 1px 0 rgba(255,255,255,.7)}
 .tile::before,.tile::after{content:"";position:absolute;width:10px;height:10px;pointer-events:none}
 .tile::before{top:-1px;left:-1px;border-top:1px solid var(--gold);border-left:1px solid var(--gold)}
 .tile::after{bottom:-1px;right:-1px;border-bottom:1px solid var(--gold);border-right:1px solid var(--gold)}
-.tile .num{font-family:'Cinzel';font-size:clamp(27px,6.4vw,42px);font-weight:600;line-height:1;color:var(--gold-lit);font-variant-numeric:tabular-nums;text-shadow:0 0 28px rgba(217,164,65,.4)}
+.tile .num{font-family:'Cinzel';font-size:clamp(27px,6.4vw,42px);font-weight:600;line-height:1;color:var(--deep);font-variant-numeric:tabular-nums}
 .tile .lab{margin-top:11px;font-size:9.5px;letter-spacing:.42em;color:var(--muted);text-transform:uppercase;padding-left:.42em}
 .tile .tick{width:22px;height:1px;background:var(--line);margin:9px auto 0}
 .tile.pop .num{animation:pop .5s cubic-bezier(.2,.9,.3,1.4)}
@@ -133,7 +133,7 @@ section.block{padding:88px 0;scroll-margin-top:70px}
 .hero-rings{width:clamp(84px,11vw,118px);height:auto;display:block;margin:14px auto 2px;z-index:1}
 .hero-couronne{width:clamp(170px,24vw,240px);height:auto;display:block;margin:6px auto 0;opacity:.9;z-index:1}
 /* guirlande de fete : plus dense que la couronne, donne le ton "soiree" */
-.hero-fete{width:clamp(220px,32vw,320px);height:auto;display:block;margin:-6px auto 0;opacity:.95;z-index:1;filter:drop-shadow(0 0 12px rgba(217,164,65,.3))}
+.hero-fete{width:clamp(220px,32vw,320px);height:auto;display:block;margin:-6px auto 0;opacity:.95;z-index:1;filter:drop-shadow(0 6px 14px rgba(31,83,64,.18))}
 
 /* ——— Sections : ramures de coin + ornement de titre ——— */
 .block{position:relative;isolation:isolate}
@@ -157,7 +157,7 @@ section.block{padding:88px 0;scroll-margin-top:70px}
 
 /* bouquets decoratifs dans les cartes (amoureux / festif) */
 .cat-card{position:relative;overflow:hidden}
-.bq{position:absolute;width:96px;aspect-ratio:1;opacity:.34;pointer-events:none;z-index:0;filter:drop-shadow(0 0 20px rgba(217,164,65,.22))}
+.bq{position:absolute;width:96px;aspect-ratio:1;opacity:.4;pointer-events:none;z-index:0;filter:drop-shadow(0 6px 14px rgba(31,83,64,.18))}
 .bq svg{width:100%;height:100%}
 .bq.q1{right:-18px;top:-16px;transform:rotate(12deg)}
 .bq.q2{right:-16px;bottom:-18px;transform:rotate(-10deg) scale(.8)}
@@ -170,25 +170,25 @@ section.block{padding:88px 0;scroll-margin-top:70px}
 .total-card .card-flower{margin-top:18px}
 
 /* pied de page : couronne + alliances + signature */
-footer{position:relative;padding-top:70px;background:linear-gradient(180deg,transparent,rgba(74,15,28,.28) 40%,rgba(8,3,6,.8))}
+footer{position:relative;padding-top:70px;background:linear-gradient(180deg,transparent,rgba(184,92,56,.07) 40%,rgba(138,52,22,.14))}
 .foot-couronne{display:block;margin:0 auto -10px;width:min(300px,68vw);height:auto;opacity:.95;position:relative;z-index:1}
-.foot-fete{display:block;margin:-8px auto 0;width:min(360px,80vw);height:auto;opacity:.95;position:relative;z-index:1;filter:drop-shadow(0 0 12px rgba(217,164,65,.28))}
-.foot-bq{position:absolute;width:clamp(120px,17vw,190px);aspect-ratio:1;opacity:.6;z-index:0;filter:drop-shadow(0 0 26px rgba(107,18,38,.6))}
+.foot-fete{display:block;margin:-8px auto 0;width:min(360px,80vw);height:auto;opacity:.95;position:relative;z-index:1;filter:drop-shadow(0 6px 14px rgba(31,83,64,.18))}
+.foot-bq{position:absolute;width:clamp(120px,17vw,190px);aspect-ratio:1;opacity:.85;z-index:0;filter:drop-shadow(0 8px 18px rgba(31,83,64,.2))}
 .foot-bq.bq-l{left:2%;top:8%}
 .foot-bq.bq-r{right:2%;top:14%;transform:scaleX(-1)}
 .foot-bq svg{width:100%;height:100%}
 @media (max-width:860px){.foot-bq{display:none}}
 .foot-rings{display:flex;justify-content:center;margin-bottom:16px}
 .foot-rings svg{width:78px;height:auto;opacity:.9}
-.foot-l1{font-family:'Pinyon Script',cursive;font-size:29px;letter-spacing:0;text-transform:none;color:var(--gold-lit);margin-bottom:8px;text-shadow:0 0 26px rgba(217,164,65,.4)}
+.foot-l1{font-family:'Pinyon Script',cursive;font-size:29px;letter-spacing:0;text-transform:none;color:var(--deep);margin-bottom:8px}
 .foot-l2{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:15px;color:var(--muted);letter-spacing:.04em;text-transform:none;line-height:1.9}
 @media (max-width: 860px) { .foot-l2 { font-size: 13.5px; } }
 .sec-head{text-align:center;margin-bottom:48px}
 h2.sec{font-family:'Cormorant Garamond',serif;font-size:clamp(32px,6.4vw,46px);font-weight:500}
 h2.sec em{font-style:italic;color:var(--gold)}
 .sec-head p{color:var(--muted);font-weight:300;font-size:12px;letter-spacing:.28em;text-transform:uppercase;margin-top:12px;padding-left:.28em}
-.card{background:linear-gradient(160deg,rgba(42,15,26,.6),rgba(20,9,13,.72));border:1px solid var(--line-soft);border-radius:3px;padding:28px;position:relative;backdrop-filter:blur(3px);box-shadow:0 20px 60px rgba(0,0,0,.45)}
-.card::before{content:"";position:absolute;inset:6px;border:1px solid rgba(217,164,65,.09);pointer-events:none}
+.card{background:linear-gradient(160deg,rgba(255,255,255,.62),rgba(253,248,242,.5));border:1px solid var(--line-soft);border-radius:3px;padding:28px;position:relative;box-shadow:0 14px 40px rgba(74,36,22,.08)}
+.card::before{content:"";position:absolute;inset:6px;border:1px solid rgba(184,92,56,.1);pointer-events:none}
 
 /* ——— Statistiques & stocks ——— */
 .stats-grid{display:grid;grid-template-columns:320px 1fr;gap:20px;align-items:start}
@@ -237,15 +237,15 @@ h2.sec em{font-style:italic;color:var(--gold)}
 .stepper button:disabled{opacity:.35;cursor:not-allowed}
 .stepper .q{flex:1;text-align:center;font-family:'Cinzel';font-size:28px;color:var(--gold2)}
 .max-note{font-size:11px;color:var(--muted);letter-spacing:.08em;margin-bottom:22px}
-.btn{width:100%;padding:17px;border:0;border-radius:2px;cursor:pointer;font:600 11.5px 'Jost';letter-spacing:.32em;text-transform:uppercase;color:#1a0b10;background:linear-gradient(100deg,#a8761f,#d9a441 42%,#f4d894 58%,#d9a441);background-size:220% 100%;transition:.3s;box-shadow:0 10px 40px rgba(217,164,65,.25),0 0 60px rgba(217,164,65,.1)}
+.btn{width:100%;padding:17px;border:0;border-radius:2px;cursor:pointer;font:600 12.5px 'Jost';letter-spacing:.32em;text-transform:uppercase;color:#fdf8f2;background:linear-gradient(100deg,#8a3416,#b85c38 45%,#c97b4e 62%,#b85c38);background-size:220% 100%;transition:.3s;box-shadow:0 10px 30px rgba(184,92,56,.25)}
 .btn:hover{background-position:100% 0;transform:translateY(-2px)}
 .btn:disabled{opacity:.5;cursor:not-allowed;transform:none}
-.closed{display:none;text-align:center;color:var(--gold-lit);letter-spacing:.18em;font-size:13px;border:1px dashed rgba(217,164,65,.3);border-radius:2px;padding:26px;margin-top:20px;background:rgba(107,18,38,.2)}
+.closed{display:none;text-align:center;color:var(--deep);letter-spacing:.18em;font-size:13px;border:1px dashed var(--line);border-radius:2px;padding:26px;margin-top:20px;background:rgba(184,92,56,.05)}
 
 /* ——— Carte infos ——— */
 .info{display:flex;flex-direction:column;gap:18px;justify-content:center}
 .info .row{display:flex;gap:14px;align-items:flex-start}
-.info .ic{font-size:10px;color:var(--gold);text-shadow:0 0 12px rgba(217,164,65,.6);width:28px;height:28px;border:1px solid var(--line);transform:rotate(45deg);display:grid;place-items:center;flex:none;margin:4px 8px 0 6px}
+.info .ic{font-size:10px;color:var(--gold);width:28px;height:28px;border:1px solid var(--line);transform:rotate(45deg);display:grid;place-items:center;flex:none;margin:4px 8px 0 6px}
 .info .tt{font-family:'Cinzel';font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold2)}
 .info .dd{font-size:13px;color:var(--ink);font-weight:300;margin-top:5px;line-height:1.75}
 
@@ -265,174 +265,203 @@ th{font-family:'Cinzel';font-size:10px;letter-spacing:.24em;text-transform:upper
 td{padding:12px 8px;border-bottom:1px solid rgba(217,164,65,.07);font-weight:300}
 
 /* ——— Modale, toast, pied ——— */
-.modal{position:fixed;inset:0;z-index:90;display:none;align-items:center;justify-content:center;background:rgba(8,3,6,.78);backdrop-filter:blur(12px);padding:20px}
+.modal{position:fixed;inset:0;z-index:90;display:none;align-items:center;justify-content:center;background:rgba(74,36,22,.45);backdrop-filter:blur(10px);padding:20px}
 .modal.show{display:flex}
-.modal .box{max-width:430px;width:100%;text-align:center;padding:42px 30px 34px;background:linear-gradient(165deg,#34101c,#1a0810 60%);border:1px solid rgba(217,164,65,.35);animation:zoom .45s cubic-bezier(.2,.9,.3,1.3);box-shadow:0 40px 100px rgba(0,0,0,.7),0 0 90px rgba(107,18,38,.5),inset 0 1px 0 rgba(244,216,148,.14)}
+.modal .box{max-width:430px;width:100%;text-align:center;padding:42px 30px 34px;background:linear-gradient(165deg,#fdf8f2,#f6ede3);border:1px solid var(--line);animation:zoom .45s cubic-bezier(.2,.9,.3,1.3);box-shadow:0 30px 80px rgba(74,36,22,.3),inset 0 1px 0 rgba(255,255,255,.8)}
 @keyframes zoom{from{transform:scale(.82);opacity:0}}
-.modal h3{font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:400;font-style:italic;color:var(--gold-lit);letter-spacing:.02em}
-.modal p{color:var(--ink-soft);font-size:13px;line-height:1.9;margin-top:12px}
-.m-ico{color:var(--gold);font-size:22px;margin-bottom:10px;text-shadow:0 0 24px rgba(217,164,65,.7)}
+.modal h3{font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:500;color:var(--deep)}
+.modal p{color:var(--muted);font-size:13px;line-height:1.9;margin-top:12px}
+.m-ico{color:var(--gold);font-size:22px;margin-bottom:6px}
 .code{margin:16px 0 22px;font-size:13px;letter-spacing:.14em}
 .code b{font-family:'Cinzel';color:var(--gold2);letter-spacing:.2em}
-.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(20px);opacity:0;transition:.3s;padding:13px 24px;border-radius:2px;z-index:95;font-size:13px;pointer-events:none;letter-spacing:.04em;color:var(--ink-soft)}
+.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(20px);opacity:0;transition:.3s;padding:12px 22px;border-radius:2px;z-index:95;font-size:13px;pointer-events:none;letter-spacing:.04em}
 .toast.show{opacity:1;transform:translateX(-50%)}
 </style>
 </head>
 <body>
-  <!-- ===== SPRITE FLORAL (voir styles.css — garder identique dans les 2 pages) ===== -->
+  <!-- ===== SPRITE FLORAL 3D (voir styles.css — garder identique dans les 2 pages) =====
+       Camélias blanc/ivoire en relief, feuillage vert profond, accents or.
+       Inspiré de la carte de référence : volume par dégradés + ombres douces. -->
   <svg class="sprite" aria-hidden="true" focusable="false">
     <defs>
-      <linearGradient id="g-petal" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0" stop-color="#e8b18d"/><stop offset=".55" stop-color="#c9663f"/><stop offset="1" stop-color="#a84a24"/>
+      <!-- pétales : blanc cassé vers l'ombre chaude -->
+      <linearGradient id="p-out" x1=".2" y1="0" x2=".8" y2="1">
+        <stop offset="0" stop-color="#ffffff"/><stop offset=".45" stop-color="#f7f0ea"/><stop offset="1" stop-color="#e2d5ca"/>
       </linearGradient>
-      <linearGradient id="g-petal2" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0" stop-color="#cf6a45"/><stop offset="1" stop-color="#a84a24"/>
+      <linearGradient id="p-mid" x1=".25" y1="0" x2=".75" y2="1">
+        <stop offset="0" stop-color="#fdf9f5"/><stop offset=".5" stop-color="#f1e7de"/><stop offset="1" stop-color="#d9c8ba"/>
       </linearGradient>
-      <linearGradient id="g-leaf" x1="0" y1="0" x2="1" y2="1">
-        <stop offset="0" stop-color="#7d9a66"/><stop offset="1" stop-color="#3f5a3a"/>
+      <linearGradient id="p-in" x1=".3" y1="0" x2=".7" y2="1">
+        <stop offset="0" stop-color="#fffaf4"/><stop offset="1" stop-color="#e8d9cb"/>
       </linearGradient>
+      <!-- cœur de fleur : or pâle, comme les étamines de l'image -->
+      <radialGradient id="p-coeur" cx=".42" cy=".38" r=".7">
+        <stop offset="0" stop-color="#f6e3b8"/><stop offset=".55" stop-color="#dcb36a"/><stop offset="1" stop-color="#a8802f"/>
+      </radialGradient>
+      <!-- feuillage : vert profond, très présent sur l'image -->
+      <linearGradient id="p-leaf" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#2f6b52"/><stop offset=".5" stop-color="#1f5340"/><stop offset="1" stop-color="#123a2c"/>
+      </linearGradient>
+      <linearGradient id="p-leaf-l" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#4a8a6b"/><stop offset="1" stop-color="#1f5340"/>
+      </linearGradient>
+      <!-- or -->
       <linearGradient id="g-gold" x1="0" y1="0" x2="1" y2="1">
-        <stop offset="0" stop-color="#f4d894"/><stop offset=".45" stop-color="#d9a441"/><stop offset="1" stop-color="#a8761f"/>
+        <stop offset="0" stop-color="#f2dda4"/><stop offset=".45" stop-color="#c9a55e"/><stop offset="1" stop-color="#9a7a34"/>
       </linearGradient>
     </defs>
 
-    <!-- Fleur à 5 pétales (rose botanique stylisée) -->
-    <symbol id="fl-fleur" viewBox="0 0 48 48">
+    <!-- ===== CAMÉLIA : fleur principale de l'image =====
+         3 couronnes de pétales imbriquées + étamines dorées au centre.
+         Vue légèrement de dessus, ombrée en bas à droite (relief). -->
+    <symbol id="fl-fleur" viewBox="0 0 64 64">
+      <!-- couronne extérieure (5 pétales larges) -->
       <g>
-        <ellipse cx="24" cy="13" rx="8" ry="11" fill="url(#g-petal)"/>
-        <ellipse cx="24" cy="13" rx="8" ry="11" fill="url(#g-petal)" transform="rotate(72 24 24)"/>
-        <ellipse cx="24" cy="13" rx="8" ry="11" fill="url(#g-petal2)" transform="rotate(144 24 24)"/>
-        <ellipse cx="24" cy="13" rx="8" ry="11" fill="url(#g-petal)" transform="rotate(216 24 24)"/>
-        <ellipse cx="24" cy="13" rx="8" ry="11" fill="url(#g-petal2)" transform="rotate(288 24 24)"/>
-        <circle cx="24" cy="24" r="6.2" fill="#f3c6a6"/>
-        <circle cx="24" cy="24" r="3.2" fill="url(#g-gold)"/>
-        <circle cx="21.6" cy="21.6" r="1.1" fill="#fff3d8" opacity=".9"/>
+        <ellipse cx="32" cy="16" rx="10" ry="13" fill="url(#p-out)"/>
+        <ellipse cx="32" cy="16" rx="10" ry="13" fill="url(#p-out)" transform="rotate(72 32 32)"/>
+        <ellipse cx="32" cy="16" rx="10" ry="13" fill="url(#p-out)" transform="rotate(144 32 32)"/>
+        <ellipse cx="32" cy="16" rx="10" ry="13" fill="url(#p-out)" transform="rotate(216 32 32)"/>
+        <ellipse cx="32" cy="16" rx="10" ry="13" fill="url(#p-out)" transform="rotate(288 32 32)"/>
       </g>
+      <!-- couronne intermédiaire -->
+      <g>
+        <ellipse cx="32" cy="20" rx="7.5" ry="9.5" fill="url(#p-mid)"/>
+        <ellipse cx="32" cy="20" rx="7.5" ry="9.5" fill="url(#p-mid)" transform="rotate(60 32 32)"/>
+        <ellipse cx="32" cy="20" rx="7.5" ry="9.5" fill="url(#p-mid)" transform="rotate(120 32 32)"/>
+        <ellipse cx="32" cy="20" rx="7.5" ry="9.5" fill="url(#p-mid)" transform="rotate(180 32 32)"/>
+        <ellipse cx="32" cy="20" rx="7.5" ry="9.5" fill="url(#p-mid)" transform="rotate(240 32 32)"/>
+        <ellipse cx="32" cy="20" rx="7.5" ry="9.5" fill="url(#p-mid)" transform="rotate(300 32 32)"/>
+      </g>
+      <!-- couronne interne -->
+      <g>
+        <ellipse cx="32" cy="25" rx="5" ry="6" fill="url(#p-in)"/>
+        <ellipse cx="32" cy="25" rx="5" ry="6" fill="url(#p-in)" transform="rotate(72 32 32)"/>
+        <ellipse cx="32" cy="25" rx="5" ry="6" fill="url(#p-in)" transform="rotate(144 32 32)"/>
+        <ellipse cx="32" cy="25" rx="5" ry="6" fill="url(#p-in)" transform="rotate(216 32 32)"/>
+        <ellipse cx="32" cy="25" rx="5" ry="6" fill="url(#p-in)" transform="rotate(288 32 32)"/>
+      </g>
+      <!-- étamines dorées -->
+      <circle cx="32" cy="32" r="5.6" fill="url(#p-coeur)"/>
+      <g fill="#b98a35" opacity=".8">
+        <circle cx="29.6" cy="30.4" r=".85"/><circle cx="33.4" cy="30.1" r=".85"/>
+        <circle cx="31.2" cy="33.6" r=".85"/><circle cx="34.6" cy="33.2" r=".85"/>
+        <circle cx="31.6" cy="30.8" r=".7"/><circle cx="33.9" cy="32.2" r=".7"/>
+      </g>
+      <circle cx="30.6" cy="29.8" r="1.2" fill="#fdf3d9" opacity=".9"/>
     </symbol>
 
-    <!-- Fleur double (plus dense, pour les grandsillages) -->
-    <symbol id="fl-fleur2" viewBox="0 0 48 48">
-      <g>
-        <ellipse cx="24" cy="12" rx="9.5" ry="12" fill="url(#g-petal2)"/>
-        <ellipse cx="24" cy="12" rx="9.5" ry="12" fill="url(#g-petal2)" transform="rotate(60 24 24)"/>
-        <ellipse cx="24" cy="12" rx="9.5" ry="12" fill="url(#g-petal2)" transform="rotate(120 24 24)"/>
-        <ellipse cx="24" cy="12" rx="9.5" ry="12" fill="url(#g-petal2)" transform="rotate(180 24 24)"/>
-        <ellipse cx="24" cy="12" rx="9.5" ry="12" fill="url(#g-petal2)" transform="rotate(240 24 24)"/>
-        <ellipse cx="24" cy="12" rx="9.5" ry="12" fill="url(#g-petal2)" transform="rotate(300 24 24)"/>
-        <circle cx="24" cy="24" r="9" fill="url(#g-petal)"/>
-        <g fill="#e0a07c">
-          <circle cx="24" cy="19" r="2.4"/><circle cx="28.6" cy="21.7" r="2.4"/>
-          <circle cx="27.3" cy="26.3" r="2.4"/><circle cx="20.7" cy="26.3" r="2.4"/>
-          <circle cx="19.4" cy="21.7" r="2.4"/>
-        </g>
-        <circle cx="24" cy="24" r="3.4" fill="url(#g-gold)"/>
-      </g>
+    <!-- Camélia double : plus touffu, pour les grandsillages -->
+    <symbol id="fl-fleur2" viewBox="0 0 64 64">
+      <use href="#fl-fleur" x="0" y="0" width="44" height="44"/>
+      <use href="#fl-fleur" x="21" y="21" width="40" height="40"/>
     </symbol>
 
-    <!-- Bouton fermé -->
+    <!-- Bouton fermé (pivoine) -->
     <symbol id="fl-bouton" viewBox="0 0 24 32">
-      <path d="M12 30 C4 22 2 15 5 9 C8 3 16 3 19 9 C22 15 20 22 12 30Z" fill="url(#g-petal2)"/>
-      <path d="M12 26 C7 20 6 15 8 11 C10 8 14 8 16 11 C18 15 17 20 12 26Z" fill="url(#g-petal)" opacity=".85"/>
-      <path d="M12 4 C11 8 8 9 5 9 C8 11 9 14 9 17" fill="none" stroke="#1f3a32" stroke-width="1.4" stroke-linecap="round"/>
+      <path d="M12 31 C3 23 1 15 4.5 8.5 C8 2 16 2 19.5 8.5 C23 15 21 23 12 31Z" fill="url(#p-mid)"/>
+      <path d="M12 27 C6.5 20.5 5.5 15 7.5 11 C9.5 7.5 14.5 7.5 16.5 11 C18.5 15 17.5 20.5 12 27Z" fill="url(#p-in)"/>
+      <path d="M12 25 C9 21 8.4 17 9.6 14.4" fill="none" stroke="#c9b3a0" stroke-width=".9" opacity=".8"/>
+      <path d="M11 6 C10 9 8 10 6 10.5 C8 12 9 14 9 16" fill="none" stroke="#2f6b52" stroke-width="1.3" stroke-linecap="round"/>
     </symbol>
 
-    <!-- Feuille -->
+    <!-- Feuille : vert profond, nervure visible (comme sur l'image) -->
     <symbol id="fl-feuille" viewBox="0 0 32 32">
-      <path d="M16 30 C16 18 8 10 2 4 C14 4 26 12 28 26 C24 29 20 30 16 30Z" fill="url(#g-leaf)"/>
-      <path d="M16 29 C15 20 10 12 4 6" fill="none" stroke="#4a6b45" stroke-width="1.1" opacity=".55"/>
+      <path d="M16 30 C16 18 8 10 2 4 C14 4 26 12 28 26 C24 29 20 30 16 30Z" fill="url(#p-leaf)"/>
+      <path d="M16 29 C15 20 10 12 4 6" fill="none" stroke="#0d2c21" stroke-width="1.2" opacity=".7"/>
+      <path d="M16 29 C15 20 10 12 4 6" fill="none" stroke="#5c9a7c" stroke-width=".6" opacity=".5"/>
     </symbol>
 
     <!-- Ramure / branche fleurie (grand décor de coin) -->
     <symbol id="fl-ramure" viewBox="0 0 200 200">
       <g>
-        <path d="M8 196 C34 150 62 112 104 74 C128 52 156 30 192 14" fill="none" stroke="#8a6b3a" stroke-width="2.4" stroke-linecap="round"/>
-        <path d="M40 152 C56 138 74 130 92 128" fill="none" stroke="#8a6b3a" stroke-width="1.5" opacity=".7"/>
-        <path d="M70 112 C86 96 100 86 118 78" fill="none" stroke="#8a6b3a" stroke-width="1.5" opacity=".7"/>
-        <use href="#fl-feuille" x="18" y="140" width="42" height="42" transform="rotate(-24 39 161)"/>
-        <use href="#fl-feuille" x="52" y="112" width="36" height="36" transform="rotate(28 70 130)"/>
-        <use href="#fl-feuille" x="76" y="86" width="34" height="34" transform="rotate(-18 93 103)"/>
-        <use href="#fl-feuille" x="108" y="56" width="30" height="30" transform="rotate(34 123 71)"/>
-        <use href="#fl-feuille" x="136" y="34" width="26" height="26" transform="rotate(-14 149 47)"/>
-        <use href="#fl-fleur" x="86" y="60" width="30" height="30"/>
-        <use href="#fl-fleur" x="118" y="32" width="26" height="26"/>
-        <use href="#fl-bouton" x="146" y="8" width="18" height="24" transform="rotate(28 155 20)"/>
-        <use href="#fl-fleur2" x="60" y="98" width="24" height="24"/>
-        <use href="#fl-bouton" x="34" y="128" width="16" height="21" transform="rotate(-32 42 138)"/>
+        <path d="M8 196 C34 150 62 112 104 74 C128 52 156 30 192 14" fill="none" stroke="#2f6b52" stroke-width="2.6" stroke-linecap="round"/>
+        <path d="M40 152 C56 138 74 130 92 128" fill="none" stroke="#2f6b52" stroke-width="1.5" opacity=".7"/>
+        <path d="M70 112 C86 96 100 86 118 78" fill="none" stroke="#2f6b52" stroke-width="1.5" opacity=".7"/>
+        <use href="#fl-feuille" x="14" y="138" width="44" height="44" transform="rotate(-24 36 160)"/>
+        <use href="#fl-feuille" x="50" y="110" width="38" height="38" transform="rotate(28 69 129)"/>
+        <use href="#fl-feuille" x="74" y="84" width="36" height="36" transform="rotate(-18 92 102)"/>
+        <use href="#fl-feuille" x="106" y="54" width="32" height="32" transform="rotate(34 122 70)"/>
+        <use href="#fl-feuille" x="134" y="32" width="28" height="28" transform="rotate(-14 148 46)"/>
+        <use href="#fl-fleur" x="82" y="56" width="34" height="34"/>
+        <use href="#fl-fleur" x="114" y="28" width="30" height="30"/>
+        <use href="#fl-bouton" x="144" y="6" width="20" height="26" transform="rotate(28 154 19)"/>
+        <use href="#fl-fleur2" x="56" y="94" width="28" height="28"/>
+        <use href="#fl-bouton" x="30" y="126" width="18" height="23" transform="rotate(-32 39 137)"/>
       </g>
     </symbol>
 
-    <!-- Couronne de fleurs (demi-cercle, pour les bandeaux) -->
+    <!-- Couronne de fleurs (demi-cercle) -->
     <symbol id="fl-couronne" viewBox="0 0 240 70">
       <g>
-        <path d="M6 62 C40 22 80 6 120 6 C160 6 200 22 234 62" fill="none" stroke="#8a6b3a" stroke-width="1.8"/>
-        <use href="#fl-feuille" x="16" y="42" width="26" height="26" transform="rotate(-30 29 55)"/>
-        <use href="#fl-feuille" x="44" y="24" width="24" height="24" transform="rotate(18 56 36)"/>
-        <use href="#fl-feuille" x="176" y="24" width="24" height="24" transform="rotate(-18 188 36)"/>
-        <use href="#fl-feuille" x="200" y="42" width="26" height="26" transform="rotate(30 213 55)"/>
-        <use href="#fl-fleur" x="34" y="16" width="26" height="26"/>
-        <use href="#fl-fleur" x="70" y="2" width="22" height="22"/>
-        <use href="#fl-fleur" x="148" y="2" width="22" height="22"/>
-        <use href="#fl-fleur" x="184" y="16" width="26" height="26"/>
-        <use href="#fl-fleur2" x="106" y="-8" width="28" height="28"/>
-        <use href="#fl-bouton" x="98" y="14" width="15" height="20" transform="rotate(-14 105 24)"/>
-        <use href="#fl-bouton" x="128" y="14" width="15" height="20" transform="rotate(14 135 24)"/>
+        <path d="M6 62 C40 22 80 6 120 6 C160 6 200 22 234 62" fill="none" stroke="#2f6b52" stroke-width="1.8"/>
+        <use href="#fl-feuille" x="12" y="40" width="28" height="28" transform="rotate(-30 26 54)"/>
+        <use href="#fl-feuille" x="42" y="22" width="26" height="26" transform="rotate(18 55 35)"/>
+        <use href="#fl-feuille" x="174" y="22" width="26" height="26" transform="rotate(-18 187 35)"/>
+        <use href="#fl-feuille" x="198" y="40" width="28" height="28" transform="rotate(30 212 54)"/>
+        <use href="#fl-fleur" x="30" y="12" width="28" height="28"/>
+        <use href="#fl-fleur" x="68" y="0" width="24" height="24"/>
+        <use href="#fl-fleur" x="148" y="0" width="24" height="24"/>
+        <use href="#fl-fleur" x="182" y="12" width="28" height="28"/>
+        <use href="#fl-fleur2" x="102" y="-10" width="30" height="30"/>
+        <use href="#fl-bouton" x="94" y="12" width="16" height="21" transform="rotate(-14 102 22)"/>
+        <use href="#fl-bouton" x="128" y="12" width="16" height="21" transform="rotate(14 136 22)"/>
       </g>
     </symbol>
 
-    <!-- Filet fleuri horizontal (séparateur) -->
+    <!-- Filet fleuri horizontal (séparateur de titre) -->
     <symbol id="fl-filet" viewBox="0 0 200 28">
       <g>
-        <path d="M0 14 H74 M126 14 H200" stroke="#8a6b3a" stroke-width="1" opacity=".55"/>
-        <circle cx="80" cy="14" r="2" fill="#d9a441"/>
-        <circle cx="120" cy="14" r="2" fill="#d9a441"/>
-        <use href="#fl-fleur" x="88" y="3" width="24" height="24"/>
+        <path d="M0 14 H74 M126 14 H200" stroke="#b9855c" stroke-width="1" opacity=".6"/>
+        <circle cx="80" cy="14" r="2" fill="#c9a55e"/>
+        <circle cx="120" cy="14" r="2" fill="#c9a55e"/>
+        <use href="#fl-fleur" x="90" y="4" width="20" height="20"/>
       </g>
     </symbol>
 
-<!-- Bouquetettenuage (fête) : grappe dense de fleurs et de feuillages -->
+    <!-- Bouquet : grappe dense de camélias (décor de coin) -->
     <symbol id="fl-bouquet" viewBox="0 0 120 120">
-      <use href="#fl-fleur2" x="30" y="24" width="52" height="52"/>
-      <use href="#fl-fleur"  x="8"  y="46" width="36" height="36"/>
-      <use href="#fl-fleur"  x="72" y="44" width="34" height="34"/>
-      <use href="#fl-bouton" x="26" y="66" width="18" height="24" transform="rotate(-18 35 78)"/>
-      <use href="#fl-bouton" x="80" y="70" width="16" height="22" transform="rotate(20 88 81)"/>
-      <use href="#fl-feuille" x="4"  y="16" width="30" height="30" transform="rotate(-30 19 31)"/>
-      <use href="#fl-feuille" x="88" y="18" width="30" height="30" transform="rotate(28 103 33)"/>
-      <use href="#fl-feuille" x="46" y="82" width="30" height="30" transform="rotate(6 61 97)"/>
+      <use href="#fl-feuille" x="0" y="14" width="34" height="34" transform="rotate(-32 17 31)"/>
+      <use href="#fl-feuille" x="86" y="16" width="34" height="34" transform="rotate(30 103 33)"/>
+      <use href="#fl-feuille" x="42" y="80" width="36" height="36" transform="rotate(8 60 98)"/>
+      <use href="#fl-fleur" x="26" y="20" width="48" height="48"/>
+      <use href="#fl-fleur" x="52" y="48" width="46" height="46"/>
+      <use href="#fl-fleur" x="4"  y="46" width="34" height="34"/>
+      <use href="#fl-fleur" x="76" y="42" width="32" height="32"/>
+      <use href="#fl-bouton" x="20" y="72" width="18" height="24" transform="rotate(-18 29 84)"/>
+      <use href="#fl-bouton" x="84" y="72" width="16" height="22" transform="rotate(20 92 83)"/>
     </symbol>
 
-    <!-- Guirlande de fête (bandeau festif en arc, plus dense que la couronne) -->
+    <!-- Guirlande de fête (bandeau) -->
     <symbol id="fl-fete" viewBox="0 0 280 80">
       <g>
-        <path d="M4 70 C48 22 96 4 140 4 C184 4 232 22 276 70" fill="none" stroke="#8a6b3a" stroke-width="1.8"/>
-        <path d="M140 4 C138 -6 132 -12 124 -14 C130 -8 133 -3 133 3" fill="none" stroke="#8a6b3a" stroke-width="1.4"/>
-        <use href="#fl-feuille" x="18"  y="46" width="26" height="26" transform="rotate(-30 31 59)"/>
-        <use href="#fl-feuille" x="52"  y="24" width="24" height="24" transform="rotate(20 64 36)"/>
-        <use href="#fl-feuille" x="90"  y="10" width="22" height="22" transform="rotate(-14 101 21)"/>
-        <use href="#fl-feuille" x="190" y="10" width="22" height="22" transform="rotate(14 201 21)"/>
-        <use href="#fl-feuille" x="228" y="24" width="24" height="24" transform="rotate(-20 240 36)"/>
-        <use href="#fl-feuille" x="262" y="46" width="26" height="26" transform="rotate(30 275 59)"/>
-        <use href="#fl-fleur"  x="36"  y="16" width="28" height="28"/>
-        <use href="#fl-fleur"  x="78"  y="0"  width="24" height="24"/>
-        <use href="#fl-fleur"  x="178" y="0"  width="24" height="24"/>
-        <use href="#fl-fleur"  x="216" y="16" width="28" height="28"/>
-        <use href="#fl-fleur2" x="112" y="-8" width="30" height="30"/>
-        <use href="#fl-fleur2" x="150" y="-8" width="30" height="30"/>
-        <use href="#fl-bouton" x="62"  y="34" width="15" height="20" transform="rotate(-16 70 44)"/>
-        <use href="#fl-bouton" x="204" y="34" width="15" height="20" transform="rotate(16 212 44)"/>
-        <circle cx="140" cy="-16" r="5" fill="#f4d894"/>
+        <path d="M4 70 C48 22 96 4 140 4 C184 4 232 22 276 70" fill="none" stroke="#2f6b52" stroke-width="1.8"/>
+        <use href="#fl-feuille" x="14" y="44" width="28" height="28" transform="rotate(-30 28 58)"/>
+        <use href="#fl-feuille" x="50" y="22" width="26" height="26" transform="rotate(20 63 35)"/>
+        <use href="#fl-feuille" x="88" y="8"  width="24" height="24" transform="rotate(-14 100 20)"/>
+        <use href="#fl-feuille" x="188" y="8" width="24" height="24" transform="rotate(14 200 20)"/>
+        <use href="#fl-feuille" x="226" y="22" width="26" height="26" transform="rotate(-20 239 35)"/>
+        <use href="#fl-feuille" x="260" y="44" width="28" height="28" transform="rotate(30 274 58)"/>
+        <use href="#fl-fleur" x="34"  y="12" width="30" height="30"/>
+        <use href="#fl-fleur" x="76"  y="-2" width="26" height="26"/>
+        <use href="#fl-fleur" x="178" y="-2" width="26" height="26"/>
+        <use href="#fl-fleur" x="214" y="12" width="30" height="30"/>
+        <use href="#fl-fleur2" x="108" y="-12" width="32" height="32"/>
+        <use href="#fl-fleur2" x="146" y="-12" width="32" height="32"/>
+        <use href="#fl-bouton" x="60"  y="32" width="16" height="21" transform="rotate(-16 68 42)"/>
+        <use href="#fl-bouton" x="202" y="32" width="16" height="21" transform="rotate(16 210 42)"/>
+        <circle cx="140" cy="-18" r="5" fill="url(#g-gold)"/>
       </g>
     </symbol>
 
-    <!-- Deux anneaux entrelacés (les alliance) -->
+    <!-- Deux anneaux entrelacés (les alliances) -->
     <symbol id="fl-anneaux" viewBox="0 0 120 84">
       <g class="shine">
         <ellipse cx="46" cy="52" rx="26" ry="30" fill="none" stroke="url(#g-gold)" stroke-width="5"/>
         <ellipse cx="74" cy="52" rx="26" ry="30" fill="none" stroke="url(#g-gold)" stroke-width="5"/>
-        <ellipse cx="46" cy="52" rx="26" ry="30" fill="none" stroke="#f4d894" stroke-width="1.1" opacity=".8"/>
-        <ellipse cx="74" cy="52" rx="26" ry="30" fill="none" stroke="#f4d894" stroke-width="1.1" opacity=".8"/>
+        <ellipse cx="46" cy="52" rx="26" ry="30" fill="none" stroke="#f2e0b4" stroke-width="1.1" opacity=".85"/>
+        <ellipse cx="74" cy="52" rx="26" ry="30" fill="none" stroke="#f2e0b4" stroke-width="1.1" opacity=".85"/>
       </g>
-      <path d="M60 14 C56 8 58 3 62 1 C64 5 65 9 63 13Z" fill="#f4d894" stroke="#d9a441" stroke-width="1"/>
+      <path d="M60 14 C56 8 58 3 62 1 C64 5 65 9 63 13Z" fill="#fdf1e3" stroke="#c9a55e" stroke-width="1"/>
     </symbol>
   </svg>
 
@@ -837,7 +866,7 @@ let confs = [], raf = null;
 function confetti() {
   cv.width = innerWidth; cv.height = innerHeight;
   confs = [];
-  const colors = ['#f4d894', '#d9a441', '#a8761f', '#e8cfc0', '#7d5518'];
+  const colors = ['#fdf8f2', '#f1e4d6', '#c9a55e', '#e8cd97', '#2f6b52'];
   for (let i = 0; i < 150; i++) confs.push({
     x: innerWidth / 2 + (Math.random() - .5) * 260,
     y: innerHeight * .32,

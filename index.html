@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Daria &amp; Hermann — Invitation · 18 décembre 2026</title>
 <meta name="description" content="Daria &amp; Hermann vous invitent à célébrer leur mariage le vendredi 18 décembre 2026 à 16h00, Table des Élites, Akwa — Douala.">
-<meta name="theme-color" content="#14090d">
+<meta name="theme-color" content="#f6ede3">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Daria &amp; Hermann — Nous nous marions">
 <meta property="og:description" content="Vendredi 18 décembre 2026 · 16h00 · Table des Élites, Akwa — Douala. Réservez votre place.">
@@ -37,9 +37,9 @@
   .photo-card {
     position: absolute; inset: 0;
     border-radius: 14px; overflow: hidden;
-    background: linear-gradient(160deg, #2a0f1a, #170a11);
-    border: 1px solid rgba(217,164,65,.28);
-    box-shadow: 0 30px 80px rgba(0,0,0,.7), 0 0 60px rgba(107,18,38,.35), inset 0 0 0 5px rgba(217,164,65,.14);
+    background: linear-gradient(160deg, #fdf8f2, #ecd9c0);
+    border: 1px solid rgba(184,92,56,.25);
+    box-shadow: 0 26px 60px rgba(74,36,22,.28), inset 0 0 0 5px rgba(201,165,94,.22);
     opacity: 0; transform: translateY(26px) scale(.94);
     transition: opacity .8s ease 1.25s, transform 1s cubic-bezier(.2,.85,.3,1.05) 1.25s;
   }
@@ -50,15 +50,14 @@
     display: none; position: absolute; inset: 0;
     align-items: center; justify-content: center; flex-direction: column; gap: 4px;
     font-family: 'Pinyon Script', cursive; font-size: clamp(42px, 12.6vw, 58px); font-weight: 400;
-    letter-spacing: 0; color: var(--gold-lit);
-    text-shadow: 0 0 34px rgba(217,164,65,.45);
-    background: linear-gradient(160deg, #2a0f1a, #170a11);
+    letter-spacing: 0; color: var(--deep);
+    background: linear-gradient(160deg, #f6ede3, #ecd9c0);
   }
-  .ph-mono span { font-family: 'Pinyon Script', cursive; font-size: .78em; color: var(--gold); }
+  .ph-mono span { font-family: 'Pinyon Script', cursive; font-size: .78em; color: var(--terra); }
   .photo-card.nophoto .ph-mono { display: flex; }
   .photo-card::after {
     content: ""; position: absolute; inset: 10px;
-    border: 1px solid rgba(217,164,65,.4); border-radius: 9px;
+    border: 1px solid rgba(255,251,244,.6); border-radius: 9px;
     pointer-events: none; z-index: 2;
   }
 
@@ -70,18 +69,18 @@
     display: inline-block; text-decoration: none; cursor: pointer;
     font-family: 'Cormorant Garamond', serif;
     font-size: 17px; font-weight: 500; line-height: 1; letter-spacing: .22em; text-transform: uppercase;
-    color: var(--gold-lit); text-align: center; white-space: nowrap;
+    color: #fff8f0; text-align: center; white-space: nowrap;
     padding: 13px 30px;
-    background: linear-gradient(100deg, rgba(20,6,12,.86), rgba(74,15,28,.72) 50%, rgba(20,6,12,.86));
+    background: linear-gradient(100deg, rgba(138,52,22,.9), rgba(184,92,56,.85) 50%, rgba(138,52,22,.9));
     border-radius: 2px;
-    border: 1px solid rgba(217,164,65,.55);
-    box-shadow: 0 8px 30px rgba(0,0,0,.6), 0 0 22px rgba(217,164,65,.14);
-    text-shadow: 0 2px 10px rgba(0,0,0,.7);
-    backdrop-filter: blur(4px);
+    border: 1px solid rgba(232,181,154,.7);
+    box-shadow: 0 8px 26px rgba(74,36,22,.4);
+    text-shadow: 0 2px 8px rgba(74,36,22,.4);
+    backdrop-filter: blur(3px);
     transition: opacity .6s ease 2s, transform .6s ease 2s, box-shadow .25s ease, background .25s ease;
   }
   .photo-card.show .open-cta { opacity: 1; transform: translateX(-50%) translateY(0); }
-  .open-cta:hover { box-shadow: 0 10px 40px rgba(0,0,0,.7), 0 0 34px rgba(217,164,65,.3); border-color: var(--gold); background: linear-gradient(100deg, rgba(30,8,16,.95), rgba(107,18,38,.88) 50%, rgba(30,8,16,.95)); }
+  .open-cta:hover { box-shadow: 0 10px 30px rgba(74,36,22,.5); background: linear-gradient(100deg, rgba(184,92,56,.95), rgba(201,123,78,.9) 50%, rgba(184,92,56,.95)); }
 
   @media (prefers-reduced-motion: reduce) {
     .env-scene, .env-flap, .photo-card, .open-cta, .wax-seal { transition-duration: .01s !important; transition-delay: 0s !important; }
@@ -95,11 +94,11 @@
     position: fixed; inset: 0; z-index: 50;
     display: flex; align-items: center; justify-content: center;
     background:
-      radial-gradient(52% 44% at 50% 46%, rgba(107,18,38,.55) 0%, transparent 68%),
-      radial-gradient(46% 40% at 12% 10%, rgba(217,164,65,.1) 0%, transparent 62%),
-      radial-gradient(44% 38% at 90% 16%, rgba(26,16,48,.7) 0%, transparent 64%),
-      radial-gradient(50% 44% at 88% 92%, rgba(74,15,28,.55) 0%, transparent 64%),
-      linear-gradient(165deg, #1c0a12 0%, #14090d 46%, #0f0817 100%);
+      radial-gradient(52% 44% at 50% 46%, rgba(255,251,246,.75) 0%, transparent 70%),
+      radial-gradient(46% 40% at 12% 10%, rgba(201,165,94,.16) 0%, transparent 64%),
+      radial-gradient(44% 38% at 90% 16%, rgba(201,123,78,.14) 0%, transparent 64%),
+      radial-gradient(50% 44% at 88% 92%, rgba(168,134,94,.2) 0%, transparent 64%),
+      linear-gradient(165deg, #f9f2ea 0%, #f1e4d6 52%, #e8d9c5 100%);
     perspective: 1200px;
     overflow: hidden;
     transition: opacity .55s ease;
@@ -128,8 +127,7 @@
   .env-art .mono {
     margin-top: 6px; font-family: 'Pinyon Script', cursive;
     font-size: clamp(19px, 5.8vw, 28px); font-weight: 400; letter-spacing: 0;
-    color: var(--gold-lit); line-height: 1.1;
-    text-shadow: 0 0 22px rgba(217,164,65,.5);
+    color: var(--deep); line-height: 1.1;
   }
   .env-art .mono span { font-family: 'Pinyon Script', cursive; color: var(--gold); }
   .env-art .date {
@@ -143,7 +141,7 @@
   .env-scene.away .env-inset { opacity: 0; }
 
   /* petites fleurs éparpillées sur le corps de l'enveloppe */
-  .env-scatter { position: absolute; inset: 0; pointer-events: none; z-index: 1; filter: drop-shadow(0 0 8px rgba(217,164,65,.2)); }
+  .env-scatter { position: absolute; inset: 0; pointer-events: none; z-index: 1; filter: drop-shadow(0 3px 6px rgba(74,36,22,.18)); }
   .env-scatter use { position: absolute; }
   .env-scatter .f1 { left: 7%;   top: 62%; width: 15px; height: 15px; }
   .env-scatter .f2 { right: 9%;  top: 66%; width: 14px; height: 14px; }
@@ -163,16 +161,16 @@
   .env-scatter .l4 { right: 14%; top: 88%; width: 13px; height: 13px; opacity: .8; }
 
   /* ramure fleurie dans les bas-corners du corps de l'enveloppe */
-  .env-corners { position: absolute; inset: 0; z-index: 1; pointer-events: none; opacity: .9; filter: drop-shadow(0 0 18px rgba(107,18,38,.6)); }
+  .env-corners { position: absolute; inset: 0; z-index: 1; pointer-events: none; opacity: .95; filter: drop-shadow(0 6px 14px rgba(31,83,64,.22)); }
 
   /* contour floral intérieur de l'enveloppe */
   .env-inset {
     position: absolute; inset: 9px; z-index: 1; pointer-events: none;
-    border: 1px solid rgba(217,164,65,.24); border-radius: 5px;
+    border: 1px solid rgba(184,92,56,.22); border-radius: 5px;
   }
   .env-inset::after {
     content: ""; position: absolute; inset: 4px;
-    border: 1px dashed rgba(217,164,65,.26); border-radius: 3px;
+    border: 1px dashed rgba(201,165,94,.4); border-radius: 3px;
   }
 
   .env-scene {
@@ -197,16 +195,15 @@
   /* corps de l'enveloppe — velours sombre, pas papier */
   .env-body {
     position: absolute; inset: 0;
-    background: linear-gradient(165deg, #34101c 0%, #1f0a13 52%, #160810 100%);
-    border: 1px solid rgba(217,164,65,.3);
+    background: linear-gradient(165deg, #fdf8f2 0%, #f6ede3 52%, #f0e0cd 100%);
+    border: 1px solid rgba(184,92,56,.22);
     border-radius: 8px;
-    box-shadow: 0 24px 70px rgba(0,0,0,.7), 0 0 50px rgba(107,18,38,.3),
-                inset 0 0 0 4px rgba(217,164,65,.1);
+    box-shadow: 0 20px 56px rgba(74,36,22,.24), inset 0 0 0 4px rgba(201,165,94,.2);
     z-index: 2;
   }
   .env-body::after {
     content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 62%;
-    background: linear-gradient(170deg, rgba(217,164,65,.03), rgba(107,18,38,.28));
+    background: linear-gradient(170deg, rgba(184,92,56,.06), rgba(184,92,56,.14));
     clip-path: polygon(0 100%, 50% 12%, 100% 100%);
     border-bottom-left-radius: 8px; border-bottom-right-radius: 8px;
     pointer-events: none;
@@ -222,11 +219,11 @@
   }
   .env-flap::before {
     content: ""; position: absolute; inset: 0;
-    background: linear-gradient(180deg, #2c0d18 0%, #1a0910 100%);
+    background: linear-gradient(180deg, #f3e6d4 0%, #ecd9c0 100%);
     clip-path: polygon(0 0, 100% 0, 50% 100%);
     border-top-left-radius: 8px; border-top-right-radius: 8px;
-    border: 1px solid rgba(217,164,65,.26);
-    box-shadow: 0 6px 20px rgba(0,0,0,.5);
+    border: 1px solid rgba(184,92,56,.2);
+    box-shadow: 0 6px 16px rgba(74,36,22,.16);
     backface-visibility: hidden;
   }
   .flap-art {
@@ -243,9 +240,8 @@
     position: absolute; left: 50%; top: 55%;
     transform: translate(-50%, -50%);
     width: 62px; height: 62px; border-radius: 50%;
-    background: radial-gradient(circle at 34% 30%, #a3283c, #6b1226 55%, #3a0913 100%);
-    box-shadow: 0 6px 22px rgba(0,0,0,.6), 0 0 30px rgba(217,164,65,.22),
-                inset 0 2px 8px rgba(244,216,148,.3);
+    background: radial-gradient(circle at 34% 30%, #d4794b, #b85c38 55%, #8a3416 100%);
+    box-shadow: 0 5px 16px rgba(138,52,22,.4), inset 0 2px 7px rgba(255,255,255,.25);
     display: flex; align-items: center; justify-content: center;
     z-index: 7; cursor: pointer; border: none; padding: 0;
     transition: transform .25s ease, box-shadow .25s ease;
@@ -254,7 +250,7 @@
   .wax-seal svg { width: 34px; height: 34px; }
   .wax-seal::before {
     content: ""; position: absolute; inset: -12px; border-radius: 50%;
-    border: 2px solid rgba(217,164,65,.45);
+    border: 2px solid rgba(184,92,56,.5);
     animation: seal-pulse 2.2s ease-out infinite;
   }
   @keyframes seal-pulse {
@@ -269,160 +265,189 @@
 </style>
 </head>
 <body>
-  <!-- ===== SPRITE FLORAL (voir styles.css — garder identique dans les 2 pages) ===== -->
+  <!-- ===== SPRITE FLORAL 3D (voir styles.css — garder identique dans les 2 pages) =====
+       Camélias blanc/ivoire en relief, feuillage vert profond, accents or.
+       Inspiré de la carte de référence : volume par dégradés + ombres douces. -->
   <svg class="sprite" aria-hidden="true" focusable="false">
     <defs>
-      <linearGradient id="g-petal" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0" stop-color="#e8b18d"/><stop offset=".55" stop-color="#c9663f"/><stop offset="1" stop-color="#a84a24"/>
+      <!-- pétales : blanc cassé vers l'ombre chaude -->
+      <linearGradient id="p-out" x1=".2" y1="0" x2=".8" y2="1">
+        <stop offset="0" stop-color="#ffffff"/><stop offset=".45" stop-color="#f7f0ea"/><stop offset="1" stop-color="#e2d5ca"/>
       </linearGradient>
-      <linearGradient id="g-petal2" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0" stop-color="#cf6a45"/><stop offset="1" stop-color="#a84a24"/>
+      <linearGradient id="p-mid" x1=".25" y1="0" x2=".75" y2="1">
+        <stop offset="0" stop-color="#fdf9f5"/><stop offset=".5" stop-color="#f1e7de"/><stop offset="1" stop-color="#d9c8ba"/>
       </linearGradient>
-      <linearGradient id="g-leaf" x1="0" y1="0" x2="1" y2="1">
-        <stop offset="0" stop-color="#7d9a66"/><stop offset="1" stop-color="#3f5a3a"/>
+      <linearGradient id="p-in" x1=".3" y1="0" x2=".7" y2="1">
+        <stop offset="0" stop-color="#fffaf4"/><stop offset="1" stop-color="#e8d9cb"/>
       </linearGradient>
+      <!-- cœur de fleur : or pâle, comme les étamines de l'image -->
+      <radialGradient id="p-coeur" cx=".42" cy=".38" r=".7">
+        <stop offset="0" stop-color="#f6e3b8"/><stop offset=".55" stop-color="#dcb36a"/><stop offset="1" stop-color="#a8802f"/>
+      </radialGradient>
+      <!-- feuillage : vert profond, très présent sur l'image -->
+      <linearGradient id="p-leaf" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#2f6b52"/><stop offset=".5" stop-color="#1f5340"/><stop offset="1" stop-color="#123a2c"/>
+      </linearGradient>
+      <linearGradient id="p-leaf-l" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#4a8a6b"/><stop offset="1" stop-color="#1f5340"/>
+      </linearGradient>
+      <!-- or -->
       <linearGradient id="g-gold" x1="0" y1="0" x2="1" y2="1">
-        <stop offset="0" stop-color="#f4d894"/><stop offset=".45" stop-color="#d9a441"/><stop offset="1" stop-color="#a8761f"/>
+        <stop offset="0" stop-color="#f2dda4"/><stop offset=".45" stop-color="#c9a55e"/><stop offset="1" stop-color="#9a7a34"/>
       </linearGradient>
     </defs>
 
-    <!-- Fleur à 5 pétales (rose botanique stylisée) -->
-    <symbol id="fl-fleur" viewBox="0 0 48 48">
+    <!-- ===== CAMÉLIA : fleur principale de l'image =====
+         3 couronnes de pétales imbriquées + étamines dorées au centre.
+         Vue légèrement de dessus, ombrée en bas à droite (relief). -->
+    <symbol id="fl-fleur" viewBox="0 0 64 64">
+      <!-- couronne extérieure (5 pétales larges) -->
       <g>
-        <ellipse cx="24" cy="13" rx="8" ry="11" fill="url(#g-petal)"/>
-        <ellipse cx="24" cy="13" rx="8" ry="11" fill="url(#g-petal)" transform="rotate(72 24 24)"/>
-        <ellipse cx="24" cy="13" rx="8" ry="11" fill="url(#g-petal2)" transform="rotate(144 24 24)"/>
-        <ellipse cx="24" cy="13" rx="8" ry="11" fill="url(#g-petal)" transform="rotate(216 24 24)"/>
-        <ellipse cx="24" cy="13" rx="8" ry="11" fill="url(#g-petal2)" transform="rotate(288 24 24)"/>
-        <circle cx="24" cy="24" r="6.2" fill="#f3c6a6"/>
-        <circle cx="24" cy="24" r="3.2" fill="url(#g-gold)"/>
-        <circle cx="21.6" cy="21.6" r="1.1" fill="#fff3d8" opacity=".9"/>
+        <ellipse cx="32" cy="16" rx="10" ry="13" fill="url(#p-out)"/>
+        <ellipse cx="32" cy="16" rx="10" ry="13" fill="url(#p-out)" transform="rotate(72 32 32)"/>
+        <ellipse cx="32" cy="16" rx="10" ry="13" fill="url(#p-out)" transform="rotate(144 32 32)"/>
+        <ellipse cx="32" cy="16" rx="10" ry="13" fill="url(#p-out)" transform="rotate(216 32 32)"/>
+        <ellipse cx="32" cy="16" rx="10" ry="13" fill="url(#p-out)" transform="rotate(288 32 32)"/>
       </g>
+      <!-- couronne intermédiaire -->
+      <g>
+        <ellipse cx="32" cy="20" rx="7.5" ry="9.5" fill="url(#p-mid)"/>
+        <ellipse cx="32" cy="20" rx="7.5" ry="9.5" fill="url(#p-mid)" transform="rotate(60 32 32)"/>
+        <ellipse cx="32" cy="20" rx="7.5" ry="9.5" fill="url(#p-mid)" transform="rotate(120 32 32)"/>
+        <ellipse cx="32" cy="20" rx="7.5" ry="9.5" fill="url(#p-mid)" transform="rotate(180 32 32)"/>
+        <ellipse cx="32" cy="20" rx="7.5" ry="9.5" fill="url(#p-mid)" transform="rotate(240 32 32)"/>
+        <ellipse cx="32" cy="20" rx="7.5" ry="9.5" fill="url(#p-mid)" transform="rotate(300 32 32)"/>
+      </g>
+      <!-- couronne interne -->
+      <g>
+        <ellipse cx="32" cy="25" rx="5" ry="6" fill="url(#p-in)"/>
+        <ellipse cx="32" cy="25" rx="5" ry="6" fill="url(#p-in)" transform="rotate(72 32 32)"/>
+        <ellipse cx="32" cy="25" rx="5" ry="6" fill="url(#p-in)" transform="rotate(144 32 32)"/>
+        <ellipse cx="32" cy="25" rx="5" ry="6" fill="url(#p-in)" transform="rotate(216 32 32)"/>
+        <ellipse cx="32" cy="25" rx="5" ry="6" fill="url(#p-in)" transform="rotate(288 32 32)"/>
+      </g>
+      <!-- étamines dorées -->
+      <circle cx="32" cy="32" r="5.6" fill="url(#p-coeur)"/>
+      <g fill="#b98a35" opacity=".8">
+        <circle cx="29.6" cy="30.4" r=".85"/><circle cx="33.4" cy="30.1" r=".85"/>
+        <circle cx="31.2" cy="33.6" r=".85"/><circle cx="34.6" cy="33.2" r=".85"/>
+        <circle cx="31.6" cy="30.8" r=".7"/><circle cx="33.9" cy="32.2" r=".7"/>
+      </g>
+      <circle cx="30.6" cy="29.8" r="1.2" fill="#fdf3d9" opacity=".9"/>
     </symbol>
 
-    <!-- Fleur double (plus dense, pour les grandsillages) -->
-    <symbol id="fl-fleur2" viewBox="0 0 48 48">
-      <g>
-        <ellipse cx="24" cy="12" rx="9.5" ry="12" fill="url(#g-petal2)"/>
-        <ellipse cx="24" cy="12" rx="9.5" ry="12" fill="url(#g-petal2)" transform="rotate(60 24 24)"/>
-        <ellipse cx="24" cy="12" rx="9.5" ry="12" fill="url(#g-petal2)" transform="rotate(120 24 24)"/>
-        <ellipse cx="24" cy="12" rx="9.5" ry="12" fill="url(#g-petal2)" transform="rotate(180 24 24)"/>
-        <ellipse cx="24" cy="12" rx="9.5" ry="12" fill="url(#g-petal2)" transform="rotate(240 24 24)"/>
-        <ellipse cx="24" cy="12" rx="9.5" ry="12" fill="url(#g-petal2)" transform="rotate(300 24 24)"/>
-        <circle cx="24" cy="24" r="9" fill="url(#g-petal)"/>
-        <g fill="#e0a07c">
-          <circle cx="24" cy="19" r="2.4"/><circle cx="28.6" cy="21.7" r="2.4"/>
-          <circle cx="27.3" cy="26.3" r="2.4"/><circle cx="20.7" cy="26.3" r="2.4"/>
-          <circle cx="19.4" cy="21.7" r="2.4"/>
-        </g>
-        <circle cx="24" cy="24" r="3.4" fill="url(#g-gold)"/>
-      </g>
+    <!-- Camélia double : plus touffu, pour les grandsillages -->
+    <symbol id="fl-fleur2" viewBox="0 0 64 64">
+      <use href="#fl-fleur" x="0" y="0" width="44" height="44"/>
+      <use href="#fl-fleur" x="21" y="21" width="40" height="40"/>
     </symbol>
 
-    <!-- Bouton fermé -->
+    <!-- Bouton fermé (pivoine) -->
     <symbol id="fl-bouton" viewBox="0 0 24 32">
-      <path d="M12 30 C4 22 2 15 5 9 C8 3 16 3 19 9 C22 15 20 22 12 30Z" fill="url(#g-petal2)"/>
-      <path d="M12 26 C7 20 6 15 8 11 C10 8 14 8 16 11 C18 15 17 20 12 26Z" fill="url(#g-petal)" opacity=".85"/>
-      <path d="M12 4 C11 8 8 9 5 9 C8 11 9 14 9 17" fill="none" stroke="#1f3a32" stroke-width="1.4" stroke-linecap="round"/>
+      <path d="M12 31 C3 23 1 15 4.5 8.5 C8 2 16 2 19.5 8.5 C23 15 21 23 12 31Z" fill="url(#p-mid)"/>
+      <path d="M12 27 C6.5 20.5 5.5 15 7.5 11 C9.5 7.5 14.5 7.5 16.5 11 C18.5 15 17.5 20.5 12 27Z" fill="url(#p-in)"/>
+      <path d="M12 25 C9 21 8.4 17 9.6 14.4" fill="none" stroke="#c9b3a0" stroke-width=".9" opacity=".8"/>
+      <path d="M11 6 C10 9 8 10 6 10.5 C8 12 9 14 9 16" fill="none" stroke="#2f6b52" stroke-width="1.3" stroke-linecap="round"/>
     </symbol>
 
-    <!-- Feuille -->
+    <!-- Feuille : vert profond, nervure visible (comme sur l'image) -->
     <symbol id="fl-feuille" viewBox="0 0 32 32">
-      <path d="M16 30 C16 18 8 10 2 4 C14 4 26 12 28 26 C24 29 20 30 16 30Z" fill="url(#g-leaf)"/>
-      <path d="M16 29 C15 20 10 12 4 6" fill="none" stroke="#4a6b45" stroke-width="1.1" opacity=".55"/>
+      <path d="M16 30 C16 18 8 10 2 4 C14 4 26 12 28 26 C24 29 20 30 16 30Z" fill="url(#p-leaf)"/>
+      <path d="M16 29 C15 20 10 12 4 6" fill="none" stroke="#0d2c21" stroke-width="1.2" opacity=".7"/>
+      <path d="M16 29 C15 20 10 12 4 6" fill="none" stroke="#5c9a7c" stroke-width=".6" opacity=".5"/>
     </symbol>
 
     <!-- Ramure / branche fleurie (grand décor de coin) -->
     <symbol id="fl-ramure" viewBox="0 0 200 200">
       <g>
-        <path d="M8 196 C34 150 62 112 104 74 C128 52 156 30 192 14" fill="none" stroke="#8a6b3a" stroke-width="2.4" stroke-linecap="round"/>
-        <path d="M40 152 C56 138 74 130 92 128" fill="none" stroke="#8a6b3a" stroke-width="1.5" opacity=".7"/>
-        <path d="M70 112 C86 96 100 86 118 78" fill="none" stroke="#8a6b3a" stroke-width="1.5" opacity=".7"/>
-        <use href="#fl-feuille" x="18" y="140" width="42" height="42" transform="rotate(-24 39 161)"/>
-        <use href="#fl-feuille" x="52" y="112" width="36" height="36" transform="rotate(28 70 130)"/>
-        <use href="#fl-feuille" x="76" y="86" width="34" height="34" transform="rotate(-18 93 103)"/>
-        <use href="#fl-feuille" x="108" y="56" width="30" height="30" transform="rotate(34 123 71)"/>
-        <use href="#fl-feuille" x="136" y="34" width="26" height="26" transform="rotate(-14 149 47)"/>
-        <use href="#fl-fleur" x="86" y="60" width="30" height="30"/>
-        <use href="#fl-fleur" x="118" y="32" width="26" height="26"/>
-        <use href="#fl-bouton" x="146" y="8" width="18" height="24" transform="rotate(28 155 20)"/>
-        <use href="#fl-fleur2" x="60" y="98" width="24" height="24"/>
-        <use href="#fl-bouton" x="34" y="128" width="16" height="21" transform="rotate(-32 42 138)"/>
+        <path d="M8 196 C34 150 62 112 104 74 C128 52 156 30 192 14" fill="none" stroke="#2f6b52" stroke-width="2.6" stroke-linecap="round"/>
+        <path d="M40 152 C56 138 74 130 92 128" fill="none" stroke="#2f6b52" stroke-width="1.5" opacity=".7"/>
+        <path d="M70 112 C86 96 100 86 118 78" fill="none" stroke="#2f6b52" stroke-width="1.5" opacity=".7"/>
+        <use href="#fl-feuille" x="14" y="138" width="44" height="44" transform="rotate(-24 36 160)"/>
+        <use href="#fl-feuille" x="50" y="110" width="38" height="38" transform="rotate(28 69 129)"/>
+        <use href="#fl-feuille" x="74" y="84" width="36" height="36" transform="rotate(-18 92 102)"/>
+        <use href="#fl-feuille" x="106" y="54" width="32" height="32" transform="rotate(34 122 70)"/>
+        <use href="#fl-feuille" x="134" y="32" width="28" height="28" transform="rotate(-14 148 46)"/>
+        <use href="#fl-fleur" x="82" y="56" width="34" height="34"/>
+        <use href="#fl-fleur" x="114" y="28" width="30" height="30"/>
+        <use href="#fl-bouton" x="144" y="6" width="20" height="26" transform="rotate(28 154 19)"/>
+        <use href="#fl-fleur2" x="56" y="94" width="28" height="28"/>
+        <use href="#fl-bouton" x="30" y="126" width="18" height="23" transform="rotate(-32 39 137)"/>
       </g>
     </symbol>
 
-    <!-- Couronne de fleurs (demi-cercle, pour les bandeaux) -->
+    <!-- Couronne de fleurs (demi-cercle) -->
     <symbol id="fl-couronne" viewBox="0 0 240 70">
       <g>
-        <path d="M6 62 C40 22 80 6 120 6 C160 6 200 22 234 62" fill="none" stroke="#8a6b3a" stroke-width="1.8"/>
-        <use href="#fl-feuille" x="16" y="42" width="26" height="26" transform="rotate(-30 29 55)"/>
-        <use href="#fl-feuille" x="44" y="24" width="24" height="24" transform="rotate(18 56 36)"/>
-        <use href="#fl-feuille" x="176" y="24" width="24" height="24" transform="rotate(-18 188 36)"/>
-        <use href="#fl-feuille" x="200" y="42" width="26" height="26" transform="rotate(30 213 55)"/>
-        <use href="#fl-fleur" x="34" y="16" width="26" height="26"/>
-        <use href="#fl-fleur" x="70" y="2" width="22" height="22"/>
-        <use href="#fl-fleur" x="148" y="2" width="22" height="22"/>
-        <use href="#fl-fleur" x="184" y="16" width="26" height="26"/>
-        <use href="#fl-fleur2" x="106" y="-8" width="28" height="28"/>
-        <use href="#fl-bouton" x="98" y="14" width="15" height="20" transform="rotate(-14 105 24)"/>
-        <use href="#fl-bouton" x="128" y="14" width="15" height="20" transform="rotate(14 135 24)"/>
+        <path d="M6 62 C40 22 80 6 120 6 C160 6 200 22 234 62" fill="none" stroke="#2f6b52" stroke-width="1.8"/>
+        <use href="#fl-feuille" x="12" y="40" width="28" height="28" transform="rotate(-30 26 54)"/>
+        <use href="#fl-feuille" x="42" y="22" width="26" height="26" transform="rotate(18 55 35)"/>
+        <use href="#fl-feuille" x="174" y="22" width="26" height="26" transform="rotate(-18 187 35)"/>
+        <use href="#fl-feuille" x="198" y="40" width="28" height="28" transform="rotate(30 212 54)"/>
+        <use href="#fl-fleur" x="30" y="12" width="28" height="28"/>
+        <use href="#fl-fleur" x="68" y="0" width="24" height="24"/>
+        <use href="#fl-fleur" x="148" y="0" width="24" height="24"/>
+        <use href="#fl-fleur" x="182" y="12" width="28" height="28"/>
+        <use href="#fl-fleur2" x="102" y="-10" width="30" height="30"/>
+        <use href="#fl-bouton" x="94" y="12" width="16" height="21" transform="rotate(-14 102 22)"/>
+        <use href="#fl-bouton" x="128" y="12" width="16" height="21" transform="rotate(14 136 22)"/>
       </g>
     </symbol>
 
-    <!-- Filet fleuri horizontal (séparateur) -->
+    <!-- Filet fleuri horizontal (séparateur de titre) -->
     <symbol id="fl-filet" viewBox="0 0 200 28">
       <g>
-        <path d="M0 14 H74 M126 14 H200" stroke="#8a6b3a" stroke-width="1" opacity=".55"/>
-        <circle cx="80" cy="14" r="2" fill="#d9a441"/>
-        <circle cx="120" cy="14" r="2" fill="#d9a441"/>
-        <use href="#fl-fleur" x="88" y="3" width="24" height="24"/>
+        <path d="M0 14 H74 M126 14 H200" stroke="#b9855c" stroke-width="1" opacity=".6"/>
+        <circle cx="80" cy="14" r="2" fill="#c9a55e"/>
+        <circle cx="120" cy="14" r="2" fill="#c9a55e"/>
+        <use href="#fl-fleur" x="90" y="4" width="20" height="20"/>
       </g>
     </symbol>
 
-<!-- Bouquetettenuage (fête) : grappe dense de fleurs et de feuillages -->
+    <!-- Bouquet : grappe dense de camélias (décor de coin) -->
     <symbol id="fl-bouquet" viewBox="0 0 120 120">
-      <use href="#fl-fleur2" x="30" y="24" width="52" height="52"/>
-      <use href="#fl-fleur"  x="8"  y="46" width="36" height="36"/>
-      <use href="#fl-fleur"  x="72" y="44" width="34" height="34"/>
-      <use href="#fl-bouton" x="26" y="66" width="18" height="24" transform="rotate(-18 35 78)"/>
-      <use href="#fl-bouton" x="80" y="70" width="16" height="22" transform="rotate(20 88 81)"/>
-      <use href="#fl-feuille" x="4"  y="16" width="30" height="30" transform="rotate(-30 19 31)"/>
-      <use href="#fl-feuille" x="88" y="18" width="30" height="30" transform="rotate(28 103 33)"/>
-      <use href="#fl-feuille" x="46" y="82" width="30" height="30" transform="rotate(6 61 97)"/>
+      <use href="#fl-feuille" x="0" y="14" width="34" height="34" transform="rotate(-32 17 31)"/>
+      <use href="#fl-feuille" x="86" y="16" width="34" height="34" transform="rotate(30 103 33)"/>
+      <use href="#fl-feuille" x="42" y="80" width="36" height="36" transform="rotate(8 60 98)"/>
+      <use href="#fl-fleur" x="26" y="20" width="48" height="48"/>
+      <use href="#fl-fleur" x="52" y="48" width="46" height="46"/>
+      <use href="#fl-fleur" x="4"  y="46" width="34" height="34"/>
+      <use href="#fl-fleur" x="76" y="42" width="32" height="32"/>
+      <use href="#fl-bouton" x="20" y="72" width="18" height="24" transform="rotate(-18 29 84)"/>
+      <use href="#fl-bouton" x="84" y="72" width="16" height="22" transform="rotate(20 92 83)"/>
     </symbol>
 
-    <!-- Guirlande de fête (bandeau festif en arc, plus dense que la couronne) -->
+    <!-- Guirlande de fête (bandeau) -->
     <symbol id="fl-fete" viewBox="0 0 280 80">
       <g>
-        <path d="M4 70 C48 22 96 4 140 4 C184 4 232 22 276 70" fill="none" stroke="#8a6b3a" stroke-width="1.8"/>
-        <path d="M140 4 C138 -6 132 -12 124 -14 C130 -8 133 -3 133 3" fill="none" stroke="#8a6b3a" stroke-width="1.4"/>
-        <use href="#fl-feuille" x="18"  y="46" width="26" height="26" transform="rotate(-30 31 59)"/>
-        <use href="#fl-feuille" x="52"  y="24" width="24" height="24" transform="rotate(20 64 36)"/>
-        <use href="#fl-feuille" x="90"  y="10" width="22" height="22" transform="rotate(-14 101 21)"/>
-        <use href="#fl-feuille" x="190" y="10" width="22" height="22" transform="rotate(14 201 21)"/>
-        <use href="#fl-feuille" x="228" y="24" width="24" height="24" transform="rotate(-20 240 36)"/>
-        <use href="#fl-feuille" x="262" y="46" width="26" height="26" transform="rotate(30 275 59)"/>
-        <use href="#fl-fleur"  x="36"  y="16" width="28" height="28"/>
-        <use href="#fl-fleur"  x="78"  y="0"  width="24" height="24"/>
-        <use href="#fl-fleur"  x="178" y="0"  width="24" height="24"/>
-        <use href="#fl-fleur"  x="216" y="16" width="28" height="28"/>
-        <use href="#fl-fleur2" x="112" y="-8" width="30" height="30"/>
-        <use href="#fl-fleur2" x="150" y="-8" width="30" height="30"/>
-        <use href="#fl-bouton" x="62"  y="34" width="15" height="20" transform="rotate(-16 70 44)"/>
-        <use href="#fl-bouton" x="204" y="34" width="15" height="20" transform="rotate(16 212 44)"/>
-        <circle cx="140" cy="-16" r="5" fill="#f4d894"/>
+        <path d="M4 70 C48 22 96 4 140 4 C184 4 232 22 276 70" fill="none" stroke="#2f6b52" stroke-width="1.8"/>
+        <use href="#fl-feuille" x="14" y="44" width="28" height="28" transform="rotate(-30 28 58)"/>
+        <use href="#fl-feuille" x="50" y="22" width="26" height="26" transform="rotate(20 63 35)"/>
+        <use href="#fl-feuille" x="88" y="8"  width="24" height="24" transform="rotate(-14 100 20)"/>
+        <use href="#fl-feuille" x="188" y="8" width="24" height="24" transform="rotate(14 200 20)"/>
+        <use href="#fl-feuille" x="226" y="22" width="26" height="26" transform="rotate(-20 239 35)"/>
+        <use href="#fl-feuille" x="260" y="44" width="28" height="28" transform="rotate(30 274 58)"/>
+        <use href="#fl-fleur" x="34"  y="12" width="30" height="30"/>
+        <use href="#fl-fleur" x="76"  y="-2" width="26" height="26"/>
+        <use href="#fl-fleur" x="178" y="-2" width="26" height="26"/>
+        <use href="#fl-fleur" x="214" y="12" width="30" height="30"/>
+        <use href="#fl-fleur2" x="108" y="-12" width="32" height="32"/>
+        <use href="#fl-fleur2" x="146" y="-12" width="32" height="32"/>
+        <use href="#fl-bouton" x="60"  y="32" width="16" height="21" transform="rotate(-16 68 42)"/>
+        <use href="#fl-bouton" x="202" y="32" width="16" height="21" transform="rotate(16 210 42)"/>
+        <circle cx="140" cy="-18" r="5" fill="url(#g-gold)"/>
       </g>
     </symbol>
 
-    <!-- Deux anneaux entrelacés (les alliance) -->
+    <!-- Deux anneaux entrelacés (les alliances) -->
     <symbol id="fl-anneaux" viewBox="0 0 120 84">
       <g class="shine">
         <ellipse cx="46" cy="52" rx="26" ry="30" fill="none" stroke="url(#g-gold)" stroke-width="5"/>
         <ellipse cx="74" cy="52" rx="26" ry="30" fill="none" stroke="url(#g-gold)" stroke-width="5"/>
-        <ellipse cx="46" cy="52" rx="26" ry="30" fill="none" stroke="#f4d894" stroke-width="1.1" opacity=".8"/>
-        <ellipse cx="74" cy="52" rx="26" ry="30" fill="none" stroke="#f4d894" stroke-width="1.1" opacity=".8"/>
+        <ellipse cx="46" cy="52" rx="26" ry="30" fill="none" stroke="#f2e0b4" stroke-width="1.1" opacity=".85"/>
+        <ellipse cx="74" cy="52" rx="26" ry="30" fill="none" stroke="#f2e0b4" stroke-width="1.1" opacity=".85"/>
       </g>
-      <path d="M60 14 C56 8 58 3 62 1 C64 5 65 9 63 13Z" fill="#f4d894" stroke="#d9a441" stroke-width="1"/>
+      <path d="M60 14 C56 8 58 3 62 1 C64 5 65 9 63 13Z" fill="#fdf1e3" stroke="#c9a55e" stroke-width="1"/>
     </symbol>
   </svg>
 
@@ -525,7 +550,7 @@
         </div>
         <button class="wax-seal" id="seal" type="button" aria-label="Ouvrir l'enveloppe">
           <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path d="M12 4 C 13 7, 16 8, 19 8 C 17 11, 17 14, 19 17 C 16 17, 13 18, 12 21 C 11 18, 8 17, 5 17 C 7 14, 7 11, 5 8 C 8 8, 11 7, 12 4 Z" fill="#d9a441" opacity=".9"/>
+            <path d="M12 4 C 13 7, 16 8, 19 8 C 17 11, 17 14, 19 17 C 16 17, 13 18, 12 21 C 11 18, 8 17, 5 17 C 7 14, 7 11, 5 8 C 8 8, 11 7, 12 4 Z" fill="#f6e7cf" opacity=".95"/>
           </svg>
         </button>
       </div>

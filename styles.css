@@ -12,60 +12,44 @@
    ============================================================ */
 
 :root {
-  /* ——— La nuit ——— */
-  --night:     #14090d;   /* noir chaud, le fond absolu */
-  --oxblood:   #4a0f1c;   /* rouge sombre, couleur de la soirée */
-  --wine:      #6b1226;   /* vin : le aplat de travail */
-  --indigo:    #1a1030;   /* bleu nuit, contre-jour */
-  --ink:       #f7ece4;   /* texte principal : ivoire lumineux */
-  --ink-soft:  #e8cfc0;   /* texte secondaire */
-  --muted:     #b4938a;   /* texte tertiaire, sur fond sombre */
+  /* ——— Surfaces : crème chaud, comme l'affiche d'origine ——— */
+  --bg: #f6ede3;
+  --bg2: #f1e4d6;
+  --cream: #fdf8f2;
 
-  /* ——— L'or, comme lumière ——— */
-  --gold:      #d9a441;   /* or principal */
-  --gold-lit:  #f4d894;   /* éclat, points chauds */
-  --gold-deep: #a8761f;   /* or assombri,hadow */
-  --bronze:    #7d5518;
+  /* ——— Thème TERRACOTTA ——— */
+  --terra: #b85c38;       /* terracotta, couleur signature */
+  --deep:  #8a3416;       /* terracotta foncé */
+  --clay:  #c97b4e;       /* terracotta clair */
+  --sand:  #6b4530;       /* sable, texte secondaire soutenu */
 
-  /* ——— Accents froids (rare, pour la profondeur) ——— */
-  --teal:      #2f6b6a;
-  --danger:    #d4574a;
+  /* ——— Or de l'arc ——— */
+  --gold:      #c9a55e;
+  --gold-lit:  #e8cd97;
+  --gold-deep: #a8761f;
+  --bronze:    #a8865e;
 
-  /* ——— Surfaces ——— */
-  --bg:        #14090d;
-  --bg2:       #240a14;
-  --cream:     #1a0c12;   /* sur fond sombre, « cream » = panneau */
+  /* ——— Vert profond des camélias (repris du sprite) ——— */
+  --leaf:     #2f6b52;
+  --leaf-d:   #1f5340;
+  --leaf-l:   #4a8a6b;
 
-  /* ——— Lignes : l'or en filet, très fin ——— */
-  --line:      rgba(217, 164, 65, .3);
-  --line-soft: rgba(217, 164, 65, .14);
-  --glass:     rgba(217, 164, 65, .05);
+  /* ——— Texte ——— */
+  --ink:    #4a2416;      /* brun chaud, principale */
+  --muted:  #5c3a26;      /* secondaire */
+  --danger: #a63d2a;
 
-  /* ——— Alias historiques (landing) ——— */
-  --gold2:     var(--gold-lit);
-  --deep:      var(--gold-deep);
-  --terra:     var(--gold);
-  --sand:      var(--bronze);
-  --arc:       var(--gold);
+  /* ——— Lignes & aplats ——— */
+  --line:      rgba(184, 92, 56, .26);
+  --line-soft: rgba(184, 92, 56, .12);
+  --glass:     rgba(184, 92, 56, .05);
+  --field:     linear-gradient(160deg, #fdfaf5 0%, #f6ede3 100%);
+  --chip-bg:   linear-gradient(150deg, rgba(216, 136, 94, .14), rgba(184, 92, 56, .05));
+  --band:      linear-gradient(180deg, #f1e4d6 0%, #e8d9c5 100%);
 
-  /* ——— Palette florale ———
-     Les fleurs sortent de la pénombre : le dégradé va du terracotta
-     lumineux au rouge chaud, jamais plus sombre que le fond. Ces valeurs
-     miroitent le sprite SVG ; tous les paliers dépassent 3:1 sur le fond
-     nuit, donc chaque fleur est visible sans trahir l'ambiance sombre. */
-  --petal:     #e8b18d;   /* pétale au sommet du dégradé */
-  --petal-d:   #c9663f;   /* pétale médian */
-  --petal-dd:  #a84a24;   /* pétale à la base */
-  --petal-l:   #f3c6a6;   /* cœur de fleur */
-  --petal-w:   #e8b18d;   /* pétale nacré */
-  --leaf:      #7d9a66;   /* feuillage */
-  --leaf-d:    #4a6b45;
-  --stem:      #8a6b3a;
-
-  /* ——— Aplats de surface ——— */
-  --band:      linear-gradient(180deg, #1c0810 0%, #14090d 100%);
-  --field:     linear-gradient(160deg, #22101a 0%, #180a11 100%);
-  --chip-bg:   linear-gradient(150deg, rgba(217,164,65,.14), rgba(107,18,38,.28));
+  /* ——— Alias historiques : le landing appelait le terracotta "gold" ——— */
+  --gold2: var(--deep);
+  --arc:   var(--gold);
 }
 
 /* ——— Reset ——— */
@@ -81,9 +65,9 @@ body {
 }
 [hidden] { display: none !important; }
 
-::selection { background: var(--gold); color: var(--night); }
+::selection { background: var(--terra); color: var(--cream); }
 ::-webkit-scrollbar { width: 10px; }
-::-webkit-scrollbar-track { background: var(--night); }
+::-webkit-scrollbar-track { background: var(--bg); }
 ::-webkit-scrollbar-thumb { background: linear-gradient(var(--gold-deep), var(--gold)); border-radius: 99px; }
 
 /* ——— Révélation au scroll ——— */
@@ -119,14 +103,14 @@ body {
 .sway-3 { animation-duration: 11s; animation-delay: -6s; }
 @keyframes sway { 0%, 100% { transform: rotate(-1.6deg); } 50% { transform: rotate(1.6deg); } }
 
-/* Pétales qui tombent en fond (landing) — silhouettes sombres, éclairées à peine */
+/* Pétales qui tombent (landing) — camélias blancs, comme sur l'image */
 .petal-fall {
   position: absolute; top: -6%; width: 9px; height: 9px; pointer-events: none;
-  background: linear-gradient(140deg, #4a1a28, #1c0810);
-  border: 1px solid rgba(217, 164, 65, .22);
+  background: linear-gradient(140deg, #ffffff, #ece0d6);
+  border: 1px solid rgba(184, 92, 56, .16);
   border-radius: 62% 38% 55% 45% / 48% 58% 42% 52%;
   opacity: 0; animation: petal-fall linear infinite;
-  box-shadow: 0 0 10px rgba(217, 164, 65, .18);
+  box-shadow: 0 2px 6px rgba(31, 83, 64, .18);
 }
 @keyframes petal-fall {
   0% { opacity: 0; transform: translate(0, 0) rotate(0deg); }
@@ -135,8 +119,8 @@ body {
   100% { opacity: 0; transform: translate(var(--drift, 40px), 112vh) rotate(420deg); }
 }
 
-/* Ramure fleurie dans un coin de section — silhouette dans la pénombre */
-.vine { position: absolute; width: clamp(150px, 20vw, 260px); aspect-ratio: 1; pointer-events: none; opacity: .78; z-index: -1; filter: drop-shadow(0 0 24px rgba(217, 164, 65, .2)); }
+/* Ramure fleurie dans un coin de section — vert profond, ombre douce */
+.vine { position: absolute; width: clamp(150px, 20vw, 260px); aspect-ratio: 1; pointer-events: none; opacity: .9; z-index: -1; filter: drop-shadow(0 8px 18px rgba(31, 83, 64, .22)); }
 .vine.tl { top: 0;    left: 0; }
 .vine.tr { top: 0;    right: 0; transform: scaleX(-1); }
 .vine.bl { bottom: 0; left: 0; transform: scaleY(-1); }
@@ -145,8 +129,8 @@ body {
 /* sur mobile on ne garde que deux ramures, pour ne pas encombrer */
 @media (max-width: 860px) { .vine.bl, .vine.br { display: none; } .vine { opacity: .6; } }
 
-/* Anneaux : LA source de lumière de la page — halo chaud, éclat lent */
-.rings { filter: drop-shadow(0 0 10px rgba(217, 164, 65, .45)) drop-shadow(0 0 26px rgba(217, 164, 65, .18)); }
+/* Anneaux : l'or de l'arc, éclat métallique doux */
+.rings { filter: drop-shadow(0 2px 6px rgba(138, 52, 22, .28)) drop-shadow(0 6px 16px rgba(184, 92, 56, .16)); }
 .rings .shine { animation: ring-shine 4.5s ease-in-out infinite; }
 @keyframes ring-shine { 0%, 100% { opacity: .45; } 50% { opacity: 1; } }
 
@@ -161,34 +145,34 @@ body {
 .band::after { bottom: 0; }
 
 /* Ornement de titre : filet + fleur centrale */
-.sec-flower { display: block; margin: 14px auto 0; width: 92px; height: 30px; opacity: .7; filter: drop-shadow(0 0 6px rgba(217,164,65,.3)); }
+.sec-flower { display: block; margin: 14px auto 0; width: 92px; height: 30px; opacity: .95; }
 
-/* Champs de formulaire : panneaux de nuit, pas du blanc */
+/* Champs de formulaire : fond crème, bordure terracotta */
 .field input,
 .field select {
   background: var(--field);
-  border: 1px solid rgba(217, 164, 65, .2);
+  border: 1px solid rgba(184, 92, 56, .22);
   color: var(--ink);
 }
-.field input::placeholder { color: rgba(180, 147, 138, .55); }
+.field input::placeholder { color: rgba(138, 52, 22, .45); }
 
 /* Puce admin */
-.chip { background: var(--chip-bg); border-color: rgba(217, 164, 65, .18); }
+.chip { background: var(--chip-bg); border-color: rgba(184, 92, 56, .2); }
 
-/* Barre de progression : fond sombre, remplissage en or */
-.bar { background: rgba(217, 164, 65, .1); }
+/* Barre de progression */
+.bar { background: rgba(138, 52, 22, .14); }
 
-/* Toast : panneau sombre, texte clair */
+/* Toast : panneau crème, ombre chaude */
 .toast {
-  background: linear-gradient(150deg, #2a0f1a, #170810);
+  background: linear-gradient(150deg, #fdf8f2, #f6e6d6);
   color: var(--ink);
-  border: 1px solid rgba(217, 164, 65, .35);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, .6), 0 0 30px rgba(107, 18, 38, .35);
+  border: 1px solid rgba(184, 92, 56, .35);
+  box-shadow: 0 12px 34px rgba(74, 36, 22, .22);
 }
 
-/* Pied de page : la descente vers le noir absolu */
+/* Pied de page : bandeau terracotta doux */
 .foot {
-  background: linear-gradient(180deg, transparent, rgba(74, 15, 28, .3) 45%, rgba(10, 4, 7, .75));
+  background: linear-gradient(180deg, transparent, rgba(184, 92, 56, .08) 45%, rgba(138, 52, 22, .14));
   border-top: 1px solid var(--line-soft);
   padding-top: 64px;
 }
@@ -197,7 +181,7 @@ body {
   position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
   overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
 }
-:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+:focus-visible { outline: 2px solid var(--terra); outline-offset: 3px; }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }
