@@ -441,6 +441,58 @@ def build_plan():
     </symbol>"""
 
 
+def build_medaillon():
+    """Grand medaillon ovale du faire-part : double filet dore, couronne
+    de feuillage et de perles, vide au centre pour laisser passer le
+    texte en HTML par-dessus. viewBox 240 x 320 (ratio du carre)."""
+    cx, cy, rx, ry = 120.0, 160.0, 104.0, 140.0
+    L = []
+    # couronne : feuillage pose le long de l'ovale, deux passes
+    for i in range(26):
+        a = math.radians(-90 + i * (360.0 / 26))
+        px = cx + rx * math.cos(a) * 0.985
+        py = cy + ry * math.sin(a) * 0.985
+        s = 15.0 + 5.0 * math.sin(i * 1.7)
+        L.append(use("fl-feuille", px - s / 2, py - s / 2, s, s,
+                     rot=math.degrees(a) + 90 + (14 if i % 2 else -14)))
+    for i in range(20):
+        a = math.radians(-84 + i * (348.0 / 19))
+        px = cx + rx * math.cos(a) * 0.88
+        py = cy + ry * math.sin(a) * 0.88
+        s = 9.0 + 3.0 * math.sin(i * 2.3)
+        L.append(use("fl-fougere", px - s / 2, py - s / 2, s, s,
+                     rot=math.degrees(a) - 90 + (i % 2) * 22))
+    # perles espacees regulierement, plus denses en haut et en bas
+    for i in range(16):
+        a = math.radians(i * 22.5)
+        px = cx + rx * 0.93 * math.cos(a)
+        py = cy + ry * 0.95 * math.sin(a)
+        r = 4.2 if i % 4 else 5.4
+        L.append(use("fl-perle", px - r, py - r, r * 2, r * 2))
+    # double filet dore + filet interieur tres fin
+    L.append(f'<ellipse cx="{n(cx)}" cy="{n(cy)}" rx="{n(rx)}" ry="{n(ry)}" '
+             f'fill="none" stroke="url(#g-gold)" stroke-width="2.4"/>')
+    L.append(f'<ellipse cx="{n(cx)}" cy="{n(cy)}" rx="{n(rx - 7)}" ry="{n(ry - 7)}" '
+             f'fill="none" stroke="#cda75a" stroke-width="0.9" opacity=".8"/>')
+    L.append(f'<ellipse cx="{n(cx)}" cy="{n(cy)}" rx="{n(rx - 12)}" ry="{n(ry - 12)}" '
+             f'fill="none" stroke="url(#g-gold)" stroke-width="0.7" opacity=".55"/>')
+    # losanges dore aux quatre points cardinaux
+    for a in (0, 90, 180, 270):
+        r = math.radians(a)
+        px = cx + rx * math.cos(r)
+        py = cy + ry * math.sin(r)
+        L.append(f'<path d="M{n(px)} {n(py - 7)} L{n(px + 7)} {n(py)} '
+                 f'L{n(px)} {n(py + 7)} L{n(px - 7)} {n(py)} Z" '
+                 f'fill="url(#g-gold)" opacity=".92"/>')
+    return (
+        "    <!-- Medaillon ovale du faire-part : cadre vide pour le texte -->\n"
+        '    <symbol id="fl-medaille" viewBox="0 0 240 320">\n'
+        "      <g>\n" + "\n".join(L) + "\n      </g>\n"
+        "    </symbol>"
+    )
+
+
+
 def build_couronne():
     items = [
         use("fl-feuille", 8, 34, 30, 30, rot=-30),
@@ -589,7 +641,7 @@ def build_anneaux():
 # Assemblage & injection
 # ————————————————————————————————————————————————————————————
 HEAD = "  <!-- ===== SPRITE FLORAL"
-PAGES = ("index.html", "invitation-landing.html")
+PAGES = ("index.html", "invitation-landing.html", "carte.html")
 
 HEADER = """  <!-- ===== SPRITE FLORAL — CAMÉLIAS IVOIRE (carte de référence) =====
        Camélias à 3 couronnes de pétales larges, cœur d'étamines dorées,
@@ -611,6 +663,7 @@ def sprite_block():
         build_ramure(),
         build_couronne(),
         build_plan(),
+        build_medaillon(),
         build_filet(),
         build_bouquet(),
         build_fete(),
