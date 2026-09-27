@@ -1,0 +1,81 @@
+/* ============================================================
+   Invitation Daria & Hermann — feuille de style commune
+   Palettes, reset, utilitaires partagés par index.html et
+   invitation-landing.html. Ne pas dupliquer ces règles.
+   ============================================================ */
+
+:root {
+  /* ——— Surfaces ——— */
+  --bg: #f6ede3;          /* crème chaud */
+  --bg2: #f1e4d6;
+  --cream: #fdf8f2;
+
+  /* ——— Palette (terracotta + or de l'arc) ——— */
+  --deep: #8a3416;        /* terracotta foncé */
+  --terra: #b85c38;       /* terracotta */
+  --terra-light: #c97b4e; /* terracotta clair */
+  --sand: #6b4530;        /* sable foncé */
+  --arc: #c9a55e;         /* or de l'arc */
+  --ink: #4a2416;
+  --muted: #5c3a26;       /* texte secondaire */
+  --danger: #a63d2a;
+
+  /* ——— Lignes & aplats ——— */
+  --line: rgba(184, 92, 56, .26);
+  --line-soft: rgba(184, 92, 56, .12);
+  --glass: rgba(184, 92, 56, .05);
+
+  /* ——— Alias historiques (landing) ——— */
+  --gold: var(--terra);   /* l'ancien "gold" du landing vaut le terracotta */
+  --gold2: var(--deep);
+  --bronze: #a8865e;
+}
+
+/* ——— Reset ——— */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'Jost', system-ui, sans-serif;
+  overflow-x: hidden;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+[hidden] { display: none !important; }
+
+::selection { background: var(--terra); color: var(--cream); }
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: linear-gradient(var(--bronze), var(--terra)); border-radius: 99px; }
+
+/* ——— Révélation au scroll ——— */
+.reveal { opacity: 0; transform: translateY(26px); transition: opacity .9s ease, transform .9s cubic-bezier(.2, .8, .2, 1); }
+.reveal.in { opacity: 1; transform: none; }
+
+/* ——— Pied de page ——— */
+.foot {
+  text-align: center; padding: 52px 20px 64px; color: var(--muted);
+  font-size: 10.5px; letter-spacing: .3em; text-transform: uppercase; font-weight: 300;
+}
+.foot .dm { display: inline-block; width: 7px; height: 7px; background: var(--terra); transform: rotate(45deg); margin: 0 14px; opacity: .8; }
+
+/* ——— Accessibilité ——— */
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+:focus-visible { outline: 2px solid var(--terra); outline-offset: 3px; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1; transform: none; }
+}
+
+/* ——— Sans JavaScript : on masque les décors interactifs ——— */
+.no-js-note {
+  max-width: 480px; margin: 40px auto; padding: 22px; text-align: center;
+  border: 1px dashed var(--line); color: var(--muted);
+  font-size: 13px; line-height: 1.8; border-radius: 3px;
+}
