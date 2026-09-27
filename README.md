@@ -16,7 +16,9 @@ Mariage : vendredi 18 décembre 2026, 16h00 — Table des Élites, Akwa, Douala.
 Une soirée, pas un après-midi. Le fond est une nuit profonde (oxblood → indigo),
 **l'or est traité comme une source de lumière** et les fleurs sont des **silhouettes**
 découpées dans la pénombre — pas des illustrations. Aucun crème, aucun script cursif :
-la typographie est Cormorant Garamond (élégant, contemporaine) + Cinzel (capitales) + Jost.
+la typographie est **Pinyon Script** pour les prénoms et mentions manuscrites (calligraphie
+fine et fluide, comme sur l'affiche de référence), **Cormorant Garamond** pour les titres et
+textes, **Cinzel** pour les capitales, **Jost** pour l'interface.
 
 | Rôle | Couleur |
 |---|---|
