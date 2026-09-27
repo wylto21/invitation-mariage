@@ -1,10 +1,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <rect width="64" height="64" rx="12" fill="#f6ede3"/>
-  <g transform="rotate(45 32 32)">
-    <rect x="14" y="14" width="36" height="36" fill="none" stroke="#b85c38" stroke-width="2"/>
-    <rect x="20" y="20" width="24" height="24" fill="none" stroke="#c9a55e" stroke-width="1"/>
-  </g>
-  <text x="32" y="40" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif"
-        font-size="20" font-style="italic" fill="#8a3416">H</text>
-  <circle cx="32" cy="52" r="2.5" fill="#c9a55e"/>
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f4d894"/><stop offset=".5" stop-color="#d9a441"/><stop offset="1" stop-color="#a8761f"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="12" fill="#14090d"/>
+  <circle cx="25" cy="35" r="13" fill="none" stroke="url(#g)" stroke-width="3"/>
+  <circle cx="39" cy="35" r="13" fill="none" stroke="url(#g)" stroke-width="3"/>
+  <circle cx="32" cy="15" r="3" fill="#f4d894"/>
 </svg>

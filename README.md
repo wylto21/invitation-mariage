@@ -12,6 +12,20 @@ Mariage : vendredi 18 décembre 2026, 16h00 — Table des Élites, Akwa, Douala.
 | `favicon.svg` | Icône du site |
 | `photo-couple.jpg` | Photo de couverture (partagée par les balises OG) |
 
+## Direction artistique — « Nuit Douala »
+Une soirée, pas un après-midi. Le fond est une nuit profonde (oxblood → indigo),
+**l'or est traité comme une source de lumière** et les fleurs sont des **silhouettes**
+découpées dans la pénombre — pas des illustrations. Aucun crème, aucun script cursif :
+la typographie est Cormorant Garamond (élégant, contemporaine) + Cinzel (capitales) + Jost.
+
+| Rôle | Couleur |
+|---|---|
+| Fond absolu | `#14090d` |
+| Oxblood / vin | `#4a0f1c` · `#6b1226` |
+| Indigo (contre-jour) | `#1a1030` |
+| Or (lumière) | `#d9a441` · éclat `#f4d894` |
+| Texte | ivoire `#f7ece4`, secondaire `#e8cfc0` |
+
 ## Décors floraux
 Un **sprite SVG** (`#fl-fleur`, `#fl-fleur2`, `#fl-bouton`, `#fl-feuille`, `#fl-ramure`,
 `#fl-couronne`, `#fl-filet`, `#fl-anneaux`) est inliné en haut de chaque page et réemployé

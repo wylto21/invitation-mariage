@@ -1,50 +1,68 @@
 /* ============================================================
    Invitation Daria & Hermann — feuille de style commune
-   Palettes, reset, utilitaires partagés par index.html et
-   invitation-landing.html. Ne pas dupliquer ces règles.
+
+   DIRECTION : « NUIT DOUALA »
+   Une soirée, pas un après-midi. Fond nuit profond (oxblood →
+   indigo), l'or traité comme une source de lumière — pas comme
+   une couleur. Les fleurs ne sont pas desIllustration : ce sont
+   des silhouettes découpées dans la pénombre.
+
+   Sombre, chaud, cinématographique. Le texte est clair, l'ambiance
+   est sombre, l'or ne sert qu'à attirer l'œil.
    ============================================================ */
 
 :root {
+  /* ——— La nuit ——— */
+  --night:     #14090d;   /* noir chaud, le fond absolu */
+  --oxblood:   #4a0f1c;   /* rouge sombre, couleur de la soirée */
+  --wine:      #6b1226;   /* vin : le aplat de travail */
+  --indigo:    #1a1030;   /* bleu nuit, contre-jour */
+  --ink:       #f7ece4;   /* texte principal : ivoire lumineux */
+  --ink-soft:  #e8cfc0;   /* texte secondaire */
+  --muted:     #b4938a;   /* texte tertiaire, sur fond sombre */
+
+  /* ——— L'or, comme lumière ——— */
+  --gold:      #d9a441;   /* or principal */
+  --gold-lit:  #f4d894;   /* éclat, points chauds */
+  --gold-deep: #a8761f;   /* or assombri,hadow */
+  --bronze:    #7d5518;
+
+  /* ——— Accents froids (rare, pour la profondeur) ——— */
+  --teal:      #2f6b6a;
+  --danger:    #d4574a;
+
   /* ——— Surfaces ——— */
-  --bg: #f6ede3;          /* crème chaud */
-  --bg2: #f1e4d6;
-  --cream: #fdf8f2;
+  --bg:        #14090d;
+  --bg2:       #240a14;
+  --cream:     #1a0c12;   /* sur fond sombre, « cream » = panneau */
 
-  /* ——— Palette (terracotta + or de l'arc) ——— */
-  --deep: #8a3416;        /* terracotta foncé */
-  --terra: #b85c38;       /* terracotta */
-  --terra-light: #c97b4e; /* terracotta clair */
-  --sand: #6b4530;        /* sable foncé */
-  --arc: #c9a55e;         /* or de l'arc */
-  --ink: #4a2416;
-  --muted: #5c3a26;       /* texte secondaire */
-  --danger: #a63d2a;
-
-  /* ——— Lignes & aplats ——— */
-  --line: rgba(184, 92, 56, .26);
-  --line-soft: rgba(184, 92, 56, .12);
-  --glass: rgba(184, 92, 56, .05);
+  /* ——— Lignes : l'or en filet, très fin ——— */
+  --line:      rgba(217, 164, 65, .3);
+  --line-soft: rgba(217, 164, 65, .14);
+  --glass:     rgba(217, 164, 65, .05);
 
   /* ——— Alias historiques (landing) ——— */
-  --gold: var(--terra);   /* l'ancien "gold" du landing vaut le terracotta */
-  --gold2: var(--deep);
-  --bronze: #a8865e;
+  --gold2:     var(--gold-lit);
+  --deep:      var(--gold-deep);
+  --terra:     var(--gold);
+  --sand:      var(--bronze);
+  --arc:       var(--gold);
 
-  /* ——— Palette florale (décors) ——— */
-  --petal:      #d9885e;   /* pétale clair */
-  --petal-d:    #b85c38;   /* pétale terracotta */
-  --petal-dd:   #8a3416;   /* pétale ombre */
-  --petal-l:    #e8a882;   /* cœur de fleur */
-  --petal-w:    #fdf1e3;   /* pétale nacré */
-  --gold-deep:  #a8865e;
-  --leaf:       #7d8f5a;   /* feuillage olivâtre */
-  --leaf-d:     #5c6b3f;
-  --stem:       #b9855c;
+  /* ——— Palette florale : des SILHOUETTES, pas des dessins ———
+     Pétales très sombres, à peine plus clairs que le fond. */
+  --petal:     #3d1520;
+  --petal-d:   #2a0e17;
+  --petal-dd:  #1c0810;
+  --petal-l:   #5a1c2c;
+  --petal-w:   #6e2436;
+  --leaf:      #1f3a32;   /* vert nuit, presque noir */
+  --leaf-d:    #14261f;
+  --stem:      #2a3f34;
 
-  /* ——— Aplats manquants : zones qui étaient restées plates ——— */
-  --band:       linear-gradient(180deg, #f1e4d6 0%, #e8d9c5 100%);
-  --field:      linear-gradient(160deg, #fdfaf5 0%, #f6ede3 100%);
-  --chip-bg:    linear-gradient(150deg, rgba(216,136,94,.14), rgba(184,92,56,.05));
+  /* ——— Aplats de surface ——— */
+  --band:      linear-gradient(180deg, #1c0810 0%, #14090d 100%);
+  --field:     linear-gradient(160deg, #22101a 0%, #180a11 100%);
+  --chip-bg:   linear-gradient(150deg, rgba(217,164,65,.14), rgba(107,18,38,.28));
 }
 
 /* ——— Reset ——— */
@@ -60,21 +78,21 @@ body {
 }
 [hidden] { display: none !important; }
 
-::selection { background: var(--terra); color: var(--cream); }
+::selection { background: var(--gold); color: var(--night); }
 ::-webkit-scrollbar { width: 10px; }
-::-webkit-scrollbar-track { background: var(--bg); }
-::-webkit-scrollbar-thumb { background: linear-gradient(var(--bronze), var(--terra)); border-radius: 99px; }
+::-webkit-scrollbar-track { background: var(--night); }
+::-webkit-scrollbar-thumb { background: linear-gradient(var(--gold-deep), var(--gold)); border-radius: 99px; }
 
 /* ——— Révélation au scroll ——— */
 .reveal { opacity: 0; transform: translateY(26px); transition: opacity .9s ease, transform .9s cubic-bezier(.2, .8, .2, 1); }
 .reveal.in { opacity: 1; transform: none; }
 
-/* ——— Pied de page ——— */
+/* ——— Pied de page : le noir devient presque noir ——— */
 .foot {
   text-align: center; padding: 52px 20px 64px; color: var(--muted);
   font-size: 10.5px; letter-spacing: .3em; text-transform: uppercase; font-weight: 300;
 }
-.foot .dm { display: inline-block; width: 7px; height: 7px; background: var(--terra); transform: rotate(45deg); margin: 0 14px; opacity: .8; }
+.foot .dm { display: inline-block; width: 7px; height: 7px; background: var(--gold); transform: rotate(45deg); margin: 0 14px; opacity: .8; }
 
 /* ————————————————————————————————————————————————————————————
    DÉCORS FLORAUX
@@ -98,24 +116,24 @@ body {
 .sway-3 { animation-duration: 11s; animation-delay: -6s; }
 @keyframes sway { 0%, 100% { transform: rotate(-1.6deg); } 50% { transform: rotate(1.6deg); } }
 
-/* Pétales qui tombent en fond (landing) */
+/* Pétales qui tombent en fond (landing) — silhouettes sombres, éclairées à peine */
 .petal-fall {
   position: absolute; top: -6%; width: 9px; height: 9px; pointer-events: none;
-  background: radial-gradient(circle at 34% 30%, var(--petal-l), var(--petal-d) 68%, var(--petal-dd));
+  background: linear-gradient(140deg, #4a1a28, #1c0810);
+  border: 1px solid rgba(217, 164, 65, .22);
   border-radius: 62% 38% 55% 45% / 48% 58% 42% 52%;
   opacity: 0; animation: petal-fall linear infinite;
-  box-shadow: 0 1px 4px rgba(138, 52, 22, .18);
+  box-shadow: 0 0 10px rgba(217, 164, 65, .18);
 }
 @keyframes petal-fall {
   0% { opacity: 0; transform: translate(0, 0) rotate(0deg); }
-  8% { opacity: .8; }
-  90% { opacity: .45; }
+  8% { opacity: .55; }
+  90% { opacity: .3; }
   100% { opacity: 0; transform: translate(var(--drift, 40px), 112vh) rotate(420deg); }
 }
 
-/* Ramure fleurie dans un coin de section.
-   z-index:-1 : la ramure reste derrière le contenu, jamais par-dessus le texte. */
-.vine { position: absolute; width: clamp(150px, 20vw, 260px); aspect-ratio: 1; pointer-events: none; opacity: .38; z-index: -1; }
+/* Ramure fleurie dans un coin de section — silhouette dans la pénombre */
+.vine { position: absolute; width: clamp(150px, 20vw, 260px); aspect-ratio: 1; pointer-events: none; opacity: .5; z-index: -1; filter: drop-shadow(0 0 22px rgba(107, 18, 38, .5)); }
 .vine.tl { top: 0;    left: 0; }
 .vine.tr { top: 0;    right: 0; transform: scaleX(-1); }
 .vine.bl { bottom: 0; left: 0; transform: scaleY(-1); }
@@ -124,12 +142,12 @@ body {
 /* sur mobile on ne garde que deux ramures, pour ne pas encombrer */
 @media (max-width: 860px) { .vine.bl, .vine.br { display: none; } .vine { opacity: .3; } }
 
-/* Anneaux : halo doux + éclat sur le métal */
-.rings { filter: drop-shadow(0 3px 7px rgba(138, 52, 22, .3)); }
+/* Anneaux : LA source de lumière de la page — halo chaud, éclat lent */
+.rings { filter: drop-shadow(0 0 10px rgba(217, 164, 65, .45)) drop-shadow(0 0 26px rgba(217, 164, 65, .18)); }
 .rings .shine { animation: ring-shine 4.5s ease-in-out infinite; }
-@keyframes ring-shine { 0%, 100% { opacity: .35; } 50% { opacity: .9; } }
+@keyframes ring-shine { 0%, 100% { opacity: .45; } 50% { opacity: 1; } }
 
-/* Section à fond teinté (là où la page était plate) */
+/* Section à fond teinté */
 .band { background: var(--band); position: relative; }
 .band::before,
 .band::after {
@@ -140,33 +158,34 @@ body {
 .band::after { bottom: 0; }
 
 /* Ornement de titre : filet + fleur centrale */
-.sec-flower { display: block; margin: 14px auto 0; width: 92px; height: 30px; opacity: .85; }
+.sec-flower { display: block; margin: 14px auto 0; width: 92px; height: 30px; opacity: .7; filter: drop-shadow(0 0 6px rgba(217,164,65,.3)); }
 
-/* Champs de formulaire : enfin une couleur, plus du blanc plat */
+/* Champs de formulaire : panneaux de nuit, pas du blanc */
 .field input,
 .field select {
   background: var(--field);
-  border: 1px solid rgba(184, 92, 56, .22);
+  border: 1px solid rgba(217, 164, 65, .2);
   color: var(--ink);
 }
-.field input::placeholder { color: rgba(138, 52, 22, .45); }
+.field input::placeholder { color: rgba(180, 147, 138, .55); }
 
-/* Puce admin : aplat coloré plutôt que quasi transparent */
-.chip { background: var(--chip-bg); border-color: rgba(184, 92, 56, .2); }
+/* Puce admin */
+.chip { background: var(--chip-bg); border-color: rgba(217, 164, 65, .18); }
 
-/* Barre de progression : fond teinté lisible */
-.bar { background: rgba(138, 52, 22, .16); }
+/* Barre de progression : fond sombre, remplissage en or */
+.bar { background: rgba(217, 164, 65, .1); }
 
-/* Toast : davantage de profondeur et de chaleur */
+/* Toast : panneau sombre, texte clair */
 .toast {
-  background: linear-gradient(150deg, #fdf8f2, #f6e6d6);
-  border: 1px solid rgba(184, 92, 56, .38);
-  box-shadow: 0 12px 34px rgba(74, 36, 22, .22);
+  background: linear-gradient(150deg, #2a0f1a, #170810);
+  color: var(--ink);
+  border: 1px solid rgba(217, 164, 65, .35);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, .6), 0 0 30px rgba(107, 18, 38, .35);
 }
 
-/* Pied de page : bandeau teinté plutôt que du crème vide */
+/* Pied de page : la descente vers le noir absolu */
 .foot {
-  background: linear-gradient(180deg, transparent, rgba(184, 92, 56, .09) 45%, rgba(138, 52, 22, .14));
+  background: linear-gradient(180deg, transparent, rgba(74, 15, 28, .3) 45%, rgba(10, 4, 7, .75));
   border-top: 1px solid var(--line-soft);
   padding-top: 64px;
 }
@@ -175,7 +194,7 @@ body {
   position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
   overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
 }
-:focus-visible { outline: 2px solid var(--terra); outline-offset: 3px; }
+:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }
