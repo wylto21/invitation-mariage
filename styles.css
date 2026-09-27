@@ -48,16 +48,19 @@
   --sand:      var(--bronze);
   --arc:       var(--gold);
 
-  /* ——— Palette florale : des SILHOUETTES, pas des dessins ———
-     Pétales très sombres, à peine plus clairs que le fond. */
-  --petal:     #3d1520;
-  --petal-d:   #2a0e17;
-  --petal-dd:  #1c0810;
-  --petal-l:   #5a1c2c;
-  --petal-w:   #6e2436;
-  --leaf:      #1f3a32;   /* vert nuit, presque noir */
-  --leaf-d:    #14261f;
-  --stem:      #2a3f34;
+  /* ——— Palette florale ———
+     Les fleurs sortent de la pénombre : le dégradé va du terracotta
+     lumineux au rouge chaud, jamais plus sombre que le fond. Ces valeurs
+     miroitent le sprite SVG ; tous les paliers dépassent 3:1 sur le fond
+     nuit, donc chaque fleur est visible sans trahir l'ambiance sombre. */
+  --petal:     #e8b18d;   /* pétale au sommet du dégradé */
+  --petal-d:   #c9663f;   /* pétale médian */
+  --petal-dd:  #a84a24;   /* pétale à la base */
+  --petal-l:   #f3c6a6;   /* cœur de fleur */
+  --petal-w:   #e8b18d;   /* pétale nacré */
+  --leaf:      #7d9a66;   /* feuillage */
+  --leaf-d:    #4a6b45;
+  --stem:      #8a6b3a;
 
   /* ——— Aplats de surface ——— */
   --band:      linear-gradient(180deg, #1c0810 0%, #14090d 100%);
@@ -133,14 +136,14 @@ body {
 }
 
 /* Ramure fleurie dans un coin de section — silhouette dans la pénombre */
-.vine { position: absolute; width: clamp(150px, 20vw, 260px); aspect-ratio: 1; pointer-events: none; opacity: .5; z-index: -1; filter: drop-shadow(0 0 22px rgba(107, 18, 38, .5)); }
+.vine { position: absolute; width: clamp(150px, 20vw, 260px); aspect-ratio: 1; pointer-events: none; opacity: .78; z-index: -1; filter: drop-shadow(0 0 24px rgba(217, 164, 65, .2)); }
 .vine.tl { top: 0;    left: 0; }
 .vine.tr { top: 0;    right: 0; transform: scaleX(-1); }
 .vine.bl { bottom: 0; left: 0; transform: scaleY(-1); }
 .vine.br { bottom: 0; right: 0; transform: scale(-1); }
 .vine svg { width: 100%; height: 100%; display: block; }
 /* sur mobile on ne garde que deux ramures, pour ne pas encombrer */
-@media (max-width: 860px) { .vine.bl, .vine.br { display: none; } .vine { opacity: .3; } }
+@media (max-width: 860px) { .vine.bl, .vine.br { display: none; } .vine { opacity: .6; } }
 
 /* Anneaux : LA source de lumière de la page — halo chaud, éclat lent */
 .rings { filter: drop-shadow(0 0 10px rgba(217, 164, 65, .45)) drop-shadow(0 0 26px rgba(217, 164, 65, .18)); }

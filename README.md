@@ -24,11 +24,13 @@ la typographie est Cormorant Garamond (élégant, contemporaine) + Cinzel (capit
 | Oxblood / vin | `#4a0f1c` · `#6b1226` |
 | Indigo (contre-jour) | `#1a1030` |
 | Or (lumière) | `#d9a441` · éclat `#f4d894` |
+| Pétales (visibles) | `#e8b18d` → `#c9663f` → `#a84a24` (tous > 3:1 sur le fond) |
+| Feuillage | `#7d9a66` · `#4a6b45` |
 | Texte | ivoire `#f7ece4`, secondaire `#e8cfc0` |
 
 ## Décors floraux
 Un **sprite SVG** (`#fl-fleur`, `#fl-fleur2`, `#fl-bouton`, `#fl-feuille`, `#fl-ramure`,
-`#fl-couronne`, `#fl-filet`, `#fl-anneaux`) est inliné en haut de chaque page et réemployé
+`#fl-couronne`, `#fl-filet`, `#fl-bouquet`, `#fl-fete`, `#fl-anneaux`) est inliné en haut de chaque page et réemployé
 via `<use href="#fl-…">`. Le sprite est dupliqué dans les deux fichiers : c'est volontaire
 (le `<use>` externe ne fonctionne pas en `file://`). **Toute évolution du sprite doit être
 reportée dans les deux pages.**
