@@ -125,6 +125,47 @@ header{position:fixed;top:0;left:0;right:0;z-index:50;backdrop-filter:blur(10px)
 
 /* ——— Sections ——— */
 section.block{padding:88px 0;scroll-margin-top:70px}
+
+/* ——— Hero : alliances, couronne, grandillage ——— */
+/* isolation:isolate crée un contexte d'empilement : les ramures en z-index:-1
+   restent dans la section, derrière le texte, sans passer derrière le body. */
+.hero{position:relative;isolation:isolate}
+.hero-rings{width:clamp(84px,11vw,118px);height:auto;display:block;margin:14px auto 2px;z-index:1}
+.hero-couronne{width:clamp(170px,24vw,240px);height:auto;display:block;margin:6px auto 0;opacity:.9;z-index:1}
+
+/* ——— Sections : ramures de coin + ornement de titre ——— */
+.block{position:relative;isolation:isolate}
+.block .vine{pointer-events:none}
+.sec-head{position:relative;z-index:1}
+.sec-flower{display:block;margin:16px auto 0;width:150px;height:22px;opacity:.9}
+@media (max-width: 860px) { .sec-flower { display: none; } }
+
+/* fleur au début de chaque libellé de catégorie */
+.cat-top .lbl{display:inline-flex;align-items:center;gap:10px}
+.cat-flower{width:17px;height:17px;flex:none;opacity:.95}
+.cat-flower use{transform-origin:24px 24px}
+.cat:hover .cat-flower{animation:bloom-in .5s ease}
+
+/* fleur sur chaque bouton de catégorie */
+.pill{display:flex;flex-direction:column;align-items:center;gap:9px}
+.pill-flower{width:30px;height:30px;opacity:.9;transition:transform .3s ease,opacity .3s ease}
+.pill:hover .pill-flower{transform:scale(1.12) rotate(8deg)}
+.pill.sel .pill-flower{opacity:1;transform:scale(1.08)}
+.pill.sel .pl{color:var(--gold2)}
+
+/* ornement en bas de carte */
+.card-flower{display:block;margin:22px auto 0;width:130px;height:20px;opacity:.7}
+.card-flower.bottom{margin:26px auto 0}
+.total-card .card-flower{margin-top:18px}
+
+/* pied de page : couronne + alliances + signature */
+footer{position:relative;padding-top:70px;background:linear-gradient(180deg,transparent,rgba(184,92,56,.07) 40%,rgba(138,52,22,.16))}
+.foot-couronne{display:block;margin:0 auto -14px;width:min(320px,72vw);height:auto;opacity:.95}
+.foot-rings{display:flex;justify-content:center;margin-bottom:16px}
+.foot-rings svg{width:78px;height:auto;opacity:.9}
+.foot-l1{font-family:'Cinzel';font-size:12px;letter-spacing:.32em;text-transform:uppercase;color:var(--gold2);margin-bottom:10px}
+.foot-l2{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:15px;color:var(--muted);letter-spacing:.04em;text-transform:none;line-height:1.9}
+@media (max-width: 860px) { .foot-l2 { font-size: 13.5px; } }
 .sec-head{text-align:center;margin-bottom:48px}
 h2.sec{font-family:'Cormorant Garamond',serif;font-size:clamp(32px,6.4vw,46px);font-weight:500}
 h2.sec em{font-style:italic;color:var(--gold)}
@@ -221,6 +262,128 @@ td{padding:12px 8px;border-bottom:1px solid rgba(184,92,56,.07);font-weight:300}
 </style>
 </head>
 <body>
+  <!-- ===== SPRITE FLORAL (voir styles.css — garder identique dans les 2 pages) ===== -->
+  <svg class="sprite" aria-hidden="true" focusable="false">
+    <defs>
+      <linearGradient id="g-petal" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#f0b894"/><stop offset=".55" stop-color="#d9885e"/><stop offset="1" stop-color="#b85c38"/>
+      </linearGradient>
+      <linearGradient id="g-petal2" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#c97b4e"/><stop offset="1" stop-color="#8a3416"/>
+      </linearGradient>
+      <linearGradient id="g-leaf" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#95a56c"/><stop offset="1" stop-color="#5c6b3f"/>
+      </linearGradient>
+      <linearGradient id="g-gold" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#e8cd97"/><stop offset=".45" stop-color="#c9a55e"/><stop offset="1" stop-color="#a8865e"/>
+      </linearGradient>
+    </defs>
+
+    <!-- Fleur à 5 pétales (rose botanique stylisée) -->
+    <symbol id="fl-fleur" viewBox="0 0 48 48">
+      <g>
+        <ellipse cx="24" cy="13" rx="8" ry="11" fill="url(#g-petal)"/>
+        <ellipse cx="24" cy="13" rx="8" ry="11" fill="url(#g-petal)" transform="rotate(72 24 24)"/>
+        <ellipse cx="24" cy="13" rx="8" ry="11" fill="url(#g-petal2)" transform="rotate(144 24 24)"/>
+        <ellipse cx="24" cy="13" rx="8" ry="11" fill="url(#g-petal)" transform="rotate(216 24 24)"/>
+        <ellipse cx="24" cy="13" rx="8" ry="11" fill="url(#g-petal2)" transform="rotate(288 24 24)"/>
+        <circle cx="24" cy="24" r="6.2" fill="#f6d9a8"/>
+        <circle cx="24" cy="24" r="3.2" fill="url(#g-gold)"/>
+        <circle cx="21.6" cy="21.6" r="1.1" fill="#fff3d8" opacity=".85"/>
+      </g>
+    </symbol>
+
+    <!-- Fleur double (plus dense, pour les grandsillages) -->
+    <symbol id="fl-fleur2" viewBox="0 0 48 48">
+      <g>
+        <ellipse cx="24" cy="12" rx="9.5" ry="12" fill="url(#g-petal2)"/>
+        <ellipse cx="24" cy="12" rx="9.5" ry="12" fill="url(#g-petal2)" transform="rotate(60 24 24)"/>
+        <ellipse cx="24" cy="12" rx="9.5" ry="12" fill="url(#g-petal2)" transform="rotate(120 24 24)"/>
+        <ellipse cx="24" cy="12" rx="9.5" ry="12" fill="url(#g-petal2)" transform="rotate(180 24 24)"/>
+        <ellipse cx="24" cy="12" rx="9.5" ry="12" fill="url(#g-petal2)" transform="rotate(240 24 24)"/>
+        <ellipse cx="24" cy="12" rx="9.5" ry="12" fill="url(#g-petal2)" transform="rotate(300 24 24)"/>
+        <circle cx="24" cy="24" r="9" fill="url(#g-petal)"/>
+        <g fill="#f6d9a8">
+          <circle cx="24" cy="19" r="2.4"/><circle cx="28.6" cy="21.7" r="2.4"/>
+          <circle cx="27.3" cy="26.3" r="2.4"/><circle cx="20.7" cy="26.3" r="2.4"/>
+          <circle cx="19.4" cy="21.7" r="2.4"/>
+        </g>
+        <circle cx="24" cy="24" r="3.4" fill="url(#g-gold)"/>
+      </g>
+    </symbol>
+
+    <!-- Bouton fermé -->
+    <symbol id="fl-bouton" viewBox="0 0 24 32">
+      <path d="M12 30 C4 22 2 15 5 9 C8 3 16 3 19 9 C22 15 20 22 12 30Z" fill="url(#g-petal2)"/>
+      <path d="M12 26 C7 20 6 15 8 11 C10 8 14 8 16 11 C18 15 17 20 12 26Z" fill="url(#g-petal)" opacity=".85"/>
+      <path d="M12 4 C11 8 8 9 5 9 C8 11 9 14 9 17" fill="none" stroke="#7d8f5a" stroke-width="1.4" stroke-linecap="round"/>
+    </symbol>
+
+    <!-- Feuille -->
+    <symbol id="fl-feuille" viewBox="0 0 32 32">
+      <path d="M16 30 C16 18 8 10 2 4 C14 4 26 12 28 26 C24 29 20 30 16 30Z" fill="url(#g-leaf)"/>
+      <path d="M16 29 C15 20 10 12 4 6" fill="none" stroke="#4a5a33" stroke-width="1.1" opacity=".55"/>
+    </symbol>
+
+    <!-- Ramure / branche fleurie (grand décor de coin) -->
+    <symbol id="fl-ramure" viewBox="0 0 200 200">
+      <g>
+        <path d="M8 196 C34 150 62 112 104 74 C128 52 156 30 192 14" fill="none" stroke="#b9855c" stroke-width="2.4" stroke-linecap="round"/>
+        <path d="M40 152 C56 138 74 130 92 128" fill="none" stroke="#b9855c" stroke-width="1.5" opacity=".7"/>
+        <path d="M70 112 C86 96 100 86 118 78" fill="none" stroke="#b9855c" stroke-width="1.5" opacity=".7"/>
+        <use href="#fl-feuille" x="18" y="140" width="42" height="42" transform="rotate(-24 39 161)"/>
+        <use href="#fl-feuille" x="52" y="112" width="36" height="36" transform="rotate(28 70 130)"/>
+        <use href="#fl-feuille" x="76" y="86" width="34" height="34" transform="rotate(-18 93 103)"/>
+        <use href="#fl-feuille" x="108" y="56" width="30" height="30" transform="rotate(34 123 71)"/>
+        <use href="#fl-feuille" x="136" y="34" width="26" height="26" transform="rotate(-14 149 47)"/>
+        <use href="#fl-fleur" x="86" y="60" width="30" height="30"/>
+        <use href="#fl-fleur" x="118" y="32" width="26" height="26"/>
+        <use href="#fl-bouton" x="146" y="8" width="18" height="24" transform="rotate(28 155 20)"/>
+        <use href="#fl-fleur2" x="60" y="98" width="24" height="24"/>
+        <use href="#fl-bouton" x="34" y="128" width="16" height="21" transform="rotate(-32 42 138)"/>
+      </g>
+    </symbol>
+
+    <!-- Couronne de fleurs (demi-cercle, pour les bandeaux) -->
+    <symbol id="fl-couronne" viewBox="0 0 240 70">
+      <g>
+        <path d="M6 62 C40 22 80 6 120 6 C160 6 200 22 234 62" fill="none" stroke="#b9855c" stroke-width="1.8"/>
+        <use href="#fl-feuille" x="16" y="42" width="26" height="26" transform="rotate(-30 29 55)"/>
+        <use href="#fl-feuille" x="44" y="24" width="24" height="24" transform="rotate(18 56 36)"/>
+        <use href="#fl-feuille" x="176" y="24" width="24" height="24" transform="rotate(-18 188 36)"/>
+        <use href="#fl-feuille" x="200" y="42" width="26" height="26" transform="rotate(30 213 55)"/>
+        <use href="#fl-fleur" x="34" y="16" width="26" height="26"/>
+        <use href="#fl-fleur" x="70" y="2" width="22" height="22"/>
+        <use href="#fl-fleur" x="148" y="2" width="22" height="22"/>
+        <use href="#fl-fleur" x="184" y="16" width="26" height="26"/>
+        <use href="#fl-fleur2" x="106" y="-8" width="28" height="28"/>
+        <use href="#fl-bouton" x="98" y="14" width="15" height="20" transform="rotate(-14 105 24)"/>
+        <use href="#fl-bouton" x="128" y="14" width="15" height="20" transform="rotate(14 135 24)"/>
+      </g>
+    </symbol>
+
+    <!-- Filet fleuri horizontal (séparateur) -->
+    <symbol id="fl-filet" viewBox="0 0 200 28">
+      <g>
+        <path d="M0 14 H74 M126 14 H200" stroke="#b9855c" stroke-width="1" opacity=".55"/>
+        <circle cx="80" cy="14" r="2" fill="#c9a55e"/>
+        <circle cx="120" cy="14" r="2" fill="#c9a55e"/>
+        <use href="#fl-fleur" x="88" y="3" width="24" height="24"/>
+      </g>
+    </symbol>
+
+    <!-- Deux anneaux entrelacés (les alliance) -->
+    <symbol id="fl-anneaux" viewBox="0 0 120 84">
+      <g class="shine">
+        <ellipse cx="46" cy="52" rx="26" ry="30" fill="none" stroke="url(#g-gold)" stroke-width="5"/>
+        <ellipse cx="74" cy="52" rx="26" ry="30" fill="none" stroke="url(#g-gold)" stroke-width="5"/>
+        <ellipse cx="46" cy="52" rx="26" ry="30" fill="none" stroke="#f2e0b4" stroke-width="1.1" opacity=".8"/>
+        <ellipse cx="74" cy="52" rx="26" ry="30" fill="none" stroke="#f2e0b4" stroke-width="1.1" opacity=".8"/>
+      </g>
+      <path d="M60 14 C56 8 58 3 62 1 C64 5 65 9 63 13Z" fill="#fdf1e3" stroke="#c9a55e" stroke-width="1"/>
+    </symbol>
+  </svg>
+
 <canvas id="fx"></canvas>
 <noscript>
   <div class="no-js-note">
@@ -252,6 +415,14 @@ td{padding:12px 8px;border-bottom:1px solid rgba(184,92,56,.07);font-weight:300}
 <!-- ===== HERO + COMPTE À REBOURS ===== -->
 <section class="hero" id="compte">
   <div class="pwrap" id="particles"></div>
+  <div class="pwrap petals" id="petals" aria-hidden="true"></div>
+
+  <!-- grandillage floral : ramures aux quatre coins du hero -->
+  <div class="vine tl deco"><svg viewBox="0 0 200 200" preserveAspectRatio="xMidYMin slice"><use href="#fl-ramure"/></svg></div>
+  <div class="vine tr deco"><svg viewBox="0 0 200 200" preserveAspectRatio="xMidYMin slice"><use href="#fl-ramure"/></svg></div>
+  <div class="vine bl deco"><svg viewBox="0 0 200 200" preserveAspectRatio="xMidYMax slice"><use href="#fl-ramure"/></svg></div>
+  <div class="vine br deco"><svg viewBox="0 0 200 200" preserveAspectRatio="xMidYMax slice"><use href="#fl-ramure"/></svg></div>
+
   <div class="arc" aria-hidden="true">
     <svg viewBox="0 0 400 472" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M 60 440 L 60 210 A 140 140 0 0 1 340 210 L 340 440" stroke="#c9a55e" stroke-width="2"/>
@@ -261,9 +432,19 @@ td{padding:12px 8px;border-bottom:1px solid rgba(184,92,56,.07);font-weight:300}
   <div class="motto-script" aria-hidden="true"><div class="ms1">Un jour<br>pour toujours</div><div class="ms2">❤</div></div>
   <div class="fan" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
   <p class="kicker reveal">Nous nous marions</p>
+
+  <!-- les alliances, au-dessus des prénoms -->
+  <svg class="hero-rings rings bloom" viewBox="0 0 120 84" role="img" aria-label="Anneaux de mariage entrelacés">
+    <use href="#fl-anneaux"/>
+  </svg>
+
   <h1 class="names reveal">Daria<span class="amp">&amp;</span>Hermann</h1>
   <p class="sub reveal">Avec leurs familles, ils vous invitent à célébrer leur union</p>
   <div class="orn reveal"><span class="d"></span></div>
+
+  <!-- couronne de fleurs sous l'ornement -->
+  <svg class="hero-couronne bloom sway" viewBox="0 0 240 70" aria-hidden="true"><use href="#fl-couronne"/></svg>
+
   <p class="date-big reveal">Vendredi 18 Décembre 2026</p>
   <p class="venue reveal">Table des Élites · Akwa, Douala · 16h00 — Célébration jusqu'à 22h</p>
   <p class="theme-line reveal">Thème : <b>Terracotta</b></p>
@@ -285,10 +466,13 @@ td{padding:12px 8px;border-bottom:1px solid rgba(184,92,56,.07);font-weight:300}
 
 <!-- ===== PLACES & RÉSERVATIONS ===== -->
 <section class="block" id="places">
+  <div class="vine tl deco"><svg viewBox="0 0 200 200"><use href="#fl-ramure"/></svg></div>
+  <div class="vine br deco"><svg viewBox="0 0 200 200"><use href="#fl-ramure"/></svg></div>
   <div class="wrap">
     <div class="sec-head reveal">
       <h2 class="sec">Places <em>&amp; réservations</em></h2>
       <p>Suivi en temps réel · mise à jour à chaque réservation</p>
+      <svg class="sec-flower" viewBox="0 0 200 28" aria-hidden="true"><use href="#fl-filet"/></svg>
     </div>
     <div class="stats-grid">
       <div class="card total-card reveal">
@@ -307,22 +491,23 @@ td{padding:12px 8px;border-bottom:1px solid rgba(184,92,56,.07);font-weight:300}
           <div class="val"><b id="t-conf">0</b><span class="pct" id="t-pct">0%</span></div>
         </div>
         <div class="tot-lbl">Invités confirmés</div>
-        <div class="tot-sub"><span id="nb-res">0</span> réservation(s) · capacité <span id="t-cap">130</span></div>
+        <div class="tot-sub"><span id="nb-res">0</span> réservation(s) · capacité <span id="t-cap">50</span></div>
+        <svg class="card-flower" viewBox="0 0 200 28" aria-hidden="true"><use href="#fl-filet"/></svg>
       </div>
       <div class="card reveal">
         <div class="cat" id="cat-famille">
-          <div class="cat-top"><span class="lbl">Famille</span>
-            <span class="nums"><b id="n-famille">0</b> réservées · <span id="r-famille">40</span> restantes / 40</span></div>
+          <div class="cat-top"><span class="lbl"><svg class="cat-flower" aria-hidden="true"><use href="#fl-fleur"/></svg>Famille</span>
+            <span class="nums"><b id="n-famille">0</b> réservées</span></div>
           <div class="bar"><i id="b-famille"></i></div>
         </div>
         <div class="cat" id="cat-amis">
-          <div class="cat-top"><span class="lbl">Amis</span>
-            <span class="nums"><b id="n-amis">0</b> réservées · <span id="r-amis">60</span> restantes / 60</span></div>
+          <div class="cat-top"><span class="lbl"><svg class="cat-flower" aria-hidden="true"><use href="#fl-fleur"/></svg>Amis</span>
+            <span class="nums"><b id="n-amis">0</b> réservées</span></div>
           <div class="bar"><i id="b-amis"></i></div>
         </div>
         <div class="cat" id="cat-collegues">
-          <div class="cat-top"><span class="lbl">Collègues</span>
-            <span class="nums"><b id="n-collegues">0</b> réservées · <span id="r-collegues">30</span> restantes / 30</span></div>
+          <div class="cat-top"><span class="lbl"><svg class="cat-flower" aria-hidden="true"><use href="#fl-fleur"/></svg>Collègues</span>
+            <span class="nums"><b id="n-collegues">0</b> réservées</span></div>
           <div class="bar"><i id="b-collegues"></i></div>
         </div>
       </div>
@@ -332,10 +517,13 @@ td{padding:12px 8px;border-bottom:1px solid rgba(184,92,56,.07);font-weight:300}
 
 <!-- ===== RÉSERVATION ===== -->
 <section class="block" id="reserver">
+  <div class="vine tr deco"><svg viewBox="0 0 200 200"><use href="#fl-ramure"/></svg></div>
+  <div class="vine bl deco"><svg viewBox="0 0 200 200"><use href="#fl-ramure"/></svg></div>
   <div class="wrap">
     <div class="sec-head reveal">
       <h2 class="sec">Réserver <em>ma place</em></h2>
       <p>1 place = 1 invité · votre code sera demandé à l'entrée</p>
+      <svg class="sec-flower" viewBox="0 0 200 28" aria-hidden="true"><use href="#fl-filet"/></svg>
     </div>
     <div class="rsvp-grid">
       <div class="card reveal" id="form-card">
@@ -347,11 +535,14 @@ td{padding:12px 8px;border-bottom:1px solid rgba(184,92,56,.07);font-weight:300}
           <span class="f-lbl">Catégorie</span>
           <div class="pills">
             <label class="pill sel" id="pill-famille"><input type="radio" name="cat" value="famille" checked>
-              <span class="pl">Famille</span><span class="ps"><span id="ps-famille">40</span> restantes</span></label>
+              <svg class="pill-flower" viewBox="0 0 48 48" aria-hidden="true"><use href="#fl-fleur"/></svg>
+              <span class="pl">Famille</span></label>
             <label class="pill" id="pill-amis"><input type="radio" name="cat" value="amis">
-              <span class="pl">Amis</span><span class="ps"><span id="ps-amis">60</span> restantes</span></label>
+              <svg class="pill-flower" viewBox="0 0 48 48" aria-hidden="true"><use href="#fl-fleur"/></svg>
+              <span class="pl">Amis</span></label>
             <label class="pill" id="pill-collegues"><input type="radio" name="cat" value="collegues">
-              <span class="pl">Collègues</span><span class="ps"><span id="ps-collegues">30</span> restantes</span></label>
+              <svg class="pill-flower" viewBox="0 0 48 48" aria-hidden="true"><use href="#fl-fleur"/></svg>
+              <span class="pl">Collègues</span></label>
           </div>
           <span class="f-lbl">Nombre de places</span>
           <div class="stepper">
@@ -368,6 +559,7 @@ td{padding:12px 8px;border-bottom:1px solid rgba(184,92,56,.07);font-weight:300}
         <div class="row"><span class="ic">◆</span><div><div class="tt">Horaire</div><div class="dd">Cérémonie à 16h00<br>Réception &amp; dîner à 18h30</div></div></div>
         <div class="row"><span class="ic">◆</span><div><div class="tt">Dress code</div><div class="dd">Black &amp; White — élégance<br>en noir &amp; blanc stricts</div></div></div>
         <div class="row"><span class="ic">◆</span><div><div class="tt">Bon à savoir</div><div class="dd">Chaque place = 1 personne<br>Places limitées par catégorie</div></div></div>
+        <svg class="card-flower bottom" viewBox="0 0 200 28" aria-hidden="true"><use href="#fl-filet"/></svg>
       </div>
     </div>
     <div class="closed" id="closed-banner">Les réservations sont closes. Contactez les mariés pour toute question 💛</div>
@@ -380,6 +572,7 @@ td{padding:12px 8px;border-bottom:1px solid rgba(184,92,56,.07);font-weight:300}
     <div class="sec-head">
       <h2 class="sec">Tableau <em>des réservations</em></h2>
       <p>Espace organisateurs</p>
+      <svg class="sec-flower" viewBox="0 0 200 28" aria-hidden="true"><use href="#fl-filet"/></svg>
     </div>
     <div class="admin-bar">
       <button class="mini" id="toggle-close">Clore les réservations</button>
@@ -390,9 +583,7 @@ td{padding:12px 8px;border-bottom:1px solid rgba(184,92,56,.07);font-weight:300}
     <div class="a-stats">
       <div class="chip">Confirmés<b id="a-total">0</b></div>
       <div class="chip">Réservations<b id="a-count">0</b></div>
-      <div class="chip">Famille rest.<b id="a-rem-famille">40</b></div>
-      <div class="chip">Amis rest.<b id="a-rem-amis">60</b></div>
-      <div class="chip">Collègues rest.<b id="a-rem-collegues">30</b></div>
+      <div class="chip">Places restantes<b id="a-rem">50</b></div>
     </div>
     <div class="card scrollx">
       <table>
@@ -403,7 +594,15 @@ td{padding:12px 8px;border-bottom:1px solid rgba(184,92,56,.07);font-weight:300}
   </div>
 </section>
 
-<div class="foot">H <span class="dm"></span> D — 18 · 12 · 2026 · Douala</div>
+<!-- guirlande + pied de page -->
+<footer>
+  <svg class="foot-couronne bloom sway" viewBox="0 0 240 70" aria-hidden="true"><use href="#fl-couronne"/></svg>
+  <div class="foot">
+    <div class="foot-rings"><svg class="rings" viewBox="0 0 120 84" aria-hidden="true"><use href="#fl-anneaux"/></svg></div>
+    <p class="foot-l1">H <span class="dm"></span> D — 18 · 12 · 2026 · Douala</p>
+    <p class="foot-l2">Avec toute l'affection de nos familles · nous avons hâte de vous voir</p>
+  </div>
+</footer>
 
 <div class="modal" id="modal">
   <div class="box">
@@ -421,10 +620,12 @@ const CONFIG = {
   /* Cérémonie à 16h00, heure de Douala (UTC+1) — l'offset est explicite
      pour que le compte à rebours reste juste hors de Cameroun. */
   dateISO: '2026-12-18T16:00:00+01:00',
+  /* Répartition interne : sert uniquement au suivi des barres de progression.
+     Les chiffres ne sont jamais affichés publiquement (choix éditorial). */
   categories: [
-    { id: 'famille',   label: 'Famille',   stock: 40 },
-    { id: 'amis',      label: 'Amis',      stock: 60 },
-    { id: 'collegues', label: 'Collègues', stock: 30 }
+    { id: 'famille',   label: 'Famille',   stock: 20 },
+    { id: 'amis',      label: 'Amis',      stock: 20 },
+    { id: 'collegues', label: 'Collègues', stock: 10 }
   ],
   adminPin: '2026',
   backendUrl: ''
@@ -466,7 +667,7 @@ function tick() {
 }
 setInterval(tick, 1000); tick();
 
-/* ===== PARTICULES DORÉES (losanges) ===== */
+/* ===== PARTICULES DORÉES (losanges) + PÉTALES ===== */
 (function () {
   const wrap = el('particles');
   for (let i = 0; i < 26; i++) {
@@ -480,6 +681,26 @@ setInterval(tick, 1000); tick();
     wrap.appendChild(p);
   }
 })();
+
+/* Pétales qui tombent — le clin d'œil botanique du hero */
+(function () {
+  const wrap = el('petals');
+  if (!wrap || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  for (let i = 0; i < 14; i++) {
+    const p = document.createElement('i');
+    p.className = 'petal-fall';
+    const s = 7 + Math.random() * 7;
+    p.style.width = s + 'px'; p.style.height = s * .82 + 'px';
+    p.style.left = Math.random() * 100 + '%';
+    p.style.setProperty('--drift', (Math.random() * 160 - 80) + 'px');
+    p.style.animationDuration = (13 + Math.random() * 14) + 's';
+    p.style.animationDelay = (-Math.random() * 24) + 's';
+    wrap.appendChild(p);
+  }
+})();
+
+/* Déclenche l'apparition en fondu des fleurs (.bloom) */
+document.body.classList.add('is-ready');
 
 /* ===== RÉVÉLATION AU SCROLL ===== */
 const io = new IntersectionObserver(es => es.forEach(e => e.isIntersecting && e.target.classList.add('in')), { threshold: .15 });
@@ -502,8 +723,6 @@ function renderStats() {
   CONFIG.categories.forEach(c => {
     const used = usedOf(c.id), rem = remainingOf(c.id);
     el('n-' + c.id).textContent = used;
-    el('r-' + c.id).textContent = rem;
-    el('ps-' + c.id).textContent = rem;
     requestAnimationFrame(() => { el('b-' + c.id).style.width = (c.stock ? used / c.stock * 100 : 0) + '%'; });
     el('cat-' + c.id).classList.toggle('full', rem <= 0);
     el('pill-' + c.id).classList.toggle('full', rem <= 0);
@@ -527,7 +746,10 @@ function updStepper() {
   const max = Math.max(1, remainingOf(selCat));
   qty = Math.min(Math.max(1, qty), max);
   el('qty').textContent = qty;
-  el('qmax').textContent = 'Max ' + max + ' place(s) — ' + catLabel(selCat) + ' (' + remainingOf(selCat) + ' restantes)';
+  /* Pas de décompte chiffré : on reste qualitatif (choix éditorial) */
+  el('qmax').textContent = remainingOf(selCat) <= 0
+    ? 'Catégorie ' + catLabel(selCat) + ' complète — choisissez-en une autre'
+    : 'Catégorie ' + catLabel(selCat) + ' · jusqu\u2019à ' + max + ' place(s) par réservation';
   el('minus').disabled = qty <= 1;
   el('plus').disabled = qty >= max;
 }
@@ -652,7 +874,7 @@ function renderAdmin() {
   ).join('') || '<tr><td colspan="5" style="color:var(--muted)">Aucune réservation pour le moment</td></tr>';
   el('a-total').textContent = totalConfirmed();
   el('a-count').textContent = state.reservations.length;
-  CONFIG.categories.forEach(c => { el('a-rem-' + c.id).textContent = remainingOf(c.id); });
+  el('a-rem').textContent = totalCapacity() - totalConfirmed();
   el('toggle-close').textContent = state.closed ? 'Réouvrir les réservations' : 'Clore les réservations';
 }
 el('toggle-close').addEventListener('click', () => {

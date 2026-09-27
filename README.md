@@ -6,15 +6,28 @@ Mariage : vendredi 18 décembre 2026, 16h00 — Table des Élites, Akwa, Douala.
 ## Fichiers
 | Fichier | Rôle |
 |---|---|
-| `index.html` | Page d'intro : enveloppe fleurie → photo → redirection vers le RSVP |
+| `index.html` | Page d'intro : enveloppe fleurie (alliances au centre) → photo → RSVP |
 | `invitation-landing.html` | Page principale : hero, compte à rebours, réservations, espace organisateurs |
-| `styles.css` | Socle commun : palette, reset, utilitaires, accessibilité |
+| `styles.css` | Socle commun : palette, reset, utilitaires, décors floraux, accessibilité |
 | `favicon.svg` | Icône du site |
 | `photo-couple.jpg` | Photo de couverture (partagée par les balises OG) |
+
+## Décors floraux
+Un **sprite SVG** (`#fl-fleur`, `#fl-fleur2`, `#fl-bouton`, `#fl-feuille`, `#fl-ramure`,
+`#fl-couronne`, `#fl-filet`, `#fl-anneaux`) est inliné en haut de chaque page et réemployé
+via `<use href="#fl-…">`. Le sprite est dupliqué dans les deux fichiers : c'est volontaire
+(le `<use>` externe ne fonctionne pas en `file://`). **Toute évolution du sprite doit être
+reportée dans les deux pages.**
 
 ## Configuration
 Tout se règle dans le bloc `CONFIG` en haut du script de `invitation-landing.html` :
 date du mariage, capacités par catégorie, PIN admin, URL de backend éventuelle.
+
+**Capacité : 50 invites au total.** Le détail par catégorie (20 / 20 / 10) est une donnée
+interne qui sert uniquement à alimenter les barres de progression : **aucun chiffre de
+répartition n'est affiché publiquement**, par choix éditorial. Pour modifier le total,
+changez les valeurs `stock` de `CONFIG.categories` — le total affiché est calculé
+automatiquement.
 
 ## Lancer en local
 ```bash
