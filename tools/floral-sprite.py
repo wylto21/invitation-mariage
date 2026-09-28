@@ -651,25 +651,27 @@ HEADER = """  <!-- ===== SPRITE FLORAL — CAMÉLIAS IVOIRE (carte de référenc
   <svg class="sprite" aria-hidden="true" focusable="false">"""
 
 
+# Les fleurs ont ete retirees des pages : on ne garde dans le sprite que
+# les ornements qui n en contiennent aucune (feuillage, medaillon, anneaux).
+SANS_FLEURS = True
+
+_HEADER_SANS_FLEURS = """  <!-- ===== SPRITE SVG — ornement seul (sans fleurs) =====
+       Feuillage, medaillon ovale et anneaux entrelaces.
+       Regenere par tools/floral-sprite.py — ne pas editer a la main. -->
+  <svg class="sprite" aria-hidden="true" focusable="false">"""
+
+
 def sprite_block():
-    parts = [
-        HEADER,
-        build_defs(),
-        build_perle(),
-        build_feuille(),
-        build_fougere(),
-        build_rose(),
-        build_simple(),
-        build_ramure(),
-        build_couronne(),
-        build_plan(),
-        build_medaillon(),
-        build_filet(),
-        build_bouquet(),
-        build_fete(),
-        build_alliance(),
-        build_anneaux(),
-    ]
+    parts = [(_HEADER_SANS_FLEURS if SANS_FLEURS else HEADER),
+             build_defs(),
+             build_perle(),
+             build_feuille(),
+             build_fougere()]
+    if not SANS_FLEURS:
+        parts += [build_rose(), build_simple(), build_ramure(), build_couronne(),
+                  build_plan(), build_filet(), build_bouquet(), build_fete(),
+                  build_alliance()]
+    parts += [build_medaillon(), build_anneaux()]
     return "\n\n".join(parts) + "\n  </svg>"
 
 
