@@ -640,8 +640,12 @@ def build_anneaux():
 # ————————————————————————————————————————————————————————————
 # Assemblage & injection
 # ————————————————————————————————————————————————————————————
-HEAD = "  <!-- ===== SPRITE FLORAL"
-PAGES = ("index.html", "invitation-landing.html", "carte.html")
+# HEAD doit correspondre a la premiere ligne du bloc reellement present
+# dans les pages. En mode SANS_FLEURS c'est _HEADER_SANS_FLEURS qui est
+# ecrit, pas HEADER : on suit donc le mode pour choisir le repere.
+HEAD_FLEURS = "  <!-- ===== SPRITE FLORAL"
+HEAD_SANS_FLEURS = "  <!-- ===== SPRITE SVG"
+PAGES = ("index.html", "invitation-landing.html")
 
 HEADER = """  <!-- ===== SPRITE FLORAL — CAMÉLIAS IVOIRE (carte de référence) =====
        Camélias à 3 couronnes de pétales larges, cœur d'étamines dorées,
@@ -675,9 +679,9 @@ def sprite_block():
     return "\n\n".join(parts) + "\n  </svg>"
 
 
-def splice(path, block):
+def splice(path, block, head):
     lines = path.read_text(encoding="utf-8").split("\n")
-    start = next(i for i, l in enumerate(lines) if l.startswith(HEAD))
+    start = next(i for i, l in enumerate(lines) if l.startswith(head))
     end = next(i for i, l in enumerate(lines[start:], start) if l.strip() == "</svg>")
     out = lines[:start] + block.split("\n") + lines[end + 1:]
     path.write_text("\n".join(out), encoding="utf-8")
@@ -690,8 +694,9 @@ def main():
         print(block)
         return
     root = pathlib.Path(__file__).resolve().parent.parent
+    head = HEAD_SANS_FLEURS if SANS_FLEURS else HEAD_FLEURS
     for name in PAGES:
-        replaced = splice(root / name, block)
+        replaced = splice(root / name, block, head)
         print(f"{name} : bloc floral régénéré ({replaced} lignes remplacées)")
 
 
