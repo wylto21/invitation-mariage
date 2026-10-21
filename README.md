@@ -80,11 +80,21 @@ Google Forms → *Nouveau*. Questions à créer, dans cet ordre :
 Puis *Réponses → Lier à Google Sheets* (crée une feuille avec l'onglet
 `Réponses du formulaire`).
 
-### 2. Partager la feuille
+### 2. Feuille « Compteur public » (vie privée)
 
-La feuille doit être lisible par le navigateur : **Partager → Toute personne
-ayant le lien → Lecteur**. Sans cela, la lecture JSONP échoue silencieusement
-et le site retombe sur son cache local.
+La feuille des réponses contient les noms et téléphones : **elle reste privée**.
+Le site lit à la place une seconde feuille, « Compteur public », dont la cellule
+A1 contient :
+
+```
+=QUERY(IMPORTRANGE("<ID_FEUILLE_REPONSES>";"'Réponses au formulaire 1'!A:G");
+  "select Col1, Col5, Col6, Col7 where Col1 is not null
+   label Col1 'Horodatage', Col5 'Catégorie', Col6 'Places', Col7 'Code'";1)
+```
+
+Seule cette feuille est partagée : **Partager → Toute personne ayant le lien →
+Lecteur**. Sans ce partage, la lecture échoue silencieusement et le site retombe
+sur son cache local. Les organisateurs consultent les noms dans la feuille privée.
 
 ### 3. Relever les identifiants
 
@@ -112,9 +122,9 @@ google: {
 ```
 
 - `formId` → dans l'URL `…/forms/d/e/<FORM_ID>/edit`
-- `sheetId` → dans l'URL `…/spreadsheets/d/<SHEET_ID>/edit`
+- `sheetId` → l'ID de la feuille **Compteur public** (`…/spreadsheets/d/<SHEET_ID>/edit`)
 - `entries` → les `entry.XXXX` (l'ordre des questions est celui du formulaire)
-- `configTab` → nom d'un onglet de la **feuille liée** où `A1 = CLOSED` ferme
+- `configTab` → nom d'un onglet du **Compteur public** où `A1 = CLOSED` ferme
   les réservations pour tout le monde (voir plus bas)
 
 ### 5. Fermer les réservations pour tous

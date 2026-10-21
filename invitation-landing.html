@@ -761,9 +761,13 @@ const CONFIG = {
      3. Partager la feuille en « Toute personne ayant le lien » pour que la
         lecture JSONP fonctionne. */
   google: {
-    formId: '',
-    entries: { name: '', phone: '', cat: '', places: '', code: '' },
-    sheetId: '',
+    formId: '1FAIpQLSeSuaMMJgPwQIskJpP_KxsSKykvJwgmdodF3EXPYzMzlIohlA',
+    entries: { name: 'entry.938486847', phone: 'entry.944933296', cat: 'entry.1142689061',
+               places: 'entry.1306875864', code: 'entry.17414737' },
+    /* Feuille « Compteur public » (partagée en lecture) : elle recopie par
+       IMPORTRANGE la feuille des réponses, SANS les noms ni les téléphones.
+       La feuille des réponses, elle, reste privée. */
+    sheetId: '1O4R2WrAEalzZB51vV4hHjmdjWrmbyJRbhNJl6PKJb-Q',
     sheetGid: '0',
     /* Onglet « Config » de la même feuille : une cellule contenant
        CLOSED ferme les réservations pour tout le monde, OPEN les rouvre
@@ -854,7 +858,7 @@ function googleSheetRows(sheetName) {
       ? 'sheet=' + encodeURIComponent(sheetName)
       : 'gid=' + encodeURIComponent(G.sheetGid || '0');
     const url = 'https://docs.google.com/spreadsheets/d/' + G.sheetId + '/gviz/tq'
-      + '?tqx=out:json&' + sel + '&callback=' + cb;
+      + '?tqx=out:json&headers=1&' + sel + '&callback=' + cb;
     const cleanup = () => { try { delete window[cb]; } catch (e) { window[cb] = undefined; } s.remove(); };
     const timer = setTimeout(() => { cleanup(); reject(new Error('timeout')); }, 12000);
     window[cb] = payload => {
@@ -922,7 +926,9 @@ function rowsToReservations({ cols, rows }) {
   const cTs = findCol(cols, ['horodatage', 'timestamp', 'date'], taken);
   const out = [];
   rows.forEach((r, idx) => {
-    const name = String(cName ? r[cName] : '').trim();
+    /* La feuille publique ne contient pas les noms (vie privée) : le code
+       de réservation sert alors d'identifiant affiché. */
+    const name = String(cName ? r[cName] : (cCode ? r[cCode] : '')).trim();
     if (!name) return;
     const places = Math.max(1, parseInt(String(cPlaces ? r[cPlaces] : '1'), 10) || 1);
     let ts = Date.now();
