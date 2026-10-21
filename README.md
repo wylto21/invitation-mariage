@@ -87,10 +87,14 @@ Le site lit à la place une seconde feuille, « Compteur public », dont la cell
 A1 contient :
 
 ```
-=QUERY(IMPORTRANGE("<ID_FEUILLE_REPONSES>";"'Réponses au formulaire 1'!A:G");
-  "select Col1, Col5, Col6, Col7 where Col1 is not null
-   label Col1 'Horodatage', Col5 'Catégorie', Col6 'Places', Col7 'Code'";1)
+=QUERY(IMPORTRANGE("<ID_FEUILLE_REPONSES>";"'Réponses au formulaire 1'!A:F");
+  "select Col1, Col6, Col4, Col5 where Col1 is not null
+   label Col1 'Horodatage', Col6 'Catégorie', Col4 'Places', Col5 'Code'";1)
 ```
+
+(colonnes de la feuille des réponses : Horodateur, Nom, Téléphone, Nombre de
+places, Code de réservation, Catégorie — adapter les numéros `ColN` si l'ordre
+des questions change.)
 
 Seule cette feuille est partagée : **Partager → Toute personne ayant le lien →
 Lecteur**. Sans ce partage, la lecture échoue silencieusement et le site retombe
