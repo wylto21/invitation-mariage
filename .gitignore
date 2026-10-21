@@ -4,3 +4,9 @@ Thumbs.db
 node_modules/
 .env
 *.png:Zone.Identifier
+*:Zone.Identifier
+__pycache__/
+# modèles et sources de travail, non publiés
+*.pdf
+assets/florals/
+assets/reference-affiche.jpeg

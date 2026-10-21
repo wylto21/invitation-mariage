@@ -64,6 +64,8 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 [hidden] { display: none !important; }
+/* sprite SVG : hors flux, mais pas display:none (sinon ses dégradés ne s'appliquent plus) */
+svg.sprite { position: absolute; width: 0; height: 0; overflow: hidden; }
 
 ::selection { background: var(--terra); color: var(--cream); }
 ::-webkit-scrollbar { width: 10px; }

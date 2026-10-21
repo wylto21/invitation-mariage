@@ -18,223 +18,252 @@
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Pinyon+Script&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Great+Vibes&family=Pinyon+Script&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 <style>
-/* ——— Règles propres au landing (le socle commun est dans styles.css) ——— */
+/* ——— Règles propres au landing (le socle commun est dans styles.css).
+   Direction reprise du modèle « Invitation au mariage de » : papier ivoire,
+   bouquets terracotta photographiques, filets fins, prénoms en script. ——— */
 canvas#fx{position:fixed;inset:0;pointer-events:none;z-index:80}
 
-/* ——— Atmosphère : vignette, rayons Déco, grain ——— */
+/* ——— Fond : papier ivoire, très légèrement grainé ——— */
 .stage{position:fixed;inset:0;z-index:-3;background:
-  radial-gradient(40% 32% at 50% 24%, rgba(201,165,94,.18) 0%, transparent 70%),
-  radial-gradient(72% 60% at 50% 32%, rgba(184,92,56,.1) 0%, transparent 72%),
-  radial-gradient(60% 50% at 6% 5%, rgba(184,92,56,.16) 0%, transparent 64%),
-  radial-gradient(55% 46% at 96% 10%, rgba(201,123,78,.14) 0%, transparent 64%),
-  radial-gradient(60% 50% at 94% 94%, rgba(168,134,94,.2) 0%, transparent 64%),
-  linear-gradient(178deg,#f9f2ea 0%,var(--bg) 52%,var(--bg2) 100%)}
-.rays{position:fixed;top:-32vmax;left:50%;width:114vmax;height:114vmax;margin-left:-57vmax;z-index:-2;pointer-events:none;
-  background:repeating-conic-gradient(from 0deg at 50% 50%, rgba(184,92,56,.06) 0deg 1.6deg, transparent 1.6deg 10deg);
-  -webkit-mask:radial-gradient(closest-side,#000 0%,transparent 68%);
-  mask:radial-gradient(closest-side,#000 0%,transparent 68%);
-  animation:spin 220s linear infinite}
-@keyframes spin{to{transform:rotate(360deg)}}
-.grain{position:fixed;inset:0;z-index:60;pointer-events:none;opacity:.05;mix-blend-mode:overlay;
+  radial-gradient(70% 50% at 50% 0%, rgba(255,255,255,.9) 0%, transparent 70%),
+  linear-gradient(180deg,#fdfaf6 0%,#f9f2ea 55%,#f4e9dd 100%)}
+.grain{position:fixed;inset:0;z-index:60;pointer-events:none;opacity:.045;mix-blend-mode:multiply;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E")}
 
-/* ——— Texte terracotta ——— */
-.shimmer{background:linear-gradient(100deg,#8a3416 0%,#b85c38 30%,#c97b4e 50%,#b85c38 68%,#8a3416 95%);
-  background-size:220% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 8s linear infinite}
-@keyframes shine{to{background-position:-220% 0}}
-
-.wrap{max-width:1080px;margin:0 auto;padding:0 22px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
 
 /* ——— Header ——— */
-header{position:fixed;top:0;left:0;right:0;z-index:50;backdrop-filter:blur(10px);
-  background:linear-gradient(180deg,rgba(246,237,227,.94),rgba(246,237,227,.6));border-bottom:1px solid var(--line-soft);box-shadow:0 6px 24px rgba(74,36,22,.08)}
-.nav{display:flex;align-items:center;justify-content:space-between;height:64px}
-.mono{display:flex;align-items:center;gap:11px;cursor:pointer;user-select:none}
-.mono .dm{width:28px;height:28px;border:1px solid var(--line);transform:rotate(45deg);display:grid;place-items:center;flex:none}
-.mono .dm b{transform:rotate(-45deg);font-family:'Cinzel';font-size:11px;color:var(--gold2);letter-spacing:.04em}
-.mono .nm{font-family:'Pinyon Script',cursive;font-size:24px;letter-spacing:0;color:var(--deep)}
-.mono .nm span{color:var(--gold)}
-.links{display:flex;gap:30px}
-.links a{color:var(--muted);text-decoration:none;font-size:11px;letter-spacing:.3em;text-transform:uppercase;transition:.25s}
-.links a:hover{color:var(--gold2)}
-.dchip{font-family:'Cinzel';font-size:11px;letter-spacing:.32em;color:var(--muted)}
-@media(max-width:760px){.links{display:none}}
+header{position:fixed;top:0;left:0;right:0;z-index:50;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  background:rgba(253,250,246,.82);border-bottom:1px solid var(--line-soft)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:62px}
+.mono{display:flex;align-items:center;gap:12px;cursor:pointer;user-select:none}
+.mono .dm{width:30px;height:30px;border:1px solid var(--gold);transform:rotate(45deg);display:grid;place-items:center;flex:none}
+.mono .dm b{transform:rotate(-45deg);font-family:'Pinyon Script',cursive;font-weight:400;font-size:15px;color:var(--gold-deep);letter-spacing:-.04em}
+.mono .nm{font-family:'Great Vibes','Pinyon Script',cursive;font-size:25px;letter-spacing:0;color:var(--terra)}
+.mono .nm span{color:var(--gold-deep)}
+.links{display:flex;gap:28px}
+.links a{color:var(--ink);text-decoration:none;font-size:11px;letter-spacing:.24em;text-transform:uppercase;transition:.25s;position:relative;padding:4px 0}
+.links a::after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:1px;background:var(--terra);transform:scaleX(0);transition:.3s}
+.links a:hover{color:var(--terra)}
+.links a:hover::after{transform:scaleX(1)}
+.dchip{font-family:'Cinzel';font-size:11px;letter-spacing:.3em;color:var(--ink);white-space:nowrap}
+.mono .nm{white-space:nowrap}
+@media(max-width:380px){.dchip{display:none}}
+@media(max-width:820px){.links{display:none}}
 
-/* ——— Hero ——— */
-.hero{min-height:100svh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:120px 22px 84px;position:relative}
-.pwrap{position:absolute;inset:0;overflow:hidden;pointer-events:none}
-.particle{position:absolute;top:-5%;width:6px;height:6px;background:radial-gradient(circle,#fff,#e8d9c5 60%,rgba(232,217,197,0) 78%);border-radius:64% 36% 58% 42%;transform:rotate(45deg);opacity:0;animation:fall linear infinite;box-shadow:0 1px 5px rgba(31,83,64,.2)}
-@keyframes fall{0%{opacity:0;transform:translateY(0) rotate(45deg)}6%{opacity:.7}88%{opacity:.25}100%{opacity:0;transform:translateY(112vh) rotate(405deg)}}
-/* arc doré décoratif comme sur l'affiche */
-.arc{position:absolute;left:50%;top:46%;transform:translate(-50%,-50%);width:min(560px,92vw);aspect-ratio:1/1.18;pointer-events:none;opacity:.9}
-.arc svg{width:100%;height:100%;display:block}
-/* listes de mots à gauche, comme sur l'affiche */
-.motto-list{position:absolute;left:clamp(14px,4vw,44px);top:34%;display:flex;flex-direction:column;gap:7px;text-align:left;
-  font-size:10px;letter-spacing:.34em;text-transform:uppercase;color:var(--gold2);font-weight:500}
-.motto-list span{opacity:.85}
-.motto-list .hh{color:var(--gold);border-top:1px solid var(--line);padding-top:9px;margin-top:6px}
-@media(max-width:760px){.motto-list{display:none}}
-/* mention manuscrite en haut à droite */
-.motto-script{position:absolute;right:clamp(14px,4vw,48px);top:clamp(88px,12vh,130px);text-align:right}
-.motto-script .ms1{font-family:'Pinyon Script',cursive;font-weight:400;font-size:clamp(26px,3.6vw,36px);color:var(--terra);line-height:1.1;letter-spacing:0}
-.motto-script .ms2{font-size:9.5px;letter-spacing:.4em;color:var(--muted);text-transform:uppercase;margin-top:8px;padding-right:.4em}
-@media(max-width:760px){.motto-script{display:none}}
-.fan{display:flex;align-items:flex-end;justify-content:center;gap:7px;margin-bottom:26px}
-.fan i{display:block;border:1px solid var(--line);border-bottom:0;border-radius:200px 200px 0 0}
-.fan i:nth-child(1){width:26px;height:13px;border-color:rgba(217,164,65,.2)}
-.fan i:nth-child(2){width:44px;height:22px;border-color:rgba(217,164,65,.38)}
-.fan i:nth-child(3){width:62px;height:31px;border-color:var(--gold)}
-.fan i:nth-child(4){width:44px;height:22px;border-color:rgba(217,164,65,.38)}
-.fan i:nth-child(5){width:26px;height:13px;border-color:rgba(217,164,65,.2)}
-.kicker{font-size:12px;letter-spacing:.55em;text-transform:uppercase;color:var(--gold);font-weight:400;padding-left:.55em}
-/* prénoms en script terracotta, titre principal */
-.names{font-family:'Pinyon Script',cursive;font-size:clamp(52px,11.6vw,122px);font-weight:400;line-height:.92;margin:14px 0 4px;color:var(--deep);letter-spacing:0}
-.names .amp{font-family:'Pinyon Script',cursive;font-weight:400;font-size:.82em;color:var(--terra);margin:0 .1em;vertical-align:.06em}
-.sub{color:var(--muted);font-weight:300;letter-spacing:.18em;font-size:13px;line-height:2;text-transform:uppercase;max-width:560px}
-.orn{display:flex;align-items:center;gap:12px;width:min(340px,72vw);margin:20px auto}
-.orn::before,.orn::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--line) 25%,var(--line) 75%,transparent)}
-.orn .d{width:8px;height:8px;flex:none;background:var(--gold);transform:rotate(45deg);box-shadow:0 0 18px rgba(217,164,65,.8)}
-.date-big{font-family:'Cinzel';font-size:clamp(17px,3.4vw,25px);letter-spacing:.3em;color:var(--gold2);padding-left:.3em}
-.venue{color:var(--muted);font-weight:300;letter-spacing:.16em;font-size:12.5px;margin-top:10px;text-transform:uppercase}
-.theme-line{display:inline-flex;align-items:center;gap:10px;margin-top:14px;font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:var(--gold2)}
-.theme-line::before,.theme-line::after{content:"";width:26px;height:1px;background:var(--line)}
-.theme-line b{color:var(--gold);font-weight:600}
-.cta{display:inline-block;margin-top:38px;padding:17px 40px;border-radius:2px;color:#fdf8f2;text-decoration:none;
-  font:600 11.5px 'Jost';letter-spacing:.34em;text-transform:uppercase;padding-left:calc(40px + .34em);
-  background:linear-gradient(100deg,#8a3416,#b85c38 42%,#c97b4e 58%,#b85c38);background-size:220% 100%;
-  border:1px solid rgba(232,181,154,.7);box-shadow:inset 0 0 0 3px rgba(246,237,227,.28),0 14px 44px rgba(184,92,56,.3);transition:.3s}
-.cta:hover{transform:translateY(-3px);background-position:100% 0;box-shadow:inset 0 0 0 3px rgba(246,237,227,.28),0 20px 54px rgba(184,92,56,.4)}
-.scroll-hint{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);font-size:10px;letter-spacing:.45em;color:var(--muted);text-transform:uppercase;animation:bob 2.4s ease-in-out infinite;padding-left:.45em}
-@keyframes bob{50%{transform:translate(-50%,9px)}}
+/* ——— Ornements communs ——— */
+.filet{display:block;width:min(64vw,340px);height:auto;margin:0 auto}
+.script{font-family:'Great Vibes','Pinyon Script',cursive;font-weight:400;letter-spacing:0;text-transform:none}
+.kick{font-family:'Jost';font-size:12px;letter-spacing:.32em;text-transform:uppercase;color:var(--ink);padding-left:.32em}
 
-/* ——— Compte à rebours ——— */
-.count{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;max-width:600px;margin:46px auto 0;width:100%}
-.tile{position:relative;padding:24px 6px 18px;text-align:center;background:linear-gradient(180deg,rgba(255,255,255,.5),rgba(184,92,56,.04));border:1px solid var(--line-soft);box-shadow:inset 0 1px 0 rgba(255,255,255,.7)}
-.tile::before,.tile::after{content:"";position:absolute;width:10px;height:10px;pointer-events:none}
-.tile::before{top:-1px;left:-1px;border-top:1px solid var(--gold);border-left:1px solid var(--gold)}
-.tile::after{bottom:-1px;right:-1px;border-bottom:1px solid var(--gold);border-right:1px solid var(--gold)}
-.tile .num{font-family:'Cinzel';font-size:clamp(27px,6.4vw,42px);font-weight:600;line-height:1;color:var(--deep);font-variant-numeric:tabular-nums}
-.tile .lab{margin-top:11px;font-size:9.5px;letter-spacing:.42em;color:var(--muted);text-transform:uppercase;padding-left:.42em}
-.tile .tick{width:22px;height:1px;background:var(--line);margin:9px auto 0}
+/* ——— HERO : comme la couverture du modèle ——— */
+.hero{position:relative;isolation:isolate;overflow:clip;min-height:100svh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;
+  padding:104px 20px 72px;
+  background:#fdfaf6 url("assets/invitation/fond-fleuri.jpg") center / cover no-repeat}
+.hero::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
+  background:radial-gradient(56% 50% at 50% 46%, rgba(253,250,246,.9) 0%, rgba(253,250,246,.55) 60%, transparent 100%)}
+.pwrap{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0}
+.particle{position:absolute;top:-5%;width:9px;height:7px;background:linear-gradient(140deg,#e59a76,#b85c38);border-radius:80% 0 80% 0;opacity:0;animation:fall linear infinite;box-shadow:0 1px 3px rgba(138,52,22,.25)}
+@keyframes fall{0%{opacity:0;transform:translateY(0) rotate(0)}8%{opacity:.75}88%{opacity:.35}100%{opacity:0;transform:translateY(112vh) rotate(540deg)}}
+.hero>*:not(.pwrap):not(.corner){position:relative;z-index:1}
+.hero .hero-tl{top:63px;z-index:0;width:min(40vw,380px)}
+.hero .t1{font-family:'Jost';font-size:clamp(13px,3.4vw,16px);letter-spacing:.16em;text-transform:uppercase;color:var(--ink)}
+.hero .t2{font-family:'Cinzel';font-weight:400;font-size:clamp(34px,9vw,58px);line-height:1.05;color:var(--ink);margin:.1em 0 .32em;word-spacing:.12em}
+.names{font-family:'Great Vibes','Pinyon Script',cursive;font-size:clamp(46px,12.6vw,104px);font-weight:400;line-height:1.1;margin:.3em 0 .1em;color:var(--terra);letter-spacing:0;padding:0 6px}
+.names .fn{white-space:nowrap;display:inline-block}
+.names .amp{display:inline-block;font-size:.62em;color:var(--gold-deep);margin:0 .12em;vertical-align:.12em}
+.sub{font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--ink);font-size:clamp(17px,4.4vw,21px);line-height:1.5;max-width:470px}
+/* date composée comme sur un faire-part : VENDREDI | 18 | DÉCEMBRE */
+.date-card{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:clamp(12px,3.4vw,24px);margin:26px auto 4px;width:min(440px,92vw)}
+.date-card .side{font-family:'Cinzel';font-size:clamp(12px,3.4vw,15px);letter-spacing:.24em;color:var(--ink);text-transform:uppercase;
+  padding:10px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.date-card .day{font-family:'Cinzel';font-size:clamp(46px,13vw,68px);line-height:.9;color:var(--terra)}
+.date-card .yr{grid-column:1/-1;font-family:'Cinzel';font-size:13px;letter-spacing:.6em;color:var(--gold-deep);padding-left:.6em;margin-top:2px}
+.venue{font-family:'Jost';font-weight:500;color:var(--ink);letter-spacing:.12em;font-size:13px;margin-top:14px;text-transform:uppercase;line-height:1.8}
+.venue span{color:var(--terra)}
+.hero-ctas{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:32px}
+.cta{display:inline-block;padding:16px 34px;border-radius:999px;color:#fdf8f2;text-decoration:none;
+  font:600 11.5px 'Jost';letter-spacing:.28em;text-transform:uppercase;padding-left:calc(34px + .28em);
+  background:linear-gradient(100deg,#8a3416,#b85c38 45%,#c97b4e 60%,#b85c38);background-size:220% 100%;
+  box-shadow:0 12px 34px rgba(184,92,56,.32);transition:.3s}
+.cta:hover{transform:translateY(-3px);background-position:100% 0;box-shadow:0 18px 44px rgba(184,92,56,.4)}
+.cta.ghost{background:rgba(253,250,246,.7);color:var(--deep);box-shadow:inset 0 0 0 1px var(--terra)}
+.cta.ghost:hover{background:#fff}
+.scroll-hint{position:absolute;bottom:22px;left:50%;transform:translateX(-50%);width:22px;height:12px;color:var(--ink);animation:bob 2.2s ease-in-out infinite}
+@keyframes bob{50%{transform:translate(-50%,7px)}}
+
+/* ——— Sections ——— */
+section.block{position:relative;isolation:isolate;padding:96px 0;scroll-margin-top:62px}
+.sec-head{text-align:center;margin-bottom:46px;position:relative;z-index:1}
+.sec-head .eyebrow{font-family:'Jost';font-size:11.5px;letter-spacing:.34em;text-transform:uppercase;color:var(--terra);padding-left:.34em}
+h2.sec{font-family:'Great Vibes','Pinyon Script',cursive;font-weight:400;font-size:clamp(46px,11vw,72px);line-height:1.1;color:var(--terra);margin:6px 0 10px}
+.sec-head .filet{width:min(56vw,260px)}
+.sec-head p{font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--muted);font-size:18px;margin-top:14px;line-height:1.5}
+/* bouquets d'angle repris du modèle */
+.corner{position:absolute;z-index:-1;pointer-events:none;width:min(52vw,440px);height:auto;opacity:.95}
+.corner.br{right:-6px;bottom:-4px}
+.corner.tl{left:-6px;top:-4px;transform:scale(-1,-1)}
+.corner.tr{right:-6px;top:-4px;transform:scaleY(-1)}
+.corner.bl{left:-6px;bottom:-4px;transform:scaleX(-1)}
+@media(max-width:760px){.corner{width:min(56vw,260px);opacity:.85}
+  #programme{padding-top:150px}#reserver{padding-bottom:150px}
+  .hero .hero-tl{width:min(58vw,240px)}
+  .foot-flower .corner.tl{display:none}}
+
+/* cartes ivoire à double filet doré */
+.card{background:linear-gradient(170deg,#fffdf9,#fbf5ee);border:1px solid rgba(201,165,94,.55);border-radius:4px;padding:30px 26px;position:relative;
+  box-shadow:0 22px 50px rgba(74,36,22,.09),0 2px 0 rgba(255,255,255,.9) inset}
+.card::before{content:"";position:absolute;inset:6px;border:1px solid rgba(201,165,94,.28);border-radius:2px;pointer-events:none}
+
+/* ——— Compte à rebours : arches comme sur l'affiche ——— */
+.countdown{background:linear-gradient(180deg,rgba(241,228,214,.0),rgba(241,228,214,.65) 30%,rgba(241,228,214,.65) 70%,rgba(241,228,214,0))}
+.count{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(8px,2.6vw,18px);max-width:620px;margin:0 auto;width:100%}
+.tile{position:relative;padding:clamp(26px,6vw,40px) 4px clamp(14px,3vw,20px);text-align:center;
+  background:linear-gradient(180deg,#fffdf9,#fbf3ea);border:1px solid rgba(201,165,94,.6);border-radius:999px 999px 6px 6px;
+  box-shadow:0 14px 30px rgba(74,36,22,.08)}
+.tile::before{content:"";position:absolute;inset:5px;border:1px solid rgba(201,165,94,.28);border-radius:inherit;pointer-events:none}
+.tile .num{font-family:'Cinzel';font-size:clamp(26px,7vw,46px);font-weight:500;line-height:1;color:var(--terra);font-variant-numeric:tabular-nums}
+.tile .lab{margin-top:10px;font-size:clamp(8.5px,2.3vw,10.5px);letter-spacing:.26em;color:var(--ink);text-transform:uppercase;padding-left:.26em}
+.tile .tick{width:20px;height:1px;background:var(--gold);margin:10px auto 0}
 .tile.pop .num{animation:pop .5s cubic-bezier(.2,.9,.3,1.4)}
 @keyframes pop{0%{transform:scale(.55);opacity:.15}100%{transform:scale(1);opacity:1}}
-.cd-done{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(24px,5vw,34px);color:var(--gold2)}
+.cd-done{font-family:'Great Vibes',cursive;font-size:clamp(34px,8vw,52px);color:var(--terra)}
 
-/* ——— Sections ——— */
-section.block{padding:88px 0;scroll-margin-top:70px}
-
-/* ——— Hero ——— */
-/* isolation:isolate crée un contexte d'empilement : les éléments en
-   z-index:-1 restent dans la section, derrière le texte. */
-.hero{position:relative;isolation:isolate}
-.hero-rings{width:clamp(150px,20vw,208px);height:auto;display:block;margin:10px auto 2px;z-index:1}
-
-/* ——— Sections ——— */
-.block{position:relative;isolation:isolate}
-.sec-head{position:relative;z-index:1}
-
-.pill{display:flex;flex-direction:column;align-items:center;gap:9px}
-.pill.sel .pl{color:var(--gold2)}
-
-.foot-l1{font-family:'Pinyon Script',cursive;font-size:29px;letter-spacing:0;text-transform:none;color:var(--deep);margin-bottom:8px}
-.foot-l2{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:15px;color:var(--muted);letter-spacing:.04em;text-transform:none;line-height:1.9}
-@media (max-width: 860px) { .foot-l2 { font-size: 13.5px; } }
-.sec-head{text-align:center;margin-bottom:48px}
-h2.sec{font-family:'Cormorant Garamond',serif;font-size:clamp(32px,6.4vw,46px);font-weight:500}
-h2.sec em{font-style:italic;color:var(--gold)}
-.sec-head p{color:var(--muted);font-weight:300;font-size:12px;letter-spacing:.28em;text-transform:uppercase;margin-top:12px;padding-left:.28em}
-.card{background:linear-gradient(160deg,rgba(255,255,255,.62),rgba(253,248,242,.5));border:1px solid var(--line-soft);border-radius:3px;padding:28px;position:relative;box-shadow:0 14px 40px rgba(74,36,22,.08)}
-.card::before{content:"";position:absolute;inset:6px;border:1px solid rgba(184,92,56,.1);pointer-events:none}
+/* ——— Programme ——— */
+.timeline{position:relative;max-width:640px;margin:0 auto 46px;display:grid;gap:22px}
+.timeline::before{content:"";position:absolute;left:50%;top:10px;bottom:10px;width:1px;transform:translateX(-50%);
+  background:linear-gradient(180deg,transparent,var(--gold) 12%,var(--gold) 88%,transparent)}
+.step{display:grid;grid-template-columns:1fr 64px 1fr;align-items:center;gap:14px}
+.step .when{font-family:'Cinzel';font-size:clamp(22px,5.6vw,30px);color:var(--terra);text-align:right}
+.step .what{text-align:left}
+.step .what b{display:block;font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(19px,4.8vw,23px);color:var(--ink)}
+.step .what span{font-size:13px;color:var(--muted);line-height:1.6}
+.step .ico{width:64px;height:64px;border-radius:50%;display:grid;place-items:center;position:relative;z-index:1;
+  background:radial-gradient(circle at 35% 30%,#fffdf9,#f6e9da);border:1px solid var(--gold);box-shadow:0 0 0 6px #fbf5ee,0 10px 24px rgba(74,36,22,.12)}
+.step .ico svg{width:34px;height:34px}
+.step:nth-child(even) .when{order:3;text-align:left}
+.step:nth-child(even) .what{order:1;text-align:right}
+.step:nth-child(even) .ico{order:2}
+.infos{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+@media(max-width:860px){.infos{grid-template-columns:1fr;max-width:460px;margin:0 auto}}
+.info{text-align:center;padding:34px 22px 28px}
+.info .ic{width:46px;height:46px;margin:0 auto 14px;display:grid;place-items:center;color:var(--terra)}
+.info .ic svg{width:40px;height:40px}
+.info .tt{font-family:'Cinzel';font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:var(--terra);padding-left:.28em}
+.info .dd{font-family:'Cormorant Garamond',serif;font-size:19px;color:var(--ink);margin-top:10px;line-height:1.45}
+.info .dd small{display:block;font-family:'Jost';font-size:12.5px;color:var(--muted);margin-top:6px;letter-spacing:.02em}
+.info a.lk{display:inline-block;margin-top:14px;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--deep);text-decoration:none;border-bottom:1px solid var(--terra);padding-bottom:3px}
+.info a.lk:hover{color:var(--terra)}
+.swatches{display:flex;justify-content:center;gap:8px;margin-top:12px}
+.swatches i{width:20px;height:20px;border-radius:50%;box-shadow:0 0 0 2px #fffdf9,0 0 0 3px rgba(201,165,94,.6)}
 
 /* ——— Statistiques & stocks ——— */
-.stats-grid{display:grid;grid-template-columns:320px 1fr;gap:20px;align-items:start}
-@media(max-width:860px){.stats-grid{grid-template-columns:1fr}}
-.total-card{display:flex;flex-direction:column;align-items:center;text-align:center;padding:34px 22px 28px}
+.stats-grid{display:grid;grid-template-columns:320px 1fr;gap:20px;align-items:stretch;position:relative;z-index:1}
+@media(max-width:860px){.stats-grid{grid-template-columns:1fr;max-width:520px;margin:0 auto}}
+.total-card{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:34px 22px 28px}
 .ring{position:relative;width:160px;height:160px}
 .ring svg{transform:rotate(-90deg);display:block}
 .ring .fg{stroke-linecap:round;transition:stroke-dashoffset 1.3s cubic-bezier(.2,.8,.2,1)}
 .ring .val{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
-.ring .val b{font-family:'Cinzel';font-size:34px;color:var(--gold2)}
-.ring .val .pct{font-size:10px;color:var(--muted);letter-spacing:.2em;margin-top:4px}
-.tot-lbl{margin-top:16px;font-size:11px;letter-spacing:.34em;text-transform:uppercase;color:var(--gold);padding-left:.34em}
-.tot-sub{margin-top:6px;font-size:12px;color:var(--muted);font-weight:300}
-.cat{padding:16px 0;border-bottom:1px solid rgba(217,164,65,.1)}
+.ring .val b{font-family:'Cinzel';font-size:38px;font-weight:500;color:var(--terra)}
+.ring .val .pct{font-size:10px;color:var(--muted);letter-spacing:.2em;margin-top:2px}
+.tot-lbl{margin-top:16px;font-family:'Cinzel';font-size:12px;letter-spacing:.26em;text-transform:uppercase;color:var(--ink);padding-left:.26em}
+.tot-sub{margin-top:6px;font-size:12.5px;color:var(--muted)}
+.cat-card{display:flex;flex-direction:column;justify-content:center}
+.cat{padding:18px 4px;border-bottom:1px solid rgba(201,165,94,.25)}
 .cat:last-child{border-bottom:0}
 .cat-top{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap}
-.cat-top .lbl{font-family:'Cinzel';font-size:13px;letter-spacing:.22em;text-transform:uppercase}
+.cat-top .lbl{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:21px;color:var(--ink)}
 .cat-top .nums{font-size:12.5px;color:var(--muted);letter-spacing:.06em}
-.cat-top .nums b{color:var(--gold2);font-size:14px}
-.bar{height:6px;border-radius:99px;background:rgba(138,52,22,.12);overflow:hidden;margin-top:12px}
-.bar i{display:block;height:100%;width:0;border-radius:inherit;background:linear-gradient(90deg,var(--bronze),var(--gold),var(--gold2));transition:width 1.3s cubic-bezier(.2,.8,.2,1)}
-.cat.full .lbl::after{content:" — complet";color:var(--danger);letter-spacing:.18em;font-size:10px}
+.cat-top .nums b{color:var(--terra);font-family:'Cinzel';font-size:15px}
+.bar{height:5px;border-radius:99px;background:rgba(138,52,22,.1);overflow:hidden;margin-top:12px}
+.bar i{display:block;height:100%;width:0;border-radius:inherit;background:linear-gradient(90deg,var(--gold),var(--clay),var(--terra));transition:width 1.3s cubic-bezier(.2,.8,.2,1)}
+.cat.full .lbl::after{content:" — complet";color:var(--danger);font-family:'Jost';letter-spacing:.14em;font-size:10px;text-transform:uppercase}
 
-/* ——— Formulaire ——— */
-.rsvp-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:20px;align-items:start}
-@media(max-width:860px){.rsvp-grid{grid-template-columns:1fr}}
-.field{margin-bottom:20px}
-.field label{display:block;font-size:10.5px;letter-spacing:.26em;text-transform:uppercase;color:var(--muted);margin:0 0 8px 2px}
-.field input{width:100%;background:linear-gradient(160deg,#22101a,#180a11);border:1px solid rgba(217,164,65,.2);border-radius:2px;color:var(--ink);padding:15px 16px;font:inherit;font-size:14px;outline:none;transition:.25s}
-.field input:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(217,164,65,.12),0 0 24px rgba(217,164,65,.1)}
-.field input::placeholder{color:rgba(168,134,94,.6)}
-.f-lbl{display:block;font-size:10.5px;letter-spacing:.26em;text-transform:uppercase;color:var(--muted);margin:0 0 10px 2px}
-.pills{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:22px}
-@media(max-width:560px){.pills{grid-template-columns:1fr}}
-.pill{position:relative;cursor:pointer;border:1px solid rgba(217,164,65,.18);border-radius:2px;padding:13px 10px;text-align:center;transition:.25s;background:rgba(217,164,65,.04)}
-.pill input{position:absolute;opacity:0;inset:0}
-.pill .pl{display:block;font-family:'Cinzel';font-size:12px;letter-spacing:.14em;text-transform:uppercase}
-.pill .ps{display:block;font-size:11px;color:var(--muted);margin-top:4px;letter-spacing:.05em}
-.pill:hover{border-color:var(--gold)}
-.pill.sel{border-color:var(--gold);background:linear-gradient(160deg,rgba(217,164,65,.18),rgba(107,18,38,.2));box-shadow:0 0 0 3px rgba(217,164,65,.09),0 0 30px rgba(217,164,65,.12)}
+/* ——— Formulaire : carton-réponse ——— */
+.rsvp-card{max-width:600px;margin:0 auto;padding:44px clamp(20px,5vw,46px) 36px;position:relative;z-index:1}
+.rsvp-card .rc-head{text-align:center;margin-bottom:28px}
+.rsvp-card .rc-head .script{font-size:clamp(34px,8.6vw,44px);color:var(--terra);line-height:1.1}
+.rsvp-card .rc-head p{font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:var(--muted);margin-top:8px}
+.field{margin-bottom:22px}
+.field label{display:block;font-size:10.5px;letter-spacing:.26em;text-transform:uppercase;color:var(--ink);margin:0 0 6px 0}
+.field input{width:100%;background:transparent;border:0;border-bottom:1px solid rgba(184,92,56,.4);border-radius:0;color:var(--ink);
+  padding:10px 2px 10px;font-family:'Cormorant Garamond',serif;font-size:21px;outline:none;transition:.25s}
+.field input:focus{border-bottom-color:var(--terra);box-shadow:0 1px 0 0 var(--terra)}
+.field input::placeholder{color:rgba(138,52,22,.35);font-style:italic}
+.f-lbl{display:block;font-size:10.5px;letter-spacing:.26em;text-transform:uppercase;color:var(--ink);margin:6px 0 12px}
+.pills{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:24px}
+.pill{position:relative;cursor:pointer;border:1px solid rgba(201,165,94,.55);border-radius:999px;padding:12px 8px;text-align:center;transition:.25s;background:#fffdf9}
+.pill input{position:absolute;opacity:0;inset:0;cursor:pointer}
+.pill .pl{display:block;font-family:'Jost';font-weight:500;font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink)}
+.pill:hover{border-color:var(--terra)}
+.pill.sel{border-color:var(--terra);background:linear-gradient(100deg,#8a3416,#b85c38);box-shadow:0 8px 20px rgba(184,92,56,.28)}
+.pill.sel .pl{color:#fdf8f2}
+.pill:focus-within{outline:2px solid var(--terra);outline-offset:2px}
 .pill.full{opacity:.45}
-.pill.full .pl::after{content:" · complet";color:#e08a7d;font-size:9px;letter-spacing:.18em}
-.stepper{display:flex;align-items:center;gap:14px;margin-bottom:8px}
-.stepper button{width:46px;height:46px;border-radius:2px;border:1px solid rgba(217,164,65,.25);background:rgba(217,164,65,.05);color:var(--ink);font-size:19px;cursor:pointer;transition:.2s;font-family:'Cinzel'}
-.stepper button:hover{border-color:var(--gold);color:var(--gold2)}
+.pill.full .pl::after{content:" · complet";font-size:9px;letter-spacing:.14em}
+.stepper{display:flex;align-items:center;gap:14px;margin-bottom:8px;max-width:260px}
+.stepper button{width:46px;height:46px;border-radius:50%;border:1px solid rgba(201,165,94,.7);background:#fffdf9;color:var(--terra);font-size:20px;cursor:pointer;transition:.2s;font-family:'Cinzel';line-height:1}
+.stepper button:hover{border-color:var(--terra);background:#fff}
 .stepper button:disabled{opacity:.35;cursor:not-allowed}
-.stepper .q{flex:1;text-align:center;font-family:'Cinzel';font-size:28px;color:var(--gold2)}
-.max-note{font-size:11px;color:var(--muted);letter-spacing:.08em;margin-bottom:22px}
-.btn{width:100%;padding:17px;border:0;border-radius:2px;cursor:pointer;font:600 12.5px 'Jost';letter-spacing:.32em;text-transform:uppercase;color:#fdf8f2;background:linear-gradient(100deg,#8a3416,#b85c38 45%,#c97b4e 62%,#b85c38);background-size:220% 100%;transition:.3s;box-shadow:0 10px 30px rgba(184,92,56,.25)}
+.stepper .q{flex:1;text-align:center;font-family:'Cinzel';font-size:32px;color:var(--terra)}
+.max-note{font-size:12px;color:var(--muted);letter-spacing:.04em;margin-bottom:26px}
+.btn{width:100%;padding:18px;border:0;border-radius:999px;cursor:pointer;font:600 12px 'Jost';letter-spacing:.3em;text-transform:uppercase;color:#fdf8f2;background:linear-gradient(100deg,#8a3416,#b85c38 45%,#c97b4e 62%,#b85c38);background-size:220% 100%;transition:.3s;box-shadow:0 12px 30px rgba(184,92,56,.28)}
 .btn:hover{background-position:100% 0;transform:translateY(-2px)}
 .btn:disabled{opacity:.5;cursor:not-allowed;transform:none}
-.closed{display:none;text-align:center;color:var(--deep);letter-spacing:.18em;font-size:13px;border:1px dashed var(--line);border-radius:2px;padding:26px;margin-top:20px;background:rgba(184,92,56,.05)}
-
-/* ——— Carte infos ——— */
-.info{display:flex;flex-direction:column;gap:18px;justify-content:center}
-.info .row{display:flex;gap:14px;align-items:flex-start}
-.info .ic{font-size:10px;color:var(--gold);width:28px;height:28px;border:1px solid var(--line);transform:rotate(45deg);display:grid;place-items:center;flex:none;margin:4px 8px 0 6px}
-.info .tt{font-family:'Cinzel';font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold2)}
-.info .dd{font-size:13px;color:var(--ink);font-weight:300;margin-top:5px;line-height:1.75}
+.rc-foot{text-align:center;margin-top:18px;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:16px;color:var(--muted)}
+.closed{display:none;max-width:600px;margin:20px auto 0;text-align:center;color:var(--deep);font-family:'Cormorant Garamond',serif;font-size:19px;border:1px solid var(--line);border-radius:4px;padding:24px;background:#fffdf9}
 
 /* ——— Organisateurs ——— */
 #admin{display:none}
 #admin.open{display:block}
 .admin-bar{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-bottom:22px}
-.mini{padding:12px 20px;border-radius:2px;border:1px solid rgba(217,164,65,.25);background:rgba(217,164,65,.05);color:var(--ink);cursor:pointer;font:500 11px 'Jost';letter-spacing:.22em;text-transform:uppercase;transition:.2s}
-.mini:hover{border-color:var(--gold);color:var(--gold2)}
+.mini{padding:11px 18px;border-radius:999px;border:1px solid rgba(201,165,94,.6);background:#fffdf9;color:var(--ink);cursor:pointer;font:500 11px 'Jost';letter-spacing:.18em;text-transform:uppercase;transition:.2s}
+.mini:hover{border-color:var(--terra);color:var(--terra)}
 .mini.warn{border-color:rgba(166,61,42,.5);color:var(--danger)}
-.a-stats{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:18px}
-.chip{padding:12px 16px;border-radius:2px;background:rgba(217,164,65,.06);border:1px solid rgba(217,164,65,.16);font-size:11.5px;color:var(--muted);letter-spacing:.08em}
-.chip b{font-family:'Cinzel';color:var(--gold2);font-size:14px;margin-left:8px}
+.a-stats{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:18px;justify-content:center}
+.chip{padding:12px 16px;border-radius:999px;border:1px solid rgba(201,165,94,.4);font-size:11.5px;color:var(--muted);letter-spacing:.08em}
+.chip b{font-family:'Cinzel';color:var(--terra);font-size:14px;margin-left:8px}
 .scrollx{overflow-x:auto}
 table{width:100%;border-collapse:collapse;font-size:13px}
-th{font-family:'Cinzel';font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--muted);text-align:left;padding:10px 8px;border-bottom:1px solid var(--line-soft)}
-td{padding:12px 8px;border-bottom:1px solid rgba(217,164,65,.07);font-weight:300}
+th{font-family:'Cinzel';font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);text-align:left;padding:10px 8px;border-bottom:1px solid var(--line)}
+td{padding:12px 8px;border-bottom:1px solid var(--line-soft)}
 
-/* ——— Modale, toast, pied ——— */
-.modal{position:fixed;inset:0;z-index:90;display:none;align-items:center;justify-content:center;background:rgba(74,36,22,.45);backdrop-filter:blur(10px);padding:20px}
+/* ——— Pied de page fleuri ——— */
+.foot-flower{position:relative;isolation:isolate;overflow:clip;text-align:center;padding:110px 20px 120px}
+.foot-flower .corner{width:min(56vw,420px)}
+.foot-l1{font-family:'Great Vibes','Pinyon Script',cursive;font-size:clamp(42px,10vw,60px);color:var(--terra);line-height:1.1}
+.foot-l1 span{color:var(--gold-deep);font-size:.7em}
+.foot-date{font-family:'Cinzel';font-size:13px;letter-spacing:.36em;color:var(--ink);margin:12px 0 18px;padding-left:.36em}
+.foot-l2{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:18px;color:var(--muted);line-height:1.6;max-width:420px;margin:16px auto 0}
+
+/* ——— Modale, toast ——— */
+.modal{position:fixed;inset:0;z-index:90;display:none;align-items:center;justify-content:center;background:rgba(74,36,22,.4);backdrop-filter:blur(8px);padding:20px}
 .modal.show{display:flex}
-.modal .box{max-width:430px;width:100%;text-align:center;padding:42px 30px 34px;background:linear-gradient(165deg,#fdf8f2,#f6ede3);border:1px solid var(--line);animation:zoom .45s cubic-bezier(.2,.9,.3,1.3);box-shadow:0 30px 80px rgba(74,36,22,.3),inset 0 1px 0 rgba(255,255,255,.8)}
+.modal .box{max-width:430px;width:100%;text-align:center;padding:44px 30px 34px;background:linear-gradient(170deg,#fffdf9,#fbf5ee);border:1px solid rgba(201,165,94,.6);border-radius:6px;position:relative;
+  animation:zoom .45s cubic-bezier(.2,.9,.3,1.3);box-shadow:0 30px 80px rgba(74,36,22,.3)}
+.modal .box::before{content:"";position:absolute;inset:6px;border:1px solid rgba(201,165,94,.3);border-radius:3px;pointer-events:none}
 @keyframes zoom{from{transform:scale(.82);opacity:0}}
-.modal h3{font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:500;color:var(--deep)}
-.modal p{color:var(--muted);font-size:13px;line-height:1.9;margin-top:12px}
-.m-ico{color:var(--gold);font-size:22px;margin-bottom:6px}
+.modal h3{font-family:'Great Vibes',cursive;font-weight:400;font-size:44px;color:var(--terra);line-height:1.1}
+.modal p{color:var(--muted);font-size:13.5px;line-height:1.9;margin-top:12px}
+.m-ico{width:70px;margin:0 auto 4px}
 .code{margin:16px 0 22px;font-size:13px;letter-spacing:.14em}
-.code b{font-family:'Cinzel';color:var(--gold2);letter-spacing:.2em}
-.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(20px);opacity:0;transition:.3s;padding:12px 22px;border-radius:2px;z-index:95;font-size:13px;pointer-events:none;letter-spacing:.04em}
+.code b{font-family:'Cinzel';color:var(--terra);letter-spacing:.2em}
+.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(20px);opacity:0;transition:.3s;padding:12px 22px;border-radius:999px;z-index:95;font-size:13px;pointer-events:none;letter-spacing:.04em}
 .toast.show{opacity:1;transform:translateX(-50%)}
+
+@media(max-width:560px){
+  section.block{padding:76px 0}
+  .step{grid-template-columns:76px 52px 1fr;gap:12px}
+  .step .ico{width:52px;height:52px}.step .ico svg{width:28px;height:28px}
+  .timeline::before{left:114px}
+  .step .when,.step:nth-child(even) .when{order:1;text-align:right}
+  .step .ico,.step:nth-child(even) .ico{order:2}
+  .step .what,.step:nth-child(even) .what{order:3;text-align:left}
+}
 </style>
 </head>
 <body>
@@ -452,17 +481,17 @@ td{padding:12px 8px;border-bottom:1px solid rgba(217,164,65,.07);font-weight:300
   </div>
 </noscript>
 <div class="stage"></div>
-<div class="rays"></div>
 <div class="grain"></div>
 
 <header>
   <div class="wrap nav">
     <div class="mono" id="mono" title="Espace organisateurs">
-      <span class="dm"><b>H</b></span>
-      <span class="nm">Hermann <span>&amp;</span> Daria</span>
+      <span class="dm"><b>DH</b></span>
+      <span class="nm">Daria <span>&amp;</span> Hermann</span>
     </div>
     <nav class="links">
-      <a href="#compte">Compte à rebours</a>
+      <a href="#compte">Le grand jour</a>
+      <a href="#programme">Programme</a>
       <a href="#places">Places</a>
       <a href="#reserver">Réserver</a>
     </nav>
@@ -470,54 +499,112 @@ td{padding:12px 8px;border-bottom:1px solid rgba(217,164,65,.07);font-weight:300
   </div>
 </header>
 
-<!-- ===== HERO + COMPTE À REBOURS ===== -->
-<section class="hero" id="compte">
+<!-- ===== HERO : couverture, comme le modèle ===== -->
+<section class="hero" id="accueil">
+  <img class="corner tl hero-tl" src="assets/invitation/bouquet-angle.webp" alt="" aria-hidden="true" fetchpriority="high">
   <div class="pwrap" id="particles"></div>
+  <p class="t1 reveal">Invitation au</p>
+  <p class="t2 reveal">Mariage de</p>
+  <img class="filet reveal" src="assets/invitation/filet.png" alt="" aria-hidden="true" width="1250" height="54">
+  <h1 class="names reveal"><span class="fn">Daria</span> <span class="amp">&amp;</span> <span class="fn">Hermann</span></h1>
+  <p class="sub reveal">Avec leurs familles, ils ont la joie de vous inviter à célébrer leur union</p>
 
-  <div class="arc" aria-hidden="true">
-    <svg viewBox="0 0 400 472" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M 60 440 L 60 210 A 140 140 0 0 1 340 210 L 340 440" stroke="#d9a441" stroke-width="2"/>
-      <path d="M 72 428 L 72 216 A 128 128 0 0 1 328 216 L 328 428" stroke="rgba(201,165,94,.45)" stroke-width="1"/>
-    </svg>
+  <div class="date-card reveal" aria-label="Vendredi 18 décembre 2026">
+    <span class="side">Vendredi</span>
+    <span class="day">18</span>
+    <span class="side">Décembre</span>
+    <span class="yr">2026</span>
   </div>
-  <div class="motto-script" aria-hidden="true"><div class="ms1">Un jour<br>pour toujours</div><div class="ms2">❤</div></div>
-  <div class="fan" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
-  <p class="kicker reveal">Nous nous marions</p>
+  <p class="venue reveal">16h00 <span>·</span> Table des Élites <span>·</span> Akwa, Douala</p>
 
-  <!-- les alliances, au-dessus des prénoms -->
-  <svg class="hero-rings rings bloom" viewBox="0 0 120 84" role="img" aria-label="Anneaux de mariage entrelacés">
-    <use href="#fl-anneaux"/>
+  <div class="hero-ctas reveal">
+    <a class="cta" href="#reserver">Réserver ma place</a>
+    <a class="cta ghost" href="#programme">Le programme</a>
+  </div>
+  <svg class="scroll-hint" viewBox="0 0 22 12" fill="none" aria-hidden="true">
+    <path d="M1.5 1.5 L11 10 L20.5 1.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
   </svg>
+</section>
 
-  <h1 class="names reveal">Daria<span class="amp">&amp;</span>Hermann</h1>
-  <p class="sub reveal">Avec leurs familles, ils vous invitent à célébrer leur union</p>
-  <div class="orn reveal"><span class="d"></span></div>
-
-  <p class="date-big reveal">Vendredi 18 Décembre 2026</p>
-  <p class="venue reveal">Table des Élites · Akwa, Douala · 16h00 — Célébration jusqu'à 22h</p>
-  <p class="theme-line reveal">Thème : <b>Terracotta</b></p>
-  <div class="motto-list reveal" aria-hidden="true">
-    <span>Deux cœurs</span><span>une même destination</span>
-    <span class="hh">Amour</span><span>Respect</span><span>Aventure</span><span>Toujours</span>
+<!-- ===== COMPTE À REBOURS ===== -->
+<section class="block countdown" id="compte">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="eyebrow">Vendredi 18 décembre 2026</p>
+      <h2 class="sec">Le grand jour approche</h2>
+      <img class="filet" src="assets/invitation/filet.png" alt="" aria-hidden="true" width="1250" height="54">
+    </div>
+    <div id="cd-wrap" class="count reveal" role="timer" aria-live="off" aria-label="Compte à rebours avant le mariage">
+      <div class="tile"><div class="num" id="cd-j">00</div><div class="tick"></div><div class="lab">Jours</div></div>
+      <div class="tile"><div class="num" id="cd-h">00</div><div class="tick"></div><div class="lab">Heures</div></div>
+      <div class="tile"><div class="num" id="cd-m">00</div><div class="tick"></div><div class="lab">Minutes</div></div>
+      <div class="tile"><div class="num" id="cd-s">00</div><div class="tick"></div><div class="lab">Secondes</div></div>
+    </div>
   </div>
+</section>
 
-  <div id="cd-wrap" class="count reveal" role="timer" aria-live="off" aria-label="Compte à rebours avant le mariage">
-    <div class="tile"><div class="num" id="cd-j">00</div><div class="tick"></div><div class="lab">Jours</div></div>
-    <div class="tile"><div class="num" id="cd-h">00</div><div class="tick"></div><div class="lab">Heures</div></div>
-    <div class="tile"><div class="num" id="cd-m">00</div><div class="tick"></div><div class="lab">Minutes</div></div>
-    <div class="tile"><div class="num" id="cd-s">00</div><div class="tick"></div><div class="lab">Secondes</div></div>
+<!-- ===== PROGRAMME ===== -->
+<section class="block" id="programme">
+  <img class="corner tl" src="assets/invitation/bouquet-angle.webp" alt="" aria-hidden="true" loading="lazy">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="eyebrow">Déroulé de la journée</p>
+      <h2 class="sec">Le programme</h2>
+      <img class="filet" src="assets/invitation/filet.png" alt="" aria-hidden="true" width="1250" height="54">
+    </div>
+
+    <div class="timeline">
+      <div class="step reveal">
+        <div class="when">16h00</div>
+        <div class="ico"><svg viewBox="0 0 120 84" aria-hidden="true"><use href="#fl-anneaux"/></svg></div>
+        <div class="what"><b>Cérémonie</b><span>L'échange des consentements</span></div>
+      </div>
+      <div class="step reveal">
+        <div class="when">18h30</div>
+        <div class="ico"><svg viewBox="0 0 40 40" fill="none" stroke="#b85c38" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M9 6h9l-1 9a3.6 3.6 0 0 1-7 0z"/><path d="M13.5 18.5V31M9.5 31h8"/>
+          <path d="M22 6h9l-1 9a3.6 3.6 0 0 1-7 0z"/><path d="M26.5 18.5V31M22.5 31h8"/>
+          <path d="M10 10.5h7M23 10.5h7" stroke="#c9a55e"/></svg></div>
+        <div class="what"><b>Réception &amp; dîner</b><span>Cocktail, dîner et premières danses</span></div>
+      </div>
+      <div class="step reveal">
+        <div class="when">22h00</div>
+        <div class="ico"><svg viewBox="0 0 40 40" fill="none" stroke="#b85c38" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M20 33s-11-6.6-11-14.2A6 6 0 0 1 20 15a6 6 0 0 1 11 3.8C31 26.4 20 33 20 33z"/>
+          <path d="M20 9V5M13 10.5l-2-3M27 10.5l2-3" stroke="#c9a55e"/></svg></div>
+        <div class="what"><b>Fin de la célébration</b><span>Merci d'avoir partagé ce jour avec nous</span></div>
+      </div>
+    </div>
+
+    <div class="infos">
+      <div class="card info reveal">
+        <div class="ic"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M20 35s11-10.2 11-18.5a11 11 0 0 0-22 0C9 24.8 20 35 20 35z"/><circle cx="20" cy="16.5" r="4"/></svg></div>
+        <div class="tt">Lieu</div>
+        <div class="dd">Table des Élites<small>Akwa — Douala, Cameroun</small></div>
+        <a class="lk" href="https://www.google.com/maps/search/?api=1&amp;query=Table%20des%20%C3%89lites%20Akwa%20Douala" target="_blank" rel="noopener">Itinéraire</a>
+      </div>
+      <div class="card info reveal">
+        <div class="ic"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round" aria-hidden="true"><path d="M14 6l6 4 6-4 7 5-3 6-3-1.5V34H13V15.5L10 17l-3-6z"/><path d="M20 10v7"/></svg></div>
+        <div class="tt">Dress code</div>
+        <div class="dd">Terracotta<small>Habillez-vous aux couleurs du thème</small></div>
+        <div class="swatches" aria-hidden="true"><i style="background:#8a3416"></i><i style="background:#b85c38"></i><i style="background:#c97b4e"></i><i style="background:#e8b59a"></i></div>
+      </div>
+      <div class="card info reveal">
+        <div class="ic"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="11" width="28" height="18" rx="2"/><path d="M26 11v18" stroke-dasharray="2 2"/><path d="M11 17h10M11 22h7"/></svg></div>
+        <div class="tt">Bon à savoir</div>
+        <div class="dd">Places limitées<small>Chaque place = 1 personne · votre code sera demandé à l'entrée</small></div>
+      </div>
+    </div>
   </div>
-
-  <a class="cta reveal" href="#reserver">Réserver ma place</a>
-  <div class="scroll-hint">▼ défiler</div>
 </section>
 
 <!-- ===== PLACES & RÉSERVATIONS ===== -->
 <section class="block" id="places">
   <div class="wrap">
     <div class="sec-head reveal">
-      <h2 class="sec">Places <em>&amp; réservations</em></h2>
-      <p>Suivi en temps réel · mise à jour à chaque réservation</p>
+      <p class="eyebrow">En temps réel</p>
+      <h2 class="sec">Les places</h2>
+      <img class="filet" src="assets/invitation/filet.png" alt="" aria-hidden="true" width="1250" height="54">
     </div>
     <div class="stats-grid">
       <div class="card total-card reveal">
@@ -525,13 +612,13 @@ td{padding:12px 8px;border-bottom:1px solid rgba(217,164,65,.07);font-weight:300
           <svg width="160" height="160" viewBox="0 0 160 160">
             <defs>
               <linearGradient id="gradGold" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0" stop-color="#a8865e"/>
+                <stop offset="0" stop-color="#c9a55e"/>
                 <stop offset=".55" stop-color="#b85c38"/>
                 <stop offset="1" stop-color="#8a3416"/>
               </linearGradient>
             </defs>
-            <circle cx="80" cy="80" r="70" fill="none" stroke="rgba(138,52,22,.12)" stroke-width="6"/>
-            <circle id="ringFg" class="fg" cx="80" cy="80" r="70" fill="none" stroke="url(#gradGold)" stroke-width="6" stroke-dasharray="439.8" stroke-dashoffset="439.8"/>
+            <circle cx="80" cy="80" r="70" fill="none" stroke="rgba(138,52,22,.1)" stroke-width="5"/>
+            <circle id="ringFg" class="fg" cx="80" cy="80" r="70" fill="none" stroke="url(#gradGold)" stroke-width="5" stroke-dasharray="439.8" stroke-dashoffset="439.8"/>
           </svg>
           <div class="val"><b id="t-conf">0</b><span class="pct" id="t-pct">0%</span></div>
         </div>
@@ -559,47 +646,46 @@ td{padding:12px 8px;border-bottom:1px solid rgba(217,164,65,.07);font-weight:300
   </div>
 </section>
 
-<!-- ===== RÉSERVATION ===== -->
+<!-- ===== RÉSERVATION : carton-réponse ===== -->
 <section class="block" id="reserver">
+  <img class="corner br" src="assets/invitation/bouquet-angle.webp" alt="" aria-hidden="true" loading="lazy">
   <div class="wrap">
     <div class="sec-head reveal">
-      <h2 class="sec">Réserver <em>ma place</em></h2>
-      <p>1 place = 1 invité · votre code sera demandé à l'entrée</p>
+      <p class="eyebrow">Merci de répondre</p>
+      <h2 class="sec">Réserver ma place</h2>
+      <img class="filet" src="assets/invitation/filet.png" alt="" aria-hidden="true" width="1250" height="54">
     </div>
-    <div class="rsvp-grid">
-      <div class="card reveal" id="form-card">
-        <form id="form" novalidate>
-          <div class="field"><label for="f-name">Nom &amp; prénom(s)</label>
-            <input id="f-name" autocomplete="name" placeholder="Ex : Kouassi Jean"></div>
-          <div class="field"><label for="f-phone">Téléphone (WhatsApp)</label>
-            <input id="f-phone" inputmode="tel" placeholder="+237 6 00 00 00 00"></div>
-          <span class="f-lbl">Catégorie</span>
-          <div class="pills">
-            <label class="pill sel" id="pill-famille"><input type="radio" name="cat" value="famille" checked>
-              <span class="pl">Famille</span></label>
-            <label class="pill" id="pill-amis"><input type="radio" name="cat" value="amis">
-              <span class="pl">Amis</span></label>
-            <label class="pill" id="pill-collegues"><input type="radio" name="cat" value="collegues">
-              <span class="pl">Collègues</span></label>
-          </div>
-          <span class="f-lbl">Nombre de places</span>
-          <div class="stepper">
-            <button type="button" id="minus" aria-label="Moins">−</button>
-            <div class="q" id="qty">1</div>
-            <button type="button" id="plus" aria-label="Plus">+</button>
-          </div>
-          <div class="max-note" id="qmax"></div>
-          <button class="btn" type="submit" id="btn-send">Confirmer ma réservation</button>
-        </form>
+    <div class="card rsvp-card reveal" id="form-card">
+      <div class="rc-head">
+        <div class="script">Votre réponse</div>
+        <p>1 place = 1 invité</p>
       </div>
-      <div class="card info reveal">
-        <div class="row"><span class="ic">◆</span><div><div class="tt">Lieu</div><div class="dd">Table des Élites<br>Akwa — Douala, Cameroun</div></div></div>
-        <div class="row"><span class="ic">◆</span><div><div class="tt">Horaire</div><div class="dd">Cérémonie à 16h00<br>Réception &amp; dîner à 18h30</div></div></div>
-        <div class="row"><span class="ic">◆</span><div><div class="tt">Dress code</div><div class="dd">Black &amp; White — élégance<br>en noir &amp; blanc stricts</div></div></div>
-        <div class="row"><span class="ic">◆</span><div><div class="tt">Bon à savoir</div><div class="dd">Chaque place = 1 personne<br>Places limitées par catégorie</div></div></div>
-      </div>
+      <form id="form" novalidate>
+        <div class="field"><label for="f-name">Nom &amp; prénom(s)</label>
+          <input id="f-name" autocomplete="name" placeholder="Ex : Kouassi Jean"></div>
+        <div class="field"><label for="f-phone">Téléphone (WhatsApp)</label>
+          <input id="f-phone" inputmode="tel" placeholder="+237 6 00 00 00 00"></div>
+        <span class="f-lbl">Catégorie</span>
+        <div class="pills">
+          <label class="pill sel" id="pill-famille"><input type="radio" name="cat" value="famille" checked>
+            <span class="pl">Famille</span></label>
+          <label class="pill" id="pill-amis"><input type="radio" name="cat" value="amis">
+            <span class="pl">Amis</span></label>
+          <label class="pill" id="pill-collegues"><input type="radio" name="cat" value="collegues">
+            <span class="pl">Collègues</span></label>
+        </div>
+        <span class="f-lbl">Nombre de places</span>
+        <div class="stepper">
+          <button type="button" id="minus" aria-label="Moins">−</button>
+          <div class="q" id="qty">1</div>
+          <button type="button" id="plus" aria-label="Plus">+</button>
+        </div>
+        <div class="max-note" id="qmax"></div>
+        <button class="btn" type="submit" id="btn-send">Confirmer ma réservation</button>
+        <p class="rc-foot">Votre code de réservation vous sera remis à l'envoi</p>
+      </form>
     </div>
-    <div class="closed" id="closed-banner">Les réservations sont closes. Contactez les mariés pour toute question 💛</div>
+    <div class="closed" id="closed-banner">Les réservations sont closes. Contactez les mariés pour toute question.</div>
   </div>
 </section>
 
@@ -607,11 +693,12 @@ td{padding:12px 8px;border-bottom:1px solid rgba(217,164,65,.07);font-weight:300
 <section class="block" id="admin">
   <div class="wrap">
     <div class="sec-head">
-      <h2 class="sec">Tableau <em>des réservations</em></h2>
-      <p>Espace organisateurs</p>
+      <p class="eyebrow">Espace organisateurs</p>
+      <h2 class="sec">Les réservations</h2>
     </div>
     <div class="admin-bar">
-      <button class="mini" id="toggle-close">Clore les réservations</button>
+      <button class="mini" id="toggle-close" title="Clôture locale (ce navigateur). Pour une clôture globale, mettez CLOSED dans l'onglet Config de la feuille.">Clore les réservations</button>
+      <button class="mini" id="sync">Synchroniser Google</button>
       <button class="mini" id="csv">Exporter CSV</button>
       <button class="mini warn" id="reset">Réinitialiser</button>
       <button class="mini" id="hide-admin">Masquer</button>
@@ -630,17 +717,19 @@ td{padding:12px 8px;border-bottom:1px solid rgba(217,164,65,.07);font-weight:300
   </div>
 </section>
 
-<!-- guirlande + pied de page -->
-<footer>
-  <div class="foot">
-    <p class="foot-l1">H <span class="dm"></span> D — 18 · 12 · 2026 · Douala</p>
-    <p class="foot-l2">Avec toute l'affection de nos familles · nous avons hâte de vous voir</p>
-  </div>
+<!-- ===== PIED DE PAGE FLEURI ===== -->
+<footer class="foot-flower">
+  <img class="corner tl" src="assets/invitation/bouquet-angle.webp" alt="" aria-hidden="true" loading="lazy">
+  <img class="corner br" src="assets/invitation/bouquet-angle.webp" alt="" aria-hidden="true" loading="lazy">
+  <p class="foot-l1">Daria <span>&amp;</span> Hermann</p>
+  <p class="foot-date">18 · 12 · 2026 — Douala</p>
+  <img class="filet" src="assets/invitation/filet.png" alt="" aria-hidden="true" width="1250" height="54">
+  <p class="foot-l2">Avec toute l'affection de nos familles, nous avons hâte de vous voir</p>
 </footer>
 
 <div class="modal" id="modal">
   <div class="box">
-    <div class="m-ico">◆</div>
+    <svg class="m-ico rings" viewBox="0 0 120 84" aria-hidden="true"><use href="#fl-anneaux"/></svg>
     <h3>Réservation confirmée</h3>
     <p id="m-txt"></p>
     <p class="code">Code : <b id="m-code"></b></p>
@@ -662,7 +751,28 @@ const CONFIG = {
     { id: 'collegues', label: 'Collègues', stock: 10 }
   ],
   adminPin: '2026',
-  backendUrl: ''
+  /* ===== Google : formulaire (écriture) + feuille liée (lecture) =====
+     1. Créer le formulaire Google (5 questions : Nom, Téléphone, Catégorie,
+        Places, Code) puis le lier à une feuille Google Sheets.
+     2. Relever les identifiants :
+        - formId  → https://docs.google.com/forms/d/e/FORM_ID/edit
+        - sheetId → https://docs.google.com/spreadsheets/d/SHEET_ID/edit
+        - entries → sortie de `python3 tools/google-form-ids.py <URL_FORMULAIRE>`
+     3. Partager la feuille en « Toute personne ayant le lien » pour que la
+        lecture JSONP fonctionne. */
+  google: {
+    formId: '',
+    entries: { name: '', phone: '', cat: '', places: '', code: '' },
+    sheetId: '',
+    sheetGid: '0',
+    /* Onglet « Config » de la même feuille : une cellule contenant
+       CLOSED ferme les réservations pour tout le monde, OPEN les rouvre
+       (le bouton de l'espace admin reste, lui, local au navigateur). */
+    configTab: 'Config',
+    /* Si vrai, la feuille Google Sheets remplace le localStorage comme
+       source de vérité (compteurs et tableau organisateur synchronisés). */
+    remoteAuthoritative: true
+  }
 };
 const KEY = 'am_rsvp_v1';
 const el = id => document.getElementById(id);
@@ -675,6 +785,221 @@ const usedOf = id => state.reservations.filter(r => r.catId === id).reduce((s, r
 const remainingOf = id => { const c = catOf(id); return Math.max(0, c.stock - usedOf(id)); };
 const totalCapacity = () => CONFIG.categories.reduce((s, c) => s + c.stock, 0);
 const totalConfirmed = () => state.reservations.reduce((s, r) => s + r.places, 0);
+
+/* ===== GOOGLE : FORMULAIRE (ÉCRITURE) + FEUILLE (LECTURE) =====
+   Écriture : POST no-cors vers le formulaire (le navigateur n'envoie
+   qu'un "preflight" simple, aucune clé API nécessaire).
+   Lecture  : la feuille liée est interrogée en JSONP via l'endpoint gviz,
+   ce qui contourne la politique CORS du navigateur sans aucun serveur.
+   Le localStorage reste le cache local : si Google est injoignable, le site
+   continue de fonctionner (l'invité voit sa confirmation immédiatement). */
+const G = CONFIG.google || {};
+const googleConfigured = () => !!(G.formId && G.entries && G.entries.name && G.sheetId);
+const norm = s => String(s).normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().trim();
+
+/* Libellé de catégorie (saisi ou stocké) → identifiant interne */
+function catIdFromLabel(label) {
+  const n = norm(label);
+  const found = CONFIG.categories.find(c => norm(c.label) === n || norm(c.id) === n);
+  return found ? found.id : 'famille';
+}
+
+/* Envoi d'une réservation vers le Google Form */
+function googleSubmit(res) {
+  if (!googleConfigured()) return Promise.resolve(false);
+  const url = 'https://docs.google.com/forms/d/e/' + G.formId + '/formResponse';
+  const body = new URLSearchParams();
+  body.set(G.entries.name, res.name);
+  if (G.entries.phone) body.set(G.entries.phone, res.phone || '');
+  if (G.entries.cat) body.set(G.entries.cat, catLabel(res.catId));
+  if (G.entries.places) body.set(G.entries.places, String(res.places));
+  if (G.entries.code) body.set(G.entries.code, res.id.toUpperCase());
+  /* no-cors + content-type simple : requête opaque, mais bien partie */
+  return fetch(url, { method: 'POST', mode: 'no-cors', body })
+    .then(() => true)
+    .catch(() => false);
+}
+
+/* Analyse la réponse JSONP de gviz.
+   Selon la requête, Google renvoie soit du JSON brut, soit un JSON enveloppé
+   dans google.visualization.Query.setResponse({…}), le tout écrit tantôt en
+   guillemets doubles (JSON) tantôt en guillemets simples (littéral JS).
+   Les trois formes sont acceptées. */
+function parseGviz(payload) {
+  let s = String(payload).trim();
+  s = s.replace(/^\/\*O_o\*\/\s*/, '').replace(/;\s*$/, '');
+  const m = s.match(/google\.visualization\.Query\.setResponse\((\{[\s\S]*\})\)\s*;?\s*$/);
+  if (m) s = m[1];
+  try {
+    return JSON.parse(s);
+  } catch (e) {
+    /* Littéral JS : guillemets simples, aucune clé en guillemets doubles */
+    if (s.indexOf('"') === -1 && s.indexOf("'") !== -1) {
+      return JSON.parse(s.replace(/'/g, '"'));
+    }
+    throw e;
+  }
+}
+
+/* Nom de callback unique : deux lectures simultanées (réponses + config)
+   ne doivent pas se marcher dessus. */
+let sheetCbSeq = 0;
+
+/* Lecture JSONP de la feuille liée au formulaire */
+function googleSheetRows(sheetName) {
+  return new Promise((resolve, reject) => {
+    const cb = '__amSheetCb' + (++sheetCbSeq) + '_' + Date.now();
+    const s = document.createElement('script');
+    const sel = sheetName
+      ? 'sheet=' + encodeURIComponent(sheetName)
+      : 'gid=' + encodeURIComponent(G.sheetGid || '0');
+    const url = 'https://docs.google.com/spreadsheets/d/' + G.sheetId + '/gviz/tq'
+      + '?tqx=out:json&' + sel + '&callback=' + cb;
+    const cleanup = () => { try { delete window[cb]; } catch (e) { window[cb] = undefined; } s.remove(); };
+    const timer = setTimeout(() => { cleanup(); reject(new Error('timeout')); }, 12000);
+    window[cb] = payload => {
+      clearTimeout(timer);
+      cleanup();
+      try {
+        const data = parseGviz(payload);
+        const table = data.table || {};
+        const cols = (table.cols || []).map(c => (c && c.label ? String(c.label) : ''));
+        const rows = (table.rows || []).map(r => {
+          const o = {};
+          (r.c || []).forEach((cell, i) => {
+            const label = cols[i] || ('c' + i);
+            o[label] = cell && cell.v != null ? cell.v : '';
+          });
+          return o;
+        });
+        resolve({ cols, rows });
+      } catch (e) { reject(e); }
+    };
+    s.onerror = () => { clearTimeout(timer); cleanup(); reject(new Error('network')); };
+    s.src = url;
+    document.head.appendChild(s);
+  });
+}
+
+/* Note une colonne pour chaque champ, par score d'affinité.
+   Les colonnes sont attribuées une par une (glouton) : on évite ainsi que
+   « Nombre de places » soit prise pour le champ « Nom ».
+   La correspondance se fait sur des mots entiers : « nom » ne matche donc
+   pas « nombre », mais « nom » matche « nom & prénom(s) ». */
+function findCol(cols, candidates, taken) {
+  const wanted = candidates.map(norm);
+  let best = null, bestScore = 0;
+  for (let i = 0; i < cols.length; i++) {
+    if (taken.has(cols[i])) continue;
+    const n = norm(cols[i]);
+    if (!n) continue;
+    const tokens = n.split(/[^a-z0-9]+/).filter(Boolean);
+    let score = 0;
+    for (let j = 0; j < wanted.length; j++) {
+      const w = wanted[j];
+      const wTokens = w.split(/[^a-z0-9]+/).filter(Boolean);
+      let s = 0;
+      if (n === w) s = 100 - j;
+      else if (tokens.some(t => t === wTokens[0]) ||
+               wTokens.every(t => tokens.includes(t))) s = 60 - j;
+      else if (wTokens.every(t => n.indexOf(t) !== -1)) s = 30 - j;
+      if (s > score) score = s;
+    }
+    if (score > bestScore) { bestScore = score; best = cols[i]; }
+  }
+  if (best) taken.add(best);
+  return best;
+}
+
+/* Convertit les lignes brutes en réservations */
+function rowsToReservations({ cols, rows }) {
+  const taken = new Set();
+  const cName = findCol(cols, ['nom & prenom(s)', 'nom & prenoms', 'prenom', 'nom complet', 'nom'], taken);
+  const cPhone = findCol(cols, ['telephone', 'whatsapp', 'numero de telephone', 'phone'], taken);
+  const cCat = findCol(cols, ['categorie', 'category', 'cat'], taken);
+  const cPlaces = findCol(cols, ['nombre de places', 'places', 'nb de places', 'personnes', 'nombre'], taken);
+  const cCode = findCol(cols, ['code de reservation', 'code', 'reference', 'id'], taken);
+  const cTs = findCol(cols, ['horodatage', 'timestamp', 'date'], taken);
+  const out = [];
+  rows.forEach((r, idx) => {
+    const name = String(cName ? r[cName] : '').trim();
+    if (!name) return;
+    const places = Math.max(1, parseInt(String(cPlaces ? r[cPlaces] : '1'), 10) || 1);
+    let ts = Date.now();
+    if (cTs && r[cTs]) { const d = Date.parse(r[cTs]); if (!isNaN(d)) ts = d; }
+    out.push({
+      id: String(cCode && r[cCode] ? r[cCode] : ('row' + idx)).trim(),
+      name: name,
+      phone: String(cPhone ? r[cPhone] : '').trim(),
+      catId: catIdFromLabel(cCat ? r[cCat] : ''),
+      places: places,
+      ts: ts
+    });
+  });
+  return out;
+}
+
+/* Lit l'état de clôture global depuis l'onglet « Config ».
+   Valeurs reconnues : « CLOSED » (fermé), « OPEN » (ouvert).
+   Onglet vide ou illisible → null : l'état local est alors conservé. */
+function googleClosedState() {
+  if (!G.configTab) return Promise.resolve(null);
+  return googleSheetRows(G.configTab)
+    .then(payload => {
+      const rows = payload.rows || [];
+      if (!rows.length) return null;
+      for (const r of rows) {
+        for (const k of Object.keys(r)) {
+          const v = String(r[k]).trim().toUpperCase();
+          if (v === 'CLOSED') return true;
+          if (v === 'OPEN') return false;
+        }
+      }
+      return null;
+    })
+    .catch(() => null);
+}
+
+/* Fusionne les réservations distantes avec le cache local.
+   Une réservation encore absente de la feuille (temps de propagation de
+   Google, ou envoi échoué) est conservée : on ne perd jamais une réponse. */
+function mergeReservations(remote, local) {
+  const key = r => String(r.id || '').trim().toUpperCase();
+  const seen = new Set(remote.map(key));
+  const extras = local.filter(r => {
+    const k = key(r);
+    if (!k) return true;
+    if (seen.has(k)) return false;
+    seen.add(k);
+    return true;
+  });
+  return remote.concat(extras);
+}
+
+/* Synchronise l'état local avec la feuille */
+let syncing = false;
+function syncFromSheet(silent) {
+  if (!googleConfigured() || syncing) return Promise.resolve(false);
+  syncing = true;
+  return Promise.all([googleSheetRows(), googleClosedState()])
+    .then(([payload, closed]) => {
+      const remote = rowsToReservations(payload);
+      if (remote.length || !G.remoteAuthoritative) {
+        state.reservations = mergeReservations(remote, state.reservations);
+        save();
+      }
+      if (closed !== null && closed !== state.closed) {
+        state.closed = closed;
+        save();
+        applyClosed();
+      }
+      renderStats(); updStepper(); renderAdmin();
+      if (!silent) flash('Réservations synchronisées (' + remote.length + ')');
+      return true;
+    })
+    .catch(() => { if (!silent) flash('Synchronisation Google indisponible'); return false; })
+    .finally(() => { syncing = false; });
+}
 
 /* ===== COMPTE À REBOURS ===== */
 const target = new Date(CONFIG.dateISO).getTime();
@@ -701,14 +1026,14 @@ function tick() {
 }
 setInterval(tick, 1000); tick();
 
-/* ===== PARTICULES DORÉES (losanges) ===== */
+/* ===== PÉTALES TERRACOTTA QUI TOMBENT ===== */
 (function () {
   const wrap = el('particles');
-  for (let i = 0; i < 26; i++) {
+  for (let i = 0; i < 16; i++) {
     const p = document.createElement('i');
     p.className = 'particle';
-    const s = 3 + Math.random() * 4;
-    p.style.width = s + 'px'; p.style.height = s + 'px';
+    const s = 6 + Math.random() * 6;
+    p.style.width = s + 'px'; p.style.height = (s * .72) + 'px';
     p.style.left = Math.random() * 100 + '%';
     p.style.animationDuration = (10 + Math.random() * 16) + 's';
     p.style.animationDelay = (-Math.random() * 22) + 's';
@@ -845,9 +1170,10 @@ el('form').addEventListener('submit', e => {
   };
   state.reservations.push(res);
   save();
-  if (CONFIG.backendUrl) {
-    fetch(CONFIG.backendUrl, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(res) }).catch(() => {});
-  }
+  /* Envoi vers Google Form (non bloquant : l'invité est confirmé aussitôt) */
+  googleSubmit(res).then(ok => {
+    if (ok) syncFromSheet(true);
+  });
   renderStats(); updStepper(); renderAdmin();
   el('m-txt').textContent = 'Merci ' + name + ' — ' + qty + ' place(s) en catégorie ' + catLabel(selCat) + '. Nous avons hâte de partager ce moment avec vous !';
   el('m-code').textContent = res.id.toUpperCase();
@@ -898,6 +1224,12 @@ el('toggle-close').addEventListener('click', () => {
   state.closed = !state.closed; save(); applyClosed(); renderStats(); renderAdmin();
   flash(state.closed ? 'Réservations closes' : 'Réservations réouvertes');
 });
+el('sync').addEventListener('click', () => {
+  if (!googleConfigured()) { flash('Google non configuré (CONFIG.google)'); return; }
+  el('sync').disabled = true;
+  flash('Synchronisation…');
+  syncFromSheet(false).finally(() => { el('sync').disabled = false; });
+});
 el('csv').addEventListener('click', () => {
   const rows = [['Nom', 'Catégorie', 'Places', 'Téléphone', 'Date']];
   state.reservations.forEach(r => rows.push([r.name, catLabel(r.catId), r.places, r.phone || '', new Date(r.ts).toLocaleString('fr-FR')]));
@@ -918,6 +1250,11 @@ el('hide-admin').addEventListener('click', () => el('admin').classList.remove('o
 
 /* ===== INIT ===== */
 renderStats(); updStepper(); applyClosed(); renderAdmin();
+/* Synchronisation Google : au chargement puis toutes les 60 s */
+if (googleConfigured()) {
+  syncFromSheet(true);
+  setInterval(() => syncFromSheet(true), 60000);
+}
 </script>
 </body>
 </html>
