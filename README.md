@@ -1,13 +1,13 @@
 # Invitation — Daria & Hermann
 
 Site statique (HTML/CSS/JS vanilla, sans dépendance ni build).
-Mariage : vendredi 18 décembre 2026, 16h00 — Table des Élites, Akwa, Douala.
+Mariage : vendredi 18 décembre 2026 — mairie à 15h00, puis Table des Élites (Akwa, Douala) de 16h00 à 23h00.
 
 ## Fichiers
 | Fichier | Rôle |
 |---|---|
 | `index.html` | Page d'intro : « Invitation au mariage de », enveloppe fleurie DH → photo → RSVP |
-| `invitation-landing.html` | Page principale : couverture, compte à rebours, programme, places, réservation, espace organisateurs |
+| `invitation-landing.html` | Page principale : couverture, compte à rebours, programme, places, réservation, espace photo (filtre des mariés), espace cadeaux, espace organisateurs |
 | `styles.css` | Socle commun : palette, reset, utilitaires, accessibilité |
 | `assets/invitation/` | Décor repris du modèle : fond fleuri, enveloppe, filet, bouquet d'angle |
 | `favicon.svg` | Icône du site |
@@ -42,7 +42,7 @@ volontaire (le `<use>` externe ne fonctionne pas en `file://`). Il est régéné
 Tout se règle dans le bloc `CONFIG` en haut du script de `invitation-landing.html` :
 date du mariage, capacités par catégorie, PIN admin, URL de backend éventuelle.
 
-**Capacité : 50 invites au total.** Le détail par catégorie (20 / 20 / 10) est une donnée
+**Capacité : 60 invités au total.** Le détail par catégorie (24 / 24 / 12) est une donnée
 interne qui sert uniquement à alimenter les barres de progression : **aucun chiffre de
 répartition n'est affiché publiquement**, par choix éditorial. Pour modifier le total,
 changez les valeurs `stock` de `CONFIG.categories` — le total affiché est calculé

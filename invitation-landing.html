@@ -4,16 +4,16 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Hermann &amp; Daria — Invitation · 18.12.2026</title>
-<meta name="description" content="Daria &amp; Hermann vous invitent à célébrer leur mariage le vendredi 18 décembre 2026 à 16h00, Table des Élites, Akwa — Douala. Réservez votre place.">
+<meta name="description" content="Daria &amp; Hermann vous invitent à célébrer leur mariage le vendredi 18 décembre 2026 : mairie à 15h00, puis Table des Élites, Akwa — Douala. Réservez votre place.">
 <meta name="theme-color" content="#f6ede3">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Daria &amp; Hermann — Nous nous marions">
-<meta property="og:description" content="Vendredi 18 décembre 2026 · 16h00 · Table des Élites, Akwa — Douala. Réservez votre place.">
+<meta property="og:description" content="Vendredi 18 décembre 2026 · Mairie 15h00 · Table des Élites 16h00, Akwa — Douala. Réservez votre place.">
 <meta property="og:image" content="photo-couple.jpg">
 <meta property="og:locale" content="fr_CM">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Daria &amp; Hermann — Nous nous marions">
-<meta name="twitter:description" content="Vendredi 18 décembre 2026 · 16h00 · Table des Élites, Akwa — Douala.">
+<meta name="twitter:description" content="Vendredi 18 décembre 2026 · Mairie 15h00 · Table des Élites 16h00, Akwa — Douala.">
 <meta name="twitter:image" content="photo-couple.jpg">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -68,8 +68,7 @@ header{position:fixed;top:0;left:0;right:0;z-index:50;backdrop-filter:blur(12px)
 .pwrap{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0}
 .particle{position:absolute;top:-5%;width:9px;height:7px;background:linear-gradient(140deg,#e59a76,#b85c38);border-radius:80% 0 80% 0;opacity:0;animation:fall linear infinite;box-shadow:0 1px 3px rgba(138,52,22,.25)}
 @keyframes fall{0%{opacity:0;transform:translateY(0) rotate(0)}8%{opacity:.75}88%{opacity:.35}100%{opacity:0;transform:translateY(112vh) rotate(540deg)}}
-.hero>*:not(.pwrap):not(.corner){position:relative;z-index:1}
-.hero .hero-tl{top:63px;z-index:0;width:min(40vw,380px)}
+.hero>*:not(.pwrap):not(.fl){position:relative;z-index:1}
 .hero .t1{font-family:'Jost';font-size:clamp(13px,3.4vw,16px);letter-spacing:.16em;text-transform:uppercase;color:var(--ink)}
 .hero .t2{font-family:'Cinzel';font-weight:400;font-size:clamp(34px,9vw,58px);line-height:1.05;color:var(--ink);margin:.1em 0 .32em;word-spacing:.12em}
 .names{font-family:'Great Vibes','Pinyon Script',cursive;font-size:clamp(46px,12.6vw,104px);font-weight:400;line-height:1.1;margin:.3em 0 .1em;color:var(--terra);letter-spacing:0;padding:0 6px}
@@ -102,16 +101,23 @@ section.block{position:relative;isolation:isolate;padding:96px 0;scroll-margin-t
 h2.sec{font-family:'Great Vibes','Pinyon Script',cursive;font-weight:400;font-size:clamp(46px,11vw,72px);line-height:1.1;color:var(--terra);margin:6px 0 10px}
 .sec-head .filet{width:min(56vw,260px)}
 .sec-head p{font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--muted);font-size:18px;margin-top:14px;line-height:1.5}
-/* bouquets d'angle repris du modèle */
-.corner{position:absolute;z-index:-1;pointer-events:none;width:min(52vw,440px);height:auto;opacity:.95}
-.corner.br{right:-6px;bottom:-4px}
-.corner.tl{left:-6px;top:-4px;transform:scale(-1,-1)}
-.corner.tr{right:-6px;top:-4px;transform:scaleY(-1)}
-.corner.bl{left:-6px;bottom:-4px;transform:scaleX(-1)}
-@media(max-width:760px){.corner{width:min(56vw,260px);opacity:.85}
-  #programme{padding-top:150px}#reserver{padding-bottom:150px}
-  .hero .hero-tl{width:min(58vw,240px)}
-  .foot-flower .corner.tl{display:none}}
+/* ——— Bouquets du modèle : toujours par paires symétriques (le gauche est le
+   miroir du droit, à la même hauteur). Le bord coupé de l'image est collé au
+   bord de l'écran ; bouquet-haut a son bord supérieur fondu, bouquet-angle se
+   pose en bas de page. ——— */
+.fl{position:absolute;z-index:-1;pointer-events:none;height:auto;width:min(28vw,340px)}
+.fl.r{right:0}
+.fl.l{left:0;transform:scaleX(-1)}
+.fl.top{top:0}
+.fl.bottom{bottom:0}
+.hero .fl{display:none;z-index:0}
+@media(max-width:760px){
+  .fl{width:44vw}
+  /* sur mobile, le titre de section passe sous la paire de bouquets */
+  .has-fl{padding-top:calc(44vw * .82 + 6px)}
+  .hero{padding-top:calc(62px + 44vw * .82)}
+  .hero .fl{display:block;top:62px}
+}
 
 /* cartes ivoire à double filet doré */
 .card{background:linear-gradient(170deg,#fffdf9,#fbf5ee);border:1px solid rgba(201,165,94,.55);border-radius:4px;padding:30px 26px;position:relative;
@@ -234,7 +240,34 @@ td{padding:12px 8px;border-bottom:1px solid var(--line-soft)}
 
 /* ——— Pied de page fleuri ——— */
 .foot-flower{position:relative;isolation:isolate;overflow:clip;text-align:center;padding:110px 20px 120px}
-.foot-flower .corner{width:min(56vw,420px)}
+@media(max-width:760px){.foot-flower{padding-bottom:calc(44vw * .82 + 10px)}}
+
+/* ——— Espace photo ——— */
+.booth{max-width:440px;margin:0 auto;text-align:center;position:relative;z-index:1}
+.booth-stage{position:relative;aspect-ratio:3/4;width:100%;border-radius:6px;overflow:hidden;
+  background:linear-gradient(170deg,#fffdf9,#f3e6d8);border:1px solid rgba(201,165,94,.6);box-shadow:0 22px 50px rgba(74,36,22,.14)}
+.booth-stage video,.booth-stage img,.booth-stage canvas{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.booth-stage video.mirror{transform:scaleX(-1)}
+.booth-stage canvas{pointer-events:none}
+.booth-idle{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:0 24%;
+  font-family:'Cormorant Garamond',serif;font-style:italic;font-size:17px;color:var(--muted);line-height:1.4}
+.booth-idle svg{width:44px;height:44px;color:var(--terra)}
+.booth-count{position:absolute;inset:0;display:grid;place-items:center;font-family:'Cinzel';font-size:120px;color:#fff;text-shadow:0 4px 24px rgba(74,36,22,.5);z-index:2}
+.booth-flash{position:absolute;inset:0;background:#fff;opacity:0;pointer-events:none;z-index:3}
+.booth-flash.go{animation:flash .5s ease-out}
+@keyframes flash{0%{opacity:.9}100%{opacity:0}}
+.booth-ctrl{display:flex;gap:12px;justify-content:center;align-items:center;flex-wrap:wrap;margin-top:22px}
+.booth-ctrl .cta{margin:0;cursor:pointer;border:0;font-family:'Jost'}
+.shutter{width:72px;height:72px;border-radius:50%;border:4px solid #fffdf9;cursor:pointer;
+  background:radial-gradient(circle,#c97b4e 0 52%,#8a3416 54% 100%);box-shadow:0 0 0 2px var(--terra),0 10px 26px rgba(184,92,56,.4);transition:transform .15s}
+.shutter:active{transform:scale(.92)}
+.booth-note{margin-top:16px;font-size:12px;color:var(--muted);letter-spacing:.03em}
+
+/* ——— Espace cadeaux (à remplir plus tard) ——— */
+.gift-card{max-width:520px;margin:0 auto;text-align:center;padding:42px 28px 36px;position:relative;z-index:1}
+.gift-card svg{width:52px;height:52px;color:var(--terra);margin-bottom:12px}
+.gift-t{font-family:'Great Vibes',cursive;font-size:38px;color:var(--terra);line-height:1.1}
+.gift-d{font-family:'Cormorant Garamond',serif;font-size:18px;color:var(--ink);line-height:1.55;margin-top:10px}
 .foot-l1{font-family:'Great Vibes','Pinyon Script',cursive;font-size:clamp(42px,10vw,60px);color:var(--terra);line-height:1.1}
 .foot-l1 span{color:var(--gold-deep);font-size:.7em}
 .foot-date{font-family:'Cinzel';font-size:13px;letter-spacing:.36em;color:var(--ink);margin:12px 0 18px;padding-left:.36em}
@@ -475,7 +508,7 @@ td{padding:12px 8px;border-bottom:1px solid var(--line-soft)}
 <noscript>
   <div class="no-js-note">
     <p><strong>Daria &amp; Hermann</strong><br>
-    Vendredi 18 décembre 2026 · 16h00<br>
+    Vendredi 18 décembre 2026 · Mairie 15h00, Table des Élites 16h00<br>
     Table des Élites — Akwa, Douala</p>
     <p>La réservation en ligne nécessite JavaScript. Merci d'activer JavaScript dans votre navigateur, ou contactez-nous directement pour réserver votre place.</p>
   </div>
@@ -490,10 +523,10 @@ td{padding:12px 8px;border-bottom:1px solid var(--line-soft)}
       <span class="nm">Daria <span>&amp;</span> Hermann</span>
     </div>
     <nav class="links">
-      <a href="#compte">Le grand jour</a>
       <a href="#programme">Programme</a>
-      <a href="#places">Places</a>
       <a href="#reserver">Réserver</a>
+      <a href="#photos">Photos</a>
+      <a href="#cadeaux">Cadeaux</a>
     </nav>
     <div class="dchip">18 · 12 · 2026</div>
   </div>
@@ -501,7 +534,8 @@ td{padding:12px 8px;border-bottom:1px solid var(--line-soft)}
 
 <!-- ===== HERO : couverture, comme le modèle ===== -->
 <section class="hero" id="accueil">
-  <img class="corner tl hero-tl" src="assets/invitation/bouquet-angle.webp" alt="" aria-hidden="true" fetchpriority="high">
+  <img class="fl top l" src="assets/invitation/bouquet-haut.webp" alt="" aria-hidden="true">
+  <img class="fl top r" src="assets/invitation/bouquet-haut.webp" alt="" aria-hidden="true">
   <div class="pwrap" id="particles"></div>
   <p class="t1 reveal">Invitation au</p>
   <p class="t2 reveal">Mariage de</p>
@@ -515,7 +549,7 @@ td{padding:12px 8px;border-bottom:1px solid var(--line-soft)}
     <span class="side">Décembre</span>
     <span class="yr">2026</span>
   </div>
-  <p class="venue reveal">16h00 <span>·</span> Table des Élites <span>·</span> Akwa, Douala</p>
+  <p class="venue reveal">15h00 Mairie <span>·</span> 16h00 Table des Élites <span>·</span> Akwa, Douala</p>
 
   <div class="hero-ctas reveal">
     <a class="cta" href="#reserver">Réserver ma place</a>
@@ -544,8 +578,9 @@ td{padding:12px 8px;border-bottom:1px solid var(--line-soft)}
 </section>
 
 <!-- ===== PROGRAMME ===== -->
-<section class="block" id="programme">
-  <img class="corner tl" src="assets/invitation/bouquet-angle.webp" alt="" aria-hidden="true" loading="lazy">
+<section class="block has-fl" id="programme">
+  <img class="fl top l" src="assets/invitation/bouquet-haut.webp" alt="" aria-hidden="true" loading="lazy">
+  <img class="fl top r" src="assets/invitation/bouquet-haut.webp" alt="" aria-hidden="true" loading="lazy">
   <div class="wrap">
     <div class="sec-head reveal">
       <p class="eyebrow">Déroulé de la journée</p>
@@ -554,6 +589,13 @@ td{padding:12px 8px;border-bottom:1px solid var(--line-soft)}
     </div>
 
     <div class="timeline">
+      <div class="step reveal">
+        <div class="when">15h00</div>
+        <div class="ico"><svg viewBox="0 0 40 40" fill="none" stroke="#b85c38" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M6 15 20 7l14 8z"/><path d="M8 15h24M9 32h22M7 35h26"/><path d="M12 18v11M17.5 18v11M22.5 18v11M28 18v11"/>
+          <circle cx="20" cy="11.6" r="1.1" stroke="#c9a55e"/></svg></div>
+        <div class="what"><b>Mairie</b><span>Le mariage civil</span></div>
+      </div>
       <div class="step reveal">
         <div class="when">16h00</div>
         <div class="ico"><svg viewBox="0 0 120 84" aria-hidden="true"><use href="#fl-anneaux"/></svg></div>
@@ -568,7 +610,7 @@ td{padding:12px 8px;border-bottom:1px solid var(--line-soft)}
         <div class="what"><b>Réception &amp; dîner</b><span>Cocktail, dîner et premières danses</span></div>
       </div>
       <div class="step reveal">
-        <div class="when">22h00</div>
+        <div class="when">23h00</div>
         <div class="ico"><svg viewBox="0 0 40 40" fill="none" stroke="#b85c38" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <path d="M20 33s-11-6.6-11-14.2A6 6 0 0 1 20 15a6 6 0 0 1 11 3.8C31 26.4 20 33 20 33z"/>
           <path d="M20 9V5M13 10.5l-2-3M27 10.5l2-3" stroke="#c9a55e"/></svg></div>
@@ -623,7 +665,7 @@ td{padding:12px 8px;border-bottom:1px solid var(--line-soft)}
           <div class="val"><b id="t-conf">0</b><span class="pct" id="t-pct">0%</span></div>
         </div>
         <div class="tot-lbl">Invités confirmés</div>
-        <div class="tot-sub"><span id="nb-res">0</span> réservation(s) · capacité <span id="t-cap">50</span></div>
+        <div class="tot-sub"><span id="nb-res">0</span> réservation(s) · capacité <span id="t-cap">60</span></div>
       </div>
       <div class="card reveal cat-card">
         <div class="cat" id="cat-famille">
@@ -647,8 +689,9 @@ td{padding:12px 8px;border-bottom:1px solid var(--line-soft)}
 </section>
 
 <!-- ===== RÉSERVATION : carton-réponse ===== -->
-<section class="block" id="reserver">
-  <img class="corner br" src="assets/invitation/bouquet-angle.webp" alt="" aria-hidden="true" loading="lazy">
+<section class="block has-fl" id="reserver">
+  <img class="fl top l" src="assets/invitation/bouquet-haut.webp" alt="" aria-hidden="true" loading="lazy">
+  <img class="fl top r" src="assets/invitation/bouquet-haut.webp" alt="" aria-hidden="true" loading="lazy">
   <div class="wrap">
     <div class="sec-head reveal">
       <p class="eyebrow">Merci de répondre</p>
@@ -689,6 +732,63 @@ td{padding:12px 8px;border-bottom:1px solid var(--line-soft)}
   </div>
 </section>
 
+<!-- ===== ESPACE PHOTO : filtre des mariés ===== -->
+<section class="block" id="photos">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="eyebrow">Souvenirs</p>
+      <h2 class="sec">L'espace photo</h2>
+      <img class="filet" src="assets/invitation/filet.png" alt="" aria-hidden="true" width="1250" height="54">
+      <p>Prenez la pose avec le filtre des mariés, puis enregistrez ou partagez votre photo</p>
+    </div>
+    <div class="booth reveal">
+      <div class="booth-stage">
+        <video id="boothVideo" playsinline muted hidden></video>
+        <img id="boothShot" alt="Votre photo avec le filtre des mariés" hidden>
+        <canvas id="boothFrame" width="1080" height="1440" aria-hidden="true"></canvas>
+        <div class="booth-idle" id="boothIdle">
+          <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round" aria-hidden="true"><path d="M5 13h7l3-4h10l3 4h7v19H5z"/><circle cx="20" cy="22" r="6.5"/></svg>
+          <span>Activez la caméra ou importez une photo</span>
+        </div>
+        <div class="booth-count" id="boothCount" hidden></div>
+        <div class="booth-flash" id="boothFlash"></div>
+      </div>
+      <div class="booth-ctrl" id="boothStart">
+        <button class="cta" id="boothCam" type="button">Activer la caméra</button>
+        <label class="cta ghost" for="boothFile">Importer une photo</label>
+        <input type="file" id="boothFile" accept="image/*" hidden>
+      </div>
+      <div class="booth-ctrl" id="boothLive" hidden>
+        <button class="mini" id="boothFlip" type="button">Retourner</button>
+        <button class="shutter" id="boothSnap" type="button" aria-label="Prendre la photo"></button>
+        <button class="mini" id="boothStop" type="button">Fermer</button>
+      </div>
+      <div class="booth-ctrl" id="boothDone" hidden>
+        <a class="cta" id="boothSave" download="daria-hermann-souvenir.jpg">Enregistrer</a>
+        <button class="cta ghost" id="boothShare" type="button" hidden>Partager</button>
+        <button class="mini" id="boothRetry" type="button">Reprendre</button>
+      </div>
+      <p class="booth-note">Vos photos restent sur votre téléphone : rien n'est envoyé.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ESPACE CADEAUX (contenu à venir) ===== -->
+<section class="block" id="cadeaux">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="eyebrow">Liste de mariage</p>
+      <h2 class="sec">L'espace cadeaux</h2>
+      <img class="filet" src="assets/invitation/filet.png" alt="" aria-hidden="true" width="1250" height="54">
+    </div>
+    <div class="card gift-card reveal">
+      <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="16" width="26" height="18" rx="1"/><rect x="5" y="11" width="30" height="6" rx="1"/><path d="M20 11v23"/><path d="M20 11c-3-5-9-6-9-2.5S17 11 20 11zM20 11c3-5 9-6 9-2.5S23 11 20 11z"/></svg>
+      <p class="gift-t">Bientôt disponible</p>
+      <p class="gift-d">La liste de cadeaux sera publiée ici prochainement.<br>Merci pour votre patience et votre générosité.</p>
+    </div>
+  </div>
+</section>
+
 <!-- ===== ORGANISATEURS ===== -->
 <section class="block" id="admin">
   <div class="wrap">
@@ -706,7 +806,7 @@ td{padding:12px 8px;border-bottom:1px solid var(--line-soft)}
     <div class="a-stats">
       <div class="chip">Confirmés<b id="a-total">0</b></div>
       <div class="chip">Réservations<b id="a-count">0</b></div>
-      <div class="chip">Places restantes<b id="a-rem">50</b></div>
+      <div class="chip">Places restantes<b id="a-rem">60</b></div>
     </div>
     <div class="card scrollx">
       <table>
@@ -719,8 +819,8 @@ td{padding:12px 8px;border-bottom:1px solid var(--line-soft)}
 
 <!-- ===== PIED DE PAGE FLEURI ===== -->
 <footer class="foot-flower">
-  <img class="corner tl" src="assets/invitation/bouquet-angle.webp" alt="" aria-hidden="true" loading="lazy">
-  <img class="corner br" src="assets/invitation/bouquet-angle.webp" alt="" aria-hidden="true" loading="lazy">
+  <img class="fl bottom l" src="assets/invitation/bouquet-angle.webp" alt="" aria-hidden="true" loading="lazy">
+  <img class="fl bottom r" src="assets/invitation/bouquet-angle.webp" alt="" aria-hidden="true" loading="lazy">
   <p class="foot-l1">Daria <span>&amp;</span> Hermann</p>
   <p class="foot-date">18 · 12 · 2026 — Douala</p>
   <img class="filet" src="assets/invitation/filet.png" alt="" aria-hidden="true" width="1250" height="54">
@@ -740,15 +840,15 @@ td{padding:12px 8px;border-bottom:1px solid var(--line-soft)}
 <script>
 /* ===== CONFIGURATION — modifiez ici ===== */
 const CONFIG = {
-  /* Cérémonie à 16h00, heure de Douala (UTC+1) — l'offset est explicite
-     pour que le compte à rebours reste juste hors de Cameroun. */
-  dateISO: '2026-12-18T16:00:00+01:00',
+  /* Début de la journée : mairie à 15h00, heure de Douala (UTC+1) — l'offset
+     est explicite pour que le compte à rebours reste juste hors du Cameroun. */
+  dateISO: '2026-12-18T15:00:00+01:00',
   /* Répartition interne : sert uniquement au suivi des barres de progression.
      Les chiffres ne sont jamais affichés publiquement (choix éditorial). */
   categories: [
-    { id: 'famille',   label: 'Famille',   stock: 20 },
-    { id: 'amis',      label: 'Amis',      stock: 20 },
-    { id: 'collegues', label: 'Collègues', stock: 10 }
+    { id: 'famille',   label: 'Famille',   stock: 24 },
+    { id: 'amis',      label: 'Amis',      stock: 24 },
+    { id: 'collegues', label: 'Collègues', stock: 12 }
   ],
   adminPin: '2026',
   /* ===== Google : formulaire (écriture) + feuille liée (lecture) =====
@@ -1261,6 +1361,154 @@ if (googleConfigured()) {
   syncFromSheet(true);
   setInterval(() => syncFromSheet(true), 60000);
 }
+</script>
+<script>
+/* ===== ESPACE PHOTO : filtre des mariés =====
+   Le cadre (bouquets, médaillon des mariés, prénoms) est dessiné une fois sur
+   un canvas transparent posé au-dessus de la vidéo ; la photo finale empile la
+   même image par-dessus l'image de la caméra. Tout reste dans le navigateur. */
+(function () {
+  const $ = id => document.getElementById(id);
+  const W = 1080, H = 1440;
+  const video = $('boothVideo'), shot = $('boothShot'), frame = $('boothFrame');
+  const idle = $('boothIdle'), count = $('boothCount'), flashEl = $('boothFlash');
+  const panes = { start: $('boothStart'), live: $('boothLive'), done: $('boothDone') };
+  let stream = null, facing = 'user', shotUrl = null, shotBlob = null;
+
+  const load = src => new Promise((ok, ko) => { const i = new Image(); i.onload = () => ok(i); i.onerror = ko; i.src = src; });
+  const assets = Promise.all([
+    load('assets/invitation/bouquet-haut.webp'),
+    load('assets/invitation/bouquet-angle.webp'),
+    load('photo-couple.jpg').catch(() => null),
+    document.fonts ? document.fonts.load('120px "Great Vibes"').then(() => document.fonts.load('40px "Cinzel"')) : null
+  ]);
+
+  /* image retournée horizontalement (bouquet gauche = miroir du droit) */
+  function drawPair(ctx, img, w, y) {
+    const h = img.height * w / img.width;
+    ctx.drawImage(img, W - w, y === 'bottom' ? H - h : 0, w, h);
+    ctx.save(); ctx.translate(w, 0); ctx.scale(-1, 1);
+    ctx.drawImage(img, 0, y === 'bottom' ? H - h : 0, w, h);
+    ctx.restore();
+  }
+
+  function drawFrame([top, bottom, couple]) {
+    const ctx = frame.getContext('2d');
+    ctx.clearRect(0, 0, W, H);
+    /* voile ivoire en bas pour la lisibilité des prénoms */
+    const g = ctx.createLinearGradient(0, H * .66, 0, H);
+    g.addColorStop(0, 'rgba(253,250,246,0)'); g.addColorStop(.45, 'rgba(253,250,246,.82)'); g.addColorStop(1, 'rgba(253,250,246,.95)');
+    ctx.fillStyle = g; ctx.fillRect(0, H * .66, W, H * .34);
+    drawPair(ctx, top, W * .44, 'top');
+    drawPair(ctx, bottom, W * .30, 'bottom');
+    /* double filet doré */
+    ctx.strokeStyle = 'rgba(201,165,94,.95)'; ctx.lineWidth = 4; ctx.strokeRect(26, 26, W - 52, H - 52);
+    ctx.strokeStyle = 'rgba(201,165,94,.55)'; ctx.lineWidth = 2; ctx.strokeRect(40, 40, W - 80, H - 80);
+    /* médaillon des mariés, en haut au centre */
+    if (couple) {
+      const r = 118, cx = W / 2, cy = 190;
+      const s = Math.min(couple.width, couple.height * .8);
+      ctx.save(); ctx.beginPath(); ctx.arc(cx, cy, r, 0, Math.PI * 2); ctx.clip();
+      ctx.drawImage(couple, (couple.width - s) / 2, couple.height * .08, s, s, cx - r, cy - r, r * 2, r * 2);
+      ctx.restore();
+      ctx.lineWidth = 9; ctx.strokeStyle = '#fffdf9'; ctx.beginPath(); ctx.arc(cx, cy, r + 4, 0, Math.PI * 2); ctx.stroke();
+      const ring = ctx.createLinearGradient(cx - r, cy - r, cx + r, cy + r);
+      ring.addColorStop(0, '#e9c98a'); ring.addColorStop(.5, '#b8862f'); ring.addColorStop(1, '#e2bd78');
+      ctx.lineWidth = 5; ctx.strokeStyle = ring; ctx.beginPath(); ctx.arc(cx, cy, r + 10, 0, Math.PI * 2); ctx.stroke();
+    }
+    /* prénoms et date */
+    ctx.textAlign = 'center';
+    ctx.fillStyle = '#b85c38';
+    ctx.font = '400 128px "Great Vibes", "Pinyon Script", cursive';
+    ctx.shadowColor = 'rgba(253,250,246,.9)'; ctx.shadowBlur = 18;
+    ctx.fillText('Daria & Hermann', W / 2, H - 210);
+    ctx.shadowBlur = 0;
+    ctx.fillStyle = '#4a2416';
+    ctx.font = '400 34px "Cinzel", serif';
+    ctx.fillText('18 · 12 · 2026  —  DOUALA', W / 2, H - 142);
+  }
+  assets.then(drawFrame).catch(() => {});
+
+  function show(name) {
+    Object.keys(panes).forEach(k => { panes[k].hidden = k !== name; });
+  }
+  function stopStream() {
+    if (stream) stream.getTracks().forEach(t => t.stop());
+    stream = null; video.srcObject = null; video.hidden = true;
+  }
+  function startCam() {
+    if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+      flash('Caméra indisponible — importez une photo'); return;
+    }
+    stopStream();
+    navigator.mediaDevices.getUserMedia({ video: { facingMode: facing, width: { ideal: 1440 }, height: { ideal: 1920 } }, audio: false })
+      .then(s => {
+        stream = s; video.srcObject = s; video.hidden = false;
+        video.classList.toggle('mirror', facing === 'user');
+        shot.hidden = true; idle.hidden = true;
+        return video.play();
+      })
+      .then(() => show('live'))
+      .catch(() => { flash('Caméra refusée ou indisponible — importez une photo'); show('start'); });
+  }
+
+  /* compose la photo finale : source recadrée en « cover » + cadre */
+  function compose(src, sw, sh, mirror) {
+    return assets.then(() => {
+      const c = document.createElement('canvas'); c.width = W; c.height = H;
+      const ctx = c.getContext('2d');
+      const k = Math.max(W / sw, H / sh), dw = sw * k, dh = sh * k;
+      ctx.save();
+      if (mirror) { ctx.translate(W, 0); ctx.scale(-1, 1); }
+      ctx.drawImage(src, (W - dw) / 2, (H - dh) / 2, dw, dh);
+      ctx.restore();
+      ctx.drawImage(frame, 0, 0);
+      return new Promise(ok => c.toBlob(ok, 'image/jpeg', .92));
+    }).then(blob => {
+      if (shotUrl) URL.revokeObjectURL(shotUrl);
+      shotBlob = blob; shotUrl = URL.createObjectURL(blob);
+      shot.src = shotUrl; shot.hidden = false; idle.hidden = true;
+      $('boothSave').href = shotUrl;
+      const file = new File([blob], 'daria-hermann-souvenir.jpg', { type: 'image/jpeg' });
+      $('boothShare').hidden = !(navigator.canShare && navigator.canShare({ files: [file] }));
+      show('done');
+    });
+  }
+
+  function snap() {
+    let n = 3;
+    count.hidden = false; count.textContent = n;
+    const timer = setInterval(() => {
+      n -= 1;
+      if (n > 0) { count.textContent = n; return; }
+      clearInterval(timer); count.hidden = true;
+      flashEl.classList.remove('go'); void flashEl.offsetWidth; flashEl.classList.add('go');
+      const mirror = facing === 'user';
+      compose(video, video.videoWidth, video.videoHeight, mirror).then(stopStream);
+    }, 800);
+  }
+
+  $('boothCam').addEventListener('click', startCam);
+  $('boothFlip').addEventListener('click', () => { facing = facing === 'user' ? 'environment' : 'user'; startCam(); });
+  $('boothSnap').addEventListener('click', snap);
+  $('boothStop').addEventListener('click', () => { stopStream(); idle.hidden = false; show('start'); });
+  $('boothRetry').addEventListener('click', () => { shot.hidden = true; idle.hidden = false; show('start'); });
+  $('boothFile').addEventListener('change', e => {
+    const f = e.target.files && e.target.files[0];
+    if (!f) return;
+    stopStream();
+    load(URL.createObjectURL(f)).then(img => compose(img, img.naturalWidth, img.naturalHeight, false))
+      .catch(() => flash('Image illisible'));
+    e.target.value = '';
+  });
+  $('boothShare').addEventListener('click', () => {
+    if (!shotBlob) return;
+    const file = new File([shotBlob], 'daria-hermann-souvenir.jpg', { type: 'image/jpeg' });
+    navigator.share({ files: [file], title: 'Daria & Hermann — 18.12.2026' }).catch(() => {});
+  });
+  /* on coupe la caméra quand la page passe en arrière-plan */
+  document.addEventListener('visibilitychange', () => { if (document.hidden && stream) { stopStream(); idle.hidden = false; show('start'); } });
+})();
 </script>
 </body>
 </html>
