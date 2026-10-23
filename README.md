@@ -159,3 +159,24 @@ toutes les 60 s : les compteurs de places et le tableau organisateur sont donc
 Le `localStorage` n'est plus qu'un cache local : si Google Sheets est
 injoignable (feuille non partagée, hors ligne), le site continue de fonctionner
 avec son cache et l'envoi au formulaire reste tenté.
+
+## Téléphone obligatoire et unicité
+Le numéro WhatsApp est obligatoire. Il est normalisé au format international
+(un numéro à 9 chiffres est supposé camerounais : `+237…`), et le **code de
+réservation en est dérivé** (SHA-256 tronqué). Un même numéro donne donc
+toujours le même code : le site relit la feuille juste avant l'envoi et refuse
+une seconde réservation, sans que les téléphones soient publiés dans le
+Compteur public.
+
+## Confirmation WhatsApp automatique
+Le site statique ne peut pas envoyer de WhatsApp lui-même (le jeton d'accès
+serait public). L'envoi est fait par **Google Apps Script** dans la feuille
+privée des réponses : `tools/whatsapp-confirmation.gs` (instructions en tête
+du fichier). Il utilise l'**API WhatsApp Cloud de Meta**, ce qui demande :
+- un compte Meta Business et une app « WhatsApp » sur developers.facebook.com ;
+- un numéro expéditeur dédié (pas déjà utilisé dans l'application WhatsApp) ;
+- un modèle de message « Utilitaire » approuvé (texte en tête du script) ;
+- un moyen de paiement : chaque confirmation est facturée par Meta.
+
+Une fois en place, passer `CONFIG.whatsappAuto` à `true` : le bouton
+« Envoyer sur WhatsApp » disparaît de la confirmation.

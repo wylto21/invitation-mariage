@@ -712,8 +712,8 @@ td{padding:12px 8px;border-bottom:1px solid var(--line-soft)}
       <form id="form" novalidate>
         <div class="field"><label for="f-name">Nom &amp; prénom(s)</label>
           <input id="f-name" autocomplete="name" placeholder="Ex : Kouassi Jean"></div>
-        <div class="field"><label for="f-phone">Téléphone (WhatsApp)</label>
-          <input id="f-phone" inputmode="tel" placeholder="+237 6 00 00 00 00"></div>
+        <div class="field"><label for="f-phone">Téléphone WhatsApp (obligatoire)</label>
+          <input id="f-phone" type="tel" inputmode="tel" autocomplete="tel" required placeholder="+237 6 00 00 00 00"></div>
         <span class="f-lbl">Catégorie</span>
         <div class="pills">
           <label class="pill sel" id="pill-famille"><input type="radio" name="cat" value="famille" checked>
@@ -886,7 +886,11 @@ const CONFIG = {
     /* Si vrai, la feuille Google Sheets remplace le localStorage comme
        source de vérité (compteurs et tableau organisateur synchronisés). */
     remoteAuthoritative: true
-  }
+  },
+  /* Vrai une fois le script Google Apps Script « tools/whatsapp-confirmation.gs »
+     installé : chaque invité reçoit alors automatiquement sa confirmation sur
+     WhatsApp, et le bouton « Envoyer sur WhatsApp » disparaît. */
+  whatsappAuto: false
 };
 const KEY = 'am_rsvp_v1';
 const el = id => document.getElementById(id);
@@ -1272,37 +1276,74 @@ function loop() {
 }
 
 /* ===== SOUMISSION ===== */
-el('form').addEventListener('submit', e => {
+/* Numéro → format international (+237XXXXXXXXX). Un numéro à 9 chiffres
+   est supposé camerounais. Renvoie '' si le numéro est invalide. */
+function normPhone(raw) {
+  let d = String(raw).replace(/[\s.\-()\/]/g, '');
+  if (d.startsWith('00')) d = '+' + d.slice(2);
+  if (/^\d{9}$/.test(d)) d = '+237' + d;
+  else if (/^237\d{9}$/.test(d)) d = '+' + d;
+  if (!/^\+\d{8,15}$/.test(d)) return '';
+  if (d.startsWith('+237') && !/^\+237[26]\d{8}$/.test(d)) return '';
+  return d;
+}
+
+/* Code de réservation dérivé du numéro (SHA-256) : un même numéro donne
+   toujours le même code, ce qui permet de vérifier l'unicité sur la feuille
+   publique sans y publier les téléphones. */
+async function codeFromPhone(phone) {
+  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode('daria-hermann-2026|' + phone));
+  const b = new Uint8Array(buf);
+  let n = 0n;
+  for (let k = 0; k < 8; k++) n = (n << 8n) | BigInt(b[k]);
+  return n.toString(36).toUpperCase().padStart(10, '0').slice(0, 10);
+}
+
+let submitting = false;
+el('form').addEventListener('submit', async e => {
   e.preventDefault();
+  if (submitting) return;
   if (state.closed) { flash('Les réservations sont closes'); return; }
   const name = el('f-name').value.trim();
-  const phone = el('f-phone').value.trim();
-  if (name.length < 2) { flash('Merci d\u2019indiquer votre nom'); return; }
-  /* WhatsApp Cameroon : on tolère espaces/points/traits, on exige 8 à 15 chiffres */
-  const digits = phone.replace(/[\s.\-()]/g, '');
-  if (phone && !/^\+?\d{8,15}$/.test(digits)) {
-    flash('Numéro invalide — ex. +237 6 00 00 00 00'); return;
-  }
+  if (name.length < 2) { flash('Merci d’indiquer votre nom'); return; }
+  if (!el('f-phone').value.trim()) { flash('Le numéro WhatsApp est obligatoire'); el('f-phone').focus(); return; }
+  const phone = normPhone(el('f-phone').value);
+  if (!phone) { flash('Numéro invalide — ex. +237 6 90 00 00 00'); el('f-phone').focus(); return; }
   const rem = remainingOf(selCat);
   if (rem <= 0) { flash('Plus de places dans cette catégorie'); return; }
   if (qty > rem) { flash('Il ne reste que ' + rem + ' place(s)'); return; }
-  const res = {
-    id: Date.now().toString(36) + Math.random().toString(36).slice(2, 6),
-    name: name, phone: phone, catId: selCat, places: qty, ts: Date.now()
-  };
-  state.reservations.push(res);
-  save();
-  /* Envoi vers Google Form (non bloquant : l'invité est confirmé aussitôt) */
-  googleSubmit(res).then(ok => {
-    if (ok) syncFromSheet(true);
-  });
-  renderStats(); updStepper(); renderAdmin();
-  el('m-txt').textContent = 'Merci ' + name + ' ! Voici votre carton : envoyez-le sur WhatsApp ou enregistrez-le, il vous sera demandé à l\u2019entrée.';
-  el('m-code').textContent = res.id.toUpperCase();
-  showTicket(res);
-  el('modal').classList.add('show');
-  confetti();
-  el('f-name').value = ''; el('f-phone').value = '';
+
+  submitting = true;
+  try {
+    const code = await codeFromPhone(phone);
+    /* relecture de la feuille juste avant, pour voir les réservations des autres */
+    await syncFromSheet(true);
+    const dup = state.reservations.find(r => String(r.id).toUpperCase() === code
+      || (r.phone && normPhone(r.phone) === phone));
+    if (dup) {
+      flash('Ce numéro a déjà une réservation (code ' + code + ')');
+      return;
+    }
+    const res = { id: code, name: name, phone: phone, catId: selCat, places: qty, ts: Date.now() };
+    state.reservations.push(res);
+    save();
+    /* Envoi vers Google Form (non bloquant : l'invité est confirmé aussitôt) */
+    googleSubmit(res).then(ok => {
+      if (ok) syncFromSheet(true);
+    });
+    renderStats(); updStepper(); renderAdmin();
+    el('m-txt').textContent = CONFIG.whatsappAuto
+      ? 'Merci ' + name + ' ! Votre carton vous est envoyé sur WhatsApp au ' + phone + '. Vous pouvez aussi l’enregistrer ici.'
+      : 'Merci ' + name + ' ! Voici votre carton : envoyez-le sur WhatsApp ou enregistrez-le, il vous sera demandé à l’entrée.';
+    el('m-wa').hidden = !!CONFIG.whatsappAuto;
+    el('m-code').textContent = code;
+    showTicket(res);
+    el('modal').classList.add('show');
+    confetti();
+    el('f-name').value = ''; el('f-phone').value = '';
+  } finally {
+    submitting = false;
+  }
 });
 el('m-ok').addEventListener('click', () => el('modal').classList.remove('show'));
 el('modal').addEventListener('click', e => { if (e.target === el('modal')) el('modal').classList.remove('show'); });
