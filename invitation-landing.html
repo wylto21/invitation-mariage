@@ -930,6 +930,8 @@ function googleSubmit(res) {
    guillemets doubles (JSON) tantôt en guillemets simples (littéral JS).
    Les trois formes sont acceptées. */
 function parseGviz(payload) {
+  /* responseHandler : gviz passe directement l'objet déjà décodé */
+  if (payload && typeof payload === 'object') return payload;
   let s = String(payload).trim();
   s = s.replace(/^\/\*O_o\*\/\s*/, '').replace(/;\s*$/, '');
   const m = s.match(/google\.visualization\.Query\.setResponse\((\{[\s\S]*\})\)\s*;?\s*$/);
@@ -958,7 +960,7 @@ function googleSheetRows(sheetName) {
       ? 'sheet=' + encodeURIComponent(sheetName)
       : 'gid=' + encodeURIComponent(G.sheetGid || '0');
     const url = 'https://docs.google.com/spreadsheets/d/' + G.sheetId + '/gviz/tq'
-      + '?tqx=out:json&headers=1&' + sel + '&callback=' + cb;
+      + '?tqx=out:json;responseHandler:' + cb + '&headers=1&' + sel;
     const cleanup = () => { try { delete window[cb]; } catch (e) { window[cb] = undefined; } s.remove(); };
     const timer = setTimeout(() => { cleanup(); reject(new Error('timeout')); }, 12000);
     window[cb] = payload => {
@@ -1032,7 +1034,12 @@ function rowsToReservations({ cols, rows }) {
     if (!name) return;
     const places = Math.max(1, parseInt(String(cPlaces ? r[cPlaces] : '1'), 10) || 1);
     let ts = Date.now();
-    if (cTs && r[cTs]) { const d = Date.parse(r[cTs]); if (!isNaN(d)) ts = d; }
+    if (cTs && r[cTs]) {
+      /* gviz renvoie les dates sous la forme « Date(2026,9,21,17,41,34) » (mois de 0 à 11) */
+      const g = String(r[cTs]).match(/^Date\(([\d,]+)\)$/);
+      const d = g ? new Date(...g[1].split(',').map(Number)).getTime() : Date.parse(r[cTs]);
+      if (!isNaN(d)) ts = d;
+    }
     out.push({
       id: String(cCode && r[cCode] ? r[cCode] : ('row' + idx)).trim(),
       name: name,
@@ -1052,14 +1059,13 @@ function googleClosedState() {
   if (!G.configTab) return Promise.resolve(null);
   return googleSheetRows(G.configTab)
     .then(payload => {
-      const rows = payload.rows || [];
-      if (!rows.length) return null;
-      for (const r of rows) {
-        for (const k of Object.keys(r)) {
-          const v = String(r[k]).trim().toUpperCase();
-          if (v === 'CLOSED') return true;
-          if (v === 'OPEN') return false;
-        }
+      /* headers=1 : une cellule A1 seule est lue comme en-tête de colonne */
+      const values = (payload.cols || []).slice();
+      (payload.rows || []).forEach(r => Object.keys(r).forEach(k => values.push(r[k])));
+      for (const x of values) {
+        const v = String(x).trim().toUpperCase();
+        if (v === 'CLOSED') return true;
+        if (v === 'OPEN') return false;
       }
       return null;
     })
