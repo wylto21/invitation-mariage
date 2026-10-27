@@ -12,6 +12,7 @@ Mariage : vendredi 18 décembre 2026 — mairie à 15h00, puis Table des Élites
 | `assets/invitation/` | Décor repris du modèle : fond fleuri, enveloppe, filet, bouquet d'angle |
 | `favicon.svg` | Icône du site |
 | `photo-couple.jpg` | Photo de couverture (partagée par les balises OG) |
+| `assets/programme/` | Photos rondes du programme (mairie, cérémonie, réception, fin) |
 
 ## Direction artistique — « Terracotta »
 Mise en page inspirée d'un modèle de faire-part (« Invitation au mariage de ») :
@@ -20,7 +21,7 @@ Les fleurs du modèle (fuchsia et rose à l'origine) ont été virées vers la g
 terracotta ; crèmes, ors et feuillages sont inchangés. Le monogramme « GA » de
 l'enveloppe a été effacé et remplacé par « DH » en HTML (`.env-mono`).
 
-Typographie : **Great Vibes** (prénoms, titres de section), **Cinzel** (capitales,
+Typographie : **Monsieur La Doulaise** (prénoms, titres de section ; repli Great Vibes), **Cinzel** (capitales,
 chiffres), **Cormorant Garamond** (textes en italique), **Jost** (interface).
 
 | Rôle | Couleur |
@@ -180,3 +181,19 @@ du fichier). Il utilise l'**API WhatsApp Cloud de Meta**, ce qui demande :
 
 Une fois en place, passer `CONFIG.whatsappAuto` à `true` : le bouton
 « Envoyer sur WhatsApp » disparaît de la confirmation.
+
+## Animations du texte
+Le script « FX » de `invitation-landing.html` anime les textes à leur arrivée à l'écran :
+- `.fx-ink` : les titres calligraphiés se dévoilent de gauche à droite, comme à la plume ;
+- `.fx-track` : les petites capitales se resserrent en apparaissant ;
+- `.fx-words` : les phrases montent mot à mot ;
+- prénoms du haut de page : Daria arrive de gauche, Hermann de droite, l'esperluette éclot, puis un reflet doré passe.
+
+Sans JavaScript ou avec « réduire les animations », tout reste affiché normalement.
+
+## Crédits photos (programme)
+Photos sous licence **CC0** (domaine public), recadrées et légèrement réchauffées :
+- Mairie : « People Man », Wu Jianxiong — stocksnap.io/photo/people-man-HB1CUEWMRS
+- Cérémonie : « Wedding Couple », Jeremy Wong — stocksnap.io/photo/wedding-couple-YJHZWANTEG
+- Réception : « Free table setting image » — rawpixel.com/image/5923950
+- Fin : « Night Sparklers », Andreas Rønningen — stocksnap.io/photo/night-sparklers-JYTTZMY9SC
