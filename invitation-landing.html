@@ -1128,15 +1128,17 @@ function googleClosedState() {
 }
 
 /* Fusionne les réservations distantes avec le cache local.
-   Une réservation encore absente de la feuille (temps de propagation de
-   Google, ou envoi échoué) est conservée : on ne perd jamais une réponse. */
+   La feuille fait foi : une réservation supprimée dans Google disparaît
+   aussi du site. Seules les réservations faites sur cet appareil depuis
+   moins de 10 minutes sont gardées en plus, le temps que Google les
+   recopie dans le Compteur public. */
+const PENDING_MS = 10 * 60 * 1000;
 function mergeReservations(remote, local) {
   const key = r => String(r.id || '').trim().toUpperCase();
   const seen = new Set(remote.map(key));
   const extras = local.filter(r => {
     const k = key(r);
-    if (!k) return true;
-    if (seen.has(k)) return false;
+    if (!r.mine || !k || seen.has(k) || Date.now() - r.ts > PENDING_MS) return false;
     seen.add(k);
     return true;
   });
@@ -1151,10 +1153,10 @@ function syncFromSheet(silent) {
   return Promise.all([googleSheetRows(), googleClosedState()])
     .then(([payload, closed]) => {
       const remote = rowsToReservations(payload);
-      if (remote.length || !G.remoteAuthoritative) {
-        state.reservations = mergeReservations(remote, state.reservations);
-        save();
-      }
+      state.reservations = G.remoteAuthoritative
+        ? mergeReservations(remote, state.reservations)
+        : remote.concat(state.reservations.filter(r => !remote.some(x => x.id === r.id)));
+      save();
       if (closed !== null && closed !== state.closed) {
         state.closed = closed;
         save();
@@ -1451,7 +1453,7 @@ el('form').addEventListener('submit', async e => {
       flash('Ce numéro a déjà une réservation (code ' + code + ')');
       return;
     }
-    const res = { id: code, name: name, phone: phone, catId: selCat, places: qty, ts: Date.now() };
+    const res = { id: code, name: name, phone: phone, catId: selCat, places: qty, ts: Date.now(), mine: true };
     state.reservations.push(res);
     save();
     /* Envoi vers Google Form (non bloquant : l'invité est confirmé aussitôt) */
