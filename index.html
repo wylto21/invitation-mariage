@@ -447,7 +447,7 @@
         e.stopPropagation();
         intro.classList.add('fade');
         setTimeout(function () {
-          window.location.href = 'invitation-landing.html#reserver';
+          window.location.href = 'invitation-landing.html' + window.location.search + '#reserver';
         }, reduced ? 30 : 500);
       });
     })();

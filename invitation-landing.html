@@ -71,7 +71,7 @@ header{position:fixed;top:0;left:0;right:0;z-index:50;backdrop-filter:blur(12px)
 .hero>*:not(.pwrap):not(.fl){position:relative;z-index:1}
 .hero .t1{font-family:'Jost';font-size:clamp(13px,3.4vw,16px);letter-spacing:.16em;text-transform:uppercase;color:var(--ink)}
 .hero .t2{font-family:'Cinzel';font-weight:400;font-size:clamp(34px,9vw,58px);line-height:1.05;color:var(--ink);margin:.1em 0 .32em;word-spacing:.12em}
-.names{font-family:'Monsieur La Doulaise','Great Vibes',cursive;font-size:clamp(54px,14.6vw,124px);font-weight:400;line-height:1.1;margin:.3em 0 .1em;color:var(--terra);letter-spacing:0;padding:0 6px}
+.names{font-family:'Monsieur La Doulaise','Great Vibes',cursive;white-space:nowrap;font-size:clamp(40px,12.8vw,124px);font-weight:400;line-height:1.1;margin:.3em 0 .1em;color:var(--terra);letter-spacing:0;padding:0 6px}
 .names .fn{white-space:nowrap;display:inline-block}
 .names .amp{display:inline-block;font-size:.62em;color:var(--gold-deep);margin:0 .12em;vertical-align:.12em}
 .sub{font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--ink);font-size:clamp(17px,4.4vw,21px);line-height:1.5;max-width:470px}
@@ -235,6 +235,14 @@ h2.sec{font-family:'Monsieur La Doulaise','Great Vibes',cursive;font-weight:400;
 .btn:hover{background-position:100% 0;transform:translateY(-2px)}
 .btn:disabled{opacity:.5;cursor:not-allowed;transform:none}
 .rc-foot{text-align:center;margin-top:18px;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:16px;color:var(--muted)}
+.gate{max-width:600px;margin:0 auto;text-align:center;padding:40px clamp(20px,5vw,46px) 34px;position:relative;z-index:1}
+.gate .script{font-size:42px;color:var(--terra)}
+.gate p{font-family:'Cormorant Garamond',serif;font-size:19px;line-height:1.55;color:var(--ink);margin:12px auto 22px;max-width:440px}
+.gate-row{display:flex;gap:10px;max-width:420px;margin:0 auto}
+.gate-row input{flex:1;min-width:0;border:0;border-bottom:1px solid rgba(184,92,56,.45);background:transparent;font:500 19px 'Cinzel';letter-spacing:.12em;text-align:center;color:var(--ink);padding:10px 4px;text-transform:uppercase}
+.gate-row input:focus{outline:none;border-bottom-color:var(--terra)}
+.gate-row .btn{width:auto;padding:14px 26px}
+.inv-note{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:18px;color:var(--deep);text-align:center;margin:0 0 18px}
 .closed{display:none;max-width:600px;margin:20px auto 0;text-align:center;color:var(--deep);font-family:'Cormorant Garamond',serif;font-size:19px;border:1px solid var(--line);border-radius:4px;padding:24px;background:#fffdf9}
 
 /* ——— Organisateurs ——— */
@@ -754,7 +762,8 @@ td{padding:12px 8px;border-bottom:1px solid var(--line-soft)}
           <input id="f-name" autocomplete="name" placeholder="Ex : Kouassi Jean"></div>
         <div class="field"><label for="f-phone">Téléphone WhatsApp (obligatoire)</label>
           <input id="f-phone" type="tel" inputmode="tel" autocomplete="tel" required placeholder="+237 6 00 00 00 00"></div>
-        <span class="f-lbl">Catégorie</span>
+        <p class="inv-note" id="inv-note" hidden></p>
+        <span class="f-lbl" id="cat-lbl">Catégorie</span>
         <div class="pills">
           <label class="pill sel" id="pill-famille"><input type="radio" name="cat" value="famille" checked>
             <span class="pl">Famille</span></label>
@@ -767,6 +776,16 @@ td{padding:12px 8px;border-bottom:1px solid var(--line-soft)}
         <p class="rc-foot">Votre code de réservation vous sera remis à l'envoi</p>
       </form>
     </div>
+    <div class="card gate reveal" id="invite-gate" hidden>
+      <div class="script">Invitation personnelle</div>
+      <p>La réservation se fait avec le lien personnel que vous avez reçu des mariés.
+        Ouvrez ce lien, ou saisissez le code qu'il contient :</p>
+      <form id="gate-form" class="gate-row" novalidate>
+        <input id="gate-code" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="K7F2-QX9A" aria-label="Code d'invitation">
+        <button class="btn" type="submit">Valider</button>
+      </form>
+    </div>
+    <div class="closed" id="invite-used">Cette invitation a déjà servi pour une réservation. Une invitation = une personne.</div>
     <div class="closed" id="closed-banner">Les réservations sont closes. Contactez les mariés pour toute question.</div>
   </div>
 </section>
@@ -923,7 +942,16 @@ const CONFIG = {
   /* Vrai une fois le script Google Apps Script « tools/whatsapp-confirmation.gs »
      installé : chaque invité reçoit alors automatiquement sa confirmation sur
      WhatsApp, et le bouton « Envoyer sur WhatsApp » disparaît. */
-  whatsappAuto: false
+  whatsappAuto: false,
+  /* Invitations personnelles : chaque invité reçoit un lien ?i=CODE.
+     Seule une empreinte SHA-256 des codes figure ici (les codes et les noms
+     restent dans le dossier privé invites/). Liste vide = réservation libre.
+     Bloc régénéré par `python3 tools/invitations.py` : ne pas éditer à la main. */
+  invites: {
+    /* INVITES:DEBUT */
+    hashes: {}
+    /* INVITES:FIN */
+  }
 };
 const KEY = 'am_rsvp_v1';
 const el = id => document.getElementById(id);
@@ -1152,8 +1180,8 @@ function syncFromSheet(silent) {
       if (closed !== null && closed !== state.closed) {
         state.closed = closed;
         save();
-        applyClosed();
       }
+      if (!el('modal').classList.contains('show')) applyClosed();
       renderStats(); updStepper(); renderAdmin();
       if (!silent) flash('Réservations synchronisées (' + remote.length + ')');
       return true;
@@ -1367,6 +1395,54 @@ function loop() {
 }
 
 /* ===== SOUMISSION ===== */
+/* ===== INVITATIONS PERSONNELLES ===== */
+const INV = CONFIG.invites || {};
+const INVITE_KEY = 'am_invite';
+let invite = null;   /* { code, catId } une fois le lien reconnu */
+const inviteRequired = () => Object.keys(INV.hashes || {}).length > 0;
+const normInvite = c => String(c || '').toUpperCase().replace(/[^A-Z0-9]/g, '');
+const fmtInvite = c => c.slice(0, 4) + '-' + c.slice(4);
+async function sha256hex(txt) {
+  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(txt));
+  return [...new Uint8Array(buf)].map(b => b.toString(16).padStart(2, '0')).join('');
+}
+async function checkInvite(raw) {
+  const code = normInvite(raw);
+  if (code.length !== 8) return null;
+  const cat = (INV.hashes || {})[(await sha256hex('dh-invite|' + code)).slice(0, 16)];
+  return cat ? { code, catId: cat } : null;
+}
+/* le code d'une réservation faite avec une invitation commence par celle-ci */
+const inviteUsed = () => !!invite && state.reservations.some(r => normInvite(r.id).startsWith(invite.code));
+function applyInvite(inv) {
+  invite = inv;
+  if (inv) {
+    try { localStorage.setItem(INVITE_KEY, inv.code); } catch (e) {}
+    selCat = inv.catId;
+    document.querySelectorAll('.pill input').forEach(i => { i.checked = i.value === inv.catId; });
+    syncPills();
+    el('cat-lbl').hidden = true;
+    document.querySelector('.pills').hidden = true;
+    el('inv-note').hidden = false;
+    el('inv-note').textContent = 'Invitation personnelle · ' + catLabel(inv.catId);
+  }
+  applyClosed();
+}
+el('gate-form').addEventListener('submit', async e => {
+  e.preventDefault();
+  const inv = await checkInvite(el('gate-code').value);
+  if (!inv) { flash('Code d’invitation inconnu'); return; }
+  applyInvite(inv);
+  flash('Invitation reconnue — bienvenue !');
+});
+(async () => {
+  if (!inviteRequired()) return;
+  const fromUrl = new URLSearchParams(location.search).get('i');
+  let stored = null;
+  try { stored = localStorage.getItem(INVITE_KEY); } catch (e) {}
+  applyInvite(await checkInvite(fromUrl || '') || await checkInvite(stored || ''));
+})();
+
 /* Numéro → format international (+237XXXXXXXXX). Un numéro à 9 chiffres
    est supposé camerounais. Renvoie '' si le numéro est invalide. */
 function normPhone(raw) {
@@ -1405,13 +1481,19 @@ el('form').addEventListener('submit', async e => {
 
   submitting = true;
   try {
-    const code = await codeFromPhone(phone);
+    if (inviteRequired() && !invite) { applyClosed(); return; }
+    const phoneCode = await codeFromPhone(phone);
+    /* avec invitation : CODEINVI-XXXX (invitation + empreinte courte du numéro) */
+    const code = invite ? fmtInvite(invite.code) + '-' + phoneCode.slice(0, 4) : phoneCode;
     /* relecture de la feuille juste avant, pour voir les réservations des autres */
     await syncFromSheet(true);
-    const dup = state.reservations.find(r => String(r.id).toUpperCase() === code
-      || (r.phone && normPhone(r.phone) === phone));
+    if (inviteUsed()) { applyClosed(); flash('Cette invitation a déjà été utilisée'); return; }
+    const dup = state.reservations.find(r => {
+      const id = String(r.id).toUpperCase();
+      return id === phoneCode || id.endsWith('-' + phoneCode.slice(0, 4)) || (r.phone && normPhone(r.phone) === phone);
+    });
     if (dup) {
-      flash('Ce numéro a déjà une réservation (code ' + code + ')');
+      flash('Ce numéro a déjà une réservation (code ' + dup.id.toUpperCase() + ')');
       return;
     }
     const res = { id: code, name: name, phone: phone, catId: selCat, places: qty, ts: Date.now(), mine: true };
@@ -1435,14 +1517,20 @@ el('form').addEventListener('submit', async e => {
     submitting = false;
   }
 });
-el('m-ok').addEventListener('click', () => el('modal').classList.remove('show'));
-el('modal').addEventListener('click', e => { if (e.target === el('modal')) el('modal').classList.remove('show'); });
+el('m-ok').addEventListener('click', () => { el('modal').classList.remove('show'); applyClosed(); });
+el('modal').addEventListener('click', e => { if (e.target === el('modal')) { el('modal').classList.remove('show'); applyClosed(); } });
 
 /* ===== ESPACE ORGANISATEURS ===== */
 function applyClosed() {
-  el('form-card').style.display = state.closed ? 'none' : 'block';
+  /* un seul panneau visible : clos, invitation demandée, invitation utilisée ou formulaire */
+  const gate = !state.closed && inviteRequired() && !invite;
+  const used = !state.closed && !gate && inviteUsed();
   el('closed-banner').style.display = state.closed ? 'block' : 'none';
+  el('invite-gate').hidden = !gate;
+  el('invite-used').style.display = used ? 'block' : 'none';
+  el('form-card').style.display = state.closed || gate || used ? 'none' : 'block';
   el('btn-send').disabled = state.closed;
+  if (gate) el('invite-gate').classList.add('in');
 }
 let clicks = 0, clickT = null;
 el('mono').addEventListener('click', () => {

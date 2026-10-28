@@ -10,3 +10,6 @@ __pycache__/
 *.pdf
 assets/florals/
 assets/reference-affiche.jpeg
+
+# liste des invités et codes personnels : privés, jamais publiés
+invites/

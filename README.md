@@ -198,3 +198,22 @@ Photos sous licence **CC0** (domaine public), recadrées et légèrement réchau
 - Cérémonie : « Wedding Couple », Jeremy Wong — stocksnap.io/photo/wedding-couple-YJHZWANTEG
 - Réception : « Free table setting image » — rawpixel.com/image/5923950
 - Fin : « Night Sparklers », Andreas Rønningen — stocksnap.io/photo/night-sparklers-JYTTZMY9SC
+
+## Invitations personnelles
+Chaque invité reçoit un lien personnel `…/?i=CODE`. Sans code valide, le formulaire
+est remplacé par un écran « Invitation personnelle » (le code peut aussi y être saisi).
+Une invitation ne sert qu'une fois, et la catégorie y est fixée d'avance.
+
+1. Créer `invites/invites.csv` (dossier **privé**, ignoré par git) :
+   ```
+   Nom;Catégorie
+   Jean Mbarga;Famille
+   ```
+2. `python3 tools/invitations.py` : génère `invites/liens.html` (un bouton WhatsApp
+   par invité), `invites/liens.csv`, et met à jour le bloc `INVITES` de
+   `invitation-landing.html` (empreintes SHA-256 seulement : ni noms ni codes en clair).
+3. Publier la page. Ajouter des invités plus tard : compléter la liste et relancer,
+   les codes déjà envoyés sont conservés (`invites/codes.csv`, à ne pas supprimer).
+
+Le code de réservation d'un invité est `CODE-XXXX` (invitation + empreinte du numéro).
+Liste vide = réservation libre, comme avant.
