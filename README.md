@@ -10,6 +10,7 @@ Mariage : vendredi 18 décembre 2026 — mairie à 15h00, puis Table des Élites
 | `invitation-landing.html` | Page principale : couverture, compte à rebours, programme, places, réservation, espace photo (filtre des mariés), espace cadeaux, espace organisateurs |
 | `styles.css` | Socle commun : palette, reset, utilitaires, accessibilité |
 | `assets/invitation/` | Décor repris du modèle : fond fleuri, enveloppe, filet, bouquet d'angle |
+| `petales.js` | Pétales et petits cœurs qui tombent en fond, sur les deux pages |
 | `favicon.svg` | Icône du site |
 | `photo-couple.jpg` | Photo de couverture (partagée par les balises OG) |
 | `assets/programme/` | Photos rondes du programme (mairie, cérémonie, réception, fin) |

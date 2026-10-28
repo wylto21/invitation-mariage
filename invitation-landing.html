@@ -591,7 +591,6 @@ td{padding:12px 8px;border-bottom:1px solid var(--line-soft)}
 <section class="hero" id="accueil">
   <img class="fl top l" src="assets/invitation/bouquet-haut.webp" alt="" aria-hidden="true">
   <img class="fl top r" src="assets/invitation/bouquet-haut.webp" alt="" aria-hidden="true">
-  <div class="pwrap" id="particles"></div>
   <p class="t1 reveal">Invitation au</p>
   <p class="t2 reveal">Mariage de</p>
   <img class="filet reveal" src="assets/invitation/filet.png" alt="" aria-hidden="true" width="1250" height="54">
@@ -1188,21 +1187,6 @@ function tick() {
 }
 setInterval(tick, 1000); tick();
 
-/* ===== PÉTALES TERRACOTTA QUI TOMBENT ===== */
-(function () {
-  const wrap = el('particles');
-  for (let i = 0; i < 16; i++) {
-    const p = document.createElement('i');
-    p.className = 'particle';
-    const s = 6 + Math.random() * 6;
-    p.style.width = s + 'px'; p.style.height = (s * .72) + 'px';
-    p.style.left = Math.random() * 100 + '%';
-    p.style.animationDuration = (10 + Math.random() * 16) + 's';
-    p.style.animationDelay = (-Math.random() * 22) + 's';
-    wrap.appendChild(p);
-  }
-})();
-
 /* Déclenche l'apparition en fondu des éléments animés (.bloom) */
 document.body.classList.add('is-ready');
 
@@ -1763,5 +1747,6 @@ const showTicket = (() => {
   };
 })();
 </script>
+<script src="petales.js" data-z="45" defer></script>
 </body>
 </html>
