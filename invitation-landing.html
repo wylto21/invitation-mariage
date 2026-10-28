@@ -764,13 +764,6 @@ td{padding:12px 8px;border-bottom:1px solid var(--line-soft)}
           <label class="pill" id="pill-collegues"><input type="radio" name="cat" value="collegues">
             <span class="pl">Collègues</span></label>
         </div>
-        <span class="f-lbl">Nombre de places</span>
-        <div class="stepper">
-          <button type="button" id="minus" aria-label="Moins">−</button>
-          <div class="q" id="qty">1</div>
-          <button type="button" id="plus" aria-label="Plus">+</button>
-        </div>
-        <div class="max-note" id="qmax"></div>
         <button class="btn" type="submit" id="btn-send">Confirmer ma réservation</button>
         <p class="rc-foot">Votre code de réservation vous sera remis à l'envoi</p>
       </form>
@@ -1332,31 +1325,16 @@ function renderStats() {
 }
 
 /* ===== FORMULAIRE ===== */
-let selCat = 'famille', qty = 1;
+let selCat = 'famille';
+const qty = 1;
 function syncPills() {
   document.querySelectorAll('.pill').forEach(p => p.classList.toggle('sel', p.querySelector('input').checked));
 }
 document.querySelectorAll('.pill input').forEach(inp =>
-  inp.addEventListener('change', () => { selCat = inp.value; qty = 1; syncPills(); updStepper(); }));
+  inp.addEventListener('change', () => { selCat = inp.value; syncPills(); }));
 
-function updStepper() {
-  const max = Math.max(1, remainingOf(selCat));
-  qty = Math.min(Math.max(1, qty), max);
-  el('qty').textContent = qty;
-  /* Pas de décompte chiffré : on reste qualitatif (choix éditorial) */
-  el('qmax').textContent = remainingOf(selCat) <= 0
-    ? 'Catégorie ' + catLabel(selCat) + ' complète — choisissez-en une autre'
-    : 'Catégorie ' + catLabel(selCat) + ' · jusqu\u2019à ' + max + ' place(s) par réservation';
-  el('minus').disabled = qty <= 1;
-  el('plus').disabled = qty >= max;
-}
-el('minus').addEventListener('click', () => { qty--; updStepper(); });
-el('plus').addEventListener('click', () => {
-  const max = Math.max(1, remainingOf(selCat));
-  if (qty >= max) flash('Maximum ' + max + ' place(s) disponible(s)');
-  else qty++;
-  updStepper();
-});
+/* Une réservation = une personne : pas de choix du nombre de places */
+function updStepper() {}
 
 /* ===== TOAST ===== */
 let tT;
@@ -1440,7 +1418,6 @@ el('form').addEventListener('submit', async e => {
   if (!phone) { flash('Numéro invalide — ex. +237 6 90 00 00 00'); el('f-phone').focus(); return; }
   const rem = remainingOf(selCat);
   if (rem <= 0) { flash('Plus de places dans cette catégorie'); return; }
-  if (qty > rem) { flash('Il ne reste que ' + rem + ' place(s)'); return; }
 
   submitting = true;
   try {
@@ -1736,10 +1713,10 @@ const showTicket = (() => {
     ctx.strokeStyle = 'rgba(201,165,94,.55)'; ctx.lineWidth = 2; ctx.strokeRect(40, 40, W - 80, H - 80);
     ctx.textAlign = 'center'; ctx.textBaseline = 'alphabetic';
 
-    text(ctx, 'INVITATION AU MARIAGE DE', 350, '500 30px "Cinzel", serif', '#4a2416', 6);
-    text(ctx, 'Daria & Hermann', 470, '400 124px "Monsieur La Doulaise", cursive', '#b85c38');
-    if (filet) ctx.drawImage(filet, W / 2 - 300, 500, 600, 600 * filet.height / filet.width);
-    text(ctx, 'VENDREDI 18 DÉCEMBRE 2026', 590, '500 34px "Cinzel", serif', '#4a2416', 4);
+    text(ctx, 'INVITATION AU MARIAGE DE', 318, '500 30px "Cinzel", serif', '#4a2416', 6);
+    text(ctx, 'Daria & Hermann', 478, '400 112px "Monsieur La Doulaise", cursive', '#b85c38');
+    if (filet) ctx.drawImage(filet, W / 2 - 300, 512, 600, 600 * filet.height / filet.width);
+    text(ctx, 'VENDREDI 18 DÉCEMBRE 2026', 596, '500 34px "Cinzel", serif', '#4a2416', 4);
     text(ctx, '15h00 Mairie · 16h00 Table des Élites · Akwa, Douala', 642, 'italic 400 36px "Cormorant Garamond", serif', '#5c3a26');
 
     /* carte de l'invité */
@@ -1749,7 +1726,7 @@ const showTicket = (() => {
     ctx.strokeStyle = 'rgba(201,165,94,.8)'; ctx.lineWidth = 2; ctx.stroke();
     text(ctx, 'Carton de réservation', y + 92, '400 72px "Monsieur La Doulaise", cursive', '#b85c38');
     text(ctx, res.name, y + 172, '600 54px "Cormorant Garamond", serif', '#4a2416', 0, w - 60);
-    text(ctx, res.places + (res.places > 1 ? ' places' : ' place') + '  ·  ' + catLabel(res.catId),
+    text(ctx, 'Catégorie ' + catLabel(res.catId),
       y + 230, '400 32px "Jost", sans-serif', '#5c3a26', 2);
     ctx.fillStyle = 'rgba(201,165,94,.7)'; ctx.fillRect(W / 2 - 120, y + 268, 240, 2);
     text(ctx, 'CODE DE RÉSERVATION', y + 326, '500 24px "Jost", sans-serif', '#8a3416', 6);

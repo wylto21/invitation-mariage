@@ -13,9 +13,9 @@
  * Puis exécuter une fois installer() pour créer le déclencheur
  * « à l'envoi du formulaire » (Google demande l'autorisation la 1re fois).
  *
- * Le modèle WhatsApp attendu (catégorie « Utilitaire ») a 4 variables :
+ * Le modèle WhatsApp attendu (catégorie « Utilitaire ») a 3 variables :
  *   Bonjour {{1}}, votre réservation pour le mariage de Daria & Hermann est
- *   confirmée : {{2}} place(s), catégorie {{3}}. Votre code : {{4}}.
+ *   confirmée (catégorie {{2}}). Votre code : {{3}}.
  *   Rendez-vous le vendredi 18 décembre 2026 — 15h00 Mairie, 16h00 Table des
  *   Élites, Akwa, Douala. Dress code : Terracotta. Présentez ce message à
  *   l'entrée.
@@ -56,7 +56,7 @@ function onReservation(e) {
   }
 
   try {
-    sendTemplate(phone, [get('name'), get('places') || '1', get('cat'), get('code')]);
+    sendTemplate(phone, [get('name'), get('cat'), get('code')]);
     mark(sheet, row, statusCol, 'ENVOYÉ ' + Utilities.formatDate(new Date(), 'Africa/Douala', 'dd/MM HH:mm'));
   } catch (err) {
     mark(sheet, row, statusCol, 'ERREUR : ' + String(err.message || err).slice(0, 200));
@@ -115,5 +115,5 @@ function norm(s) {
 
 /* Test manuel : envoie le modèle à votre propre numéro */
 function testerEnvoi() {
-  sendTemplate('+237600000000', ['Test', '1', 'Famille', 'TEST123']);
+  sendTemplate('+237600000000', ['Test', 'Famille', 'TEST123']);
 }
