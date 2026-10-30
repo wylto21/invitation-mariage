@@ -289,6 +289,7 @@ td{padding:12px 8px;border-bottom:1px solid var(--line-soft)}
 .gift-card{max-width:520px;margin:0 auto;text-align:center;padding:42px 28px 36px;position:relative;z-index:1}
 .gift-card svg{width:52px;height:52px;color:var(--terra);margin-bottom:12px}
 .gift-t{font-family:'Monsieur La Doulaise','Great Vibes',cursive;font-size:38px;color:var(--terra);line-height:1.1}
+.gift-lead{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:500;font-size:clamp(22px,5.4vw,26px);color:var(--terra);line-height:1.4}
 .gift-d{font-family:'Cormorant Garamond',serif;font-size:18px;color:var(--ink);line-height:1.55;margin-top:10px}
 .foot-l1{font-family:'Monsieur La Doulaise','Great Vibes',cursive;font-size:clamp(42px,10vw,60px);color:var(--terra);line-height:1.1}
 .foot-l1 span{color:var(--gold-deep);font-size:.7em}
@@ -835,14 +836,14 @@ td{padding:12px 8px;border-bottom:1px solid var(--line-soft)}
 <section class="block" id="cadeaux">
   <div class="wrap">
     <div class="sec-head reveal">
-      <p class="eyebrow">Liste de mariage</p>
+      <p class="eyebrow">Cadeaux</p>
       <h2 class="sec">L'espace cadeaux</h2>
       <img class="filet" src="assets/invitation/filet.png" alt="" aria-hidden="true" width="1250" height="54">
     </div>
     <div class="card gift-card reveal">
       <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="16" width="26" height="18" rx="1"/><rect x="5" y="11" width="30" height="6" rx="1"/><path d="M20 11v23"/><path d="M20 11c-3-5-9-6-9-2.5S17 11 20 11zM20 11c3-5 9-6 9-2.5S23 11 20 11z"/></svg>
-      <p class="gift-t">Bientôt disponible</p>
-      <p class="gift-d">La liste de cadeaux sera publiée ici prochainement.<br>Merci pour votre patience et votre générosité.</p>
+      <p class="gift-lead">Votre présence sera pour nous le plus précieux des cadeaux.</p>
+      <p class="gift-d">Toutefois, si votre cœur vous inspire une attention particulière, nous l’accueillerons avec beaucoup de gratitude.</p>
     </div>
   </div>
 </section>
@@ -1236,7 +1237,7 @@ document.querySelectorAll('.reveal').forEach(x => io.observe(x));
   tag('.hero .names', 'fx-ink', '.5s');
   tag('.eyebrow, .t1, .t2, .tot-lbl, .info .tt, .foot-date', 'fx-track');
   tag('.t2', 'fx-track', '.25s');
-  tag('.sub, .venue, .step .what span, .info .dd small, .gift-d, .foot-l2, .rc-foot', 'fx-words');
+  tag('.sub, .venue, .step .what span, .info .dd small, .gift-lead, .gift-d, .foot-l2, .rc-foot', 'fx-words');
   tag('.hero .sub', 'fx-words', '1.4s');
 
   /* découpe en mots (les balises internes, ex. <span>·</span>, sont conservées) */
