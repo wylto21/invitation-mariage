@@ -165,6 +165,9 @@ h2.sec{font-family:'Monsieur La Doulaise','Great Vibes',cursive;font-weight:400;
 .dc-item img{display:block;width:100%;height:auto;aspect-ratio:1;object-fit:cover;object-position:top;border-radius:3px;transition:transform 1.2s cubic-bezier(.2,.8,.2,1)}
 .dc-item:hover{transform:translateY(-6px);box-shadow:0 24px 50px rgba(74,36,22,.24)}
 .dc-item:hover img{transform:scale(1.04)}
+.dc-cap{font-family:'Monsieur La Doulaise','Great Vibes',cursive;font-size:clamp(34px,8vw,44px);color:var(--terra);line-height:1.2;margin:26px 0 12px}
+.dc-grid.one{grid-template-columns:1fr;max-width:640px}
+.dc-grid.one .dc-item img{aspect-ratio:auto}
 .dc-note{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:18px;color:var(--muted);margin-top:18px}
 @media(max-width:560px){.dc-grid{grid-template-columns:1fr;max-width:420px}.dc-item img{aspect-ratio:auto}}
 .lightbox{border:0;padding:0;background:transparent;max-width:94vw;max-height:92vh;overflow:visible}
@@ -712,11 +715,17 @@ td{padding:12px 8px;border-bottom:1px solid var(--line-soft)}
     <div class="dc-gallery" id="dresscode">
       <p class="eyebrow">Inspiration</p>
       <h3 class="dc-title">Exemples de tenues terracotta</h3>
+      <p class="dc-cap">Pour elles</p>
       <div class="dc-grid">
         <button class="dc-item reveal" type="button" data-full="assets/dresscode/tenues-1.webp" aria-label="Agrandir : quatre tenues terracotta, crème et chocolat">
           <img src="assets/dresscode/tenues-1.webp" alt="Quatre tenues de cérémonie terracotta, crème et chocolat" width="1080" height="1080" loading="lazy"></button>
         <button class="dc-item reveal" type="button" data-full="assets/dresscode/tenues-2.webp" aria-label="Agrandir : combinaison terracotta asymétrique">
           <img src="assets/dresscode/tenues-2.webp" alt="Combinaison terracotta asymétrique avec bijou doré" width="987" height="1080" loading="lazy"></button>
+      </div>
+      <p class="dc-cap">Pour eux</p>
+      <div class="dc-grid one">
+        <button class="dc-item reveal" type="button" data-full="assets/dresscode/tenues-hommes.webp" aria-label="Agrandir : quatre tenues homme terracotta et crème">
+          <img src="assets/dresscode/tenues-hommes.webp" alt="Quatre tenues homme terracotta à empiècements crème, mocassins noirs" width="1280" height="1169" loading="lazy"></button>
       </div>
       <p class="dc-note">Terracotta, rouille, crème, chocolat et touches dorées : laissez parler votre style !</p>
     </div>
@@ -1261,7 +1270,7 @@ document.querySelectorAll('.reveal').forEach(x => io.observe(x));
     n.classList.add(cls);
     if (delay) n.style.setProperty('--d', delay);
   });
-  tag('.names, h2.sec, .foot-l1, .rc-head .script, .gift-t, .modal h3', 'fx-ink');
+  tag('.names, h2.sec, .foot-l1, .rc-head .script, .gift-t, .modal h3, .dc-cap', 'fx-ink');
   tag('.hero .names', 'fx-ink', '.5s');
   tag('.eyebrow, .t1, .t2, .tot-lbl, .info .tt, .foot-date', 'fx-track');
   tag('.t2', 'fx-track', '.25s');
