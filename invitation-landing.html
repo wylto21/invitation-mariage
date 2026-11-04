@@ -62,7 +62,7 @@ header{position:fixed;top:0;left:0;right:0;z-index:50;backdrop-filter:blur(12px)
 /* ——— HERO : comme la couverture du modèle ——— */
 .hero{position:relative;isolation:isolate;overflow:clip;min-height:100svh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;
   padding:104px 20px 72px;
-  /* mains des mariés (opacité 60 % intégrée à l'image) sur le fond fleuri */
+  /* mains des mariés (opacité 80 % intégrée à l'image) sur le fond fleuri */
   background:url("assets/invitation/fond-mains.webp") center / cover no-repeat,#fdfaf6 url("assets/invitation/fond-fleuri.jpg") center / cover no-repeat}
 .hero::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
   background:radial-gradient(56% 50% at 50% 46%, rgba(253,250,246,.9) 0%, rgba(253,250,246,.55) 60%, transparent 100%)}
@@ -97,6 +97,10 @@ header{position:fixed;top:0;left:0;right:0;z-index:50;backdrop-filter:blur(12px)
 
 /* ——— Sections ——— */
 section.block{position:relative;isolation:isolate;padding:96px 0;scroll-margin-top:62px}
+/* réservation : mains jointes des mariés en fond (opacité 80 % intégrée à l'image) */
+#reserver{background:url("assets/invitation/fond-reservation.webp") center / cover no-repeat}
+#reserver::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
+  background:radial-gradient(70% 300px at 50% 150px,rgba(253,250,246,.88),rgba(253,250,246,.5) 55%,transparent 100%)}
 .sec-head{text-align:center;margin-bottom:46px;position:relative;z-index:1}
 .sec-head .eyebrow,.dc-gallery .eyebrow{font-family:'Jost';font-size:11.5px;letter-spacing:.34em;text-transform:uppercase;color:var(--terra);padding-left:.34em}
 h2.sec{font-family:'Monsieur La Doulaise','Great Vibes',cursive;font-weight:400;font-size:clamp(46px,11vw,72px);line-height:1.1;color:var(--terra);margin:6px 0 10px}
