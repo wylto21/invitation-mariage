@@ -141,6 +141,16 @@ h2.sec{font-family:'Monsieur La Doulaise','Great Vibes',cursive;font-weight:400;
 
 /* ——— Programme ——— */
 .timeline{position:relative;max-width:640px;margin:0 auto 46px;display:grid;gap:22px}
+/* photo des mariés à droite du programme, bords fondus */
+.prog-grid{display:grid;grid-template-columns:1fr;gap:10px;align-items:center}
+.prog-grid .timeline{width:100%}
+.prog-photo{order:-1;width:min(78vw,340px);margin:0 auto 10px;
+  -webkit-mask-image:radial-gradient(ellipse 50% 50% at 50% 50%,#000 58%,transparent 100%);mask-image:radial-gradient(ellipse 50% 50% at 50% 50%,#000 58%,transparent 100%)}
+.prog-photo img{display:block;width:100%;height:auto}
+@media(min-width:980px){
+  .prog-grid{grid-template-columns:minmax(0,1.25fr) minmax(0,.75fr);gap:20px;max-width:1120px;margin:0 auto}
+  .prog-photo{order:0;width:100%;max-width:420px;margin:0 0 46px auto}
+}
 .timeline::before{content:"";position:absolute;left:50%;top:10px;bottom:10px;width:1px;transform:translateX(-50%);
   background:linear-gradient(180deg,transparent,var(--gold) 12%,var(--gold) 88%,transparent)}
 .step{display:grid;grid-template-columns:1fr 132px 1fr;align-items:center;gap:22px}
@@ -659,27 +669,32 @@ td{padding:12px 8px;border-bottom:1px solid var(--line-soft)}
       <img class="filet" src="assets/invitation/filet.png" alt="" aria-hidden="true" width="1250" height="54">
     </div>
 
-    <div class="timeline">
-      <div class="step reveal">
-        <div class="when">15h00</div>
-        <div class="ico"><img src="assets/programme/mairie.webp" alt="Mains des mariés réunies" width="480" height="480" loading="lazy"></div>
-        <div class="what"><b>Mairie</b><span>Le mariage civil</span></div>
+    <div class="prog-grid">
+      <div class="timeline">
+        <div class="step reveal">
+          <div class="when">15h00</div>
+          <div class="ico"><img src="assets/programme/mairie.webp" alt="Mains des mariés réunies" width="480" height="480" loading="lazy"></div>
+          <div class="what"><b>Mairie</b><span>Le mariage civil</span></div>
+        </div>
+        <div class="step reveal">
+          <div class="when">16h00</div>
+          <div class="ico"><img src="assets/programme/ceremonie.webp" alt="Échange des alliances" width="480" height="480" loading="lazy"></div>
+          <div class="what"><b>Cérémonie</b><span>L'échange des consentements</span></div>
+        </div>
+        <div class="step reveal">
+          <div class="when">18h30</div>
+          <div class="ico"><img src="assets/programme/reception.webp" alt="Table de réception dressée" width="480" height="480" loading="lazy"></div>
+          <div class="what"><b>Réception &amp; dîner</b><span>Cocktail, dîner et premières danses</span></div>
+        </div>
+        <div class="step reveal">
+          <div class="when">23h00</div>
+          <div class="ico"><img src="assets/programme/fin.webp" alt="Haie de cierges magiques" width="480" height="480" loading="lazy"></div>
+          <div class="what"><b>Fin de la célébration</b><span>Merci d'avoir partagé ce jour avec nous</span></div>
+        </div>
       </div>
-      <div class="step reveal">
-        <div class="when">16h00</div>
-        <div class="ico"><img src="assets/programme/ceremonie.webp" alt="Échange des alliances" width="480" height="480" loading="lazy"></div>
-        <div class="what"><b>Cérémonie</b><span>L'échange des consentements</span></div>
-      </div>
-      <div class="step reveal">
-        <div class="when">18h30</div>
-        <div class="ico"><img src="assets/programme/reception.webp" alt="Table de réception dressée" width="480" height="480" loading="lazy"></div>
-        <div class="what"><b>Réception &amp; dîner</b><span>Cocktail, dîner et premières danses</span></div>
-      </div>
-      <div class="step reveal">
-        <div class="when">23h00</div>
-        <div class="ico"><img src="assets/programme/fin.webp" alt="Haie de cierges magiques" width="480" height="480" loading="lazy"></div>
-        <div class="what"><b>Fin de la célébration</b><span>Merci d'avoir partagé ce jour avec nous</span></div>
-      </div>
+      <figure class="prog-photo reveal">
+        <img src="assets/invitation/photo-programme.webp" alt="Daria et Hermann enlacés" width="720" height="1080" loading="lazy">
+      </figure>
     </div>
 
     <div class="infos">
