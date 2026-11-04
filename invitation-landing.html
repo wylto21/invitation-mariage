@@ -62,7 +62,8 @@ header{position:fixed;top:0;left:0;right:0;z-index:50;backdrop-filter:blur(12px)
 /* ——— HERO : comme la couverture du modèle ——— */
 .hero{position:relative;isolation:isolate;overflow:clip;min-height:100svh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;
   padding:104px 20px 72px;
-  background:#fdfaf6 url("assets/invitation/fond-fleuri.jpg") center / cover no-repeat}
+  /* mains des mariés (opacité 40 % intégrée à l'image) sur le fond fleuri */
+  background:url("assets/invitation/fond-mains.webp") center / cover no-repeat,#fdfaf6 url("assets/invitation/fond-fleuri.jpg") center / cover no-repeat}
 .hero::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
   background:radial-gradient(56% 50% at 50% 46%, rgba(253,250,246,.9) 0%, rgba(253,250,246,.55) 60%, transparent 100%)}
 .pwrap{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0}
@@ -367,14 +368,7 @@ td{padding:12px 8px;border-bottom:1px solid var(--line-soft)}
 .fx-on .names.fx-in .fn{transform:none}
 .fx-on .names.fx-in .amp{opacity:1;transform:none}
 .names .fn{transition:transform 2s cubic-bezier(.2,.8,.2,1)}
-.names.fx-in{animation:glow 5s ease-in-out 2.6s infinite}
-@keyframes glow{0%,100%{text-shadow:0 0 0 rgba(201,165,94,0)}50%{text-shadow:0 0 22px rgba(201,165,94,.45)}}
 
-/* éclat doré qui traverse les prénoms une fois écrits */
-.shine-sweep{background:linear-gradient(100deg,var(--terra) 0 40%,#e8cd97 50%,var(--terra) 60% 100%);background-size:300% 100%;
-  -webkit-background-clip:text;background-clip:text;color:transparent!important;animation:sweep 6s ease-in-out 3s infinite}
-.shine-sweep .amp{color:var(--gold-deep)}
-@keyframes sweep{0%,70%{background-position:100% 0}100%{background-position:0 0}}
 </style>
 </head>
 <body>
@@ -1339,8 +1333,6 @@ document.querySelectorAll('.reveal').forEach(x => io.observe(x));
     if (el('modal').classList.contains('show')) requestAnimationFrame(() => requestAnimationFrame(() => h.classList.add('fx-in')));
   }).observe(el('modal'), { attributes: true, attributeFilter: ['class'] });
 
-  /* éclat doré sur les prénoms une fois écrits */
-  setTimeout(() => document.querySelector('.hero .names')?.classList.add('shine-sweep'), 3200);
 })();
 
 /* ===== RENDU STATS / STOCKS ===== */

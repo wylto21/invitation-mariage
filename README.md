@@ -188,7 +188,7 @@ Le script « FX » de `invitation-landing.html` anime les textes à leur arrivé
 - `.fx-ink` : les titres calligraphiés se dévoilent de gauche à droite, comme à la plume ;
 - `.fx-track` : les petites capitales se resserrent en apparaissant ;
 - `.fx-words` : les phrases montent mot à mot ;
-- prénoms du haut de page : Daria arrive de gauche, Hermann de droite, l'esperluette éclot, puis un reflet doré passe.
+- prénoms du haut de page : Daria arrive de gauche, Hermann de droite, l'esperluette éclot.
 
 Sans JavaScript ou avec « réduire les animations », tout reste affiché normalement.
 
