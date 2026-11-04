@@ -371,9 +371,6 @@ td{padding:12px 8px;border-bottom:1px solid var(--line-soft)}
 @keyframes glow{0%,100%{text-shadow:0 0 0 rgba(201,165,94,0)}50%{text-shadow:0 0 22px rgba(201,165,94,.45)}}
 
 /* éclat doré qui traverse les prénoms une fois écrits */
-/* prénoms en « gras » : la police n'a qu'une graisse, on épaissit le trait par un contour */
-.names,.foot-l1,.mono .nm{-webkit-text-stroke:.024em var(--terra)}
-.names .amp,.foot-l1 span{-webkit-text-stroke-color:var(--gold-deep)}
 .shine-sweep{background:linear-gradient(100deg,var(--terra) 0 40%,#e8cd97 50%,var(--terra) 60% 100%);background-size:300% 100%;
   -webkit-background-clip:text;background-clip:text;color:transparent!important;animation:sweep 6s ease-in-out 3s infinite}
 .shine-sweep .amp{color:var(--gold-deep)}
@@ -1718,9 +1715,6 @@ if (googleConfigured()) {
     ctx.shadowColor = 'rgba(253,250,246,.9)'; ctx.shadowBlur = 18;
     ctx.fillText('Daria & Hermann', W / 2, H - 210);
     ctx.shadowBlur = 0;
-    ctx.strokeStyle = '#b85c38'; ctx.lineWidth = 128 * .024; ctx.lineJoin = 'round';
-    ctx.strokeText('Daria & Hermann', W / 2, H - 210);
-    ctx.shadowBlur = 0;
     ctx.fillStyle = '#4a2416';
     ctx.font = '400 34px "Cinzel", serif';
     ctx.fillText('18 · 12 · 2026  —  DOUALA', W / 2, H - 142);
@@ -1848,8 +1842,6 @@ const showTicket = (() => {
     ctx.textAlign = 'center'; ctx.textBaseline = 'alphabetic';
 
     text(ctx, 'INVITATION AU MARIAGE DE', 318, '500 30px "Cinzel", serif', '#4a2416', 6);
-    ctx.strokeStyle = '#b85c38'; ctx.lineWidth = 112 * .024; ctx.lineJoin = 'round';
-    ctx.font = '400 112px "Monsieur La Doulaise", cursive'; ctx.strokeText('Daria & Hermann', W / 2, 478);
     text(ctx, 'Daria & Hermann', 478, '400 112px "Monsieur La Doulaise", cursive', '#b85c38');
     if (filet) ctx.drawImage(filet, W / 2 - 300, 512, 600, 600 * filet.height / filet.width);
     text(ctx, 'VENDREDI 18 DÉCEMBRE 2026', 596, '500 34px "Cinzel", serif', '#4a2416', 4);

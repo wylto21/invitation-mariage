@@ -30,7 +30,9 @@
     display: flex; flex-direction: column; align-items: center; justify-content: center;
     gap: clamp(14px, 3.4vh, 34px);
     padding: clamp(28px, 6vh, 64px) 0 clamp(18px, 4vh, 40px);
-    background: #fdfaf6 url("assets/invitation/fond-fleuri.jpg") center / cover no-repeat;
+    /* les mains des mariés (opacité 40 % intégrée à l'image) sur le fond fleuri */
+    background: url("assets/invitation/fond-mains.webp") center / cover no-repeat,
+                #fdfaf6 url("assets/invitation/fond-fleuri.jpg") center / cover no-repeat;
     overflow: hidden;
     transition: opacity .55s ease;
   }
@@ -59,10 +61,6 @@
     color: var(--terra); margin-top: clamp(14px, 3vh, 30px);
   }
   .ih-names .fn { white-space: nowrap; }
-  /* « gras » : la police n'a qu'une graisse, on épaissit le trait par un contour */
-  .ih-names { -webkit-text-stroke: .024em var(--terra); paint-order: stroke fill; }
-  .ph-mono { -webkit-text-stroke: .024em var(--deep); }
-  .ph-mono span { -webkit-text-stroke-color: var(--gold-deep); }
   .ih-date {
     font-family: 'Jost', sans-serif; font-weight: 500;
     font-size: clamp(14px, 4vw, 20px); letter-spacing: .06em; text-transform: uppercase;
