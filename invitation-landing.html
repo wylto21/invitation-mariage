@@ -347,12 +347,9 @@ td{padding:12px 8px;border-bottom:1px solid var(--line-soft)}
 /* ——— Apparitions stylées du texte (pilotées par le script « FX ») ———
    Rien n'est masqué tant que le script n'a pas posé .fx-on sur <html> :
    sans JavaScript, ou avec « réduire les animations », le texte reste visible. */
-.fx-on .fx-ink{-webkit-mask-image:linear-gradient(100deg,#000 0 38%,transparent 52%);mask-image:linear-gradient(100deg,#000 0 38%,transparent 52%);
-  -webkit-mask-size:320% 100%;mask-size:320% 100%;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;
-  -webkit-mask-position:100% 0;mask-position:100% 0;filter:blur(3px);transform:translateY(10px);
-  transition:-webkit-mask-position 2.2s cubic-bezier(.45,.05,.2,1),mask-position 2.2s cubic-bezier(.45,.05,.2,1),filter 1.4s ease,transform 1.6s cubic-bezier(.2,.8,.2,1);
-  transition-delay:var(--d,0s)}
-.fx-on .fx-ink.fx-in{-webkit-mask-position:0 0;mask-position:0 0;filter:none;transform:none}
+.fx-on .fx-ink{clip-path:inset(-60% 100% -60% -12%);filter:blur(3px);transform:translateY(10px);
+  transition:clip-path 2.2s cubic-bezier(.45,.05,.2,1),filter 1.4s ease,transform 1.6s cubic-bezier(.2,.8,.2,1);transition-delay:var(--d,0s)}
+.fx-on .fx-ink.fx-in{clip-path:inset(-60% -12% -60% -12%);filter:none;transform:none}
 
 .fx-on .fx-track{opacity:0;letter-spacing:.9em;filter:blur(6px);transition:opacity 1.2s ease,letter-spacing 1.6s cubic-bezier(.2,.8,.2,1),filter 1.2s ease;transition-delay:var(--d,0s)}
 .fx-on .fx-track.fx-in{opacity:1;letter-spacing:var(--ls,normal);filter:none}
@@ -374,6 +371,9 @@ td{padding:12px 8px;border-bottom:1px solid var(--line-soft)}
 @keyframes glow{0%,100%{text-shadow:0 0 0 rgba(201,165,94,0)}50%{text-shadow:0 0 22px rgba(201,165,94,.45)}}
 
 /* éclat doré qui traverse les prénoms une fois écrits */
+/* prénoms en « gras » : la police n'a qu'une graisse, on épaissit le trait par un contour */
+.names,.foot-l1,.mono .nm{-webkit-text-stroke:.024em var(--terra)}
+.names .amp,.foot-l1 span{-webkit-text-stroke-color:var(--gold-deep)}
 .shine-sweep{background:linear-gradient(100deg,var(--terra) 0 40%,#e8cd97 50%,var(--terra) 60% 100%);background-size:300% 100%;
   -webkit-background-clip:text;background-clip:text;color:transparent!important;animation:sweep 6s ease-in-out 3s infinite}
 .shine-sweep .amp{color:var(--gold-deep)}
@@ -1301,13 +1301,22 @@ document.querySelectorAll('.reveal').forEach(x => io.observe(x));
   /* espacement d'origine des capitales, pour y revenir après l'animation */
   document.querySelectorAll('.fx-track').forEach(n => n.style.setProperty('--ls', getComputedStyle(n).letterSpacing));
   document.documentElement.classList.add('fx-on');
+  /* un élément masqué par clip-path n'est jamais vu par l'IntersectionObserver :
+     pour .fx-ink, on observe donc son parent */
+  const reveal = n => n.classList.add('fx-in', 'in');
+  const watched = new Map();
   const io = new IntersectionObserver(es => es.forEach(e => {
     if (!e.isIntersecting) return;
-    e.target.classList.add('fx-in');
+    (watched.get(e.target) || []).forEach(reveal);
     io.unobserve(e.target);
   }), { threshold: .3, rootMargin: '0px 0px -8% 0px' });
   const pending = new Set(document.querySelectorAll('.fx-ink, .fx-track, .fx-words'));
-  pending.forEach(n => io.observe(n));
+  pending.forEach(n => {
+    const t = n.classList.contains('fx-ink') ? n.parentElement : n;
+    if (!watched.has(t)) watched.set(t, []);
+    watched.get(t).push(n);
+    io.observe(t);
+  });
   /* défilement rapide : un texte sauté d'un coup n'est jamais « intersecté »,
      on révèle donc tout ce qui est déjà au-dessus du bas de l'écran */
   let ticking = false;
@@ -1319,7 +1328,7 @@ document.querySelectorAll('.reveal').forEach(x => io.observe(x));
       pending.forEach(n => {
         if (n.classList.contains('fx-in')) { pending.delete(n); return; }
         if (n.getBoundingClientRect().top < innerHeight * .92 && n.offsetParent !== null) {
-          n.classList.add('fx-in'); io.unobserve(n); pending.delete(n);
+          reveal(n); pending.delete(n);
         }
       });
     }, 150);
@@ -1709,6 +1718,9 @@ if (googleConfigured()) {
     ctx.shadowColor = 'rgba(253,250,246,.9)'; ctx.shadowBlur = 18;
     ctx.fillText('Daria & Hermann', W / 2, H - 210);
     ctx.shadowBlur = 0;
+    ctx.strokeStyle = '#b85c38'; ctx.lineWidth = 128 * .024; ctx.lineJoin = 'round';
+    ctx.strokeText('Daria & Hermann', W / 2, H - 210);
+    ctx.shadowBlur = 0;
     ctx.fillStyle = '#4a2416';
     ctx.font = '400 34px "Cinzel", serif';
     ctx.fillText('18 · 12 · 2026  —  DOUALA', W / 2, H - 142);
@@ -1836,6 +1848,8 @@ const showTicket = (() => {
     ctx.textAlign = 'center'; ctx.textBaseline = 'alphabetic';
 
     text(ctx, 'INVITATION AU MARIAGE DE', 318, '500 30px "Cinzel", serif', '#4a2416', 6);
+    ctx.strokeStyle = '#b85c38'; ctx.lineWidth = 112 * .024; ctx.lineJoin = 'round';
+    ctx.font = '400 112px "Monsieur La Doulaise", cursive'; ctx.strokeText('Daria & Hermann', W / 2, 478);
     text(ctx, 'Daria & Hermann', 478, '400 112px "Monsieur La Doulaise", cursive', '#b85c38');
     if (filet) ctx.drawImage(filet, W / 2 - 300, 512, 600, 600 * filet.height / filet.width);
     text(ctx, 'VENDREDI 18 DÉCEMBRE 2026', 596, '500 34px "Cinzel", serif', '#4a2416', 4);

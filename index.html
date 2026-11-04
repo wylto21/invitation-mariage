@@ -59,6 +59,10 @@
     color: var(--terra); margin-top: clamp(14px, 3vh, 30px);
   }
   .ih-names .fn { white-space: nowrap; }
+  /* « gras » : la police n'a qu'une graisse, on épaissit le trait par un contour */
+  .ih-names { -webkit-text-stroke: .024em var(--terra); paint-order: stroke fill; }
+  .ph-mono { -webkit-text-stroke: .024em var(--deep); }
+  .ph-mono span { -webkit-text-stroke-color: var(--gold-deep); }
   .ih-date {
     font-family: 'Jost', sans-serif; font-weight: 500;
     font-size: clamp(14px, 4vw, 20px); letter-spacing: .06em; text-transform: uppercase;
