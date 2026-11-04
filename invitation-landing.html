@@ -97,10 +97,6 @@ header{position:fixed;top:0;left:0;right:0;z-index:50;backdrop-filter:blur(12px)
 
 /* ——— Sections ——— */
 section.block{position:relative;isolation:isolate;padding:96px 0;scroll-margin-top:62px}
-/* réservation : mains jointes des mariés en fond (opacité 80 % intégrée à l'image) */
-#reserver{background:url("assets/invitation/fond-reservation.webp") center / cover no-repeat}
-#reserver::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
-  background:radial-gradient(70% 300px at 50% 150px,rgba(253,250,246,.88),rgba(253,250,246,.5) 55%,transparent 100%)}
 .sec-head{text-align:center;margin-bottom:46px;position:relative;z-index:1}
 .sec-head .eyebrow,.dc-gallery .eyebrow{font-family:'Jost';font-size:11.5px;letter-spacing:.34em;text-transform:uppercase;color:var(--terra);padding-left:.34em}
 h2.sec{font-family:'Monsieur La Doulaise','Great Vibes',cursive;font-weight:400;font-size:clamp(46px,11vw,72px);line-height:1.1;color:var(--terra);margin:6px 0 10px}
@@ -172,7 +168,6 @@ h2.sec{font-family:'Monsieur La Doulaise','Great Vibes',cursive;font-weight:400;
 .step:nth-child(even) .what{order:1;text-align:right}
 .step:nth-child(even) .ico{order:2}
 .infos{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-.info .lk + .swatches{margin-top:14px}
 .dc-gallery{text-align:center;margin-top:64px;scroll-margin-top:90px}
 .dc-title{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(24px,6vw,32px);color:var(--ink);margin:4px 0 22px}
 .dc-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;max-width:820px;margin:0 auto}
@@ -209,7 +204,10 @@ h2.sec{font-family:'Monsieur La Doulaise','Great Vibes',cursive;font-weight:400;
 .info a.lk{display:inline-block;margin-top:14px;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--deep);text-decoration:none;border-bottom:1px solid var(--terra);padding-bottom:3px}
 .info a.lk:hover{color:var(--terra)}
 .swatches{display:flex;justify-content:center;gap:8px;margin-top:12px}
-.info .swatches{display:inline-flex;background:rgba(253,248,242,.94);padding:8px 14px;border-radius:99px;box-shadow:0 6px 16px rgba(0,0,0,.12)}
+.info .swatches{display:flex;flex-wrap:wrap;justify-content:center;gap:10px 2px;flex-wrap:nowrap;list-style:none;margin:16px auto 0;padding:12px 6px 10px;max-width:330px;
+  background:rgba(253,248,242,.95);border-radius:14px;box-shadow:0 6px 16px rgba(0,0,0,.12)}
+.info .swatches i{width:26px;height:26px;box-shadow:0 0 0 1px rgba(138,52,22,.28),0 3px 8px rgba(0,0,0,.15)}
+.info .swatches li{display:flex;flex-direction:column;align-items:center;gap:6px;width:50px;font:500 11px 'Jost';letter-spacing:.02em;color:var(--deep)}
 .swatches i{width:22px;height:22px;border-radius:50%;box-shadow:0 0 0 2px #fdf8f2,0 4px 10px rgba(0,0,0,.18)}
 
 /* ——— Statistiques & stocks ——— */
@@ -712,8 +710,13 @@ td{padding:12px 8px;border-bottom:1px solid var(--line-soft)}
         <div class="ic"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round" aria-hidden="true"><path d="M14 6l6 4 6-4 7 5-3 6-3-1.5V34H13V15.5L10 17l-3-6z"/><path d="M20 10v7"/></svg></div>
         <div class="tt">Dress code</div>
         <div class="dd">Terracotta<small>Habillez-vous aux couleurs du thème</small></div>
-        <a class="lk" href="#dresscode">Voir des exemples</a>
-        <div class="swatches" aria-hidden="true"><i style="background:#8a3416"></i><i style="background:#b85c38"></i><i style="background:#c97b4e"></i><i style="background:#e8b59a"></i></div>
+        <ul class="swatches" aria-label="Couleurs du dress code">
+          <li><i style="background:#b85c38"></i>Terracotta</li>
+          <li><i style="background:#a3431f"></i>Rouille</li>
+          <li><i style="background:#5b2d1e"></i>Chocolat</li>
+          <li><i style="background:#f2e6d4"></i>Crème</li>
+          <li><i style="background:#c9a55e"></i>Doré</li>
+        </ul>
       </div>
       <div class="card info c-gold reveal">
         <div class="ic"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="11" width="28" height="18" rx="2"/><path d="M26 11v18" stroke-dasharray="2 2"/><path d="M11 17h10M11 22h7"/></svg></div>
