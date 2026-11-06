@@ -18,8 +18,8 @@
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Monsieur+La+Doulaise&family=Great+Vibes&family=Pinyon+Script&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Monsieur+La+Doulaise&family=Great+Vibes&family=Pinyon+Script&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500;600&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css?v=20261106c">
 <style>
 /* ——— Règles propres au landing (le socle commun est dans styles.css).
    Direction reprise du modèle « Invitation au mariage de » : papier ivoire,
@@ -42,7 +42,7 @@ header{position:fixed;top:0;left:0;right:0;z-index:50;backdrop-filter:blur(12px)
 .mono{display:flex;align-items:center;gap:12px;cursor:pointer;user-select:none}
 .mono .dm{width:30px;height:30px;border:1px solid var(--gold);transform:rotate(45deg);display:grid;place-items:center;flex:none}
 .mono .dm b{transform:rotate(-45deg);font-family:'Pinyon Script',cursive;font-weight:400;font-size:15px;color:var(--gold-deep);letter-spacing:-.04em}
-.mono .nm{font-family:'Monsieur La Doulaise','Great Vibes',cursive;font-size:25px;letter-spacing:0;color:var(--terra)}
+.mono .nm{font-family:'Great Vibes','Monsieur La Doulaise',cursive;font-size:25px;letter-spacing:0;color:var(--terra)}
 .mono .nm span{color:var(--gold-deep)}
 .links{display:flex;gap:28px}
 .links a{color:var(--ink);text-decoration:none;font-size:11px;letter-spacing:.24em;text-transform:uppercase;transition:.25s;position:relative;padding:4px 0}
@@ -72,7 +72,7 @@ header{position:fixed;top:0;left:0;right:0;z-index:50;backdrop-filter:blur(12px)
 .hero>*:not(.pwrap):not(.fl){position:relative;z-index:1}
 .hero .t1{font-family:'Jost';font-size:clamp(13px,3.4vw,16px);letter-spacing:.16em;text-transform:uppercase;color:var(--ink)}
 .hero .t2{font-family:'Cinzel';font-weight:400;font-size:clamp(34px,9vw,58px);line-height:1.05;color:var(--ink);margin:.1em 0 .32em;word-spacing:.12em}
-.names{font-family:'Monsieur La Doulaise','Great Vibes',cursive;white-space:nowrap;font-size:clamp(40px,12.8vw,124px);font-weight:400;line-height:1.1;margin:.3em 0 .1em;color:var(--terra);letter-spacing:0;padding:0 6px}
+.names{font-family:'Great Vibes','Monsieur La Doulaise',cursive;white-space:nowrap;font-size:clamp(40px,12.8vw,124px);font-weight:400;line-height:1.1;margin:.3em 0 .1em;color:var(--terra);letter-spacing:0;padding:0 6px}
 .names .fn{white-space:nowrap;display:inline-block}
 .names .amp{display:inline-block;font-size:.62em;color:var(--gold-deep);margin:0 .12em;vertical-align:.12em}
 .sub{font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--ink);font-size:clamp(17px,4.4vw,21px);line-height:1.5;max-width:470px}
@@ -331,7 +331,7 @@ td{padding:12px 8px;border-bottom:1px solid var(--line-soft)}
 .gift-t{font-family:'Monsieur La Doulaise','Great Vibes',cursive;font-size:38px;color:var(--terra);line-height:1.1}
 .gift-lead{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:500;font-size:clamp(22px,5.4vw,26px);color:var(--terra);line-height:1.4}
 .gift-d{font-family:'Cormorant Garamond',serif;font-size:18px;color:var(--ink);line-height:1.55;margin-top:10px}
-.foot-l1{font-family:'Monsieur La Doulaise','Great Vibes',cursive;font-size:clamp(42px,10vw,60px);color:var(--terra);line-height:1.1}
+.foot-l1{font-family:'Great Vibes','Monsieur La Doulaise',cursive;font-size:clamp(42px,10vw,60px);color:var(--terra);line-height:1.1}
 .foot-l1 span{color:var(--gold-deep);font-size:.7em}
 .foot-date{font-family:'Cinzel';font-size:13px;letter-spacing:.36em;color:var(--ink);margin:12px 0 18px;padding-left:.36em}
 .foot-l2{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:18px;color:var(--muted);line-height:1.6;max-width:420px;margin:16px auto 0}
@@ -740,11 +740,9 @@ td{padding:12px 8px;border-bottom:1px solid var(--line-soft)}
       <p class="eyebrow">Inspiration</p>
       <h3 class="dc-title">Exemples de tenues terracotta</h3>
       <p class="dc-cap">Pour elles</p>
-      <div class="dc-grid">
+      <div class="dc-grid one">
         <button class="dc-item reveal" type="button" data-full="assets/dresscode/tenues-1.webp" aria-label="Agrandir : quatre tenues terracotta, crème et chocolat">
           <img src="assets/dresscode/tenues-1.webp" alt="Quatre tenues de cérémonie terracotta, crème et chocolat" width="1080" height="1080" loading="lazy"></button>
-        <button class="dc-item reveal" type="button" data-full="assets/dresscode/tenues-2.webp" aria-label="Agrandir : combinaison terracotta asymétrique">
-          <img src="assets/dresscode/tenues-2.webp" alt="Combinaison terracotta asymétrique avec bijou doré" width="987" height="1080" loading="lazy"></button>
       </div>
       <p class="dc-cap">Pour eux</p>
       <div class="dc-grid one">
@@ -1702,7 +1700,7 @@ if (googleConfigured()) {
     load('assets/invitation/bouquet-haut.webp'),
     load('assets/invitation/bouquet-angle.webp'),
     load('photo-couple.jpg').catch(() => null),
-    document.fonts ? document.fonts.load('120px "Monsieur La Doulaise"').then(() => document.fonts.load('40px "Cinzel"')) : null
+    document.fonts ? document.fonts.load('120px "Great Vibes"').then(() => document.fonts.load('40px "Cinzel"')) : null
   ]);
 
   /* image retournée horizontalement (bouquet gauche = miroir du droit) */
@@ -1741,7 +1739,7 @@ if (googleConfigured()) {
     /* prénoms et date */
     ctx.textAlign = 'center';
     ctx.fillStyle = '#b85c38';
-    ctx.font = '400 128px "Monsieur La Doulaise", "Great Vibes", cursive';
+    ctx.font = '400 128px "Great Vibes", cursive';
     ctx.shadowColor = 'rgba(253,250,246,.9)'; ctx.shadowBlur = 18;
     ctx.fillText('Daria & Hermann', W / 2, H - 210);
     ctx.shadowBlur = 0;
@@ -1834,64 +1832,41 @@ if (googleConfigured()) {
 </script>
 <script>
 /* ===== CARTON DE RÉSERVATION (image à envoyer sur WhatsApp) =====
-   Dessiné dans un canvas 1080×1500 avec le décor du site : bouquets,
-   filet doré, prénoms des mariés, puis le nom de l'invité et son code. */
+   Fond 1080×1500 tiré du modèle des mariés (roses, drapés, cadre doré) :
+   seuls les horaires, le nom de l'invité, sa catégorie et son code sont
+   écrits par-dessus. */
 const showTicket = (() => {
   const W = 1080, H = 1500;
   const load = src => new Promise((ok, ko) => { const i = new Image(); i.onload = () => ok(i); i.onerror = ko; i.src = src; });
   const assets = Promise.all([
-    load('assets/invitation/bouquet-haut.webp'),
-    load('assets/invitation/bouquet-angle.webp'),
-    load('assets/invitation/filet.png').catch(() => null),
-    document.fonts ? Promise.all(['120px "Monsieur La Doulaise"', '40px "Cinzel"', '500 40px "Cormorant Garamond"',
-      'italic 400 40px "Cormorant Garamond"', '400 30px "Jost"', '500 30px "Jost"'].map(f => document.fonts.load(f))) : null
+    load('assets/invitation/carton-fond.webp'),
+    document.fonts ? Promise.all(['700 60px "Libre Baskerville"', '400 30px "Libre Baskerville"', 'italic 400 30px "Libre Baskerville"'].map(f => document.fonts.load(f))) : null
   ]);
   let blob = null, url = null, file = null, code = '';
 
-  function pair(ctx, img, w, where) {
-    const h = img.height * w / img.width, y = where === 'bottom' ? H - h : 0;
-    ctx.drawImage(img, W - w, y, w, h);
-    ctx.save(); ctx.translate(w, 0); ctx.scale(-1, 1); ctx.drawImage(img, 0, y, w, h); ctx.restore();
-  }
   function text(ctx, str, y, font, color, spacing, maxW) {
     ctx.font = font; ctx.fillStyle = color;
     if ('letterSpacing' in ctx) ctx.letterSpacing = (spacing || 0) + 'px';
     ctx.fillText(str, W / 2, y, maxW || W - 200);
     if ('letterSpacing' in ctx) ctx.letterSpacing = '0px';
   }
-  function draw([top, bottom, filet], res) {
+  /* plus grande taille (≤ max) qui tient dans la largeur */
+  function fit(ctx, str, weight, family, max, width) {
+    let size = max;
+    for (; size > 30; size -= 2) { ctx.font = weight + ' ' + size + 'px ' + family; if (ctx.measureText(str).width <= width) break; }
+    return weight + ' ' + size + 'px ' + family;
+  }
+  function draw([bg], res) {
     const c = document.createElement('canvas'); c.width = W; c.height = H;
     const ctx = c.getContext('2d');
-    const bg = ctx.createLinearGradient(0, 0, 0, H);
-    bg.addColorStop(0, '#fdfaf6'); bg.addColorStop(1, '#f4e9dd');
-    ctx.fillStyle = bg; ctx.fillRect(0, 0, W, H);
-    pair(ctx, top, W * .34, 'top');
-    pair(ctx, bottom, W * .26, 'bottom');
-    ctx.strokeStyle = 'rgba(201,165,94,.95)'; ctx.lineWidth = 4; ctx.strokeRect(26, 26, W - 52, H - 52);
-    ctx.strokeStyle = 'rgba(201,165,94,.55)'; ctx.lineWidth = 2; ctx.strokeRect(40, 40, W - 80, H - 80);
+    ctx.drawImage(bg, 0, 0, W, H);
     ctx.textAlign = 'center'; ctx.textBaseline = 'alphabetic';
 
-    text(ctx, 'INVITATION AU MARIAGE DE', 318, '500 30px "Cinzel", serif', '#4a2416', 6);
-    text(ctx, 'Daria & Hermann', 478, '400 112px "Monsieur La Doulaise", cursive', '#b85c38');
-    if (filet) ctx.drawImage(filet, W / 2 - 300, 512, 600, 600 * filet.height / filet.width);
-    text(ctx, 'VENDREDI 18 DÉCEMBRE 2026', 596, '500 34px "Cinzel", serif', '#4a2416', 4);
-    text(ctx, '15h00 Mairie · 16h00 Table des Élites · Akwa, Douala', 642, 'italic 400 36px "Cormorant Garamond", serif', '#5c3a26');
-
-    /* carte de l'invité */
-    const x = 150, y = 700, w = W - 300, h = 440;
-    ctx.fillStyle = 'rgba(255,253,249,.88)';
-    ctx.beginPath(); ctx.roundRect ? ctx.roundRect(x, y, w, h, 18) : ctx.rect(x, y, w, h); ctx.fill();
-    ctx.strokeStyle = 'rgba(201,165,94,.8)'; ctx.lineWidth = 2; ctx.stroke();
-    text(ctx, 'Carton de réservation', y + 92, '400 72px "Monsieur La Doulaise", cursive', '#b85c38');
-    text(ctx, res.name, y + 172, '600 54px "Cormorant Garamond", serif', '#4a2416', 0, w - 60);
-    text(ctx, 'Catégorie ' + catLabel(res.catId),
-      y + 230, '400 32px "Jost", sans-serif', '#5c3a26', 2);
-    ctx.fillStyle = 'rgba(201,165,94,.7)'; ctx.fillRect(W / 2 - 120, y + 268, 240, 2);
-    text(ctx, 'CODE DE RÉSERVATION', y + 326, '500 24px "Jost", sans-serif', '#8a3416', 6);
-    text(ctx, code, y + 398, '600 64px "Cinzel", serif', '#b85c38', 6);
-
-    text(ctx, 'Dress code : Terracotta', 1220, 'italic 400 38px "Cormorant Garamond", serif', '#4a2416');
-    text(ctx, 'Présentez ce carton à l\u2019entrée', 1270, '400 26px "Jost", sans-serif', '#5c3a26', 2);
+    const BASK = '"Libre Baskerville", Georgia, serif';
+    text(ctx, '15h00 Mairie · 16h00 Table des Élites · Akwa, Douala', 624, 'italic 400 29px ' + BASK, '#3b2418', 0, 800);
+    text(ctx, res.name, 860, fit(ctx, res.name, 700, BASK, 56, 700), '#2e1a12', 0, 700);
+    text(ctx, 'Catégorie ' + catLabel(res.catId), 912, '400 29px ' + BASK, '#3b2418');
+    text(ctx, code, 1082, fit(ctx, code, 700, BASK, 70, 680), '#b0462a', 0, 680);
     return new Promise(ok => c.toBlob(ok, 'image/jpeg', .92));
   }
 
