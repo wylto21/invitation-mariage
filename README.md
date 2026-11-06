@@ -22,7 +22,7 @@ Les fleurs du modèle (fuchsia et rose à l'origine) ont été virées vers la g
 terracotta ; crèmes, ors et feuillages sont inchangés. Le monogramme « GA » de
 l'enveloppe a été effacé et remplacé par « DH » en HTML (`.env-mono`).
 
-Typographie : **Great Vibes** (prénoms des mariés), **Monsieur La Doulaise** (titres de section), **Libre Baskerville** (carton de réservation), **Cinzel** (capitales,
+Typographie : **Monsieur La Doulaise** (prénoms, titres de section ; repli Great Vibes), **Libre Baskerville** (carton de réservation), **Cinzel** (capitales,
 chiffres), **Cormorant Garamond** (textes en italique), **Jost** (interface).
 
 | Rôle | Couleur |
