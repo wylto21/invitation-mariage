@@ -16,7 +16,7 @@
  * Le modèle WhatsApp attendu (catégorie « Utilitaire ») a 3 variables :
  *   Bonjour {{1}}, votre réservation pour le mariage de Daria & Hermann est
  *   confirmée (catégorie {{2}}). Votre code : {{3}}.
- *   Rendez-vous le vendredi 18 décembre 2026 — 15h00 Mairie, 17h30 Table des
+ *   Rendez-vous le vendredi 18 décembre 2026 — 15h00 Mairie, 16h00 Table des
  *   Élites, Akwa, Douala. Dress code : Terracotta. Présentez ce message à
  *   l'entrée.
  *

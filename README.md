@@ -1,7 +1,7 @@
 # Invitation — Daria & Hermann
 
 Site statique (HTML/CSS/JS vanilla, sans dépendance ni build).
-Mariage : vendredi 18 décembre 2026 — mairie à 15h00, puis Table des Élites (Akwa, Douala) à 17h30, jusqu’à 23h00.
+Mariage : vendredi 18 décembre 2026 — mairie à 15h00, puis Table des Élites (Akwa, Douala) de 16h00 à 23h00.
 
 ## Fichiers
 | Fichier | Rôle |
@@ -22,7 +22,7 @@ Les fleurs du modèle (fuchsia et rose à l'origine) ont été virées vers la g
 terracotta ; crèmes, ors et feuillages sont inchangés. Le monogramme « GA » de
 l'enveloppe a été effacé et remplacé par « DH » en HTML (`.env-mono`).
 
-Typographie : **Monsieur La Doulaise** (prénoms, titres de section ; repli Great Vibes), **Libre Baskerville** (carton de réservation), **Cinzel** (capitales,
+Typographie : **Monsieur La Doulaise** (prénoms, titres de section ; repli Great Vibes), **Cinzel** (capitales,
 chiffres), **Cormorant Garamond** (textes en italique), **Jost** (interface).
 
 | Rôle | Couleur |
