@@ -146,13 +146,3 @@ svg.sprite { position: absolute; width: 0; height: 0; overflow: hidden; }
   border: 1px dashed var(--line); color: var(--muted);
   font-size: 13px; line-height: 1.8; border-radius: 3px;
 }
-
-/* ——— Cadre doré de tout le billet (double filet, comme le carton) ——— */
-html::after {
-  content: ""; position: fixed; inset: 10px; z-index: 55; pointer-events: none;
-  border: 1.5px solid rgba(201,165,94,.9);
-  outline: 1px solid rgba(201,165,94,.55); outline-offset: -7px;
-  border-radius: 2px;
-}
-@media (max-width: 600px) { html::after { inset: 5px; outline-offset: -5px; } }
-@media print { html::after { display: none; } }
