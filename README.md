@@ -217,5 +217,9 @@ si la liste n'en indique pas, l'invité la choisit lui-même dans le formulaire.
 3. Publier la page. Ajouter des invités plus tard : compléter la liste et relancer,
    les codes déjà envoyés sont conservés (`invites/codes.csv`, à ne pas supprimer).
 
+4. `python3 tools/liens-en-ligne.py` : publie `envoi.html`, la même page d'envoi mais
+   **chiffrée** (AES-GCM, mot de passe dans `invites/mot-de-passe.txt`), à partager
+   avec les mariés : le dépôt public ne contient que du texte illisible.
+
 Le code de réservation d'un invité est `CODE-XXXX` (invitation + empreinte du numéro).
 Liste vide = réservation libre, comme avant.
