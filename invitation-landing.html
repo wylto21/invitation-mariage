@@ -62,8 +62,7 @@ header{position:fixed;top:0;left:0;right:0;z-index:50;backdrop-filter:blur(12px)
 /* ——— HERO : comme la couverture du modèle ——— */
 .hero{position:relative;isolation:isolate;overflow:clip;min-height:100svh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;
   padding:104px 20px 72px;
-  /* mains des mariés (opacité 80 % intégrée à l'image) sur le fond fleuri */
-  background:url("assets/invitation/fond-fleurs.webp") center / cover no-repeat,url("assets/invitation/fond-mains.webp") center / cover no-repeat,#fdfaf6 url("assets/invitation/fond-fleuri.jpg") center / cover no-repeat}
+  background:#fdfaf6 url("assets/invitation/fond-fleuri.jpg") center / cover no-repeat}
 .hero::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
   background:radial-gradient(56% 50% at 50% 46%, rgba(253,250,246,.9) 0%, rgba(253,250,246,.55) 60%, transparent 100%)}
 .pwrap{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0}
