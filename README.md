@@ -202,12 +202,14 @@ Photos sous licence **CC0** (domaine public), recadrées et légèrement réchau
 ## Invitations personnelles
 Chaque invité reçoit un lien personnel `…/?i=CODE`. Sans code valide, le formulaire
 est remplacé par un écran « Invitation personnelle » (le code peut aussi y être saisi).
-Une invitation ne sert qu'une fois, et la catégorie y est fixée d'avance.
+Une invitation ne sert qu'une fois. La catégorie peut y être fixée d'avance ;
+si la liste n'en indique pas, l'invité la choisit lui-même dans le formulaire.
 
 1. Créer `invites/invites.csv` (dossier **privé**, ignoré par git) :
    ```
    Nom;Catégorie
    Jean Mbarga;Famille
+   Awa Ndiaye
    ```
 2. `python3 tools/invitations.py` : génère `invites/liens.html` (un bouton WhatsApp
    par invité), `invites/liens.csv`, et met à jour le bloc `INVITES` de

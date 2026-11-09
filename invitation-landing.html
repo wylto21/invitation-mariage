@@ -1482,7 +1482,8 @@ async function checkInvite(raw) {
   const code = normInvite(raw);
   if (code.length !== 8) return null;
   const cat = (INV.hashes || {})[(await sha256hex('dh-invite|' + code)).slice(0, 16)];
-  return cat ? { code, catId: cat } : null;
+  /* '*' : invitation sans catégorie imposée, l'invité choisit lui-même */
+  return cat ? { code, catId: cat === '*' ? null : cat } : null;
 }
 /* le code d'une réservation faite avec une invitation commence par celle-ci */
 const inviteUsed = () => !!invite && state.reservations.some(r => normInvite(r.id).startsWith(invite.code));
@@ -1490,12 +1491,15 @@ function applyInvite(inv) {
   invite = inv;
   if (inv) {
     try { localStorage.setItem(INVITE_KEY, inv.code); } catch (e) {}
+    el('inv-note').hidden = false;
+    el('inv-note').textContent = 'Invitation personnelle';
+  }
+  if (inv && inv.catId) {
     selCat = inv.catId;
     document.querySelectorAll('.pill input').forEach(i => { i.checked = i.value === inv.catId; });
     syncPills();
     el('cat-lbl').hidden = true;
     document.querySelector('.pills').hidden = true;
-    el('inv-note').hidden = false;
     el('inv-note').textContent = 'Invitation personnelle · ' + catLabel(inv.catId);
   }
   applyClosed();

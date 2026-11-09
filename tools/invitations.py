@@ -8,7 +8,9 @@ Usage :
 Entrée — invites/invites.csv, une ligne par invité :
     Nom;Catégorie
     Jean Mbarga;Famille
-    Awa Ndiaye;Amis
+    Awa Ndiaye
+La catégorie est facultative : sans elle, l'invité la choisit lui-même
+sur le site.
 
 Sorties (dossier invites/, PRIVÉ, ignoré par git) :
     codes.csv   la mémoire des codes : un invité garde son code d'une
@@ -36,7 +38,7 @@ BASE_URL = "https://wylto21.github.io/invitation-mariage/"
 ALPHABET = "ABCDEFGHJKMNPQRSTUVWXYZ23456789"  # sans 0/O, 1/I/L
 CATS = {"famille": "famille", "amis": "amis", "ami": "amis",
         "collegues": "collegues", "collegue": "collegues"}
-LABELS = {"famille": "Famille", "amis": "Amis", "collegues": "Collègues"}
+LABELS = {"famille": "Famille", "amis": "Amis", "collegues": "Collègues", "*": "Au choix"}
 
 
 def norm(s):
@@ -87,7 +89,8 @@ def main():
     out, taken, errors, seen = [], set(known.values()), [], set()
     for i, r in enumerate(read_rows(src), 1):
         name = r[0]
-        cat = CATS.get(norm(r[1]) if len(r) > 1 else "")
+        raw = norm(r[1]) if len(r) > 1 else ""
+        cat = CATS.get(raw) if raw else "*"
         if not cat:
             errors.append(f"ligne {i} « {name} » : catégorie inconnue ({r[1] if len(r) > 1 else 'vide'})")
             continue
