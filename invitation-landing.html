@@ -314,6 +314,14 @@ td{padding:12px 8px;border-bottom:1px solid var(--line-soft)}
   background:radial-gradient(circle,#c97b4e 0 52%,#8a3416 54% 100%);box-shadow:0 0 0 2px var(--terra),0 10px 26px rgba(184,92,56,.4);transition:transform .15s}
 .shutter:active{transform:scale(.92)}
 .booth-note{margin-top:16px;font-size:12px;color:var(--muted);letter-spacing:.03em}
+.snap{max-width:440px;margin:34px auto 0;display:flex;align-items:center;gap:20px;padding:18px;border:1px solid rgba(201,165,94,.55);border-radius:6px;background:rgba(255,253,249,.7);text-align:left;position:relative;z-index:1}
+.snap-code{flex:none;width:104px;line-height:0}
+.snap>div{min-width:0}
+.snap-code img{width:100%;height:auto}
+.snap-t{font-family:'Cinzel';font-size:15px;letter-spacing:.06em;color:var(--terra);margin:0 0 6px}
+.snap-d{font-size:13px;line-height:1.5;color:var(--muted);margin:0 0 12px}
+.snap .snap-btn{margin:0;padding:12px 18px;font-size:12px;letter-spacing:.1em;white-space:nowrap;background:#fffc00;color:#111;font-family:'Jost'}
+@media (max-width:380px){.snap{flex-direction:column;text-align:center}}
 
 /* ——— Espace cadeaux (à remplir plus tard) ——— */
 /* photo des mariés à gauche de l'espace cadeaux, bords fondus */
@@ -885,6 +893,16 @@ td{padding:12px 8px;border-bottom:1px solid var(--line-soft)}
         <button class="mini" id="boothRetry" type="button">Reprendre</button>
       </div>
       <p class="booth-note">Vos photos restent sur votre téléphone : rien n'est envoyé.</p>
+    </div>
+    <div class="snap reveal">
+      <a class="snap-code" href="https://www.snapchat.com/unlock/?type=SNAPCODE&amp;uuid=6af3d90a09313e32b3f359534d23dbb0&amp;metadata=01" target="_blank" rel="noopener">
+        <img src="assets/invitation/snapcode.png" alt="Snapcode du filtre des mariés" width="320" height="320" loading="lazy">
+      </a>
+      <div>
+        <p class="snap-t">Le filtre sur Snapchat</p>
+        <p class="snap-d">Touchez le bouton depuis votre téléphone, ou scannez le Snapcode avec l'appareil photo de Snapchat.</p>
+        <a class="cta snap-btn" href="https://www.snapchat.com/unlock/?type=SNAPCODE&amp;uuid=6af3d90a09313e32b3f359534d23dbb0&amp;metadata=01" target="_blank" rel="noopener">Ouvrir le filtre</a>
+      </div>
     </div>
   </div>
 </section>
