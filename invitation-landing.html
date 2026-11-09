@@ -295,26 +295,7 @@ td{padding:12px 8px;border-bottom:1px solid var(--line-soft)}
 @media(max-width:760px){.foot-flower{padding-bottom:calc(44vw * .82 + 10px)}}
 
 /* ——— Espace photo ——— */
-.booth{max-width:440px;margin:0 auto;text-align:center;position:relative;z-index:1}
-.booth-stage{position:relative;aspect-ratio:3/4;width:100%;border-radius:6px;overflow:hidden;
-  background:linear-gradient(170deg,#fffdf9,#f3e6d8);border:1px solid rgba(201,165,94,.6);box-shadow:0 22px 50px rgba(74,36,22,.14)}
-.booth-stage video,.booth-stage img,.booth-stage canvas{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
-.booth-stage video.mirror{transform:scaleX(-1)}
-.booth-stage canvas{pointer-events:none}
-.booth-idle{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:0 24%;
-  font-family:'Cormorant Garamond',serif;font-style:italic;font-size:17px;color:var(--muted);line-height:1.4}
-.booth-idle svg{width:44px;height:44px;color:var(--terra)}
-.booth-count{position:absolute;inset:0;display:grid;place-items:center;font-family:'Cinzel';font-size:120px;color:#fff;text-shadow:0 4px 24px rgba(74,36,22,.5);z-index:2}
-.booth-flash{position:absolute;inset:0;background:#fff;opacity:0;pointer-events:none;z-index:3}
-.booth-flash.go{animation:flash .5s ease-out}
-@keyframes flash{0%{opacity:.9}100%{opacity:0}}
-.booth-ctrl{display:flex;gap:12px;justify-content:center;align-items:center;flex-wrap:wrap;margin-top:22px}
-.booth-ctrl .cta{margin:0;cursor:pointer;border:0;font-family:'Jost'}
-.shutter{width:72px;height:72px;border-radius:50%;border:4px solid #fffdf9;cursor:pointer;
-  background:radial-gradient(circle,#c97b4e 0 52%,#8a3416 54% 100%);box-shadow:0 0 0 2px var(--terra),0 10px 26px rgba(184,92,56,.4);transition:transform .15s}
-.shutter:active{transform:scale(.92)}
-.booth-note{margin-top:16px;font-size:12px;color:var(--muted);letter-spacing:.03em}
-.snap{max-width:440px;margin:34px auto 0;display:flex;align-items:center;gap:20px;padding:18px;border:1px solid rgba(201,165,94,.55);border-radius:6px;background:rgba(255,253,249,.7);text-align:left;position:relative;z-index:1}
+.snap{max-width:440px;margin:0 auto;display:flex;align-items:center;gap:20px;padding:18px;border:1px solid rgba(201,165,94,.55);border-radius:6px;background:rgba(255,253,249,.7);text-align:left;position:relative;z-index:1}
 .snap-code{flex:none;width:104px;line-height:0}
 .snap>div{min-width:0}
 .snap-code img{width:100%;height:auto}
@@ -863,36 +844,7 @@ td{padding:12px 8px;border-bottom:1px solid var(--line-soft)}
       <p class="eyebrow">Souvenirs</p>
       <h2 class="sec">L'espace photo</h2>
       <img class="filet" src="assets/invitation/filet.png" alt="" aria-hidden="true" width="1250" height="54">
-      <p>Prenez la pose avec le filtre des mariés, puis enregistrez ou partagez votre photo</p>
-    </div>
-    <div class="booth reveal">
-      <div class="booth-stage">
-        <video id="boothVideo" playsinline muted hidden></video>
-        <img id="boothShot" alt="Votre photo avec le filtre des mariés" hidden>
-        <canvas id="boothFrame" width="1080" height="1440" aria-hidden="true"></canvas>
-        <div class="booth-idle" id="boothIdle">
-          <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round" aria-hidden="true"><path d="M5 13h7l3-4h10l3 4h7v19H5z"/><circle cx="20" cy="22" r="6.5"/></svg>
-          <span>Activez la caméra ou importez une photo</span>
-        </div>
-        <div class="booth-count" id="boothCount" hidden></div>
-        <div class="booth-flash" id="boothFlash"></div>
-      </div>
-      <div class="booth-ctrl" id="boothStart">
-        <button class="cta" id="boothCam" type="button">Activer la caméra</button>
-        <label class="cta ghost" for="boothFile">Importer une photo</label>
-        <input type="file" id="boothFile" accept="image/*" hidden>
-      </div>
-      <div class="booth-ctrl" id="boothLive" hidden>
-        <button class="mini" id="boothFlip" type="button">Retourner</button>
-        <button class="shutter" id="boothSnap" type="button" aria-label="Prendre la photo"></button>
-        <button class="mini" id="boothStop" type="button">Fermer</button>
-      </div>
-      <div class="booth-ctrl" id="boothDone" hidden>
-        <a class="cta" id="boothSave" download="daria-hermann-souvenir.jpg">Enregistrer</a>
-        <button class="cta ghost" id="boothShare" type="button" hidden>Partager</button>
-        <button class="mini" id="boothRetry" type="button">Reprendre</button>
-      </div>
-      <p class="booth-note">Vos photos restent sur votre téléphone : rien n'est envoyé.</p>
+      <p>Prenez la pose avec le filtre des mariés sur Snapchat</p>
     </div>
     <div class="snap reveal">
       <a class="snap-code" href="https://www.snapchat.com/unlock/?type=SNAPCODE&amp;uuid=6af3d90a09313e32b3f359534d23dbb0&amp;metadata=01" target="_blank" rel="noopener">
@@ -1702,154 +1654,6 @@ if (googleConfigured()) {
   syncFromSheet(true);
   setInterval(() => syncFromSheet(true), 60000);
 }
-</script>
-<script>
-/* ===== ESPACE PHOTO : filtre des mariés =====
-   Le cadre (bouquets, médaillon des mariés, prénoms) est dessiné une fois sur
-   un canvas transparent posé au-dessus de la vidéo ; la photo finale empile la
-   même image par-dessus l'image de la caméra. Tout reste dans le navigateur. */
-(function () {
-  const $ = id => document.getElementById(id);
-  const W = 1080, H = 1440;
-  const video = $('boothVideo'), shot = $('boothShot'), frame = $('boothFrame');
-  const idle = $('boothIdle'), count = $('boothCount'), flashEl = $('boothFlash');
-  const panes = { start: $('boothStart'), live: $('boothLive'), done: $('boothDone') };
-  let stream = null, facing = 'user', shotUrl = null, shotBlob = null;
-
-  const load = src => new Promise((ok, ko) => { const i = new Image(); i.onload = () => ok(i); i.onerror = ko; i.src = src; });
-  const assets = Promise.all([
-    load('assets/invitation/bouquet-haut.webp'),
-    load('assets/invitation/bouquet-angle.webp'),
-    load('photo-couple.jpg').catch(() => null),
-    document.fonts ? document.fonts.load('120px "Monsieur La Doulaise"').then(() => document.fonts.load('40px "Cinzel"')) : null
-  ]);
-
-  /* image retournée horizontalement (bouquet gauche = miroir du droit) */
-  function drawPair(ctx, img, w, y) {
-    const h = img.height * w / img.width;
-    ctx.drawImage(img, W - w, y === 'bottom' ? H - h : 0, w, h);
-    ctx.save(); ctx.translate(w, 0); ctx.scale(-1, 1);
-    ctx.drawImage(img, 0, y === 'bottom' ? H - h : 0, w, h);
-    ctx.restore();
-  }
-
-  function drawFrame([top, bottom, couple]) {
-    const ctx = frame.getContext('2d');
-    ctx.clearRect(0, 0, W, H);
-    /* voile ivoire en bas pour la lisibilité des prénoms */
-    const g = ctx.createLinearGradient(0, H * .66, 0, H);
-    g.addColorStop(0, 'rgba(253,250,246,0)'); g.addColorStop(.45, 'rgba(253,250,246,.82)'); g.addColorStop(1, 'rgba(253,250,246,.95)');
-    ctx.fillStyle = g; ctx.fillRect(0, H * .66, W, H * .34);
-    drawPair(ctx, top, W * .44, 'top');
-    drawPair(ctx, bottom, W * .30, 'bottom');
-    /* double filet doré */
-    ctx.strokeStyle = 'rgba(201,165,94,.95)'; ctx.lineWidth = 4; ctx.strokeRect(26, 26, W - 52, H - 52);
-    ctx.strokeStyle = 'rgba(201,165,94,.55)'; ctx.lineWidth = 2; ctx.strokeRect(40, 40, W - 80, H - 80);
-    /* médaillon des mariés, en haut au centre */
-    if (couple) {
-      const r = 118, cx = W / 2, cy = 190;
-      const s = Math.min(couple.width, couple.height * .8);
-      ctx.save(); ctx.beginPath(); ctx.arc(cx, cy, r, 0, Math.PI * 2); ctx.clip();
-      ctx.drawImage(couple, (couple.width - s) / 2, couple.height * .08, s, s, cx - r, cy - r, r * 2, r * 2);
-      ctx.restore();
-      ctx.lineWidth = 9; ctx.strokeStyle = '#fffdf9'; ctx.beginPath(); ctx.arc(cx, cy, r + 4, 0, Math.PI * 2); ctx.stroke();
-      const ring = ctx.createLinearGradient(cx - r, cy - r, cx + r, cy + r);
-      ring.addColorStop(0, '#e9c98a'); ring.addColorStop(.5, '#b8862f'); ring.addColorStop(1, '#e2bd78');
-      ctx.lineWidth = 5; ctx.strokeStyle = ring; ctx.beginPath(); ctx.arc(cx, cy, r + 10, 0, Math.PI * 2); ctx.stroke();
-    }
-    /* prénoms et date */
-    ctx.textAlign = 'center';
-    ctx.fillStyle = '#b85c38';
-    ctx.font = '400 128px "Monsieur La Doulaise", "Great Vibes", cursive';
-    ctx.shadowColor = 'rgba(253,250,246,.9)'; ctx.shadowBlur = 18;
-    ctx.fillText('Daria & Hermann', W / 2, H - 210);
-    ctx.shadowBlur = 0;
-    ctx.fillStyle = '#4a2416';
-    ctx.font = '400 34px "Cinzel", serif';
-    ctx.fillText('18 · 12 · 2026  —  DOUALA', W / 2, H - 142);
-  }
-  assets.then(drawFrame).catch(() => {});
-
-  function show(name) {
-    Object.keys(panes).forEach(k => { panes[k].hidden = k !== name; });
-  }
-  function stopStream() {
-    if (stream) stream.getTracks().forEach(t => t.stop());
-    stream = null; video.srcObject = null; video.hidden = true;
-  }
-  function startCam() {
-    if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
-      flash('Caméra indisponible — importez une photo'); return;
-    }
-    stopStream();
-    navigator.mediaDevices.getUserMedia({ video: { facingMode: facing, width: { ideal: 1440 }, height: { ideal: 1920 } }, audio: false })
-      .then(s => {
-        stream = s; video.srcObject = s; video.hidden = false;
-        video.classList.toggle('mirror', facing === 'user');
-        shot.hidden = true; idle.hidden = true;
-        return video.play();
-      })
-      .then(() => show('live'))
-      .catch(() => { flash('Caméra refusée ou indisponible — importez une photo'); show('start'); });
-  }
-
-  /* compose la photo finale : source recadrée en « cover » + cadre */
-  function compose(src, sw, sh, mirror) {
-    return assets.then(() => {
-      const c = document.createElement('canvas'); c.width = W; c.height = H;
-      const ctx = c.getContext('2d');
-      const k = Math.max(W / sw, H / sh), dw = sw * k, dh = sh * k;
-      ctx.save();
-      if (mirror) { ctx.translate(W, 0); ctx.scale(-1, 1); }
-      ctx.drawImage(src, (W - dw) / 2, (H - dh) / 2, dw, dh);
-      ctx.restore();
-      ctx.drawImage(frame, 0, 0);
-      return new Promise(ok => c.toBlob(ok, 'image/jpeg', .92));
-    }).then(blob => {
-      if (shotUrl) URL.revokeObjectURL(shotUrl);
-      shotBlob = blob; shotUrl = URL.createObjectURL(blob);
-      shot.src = shotUrl; shot.hidden = false; idle.hidden = true;
-      $('boothSave').href = shotUrl;
-      const file = new File([blob], 'daria-hermann-souvenir.jpg', { type: 'image/jpeg' });
-      $('boothShare').hidden = !(navigator.canShare && navigator.canShare({ files: [file] }));
-      show('done');
-    });
-  }
-
-  function snap() {
-    let n = 3;
-    count.hidden = false; count.textContent = n;
-    const timer = setInterval(() => {
-      n -= 1;
-      if (n > 0) { count.textContent = n; return; }
-      clearInterval(timer); count.hidden = true;
-      flashEl.classList.remove('go'); void flashEl.offsetWidth; flashEl.classList.add('go');
-      const mirror = facing === 'user';
-      compose(video, video.videoWidth, video.videoHeight, mirror).then(stopStream);
-    }, 800);
-  }
-
-  $('boothCam').addEventListener('click', startCam);
-  $('boothFlip').addEventListener('click', () => { facing = facing === 'user' ? 'environment' : 'user'; startCam(); });
-  $('boothSnap').addEventListener('click', snap);
-  $('boothStop').addEventListener('click', () => { stopStream(); idle.hidden = false; show('start'); });
-  $('boothRetry').addEventListener('click', () => { shot.hidden = true; idle.hidden = false; show('start'); });
-  $('boothFile').addEventListener('change', e => {
-    const f = e.target.files && e.target.files[0];
-    if (!f) return;
-    stopStream();
-    load(URL.createObjectURL(f)).then(img => compose(img, img.naturalWidth, img.naturalHeight, false))
-      .catch(() => flash('Image illisible'));
-    e.target.value = '';
-  });
-  $('boothShare').addEventListener('click', () => {
-    if (!shotBlob) return;
-    const file = new File([shotBlob], 'daria-hermann-souvenir.jpg', { type: 'image/jpeg' });
-    navigator.share({ files: [file], title: 'Daria & Hermann — 18.12.2026' }).catch(() => {});
-  });
-  /* on coupe la caméra quand la page passe en arrière-plan */
-  document.addEventListener('visibilitychange', () => { if (document.hidden && stream) { stopStream(); idle.hidden = false; show('start'); } });
-})();
 </script>
 <script>
 /* ===== CARTON DE RÉSERVATION (image à envoyer sur WhatsApp) =====
