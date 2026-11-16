@@ -44,7 +44,7 @@ volontaire (le `<use>` externe ne fonctionne pas en `file://`). Il est régéné
 Tout se règle dans le bloc `CONFIG` en haut du script de `invitation-landing.html` :
 date du mariage, capacités par catégorie, PIN admin, URL de backend éventuelle.
 
-**Capacité : 60 invités au total.** Le détail par catégorie (24 / 24 / 12) est une donnée
+**Capacité : 150 invités au total.** Le détail par catégorie (60 / 60 / 30) est une donnée
 interne qui sert uniquement à alimenter les barres de progression : **aucun chiffre de
 répartition n'est affiché publiquement**, par choix éditorial. Pour modifier le total,
 changez les valeurs `stock` de `CONFIG.categories` — le total affiché est calculé
